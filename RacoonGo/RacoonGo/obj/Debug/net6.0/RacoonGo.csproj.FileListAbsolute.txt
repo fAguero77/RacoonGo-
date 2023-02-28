@@ -30,3 +30,30 @@ C:\Users\aguer\OneDrive\UJI\4to año (2022 - 2023)\Segundo Semestre\EI1049 - Tal
 C:\Users\aguer\OneDrive\UJI\4to año (2022 - 2023)\Segundo Semestre\EI1049 - Taller de Ingeniería del Software\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.pdb
 C:\Users\aguer\OneDrive\UJI\4to año (2022 - 2023)\Segundo Semestre\EI1049 - Taller de Ingeniería del Software\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.genruntimeconfig.cache
 C:\Users\aguer\OneDrive\UJI\4to año (2022 - 2023)\Segundo Semestre\EI1049 - Taller de Ingeniería del Software\RacoonGo\RacoonGo\obj\Debug\net6.0\ref\RacoonGo.dll
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\appsettings.json
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\RacoonGo.exe
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\RacoonGo.deps.json
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\RacoonGo.runtimeconfig.json
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\RacoonGo.dll
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\RacoonGo.pdb
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.csproj.AssemblyReference.cache
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.AssemblyInfoInputs.cache
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.AssemblyInfo.cs
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.csproj.CoreCompileInputs.cache
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\scopedcss\bundle\RacoonGo.styles.css
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.csproj.CopyComplete
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.dll
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\refint\RacoonGo.dll
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.pdb
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.genruntimeconfig.cache
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\ref\RacoonGo.dll
