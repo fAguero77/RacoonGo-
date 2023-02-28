@@ -57,3 +57,35 @@ C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\refi
 C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.pdb
 C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.genruntimeconfig.cache
 C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\ref\RacoonGo.dll
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\appsettings.Development.json
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\appsettings.json
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\RacoonGo.exe
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\RacoonGo.deps.json
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\RacoonGo.runtimeconfig.json
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\RacoonGo.dll
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\RacoonGo.pdb
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\Microsoft.OpenApi.dll
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.csproj.AssemblyReference.cache
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.GeneratedMSBuildEditorConfig.editorconfig
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.AssemblyInfoInputs.cache
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.AssemblyInfo.cs
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.csproj.CoreCompileInputs.cache
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.MvcApplicationPartsAssemblyInfo.cs
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.MvcApplicationPartsAssemblyInfo.cache
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\staticwebassets\msbuild.RacoonGo.Microsoft.AspNetCore.StaticWebAssets.props
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\staticwebassets\msbuild.build.RacoonGo.props
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.RacoonGo.props
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.RacoonGo.props
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\staticwebassets.pack.json
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\staticwebassets.build.json
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\staticwebassets.development.json
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\scopedcss\bundle\RacoonGo.styles.css
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.csproj.CopyComplete
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.dll
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\refint\RacoonGo.dll
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.pdb
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.genruntimeconfig.cache
+M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\ref\RacoonGo.dll

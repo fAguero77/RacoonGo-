@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "RacoonGo/23.17": {
+      "RacoonGo/1.0.0": {
         "dependencies": {
           "Swashbuckle.AspNetCore": "6.2.3"
         },
@@ -64,7 +64,7 @@
     }
   },
   "libraries": {
-    "RacoonGo/23.17": {
+    "RacoonGo/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
