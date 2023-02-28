@@ -1,0 +1,72 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+        "projectName": "RacoonGo",
+        "projectPath": "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+        "packagesPath": "C:\\Users\\aguer\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo\\RacoonGo\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\aguer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

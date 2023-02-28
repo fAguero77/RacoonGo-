@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RacoonGo", "RacoonGo\RacoonGo.csproj", "{AA126816-A13A-4CFC-BBE7-253EA00B5301}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "RacoonGoFrontend", "RacoonGoFrontend\RacoonGoFrontend.esproj", "{D7506926-3953-43CC-BB6B-02CFB8B4E6DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA126816-A13A-4CFC-BBE7-253EA00B5301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA126816-A13A-4CFC-BBE7-253EA00B5301}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA126816-A13A-4CFC-BBE7-253EA00B5301}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA126816-A13A-4CFC-BBE7-253EA00B5301}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7506926-3953-43CC-BB6B-02CFB8B4E6DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7506926-3953-43CC-BB6B-02CFB8B4E6DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7506926-3953-43CC-BB6B-02CFB8B4E6DD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D7506926-3953-43CC-BB6B-02CFB8B4E6DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7506926-3953-43CC-BB6B-02CFB8B4E6DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7506926-3953-43CC-BB6B-02CFB8B4E6DD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA0C2A72-8103-40BE-ACAA-C13F64BC3683}
+	EndGlobalSection
+EndGlobal
