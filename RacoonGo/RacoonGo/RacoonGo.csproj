@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\GeodecodeService - Copia.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Services\GeodecodeService" />
+    <None Remove="Services\NewFile.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
