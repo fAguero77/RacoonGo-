@@ -28,7 +28,7 @@ const analytics = getAnalytics(app);
 @NgModule({
   declarations: [
     AppComponent,
-    EventFormComponent
+    EventFormComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule
