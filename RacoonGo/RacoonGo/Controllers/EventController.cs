@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using RacoonGo.Services;
+
 namespace RacoonGo.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class EventController : ControllerBase
     {
-    
+
 
         private readonly IGeodecodeService _service;
 
@@ -32,3 +33,4 @@ namespace RacoonGo.Controllers
         }
         */
     }
+}
