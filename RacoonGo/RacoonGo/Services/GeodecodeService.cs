@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RacoonGo.Modelo;
 
 namespace RacoonGo.Services
@@ -15,7 +16,7 @@ namespace RacoonGo.Services
             HttpResponseMessage response = await client.GetAsync(new Uri(string.Format(URI_COORDS_BY_NAME, name, API_KEY)));
             string responseData = await response.Content.ReadAsStringAsync();
             List<Location> dataObject = JsonConvert.DeserializeObject<List<Location>>(responseData);
-            return dataObject;
+            return dataObject[0];
         }
     }
 

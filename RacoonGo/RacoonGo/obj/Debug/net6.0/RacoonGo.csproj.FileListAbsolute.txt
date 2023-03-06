@@ -89,3 +89,4 @@ M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\refint\RacoonG
 M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.pdb
 M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\RacoonGo.genruntimeconfig.cache
 M:\EI\Metodos agiles\RacoonGo-\RacoonGo\RacoonGo\obj\Debug\net6.0\ref\RacoonGo.dll
+C:\Users\al394756\Source\Repos\RacoonGo-\RacoonGo\RacoonGo\bin\Debug\net6.0\Newtonsoft.Json.dll

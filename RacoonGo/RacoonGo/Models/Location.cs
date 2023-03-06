@@ -5,13 +5,13 @@ namespace RacoonGo.Modelo
  
     public class Location
     {
-        private String _name;
-        private String _lat;
-        private String _lon;
-       
-      
+        public String name { get; set; }
+        public double lat { get; set; }
+        public double lon { get; set; }
 
-        
+
+
+
 
 
 

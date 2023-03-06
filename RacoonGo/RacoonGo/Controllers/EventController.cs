@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using RacoonGo.Modelo;
 using RacoonGo.Services;
 
 namespace RacoonGo.Controllers
@@ -16,9 +17,9 @@ namespace RacoonGo.Controllers
             _service = service;
         }
 
-        /*
+
         [HttpPost("addEvent")]
-        public async Task<Events> AddLocation([FromQuery] string name)
+        public async Task<Location> AddLocation([FromQuery] string name)
         {
             try
             {
@@ -31,6 +32,5 @@ namespace RacoonGo.Controllers
                 throw new BadHttpRequestException(ex.Message);
             }
         }
-        */
     }
 }

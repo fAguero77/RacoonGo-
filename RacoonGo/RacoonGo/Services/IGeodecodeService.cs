@@ -6,7 +6,7 @@ namespace RacoonGo.Services
 
     public interface IGeodecodeService
     {
-        public async Task<Location> GetLocation(string name);
+        Task<Location> GetLocation(string name);
     }
 
 }
