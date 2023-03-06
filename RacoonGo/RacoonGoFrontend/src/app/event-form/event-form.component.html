@@ -1,1 +1,13 @@
-<p>event-form works!</p>
+{{ model | json }}
+<div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name"
+           required
+           [(ngModel)]="model.name" name="name">
+</div>
+
+<div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" class="form-control" id="description"
+           [(ngModel)]="model.description" name="description">
+</div>

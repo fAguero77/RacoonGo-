@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from './Location';
+export class Event   {
 
-@Component({
-  selector: 'app-event',
-  templateUrl: './event.component.html',
-  styleUrls: ['./event.component.css']
-})
-export class EventComponent implements OnInit {
+    
+    constructor(public title: string,
+        public description: number,
+        public recommendedAge: number,
+        public startDate: Date,
+        public endDate: Date,
+        public location: Location   ) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+ 
 
 }
