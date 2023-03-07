@@ -2,9 +2,9 @@
 
 namespace RacoonGo.Controllers;
 
-public class UserController
+public class UsersController
 {
-    public UserController()
+    public UsersController()
     {
     }
     

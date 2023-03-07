@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Event } from '../models/event';
+import { Location } from '../models/location';
+import { EventsService } from '../services/events.service';
 
 @Component({
   selector: 'event-form',
@@ -10,6 +13,7 @@ export class EventFormComponent implements OnInit {
 
     addEventForm!: FormGroup;
 
+    constructor(private eventService: EventsService) { }
 
     ngOnInit(): void {
         this.addEventForm = new FormGroup({
@@ -19,9 +23,21 @@ export class EventFormComponent implements OnInit {
     }
 
     addEvent(): void {
-        // Process checkout data here
-        alert('Your order has been submitted ' + this.addEventForm.value.title + " \ " + this.addEventForm.value.description);
-        http.po
+
+        let event = new Event(
+            this.addEventForm.value.title,
+            this.addEventForm.value.description,
+            1,
+            new Date(),
+            new Date(),
+            new Location ("Valencia")
+        );
+        
+
+        this.eventService.addEvent(event).subscribe(newEvent => {
+            // and check for errors probably
+            console.log('New event added:', newEvent);
+        });
 
     }
 
