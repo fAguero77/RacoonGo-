@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace RacoonGo.Modelo
 {
-    enum Theme
+    public enum Theme
     {
         Archeology,
         Biology,
@@ -17,13 +17,13 @@ namespace RacoonGo.Modelo
     }
     public class Events
     {
-        private String _title;
-        private String _description;
-        private int _recommendedAge;
-        private DateTime _startDate;
-        private DateTime _endDate;
-        private LinkedList<Theme> _themes;
-        private Location _location;
+        public String title { get; set; }
+        public String description { get; set; }
+        public int recommendedAge { get; set; }
+        public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
+        public LinkedList<Theme> themes { get; set; }
+        public Location location { get; set; }
 
         public Events()
         {

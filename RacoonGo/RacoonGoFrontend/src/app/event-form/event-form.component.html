@@ -1,13 +1,84 @@
-{{ model | json }}
-<div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name"
-           required
-           [(ngModel)]="model.name" name="name">
-</div>
+<h3>Cart</h3>
 
-<div class="form-group">
-    <label for="description">Description</label>
-    <input type="text" class="form-control" id="description"
-           [(ngModel)]="model.description" name="description">
+<p>
+    <a routerLink="/shipping">Shipping Prices</a>
+</p>
+
+<!--<form method="post">
+    <div>
+        <label for="title">
+            title
+        </label>
+        <input [(ngModel)]="title" id="title" type="text" formControlName="title">
+    </div>
+
+    <div>
+        <label for="description">
+            description
+        </label>
+        <input [(ngModel)]="description" id="description" type="text" formControlName="description">
+    </div>
+
+    <div>
+        <label for="recommendedAge">
+            recommendedAge
+        </label>
+        <input [(ngModel)]="recommendedAge" id="recommendedAge" type="number" formControlName="recommendedAge">
+    </div>
+
+    <div>
+        <label for="startDate">
+            startDate
+        </label>
+        <input [(ngModel)]="startDate" id="startDate" type="date" formControlName="startDate">
+    </div>
+    <div>
+        <label for="endDate">
+            endDate
+        </label>
+        <input [(ngModel)]="endDate" id="endDate" type="date" formControlName="endDate">
+    </div>
+    <div>
+        <label for="location">
+            location
+        </label>
+        <input [(ngModel)]="location" id="location" type="text" formControlName="location">
+    </div>
+
+    <button class="button" type="submit">Purchase</button>
+
+</form>-->
+
+<div class="outer">
+    <div class="container">
+        <div class="row">
+            <div class="panel">
+                <div class="panel-heading">
+                </div>
+                <div class="panel-body p-3">
+                    <form [formGroup]="addEventForm">
+                        <div class="form-group pt-3">
+                            <div class="input-field" [class.error]="addEventForm.controls['title'].dirty && addEventForm.hasError('required', 'title')">
+                                <span class="fa fa-globe p-2"></span>
+                                <input type="text" formControlName="title" placeholder="Titulo">
+                            </div>
+                            <small *ngIf="addEventForm.controls['title'].dirty && addEventForm.hasError('required', 'title')" class="text-danger">*Title is required</small>
+                        </div>
+                        
+
+                        <div class="form-group pt-3">
+                            <div class="input-field" [class.error]="addEventForm.controls['description'].dirty && addEventForm.hasError('required', 'description')">
+                                <span class="fa fa-globe p-2"></span>
+                                <input type="text" formControlName="description" placeholder="Description">
+                            </div>
+                        </div>
+                            <small *ngIf="addEventForm.controls['description'].dirty && addEventForm.hasError('required', 'description')" class="text-danger">*description is required</small>
+
+                        <!--<button [disabled]="!addEventForm.value.title" type="submit" class="btn btn-primary btn-lock mt-4 w-100" (click)="addEvent()">Add Event</button>-->
+                        <button type="submit" class="btn btn-primary btn-lock mt-4 w-100" (click)="addEvent()">Add Event</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\al394756\\Source\\Repos\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {}
+    "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\al394756\\Source\\Repos\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {
-      "version": "23.17.0",
+    "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {
+      "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\al394756\\Source\\Repos\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+        "projectUniqueName": "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
         "projectName": "RacoonGo",
-        "projectPath": "C:\\Users\\al394756\\Source\\Repos\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
-        "packagesPath": "C:\\Users\\al394756\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\al394756\\Source\\Repos\\RacoonGo-\\RacoonGo\\RacoonGo\\obj\\",
+        "projectPath": "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+        "packagesPath": "C:\\Users\\aguer\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\al394756\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\aguer\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -67,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.309\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

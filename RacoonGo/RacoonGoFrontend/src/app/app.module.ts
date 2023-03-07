@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -30,8 +30,8 @@ const analytics = getAnalytics(app);
     AppComponent,
     EventFormComponent,
   ],
-  imports: [
-    BrowserModule, HttpClientModule
+    imports: [
+        BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
