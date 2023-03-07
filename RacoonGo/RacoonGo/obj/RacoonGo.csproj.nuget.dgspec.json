@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {}
+    "M:\\EI\\Metodos agiles\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {
+    "M:\\EI\\Metodos agiles\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+        "projectUniqueName": "M:\\EI\\Metodos agiles\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
         "projectName": "RacoonGo",
-        "projectPath": "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
-        "packagesPath": "C:\\Users\\aguer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\obj\\",
+        "projectPath": "M:\\EI\\Metodos agiles\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+        "packagesPath": "C:\\Users\\monic\\.nuget\\packages\\",
+        "outputPath": "M:\\EI\\Metodos agiles\\RacoonGo-\\RacoonGo\\RacoonGo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\aguer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\monic\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,10 +40,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.2, )"
-            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -68,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

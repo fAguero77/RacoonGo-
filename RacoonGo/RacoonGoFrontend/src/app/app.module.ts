@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { EventFormComponent } from './event-form/event-form.component';
+import { AccountComponent } from './user/account/account.component';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -29,6 +30,7 @@ const analytics = getAnalytics(app);
   declarations: [
     AppComponent,
     EventFormComponent,
+    AccountComponent,
   ],
     imports: [
         BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule
