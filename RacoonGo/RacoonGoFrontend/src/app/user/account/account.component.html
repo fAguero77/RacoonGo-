@@ -1,0 +1,23 @@
+<p>account wor<div class=" registerBody">
+    <label>Sign Up</label>
+    <form class="formReg" method="post">
+        <input
+                type="email"
+                [(ngModel)]="email"
+                name="email"
+                placeholder="Email"
+                required="required"/>
+        <input
+                type="password"
+                [(ngModel)]="password"
+                name="password"
+                placeholder="Password"
+                minlength="6"
+                required="required"/>
+        <div>
+            <button  class="buttonWhite" type="submit" (click)="register()">Sign Up</button>
+        </div>
+        <p>Already have an account? <a routerLink="/login">Login</a></p>
+    </form>
+</div>
+ks!</p>
