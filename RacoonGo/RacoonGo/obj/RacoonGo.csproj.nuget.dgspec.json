@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {}
+    "M:\\EI\\Metodos agiles\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {}
   },
   "projects": {
-    "D:\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {
+    "M:\\EI\\Metodos agiles\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+        "projectUniqueName": "M:\\EI\\Metodos agiles\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
         "projectName": "RacoonGo",
-        "projectPath": "D:\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
-        "packagesPath": "C:\\Users\\agila\\.nuget\\packages\\",
-        "outputPath": "D:\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\obj\\",
+        "projectPath": "M:\\EI\\Metodos agiles\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+        "packagesPath": "C:\\Users\\monic\\.nuget\\packages\\",
+        "outputPath": "M:\\EI\\Metodos agiles\\RacoonGo-\\RacoonGo\\RacoonGo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\agila\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\monic\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,7 +40,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-<<<<<<< HEAD
             "FireSharp": {
               "target": "Package",
               "version": "[2.0.4, )"
@@ -49,10 +48,6 @@
               "target": "Package",
               "version": "[2.0.4, )"
             },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.3, )"
-=======
             "Microsoft.AspNetCore.Cors": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -63,8 +58,7 @@
             },
             "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[13.0.2, )"
->>>>>>> origin/sprint1
+              "version": "[13.0.3, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -82,24 +76,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.13, 6.0.13]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.13, 6.0.13]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.13, 6.0.13]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.13, 6.0.13]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -108,62 +84,7 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
->>>>>>> origin/sprint1
-    "D:\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {}
-    "D:\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {
-        "projectUniqueName": "D:\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
-        "projectPath": "D:\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
-        "packagesPath": "C:\\Users\\agila\\.nuget\\packages\\",
-        "outputPath": "D:\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\obj\\",
-          "C:\\Users\\agila\\AppData\\Roaming\\NuGet\\NuGet.Config",
-            "FireSharp": {
-              "target": "Package",
-              "version": "[2.0.4, )"
-            },
-            "FirebaseSharp": {
-              "target": "Package",
-              "version": "[2.0.4, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.3, )"
-            },
-            "Microsoft.AspNetCore.Cors": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.AspNetCore.Mvc": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.2, )"
-            },
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.13, 6.0.13]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.13, 6.0.13]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.13, 6.0.13]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.13, 6.0.13]"
-            }
-          ],
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

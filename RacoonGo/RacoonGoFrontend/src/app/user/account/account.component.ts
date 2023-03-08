@@ -51,4 +51,7 @@ export class AccountComponent implements OnInit {
     });
   }
 
+    register() {
+        
+    }
 }

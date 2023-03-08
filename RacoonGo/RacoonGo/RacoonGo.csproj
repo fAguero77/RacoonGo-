@@ -22,15 +22,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-<<<<<<< HEAD
     <PackageReference Include="FirebaseSharp" Version="2.0.4" />
     <PackageReference Include="FireSharp" Version="2.0.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-=======
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
->>>>>>> origin/sprint1
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
