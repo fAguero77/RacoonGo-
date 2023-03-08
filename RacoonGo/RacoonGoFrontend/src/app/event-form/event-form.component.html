@@ -4,51 +4,6 @@
     <a routerLink="/shipping">Shipping Prices</a>
 </p>
 
-<!--<form method="post">
-    <div>
-        <label for="title">
-            title
-        </label>
-        <input [(ngModel)]="title" id="title" type="text" formControlName="title">
-    </div>
-
-    <div>
-        <label for="description">
-            description
-        </label>
-        <input [(ngModel)]="description" id="description" type="text" formControlName="description">
-    </div>
-
-    <div>
-        <label for="recommendedAge">
-            recommendedAge
-        </label>
-        <input [(ngModel)]="recommendedAge" id="recommendedAge" type="number" formControlName="recommendedAge">
-    </div>
-
-    <div>
-        <label for="startDate">
-            startDate
-        </label>
-        <input [(ngModel)]="startDate" id="startDate" type="date" formControlName="startDate">
-    </div>
-    <div>
-        <label for="endDate">
-            endDate
-        </label>
-        <input [(ngModel)]="endDate" id="endDate" type="date" formControlName="endDate">
-    </div>
-    <div>
-        <label for="location">
-            location
-        </label>
-        <input [(ngModel)]="location" id="location" type="text" formControlName="location">
-    </div>
-
-    <button class="button" type="submit">Purchase</button>
-
-</form>-->
-
 <div class="outer">
     <div class="container">
         <div class="row">
@@ -62,9 +17,9 @@
                                 <span class="fa fa-globe p-2"></span>
                                 <input type="text" formControlName="title" placeholder="Titulo">
                             </div>
-                            <small *ngIf="addEventForm.controls['title'].dirty && addEventForm.hasError('required', 'title')" class="text-danger">*Title is required</small>
                         </div>
-                        
+                        <small *ngIf="addEventForm.controls['title'].dirty && addEventForm.hasError('required', 'title')" class="text-danger">*Title is required</small>
+
 
                         <div class="form-group pt-3">
                             <div class="input-field" [class.error]="addEventForm.controls['description'].dirty && addEventForm.hasError('required', 'description')">
@@ -72,10 +27,38 @@
                                 <input type="text" formControlName="description" placeholder="Description">
                             </div>
                         </div>
-                            <small *ngIf="addEventForm.controls['description'].dirty && addEventForm.hasError('required', 'description')" class="text-danger">*description is required</small>
+                        <small *ngIf="addEventForm.controls['description'].dirty && addEventForm.hasError('required', 'description')" class="text-danger">*description is required</small>
 
-                        <!--<button [disabled]="!addEventForm.value.title" type="submit" class="btn btn-primary btn-lock mt-4 w-100" (click)="addEvent()">Add Event</button>-->
+                        <div class="form-group pt-3">
+                            <div class="input-field" [class.error]="addEventForm.controls['recommendedAge'].dirty && addEventForm.hasError('required', 'recommendedAge')">
+                                <span class="fa fa-globe p-2"></span>
+                                <input type="number" formControlName="recommendedAge" placeholder="8">
+                            </div>
+                        </div>
+                        <small *ngIf="addEventForm.controls['recommendedAge'].dirty && addEventForm.hasError('required', 'recommendedAge')" class="text-danger">*recommendedAge is required</small>
+
+                        <div class="form-group pt-3">
+                            <div class="input-field" [class.error]="addEventForm.controls['startDate'].dirty && addEventForm.hasError('required', 'startDate')">
+                                <span class="fa fa-globe p-2"></span>
+                                <input type="date" formControlName="startDate" placeholder="8">
+                            </div>
+                        </div>
+                        <small *ngIf="addEventForm.controls['startDate'].dirty && addEventForm.hasError('required', 'startDate')" class="text-danger">*startDate is required</small>
+
+                        <div class="form-group pt-3">
+                            <div class="input-field" [class.error]="addEventForm.controls['endDate'].dirty && addEventForm.hasError('required', 'endDate')">
+                                <span class="fa fa-globe p-2"></span>
+                                <input type="date" formControlName="endDate" placeholder="8">
+                            </div>
+                        </div>
+                        <small *ngIf="addEventForm.controls['endDate'].dirty && addEventForm.hasError('required', 'endDate')" class="text-danger">*endDate is required</small>
+
+
+
+
+                        <!--<button [disabled]="!addEventForm.value.title && !addEventForm.value.title" type="submit" class="btn btn-primary btn-lock mt-4 w-100" (click)="addEvent()">Add Event</button>-->
                         <button type="submit" class="btn btn-primary btn-lock mt-4 w-100" (click)="addEvent()">Add Event</button>
+
                     </form>
                 </div>
             </div>

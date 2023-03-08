@@ -15,7 +15,7 @@ namespace RacoonGo.Modelo
         History,
         Others
     }
-    public class Events
+    public class Event
     {
         public String title { get; set; }
         public String description { get; set; }
@@ -25,7 +25,7 @@ namespace RacoonGo.Modelo
         public LinkedList<Theme> themes { get; set; }
         public Location location { get; set; }
 
-        public Events()
+        public Event()
         {
 
         }
