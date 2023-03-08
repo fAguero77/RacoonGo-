@@ -3,5 +3,5 @@
 
 public class FirebaseConnection
 {
-    IFirebaseConfig config=
+    //IFirebaseConfig config=
 }
