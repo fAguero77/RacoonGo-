@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Location } from './location';
 
 export class Event {
@@ -24,14 +24,14 @@ export class Event {
 }
 
 export enum Theme {
-    Archeology = 0,
-    Biology,
-    Astronomy,
-    Physics,
-    Nutrition,
-    Psicology,
-    Investigation,
-    Art,
-    History,
-    Others
+    Arqueología = 0,
+    Biología,
+    Astronomía,
+    Física,
+    Nutrición,
+    Psicología,
+    Investigación,
+    Arte,
+    Historía,
+    Otros
 }

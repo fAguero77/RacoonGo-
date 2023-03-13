@@ -19,10 +19,12 @@ namespace RacoonGo.Controllers
             _service = service;
         }
 
+
         [HttpPost]
         public IActionResult AddEvent(Event e)
         {
-            Console.WriteLine("he llegado " + e.themes[0]);
+            e.location = _service.GetLocation(e.location.name).Result;
+            
             // Do something with the event object
             return Ok(e);
         }

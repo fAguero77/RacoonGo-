@@ -4,6 +4,8 @@ import { Event, Theme } from '../models/event';
 import { Location } from '../models/location';
 import { EventsService } from '../services/events.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
+
  
 
 @Component({
@@ -37,22 +39,33 @@ export class EventFormComponent implements OnInit {
     }
 
     addEvent(): void {
- 
-        let event = new Event(
-            this.addEventForm.value.title,
-            this.addEventForm.value.description,
-            this.addEventForm.value.recommendedAge,
-            this.addEventForm.value.startDate,
-            this.addEventForm.value.endDate,
-            new Location(this.addEventForm.value.location),
-            this.themes
-        );
+        if (this.addEventForm.value.title == undefined || this.addEventForm.value.description == undefined || this.addEventForm.value.recommendedAge == undefined || this.addEventForm.value.startDate == undefined || this.addEventForm.value.endDate == undefined || this.addEventForm.value.location == undefined || this.themes.length == 0) {
+            Swal.fire('Error', 'Debes rellenar todos los campos para crear un evento', 'error')
 
-        this.eventService.addEvent(event).subscribe(newEvent => {
-            // and check for errors probably
-            console.log('New event added:', newEvent);
-        });
+        }
+        else if (this.addEventForm.value.startDate < new Date() || this.addEventForm.value.endDate < new Date() ) {
+            Swal.fire('Error', 'La fecha de inicio y de fin no pueden ser anteriores a la fecha actual', 'error')
 
+        } else if (this.addEventForm.value.endDate < this.addEventForm.value.startDate) {
+            Swal.fire('Error', 'Las fecha de fin no puede ser anterior a la fecha de inicio', 'error')
+
+        }
+
+        else {
+            let event = new Event(
+                this.addEventForm.value.title,
+                this.addEventForm.value.description,
+                this.addEventForm.value.recommendedAge,
+                this.addEventForm.value.startDate,
+                this.addEventForm.value.endDate,
+                new Location(this.addEventForm.value.location),
+                this.themes
+            );
+
+            this.eventService.addEvent(event).subscribe(newEvent => {
+                Swal.fire('\u00A1Muy bien!', 'Se ha creado correctamente tu evento: ' + event.title, 'success')
+            });
+        }
     }
     onSelectionChange(event: any) {
         if (this.themes.includes(event.target?.value)) {
