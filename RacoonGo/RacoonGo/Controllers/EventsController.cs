@@ -24,7 +24,7 @@ namespace RacoonGo.Controllers
         public IActionResult AddEvent(Event e)
         {
             e.location = _service.GetLocation(e.location.name).Result;
-            
+            Console.WriteLine(e.startDate + " " + e.endDate);
             // Do something with the event object
             return Ok(e);
         }

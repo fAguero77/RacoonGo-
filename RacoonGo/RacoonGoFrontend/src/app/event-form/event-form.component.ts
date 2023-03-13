@@ -39,14 +39,17 @@ export class EventFormComponent implements OnInit {
     }
 
     addEvent(): void {
-        if (this.addEventForm.value.title == undefined || this.addEventForm.value.description == undefined || this.addEventForm.value.recommendedAge == undefined || this.addEventForm.value.startDate == undefined || this.addEventForm.value.endDate == undefined || this.addEventForm.value.location == undefined || this.themes.length == 0) {
+        let startDate = new Date(this.addEventForm.value.startDate)
+        alert(startDate)
+        let endDate = new Date(this.addEventForm.value.endDate)
+        if (this.addEventForm.value.title == undefined || this.addEventForm.value.description == undefined || this.addEventForm.value.recommendedAge == undefined || isNaN(startDate.getTime()) || isNaN(startDate.getTime()) || this.addEventForm.value.location == undefined || this.themes.length == 0) {
             Swal.fire('Error', 'Debes rellenar todos los campos para crear un evento', 'error')
 
         }
-        else if (this.addEventForm.value.startDate < new Date() || this.addEventForm.value.endDate < new Date() ) {
+        else if (startDate.getTime() - new Date().getTime() <= 0 || endDate.getTime() - new Date().getTime() <= 0 ) {
             Swal.fire('Error', 'La fecha de inicio y de fin no pueden ser anteriores a la fecha actual', 'error')
 
-        } else if (this.addEventForm.value.endDate < this.addEventForm.value.startDate) {
+        } else if (endDate.getTime() - startDate.getTime() <=0) {
             Swal.fire('Error', 'Las fecha de fin no puede ser anterior a la fecha de inicio', 'error')
 
         }
