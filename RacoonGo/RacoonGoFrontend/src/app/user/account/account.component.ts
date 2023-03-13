@@ -39,9 +39,9 @@ export class AccountComponent implements OnInit {
       const user = userCredential.user;
       if (user) {
         sessionStorage.setItem("email", this.email);
-        this.userService.register(this.email).subscribe(data => {
-          window.location.reload();
-        });
+       // this.userService.register(this.email).subscribe(data => {
+        //  window.location.reload();
+      //  });
       }
     })
     .catch((error) => {
