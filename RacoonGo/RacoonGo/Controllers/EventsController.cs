@@ -22,6 +22,7 @@ namespace RacoonGo.Controllers
         [HttpPost]
         public IActionResult AddEvent(Event e)
         {
+            Console.WriteLine("he llegado " + e.themes[0]);
             // Do something with the event object
             return Ok(e);
         }

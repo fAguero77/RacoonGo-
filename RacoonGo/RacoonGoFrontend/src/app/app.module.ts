@@ -25,8 +25,12 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+//-------------------------------------------------------------------------------ESTAS DOS LINEAS DE DEBAJO DAN ERROR, LO DEJO COMENTADO
+
+
+//const app = initializeApp(firebaseConfig);
+//const analytics = getAnalytics(app);
 @NgModule({
   declarations: [
     AppComponent,

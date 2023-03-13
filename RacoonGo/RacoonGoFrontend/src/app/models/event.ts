@@ -8,7 +8,7 @@ export class Event {
     public recommendedAge!: number;
     public startDate!: Date;
     public endDate!: Date;
-    public themes!: Theme[];
+    public themes!: number[];
     public location!: Location;
 
     constructor(title: string, description: string, recommendedAge: number, startDate: Date, endDate: Date, location: Location, themes: Theme[] = []) {
@@ -23,8 +23,8 @@ export class Event {
 
 }
 
-enum Theme {
-    Archeology,
+export enum Theme {
+    Archeology = 0,
     Biology,
     Astronomy,
     Physics,
