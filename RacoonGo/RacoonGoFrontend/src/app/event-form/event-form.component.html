@@ -1,72 +1,91 @@
-﻿<h3>Cart</h3>
-<p>
-    <a routerLink="/shipping">Shipping Prices</a>
-</p>
+﻿
 
-<div class="outer">
-    <div class="container">
-        <div class="row">
-            <div class="panel">
-                <div class="panel-heading">
-                </div>
-                <div class="panel-body p-3">
-                    <form [formGroup]="addEventForm">
-                        <div class="form-group pt-3">
-                            <div class="input-field" [class.error]="addEventForm.controls['title'].dirty && addEventForm.hasError('required', 'title')">
-                                <span class="fa fa-globe p-2"></span>
-                                <input type="text" formControlName="title" placeholder="Titulo">
-                            </div>
+<div class="caja">
+    <div class="caja-interno">
+        <h2>Crear Evento</h2>
+        <form [formGroup]="addEventForm">
+            <table>
+                <tr class="iz">
+                    <td><label>Título</label></td>
+                    <td><label>Descripción</label></td>
+                </tr>
+                <tr class="iz">
+                    <td>
+                        <div class="input-field" [class.error]="addEventForm.controls['title'].dirty && addEventForm.hasError('required', 'title')">
+                            <span class="fa fa-globe p-2"></span>
+                            <input type="text" formControlName="title" placeholder="Titulo">
                         </div>
-
-
+                    </td>
+                    <td>
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
                                 <input type="text" formControlName="description" placeholder="Descripción">
                             </div>
                         </div>
-
+                    </td>
+                </tr>
+                <tr class="iz">
+                    <td><label>Edad Recomendada</label></td>
+                    <td><label>Ciudad</label></td>
+                </tr>
+                <tr class="iz">
+                    <td>
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
                                 <input type="number" formControlName="recommendedAge" placeholder="Edad Recomendada">
                             </div>
                         </div>
-
-                        <div class="form-group pt-3">
-                            <div class="input-field">
-                                <span class="fa fa-globe p-2"></span>
-                                <input type="date" formControlName="startDate" placeholder="8">
-                            </div>
-                        </div>
-
-                        <div class="form-group pt-3">
-                            <div class="input-field">
-                                <span class="fa fa-globe p-2"></span>
-                                <input type="date" formControlName="endDate" placeholder="8">
-                            </div>
-                        </div>
-
-
+                    </td>
+                    <td>
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
                                 <input type="text" formControlName="location" placeholder="Localización">
                             </div>
                         </div>
+                    </td>
+                </tr>
 
+                <tr class="iz">
+                    <td><label>Fecha de Inicio</label></td>
+                    <td><label>Fecha de Fin</label></td>
+                </tr>
+                <tr class="iz">
+                    <td>
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-globe p-2"></span>
+                                <input type="date" formControlName="startDate" placeholder="8">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-globe p-2"></span>
+                                <input type="date" formControlName="endDate" placeholder="8">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="iz">
+                    <td><label>Etiquetas</label></td>
+                </tr>
+                <tr class="iz">
+                    <td>
                         <select multiple (change)="onSelectionChange($event)">
                             <option *ngFor="let theme of themeList; let i=index" [value]="i">{{theme}}</option>
                         </select>
 
+                    </td>
+                </tr>
 
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-lock mt-4 w-100" (click)="addEvent()">Crear Evento</button>
 
-                        <!--<button [disabled]="!addEventForm.value.title && !addEventForm.value.title" type="submit" class="btn btn-primary btn-lock mt-4 w-100" (click)="addEvent()">Add Event</button>-->
-                        <button type="submit" class="btn btn-primary btn-lock mt-4 w-100" (click)="addEvent()">Add Event</button>
+                        </div>
+            </table>
 
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        </form>
