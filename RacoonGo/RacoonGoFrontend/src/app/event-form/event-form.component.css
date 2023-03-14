@@ -1,0 +1,85 @@
+.caja {
+    border-radius: 20px;
+    background: #ffffff;
+    width: 30rem;
+    height: 43.5rem;
+    margin: 0 auto;
+    border: solid #74d664;
+}
+
+.caja-interno {
+    margin: auto;
+    padding: 0 2rem;
+    padding-bottom: 2rem;
+    padding-top: 0.1rem;
+    text-align: center;
+}
+table {
+    width: 100%;
+}
+tr {
+    width: 100%;
+}
+
+
+td {
+    padding: 0.2rem;
+}
+.prueba {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: middle;
+    
+}
+
+input {
+    font-weight: bold;
+    color: #7d9abb;
+    width: 8.5rem;
+    height: 1.5rem;
+    border-radius: 5px;
+    background: white;
+    border: solid #74d664 1px;
+}
+    input:hover {
+        background: #A9D6A1;
+    }
+select {
+    font-weight: bold;
+    color: #7d9abb;
+    width: 8rem;
+    border: solid #74d664 1px;
+    border-radius: 5px;
+    height: 14rem;
+    font-weight: bold;
+}
+
+
+option {
+    font-weight: bold;
+}
+    option:hover {
+        background: #A9D6A1;
+    }
+.descriptionText {
+    font-weight: bold;
+    width: 21rem;
+    height: 8rem;
+    font-size: 15px;
+    resize: none;
+    color: #7d9abb;
+    border: solid #74d664 1px;
+    border-radius: 5px;
+}
+.boton {
+    width: 8rem;
+    height: 1.8rem;
+    background: white;
+    color: #7d9abb;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border: solid #74d664 1px;
+    box-shadow: 0 0 0 #ABB7A7;
+}

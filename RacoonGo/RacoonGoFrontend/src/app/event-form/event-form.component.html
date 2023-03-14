@@ -7,7 +7,7 @@
             <table>
                 <tr class="iz">
                     <td><label>Título</label></td>
-                    <td><label>Descripción</label></td>
+                    <td><label>Edad Recomendada</label></td>
                 </tr>
                 <tr class="iz">
                     <td>
@@ -20,34 +20,12 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="text" formControlName="description" placeholder="Descripción">
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="iz">
-                    <td><label>Edad Recomendada</label></td>
-                    <td><label>Ciudad</label></td>
-                </tr>
-                <tr class="iz">
-                    <td>
-                        <div class="form-group pt-3">
-                            <div class="input-field">
-                                <span class="fa fa-globe p-2"></span>
                                 <input type="number" formControlName="recommendedAge" placeholder="Edad Recomendada">
                             </div>
                         </div>
-                    </td>
-                    <td>
-                        <div class="form-group pt-3">
-                            <div class="input-field">
-                                <span class="fa fa-globe p-2"></span>
-                                <input type="text" formControlName="location" placeholder="Localización">
-                            </div>
-                        </div>
+
                     </td>
                 </tr>
-
                 <tr class="iz">
                     <td><label>Fecha de Inicio</label></td>
                     <td><label>Fecha de Fin</label></td>
@@ -57,7 +35,7 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="date" formControlName="startDate" placeholder="8">
+                                <input type="date" formControlName="startDate">
                             </div>
                         </div>
                     </td>
@@ -65,27 +43,53 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="date" formControlName="endDate" placeholder="8">
+                                <input type="date" formControlName="endDate" >
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr class="iz">
                     <td><label>Etiquetas</label></td>
+                    <td><label>Ciudad</label></td>
                 </tr>
                 <tr class="iz">
                     <td>
-                        <select multiple (change)="onSelectionChange($event)">
-                            <option *ngFor="let theme of themeList; let i=index" [value]="i">{{theme}}</option>
-                        </select>
+                        <div style="padding: 7px 0px;">
+                            <select multiple (change)="onSelectionChange($event)">
+                                <option style="padding: 3px;" *ngFor="let theme of themeList; let i=index" [value]="i">{{theme}}</option>
+                            </select>
+                        </div>
+
+
 
                     </td>
-                </tr>
+                    <div>
 
-                        <div>
-                            <button type="submit" class="btn btn-primary btn-lock mt-4 w-100" (click)="addEvent()">Crear Evento</button>
-
+                    <td class="prueba" >
+                        <div  >
+                            <input  type="text" formControlName="location" placeholder="Localización">
                         </div>
-            </table>
 
-        </form>
+                    </td>
+    </div>
+    </tr>
+
+
+    </table>
+    <div>
+        <label>Descripción</label>
+        <div style="padding:0.5rem;">
+            <textarea  class="descriptionText" name="Text1" cols="40" rows="5" formControlName="description"  placeholder="Descripción"></textarea>
+        </div>
+    </div>
+
+    <div justify-content: center>
+        <div style="padding: 10px;">
+            <button type="submit" class="boton" (click)="addEvent()">Crear Evento</button>
+
+        </div>
+    </div>
+
+    </form>
+</div>
+    </div>

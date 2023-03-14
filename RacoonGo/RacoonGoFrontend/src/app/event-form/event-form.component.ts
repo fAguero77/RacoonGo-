@@ -40,7 +40,6 @@ export class EventFormComponent implements OnInit {
 
     addEvent(): void {
         let startDate = new Date(this.addEventForm.value.startDate)
-        alert(startDate)
         let endDate = new Date(this.addEventForm.value.endDate)
         if (this.addEventForm.value.title == undefined || this.addEventForm.value.description == undefined || this.addEventForm.value.recommendedAge == undefined || isNaN(startDate.getTime()) || isNaN(startDate.getTime()) || this.addEventForm.value.location == undefined || this.themes.length == 0) {
             Swal.fire('Error', 'Debes rellenar todos los campos para crear un evento', 'error')
@@ -65,9 +64,15 @@ export class EventFormComponent implements OnInit {
                 this.themes
             );
 
-            this.eventService.addEvent(event).subscribe(newEvent => {
-                Swal.fire('\u00A1Muy bien!', 'Se ha creado correctamente tu evento: ' + event.title, 'success')
-            });
+            this.eventService.addEvent(event).subscribe(
+                (response) => {
+                    Swal.fire('\u00A1Muy bien!', 'Se ha creado correctamente tu evento: ' + event.title, 'success')
+                },
+                (error) => { 
+                    Swal.fire('Error', 'La ciudad '+event.location.name+' no se ha encontrado', 'error')
+
+                }
+            );
         }
     }
     onSelectionChange(event: any) {

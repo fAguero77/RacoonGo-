@@ -23,8 +23,12 @@ namespace RacoonGo.Controllers
         [HttpPost]
         public IActionResult AddEvent(Event e)
         {
-            e.location = _service.GetLocation(e.location.name).Result;
-            Console.WriteLine(e.startDate + " " + e.endDate);
+            Location location = _service.GetLocation(e.location.name).Result;
+            if (location == null)
+            {
+                return NotFound(e);
+            }
+            e.location = location;
             // Do something with the event object
             return Ok(e);
         }

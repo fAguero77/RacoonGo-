@@ -16,6 +16,10 @@ namespace RacoonGo.Services
             HttpResponseMessage response = await client.GetAsync(new Uri(string.Format(URI_COORDS_BY_NAME, name, API_KEY)));
             string responseData = await response.Content.ReadAsStringAsync();
             List<Location> dataObject = JsonConvert.DeserializeObject<List<Location>>(responseData);
+            if (dataObject == null || dataObject.Count == 0 ) {
+                return null;
+            }
+            Console.WriteLine(dataObject[0]);
             return dataObject[0];
         }
     }
