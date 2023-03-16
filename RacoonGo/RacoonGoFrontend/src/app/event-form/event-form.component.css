@@ -25,11 +25,12 @@ tr {
 td {
     padding: 0.2rem;
 }
-.prueba {
+.locationInput {
     display: block;
     margin-left: auto;
     margin-right: auto;
     text-align: middle;
+    margin-top:0.35rem;
     
 }
 
@@ -62,7 +63,7 @@ option {
     option:hover {
         background: #A9D6A1;
     }
-.descriptionText {
+textarea {
     font-weight: bold;
     width: 21rem;
     height: 8rem;
@@ -72,6 +73,10 @@ option {
     border: solid #74d664 1px;
     border-radius: 5px;
 }
+    textarea:focus {
+        background: #A9D6A1;
+    }
+
 .boton {
     width: 8rem;
     height: 1.8rem;
