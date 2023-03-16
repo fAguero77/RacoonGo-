@@ -81,11 +81,22 @@ textarea {
 
 }
 .themeTag {
+    width: 135px;
     border-radius: 10px;
-    cursor: pointer;
     font-weight: bold;
     border: solid #74d664 1px;
+    display: inline-block;
+    vertical-align: middle;
 }
+
+    .themeTag img {
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+        vertical-align:middle;
+        padding-right:10px;
+        float: right;
+    }
 .boton {
     width: 8rem;
     height: 1.8rem;

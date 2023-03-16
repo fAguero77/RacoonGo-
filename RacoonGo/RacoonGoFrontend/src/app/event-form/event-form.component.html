@@ -71,13 +71,18 @@
                         </div>
                         <div style="padding-top: 15px;">
                             <div style=" overflow: hidden visible; max-height:185px">
-                                <table style="">
+                                <table >
                                     <tr style="height: 10px;" *ngFor="let theme of themes;">
-                                        <td (click)="deleteTag(theme)" style="padding:2px;height:10px">
-                                            <div class="themeTag" [ngStyle]="{'background': randomColor(theme)}">
+                                        <td style="padding:2px;height:10px;">
+                                            <div  class="themeTag" [ngStyle]="{'background': randomColor(theme)}">
                                                 {{getThemeName(theme)}}
+
+                                            <img (click)="deleteTag(theme)" src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" />
+
+
                                             </div>
                                         </td>
+
 
                                     </tr>
                                 </table>
