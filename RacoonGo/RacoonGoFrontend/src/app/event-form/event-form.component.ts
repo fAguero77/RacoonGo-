@@ -19,6 +19,8 @@ export class EventFormComponent implements OnInit {
     themeList: string[] = [];
     themes: number[] = [];
     colorList: string[];
+    todayDate: string;
+
     constructor(private eventService: EventsService) {
         for (let i = 0; i < 10; i++) {
             this.themeList.push(Theme[i])
@@ -34,7 +36,12 @@ export class EventFormComponent implements OnInit {
             '#a692f0',
             '#ff6370',
             '#ab989a'
-        ]
+            ]
+        let date = new Date();
+        const year = date.getFullYear().toString();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        this.todayDate = `${year}-${month}-${day}`;
 }
 
     ngOnInit(): void {
@@ -54,14 +61,11 @@ export class EventFormComponent implements OnInit {
     addEvent(): void {
         let startDate = new Date(this.addEventForm.value.startDate)
         let endDate = new Date(this.addEventForm.value.endDate)
-        if (this.addEventForm.value.title == undefined || this.addEventForm.value.description == undefined || this.addEventForm.value.recommendedAge == undefined || isNaN(startDate.getTime()) || isNaN(startDate.getTime()) || this.addEventForm.value.location == undefined || this.themes.length == 0) {
+        if (this.addEventForm.value.title == undefined || this.addEventForm.value.description == undefined || this.addEventForm.value.recommendedAge == undefined || isNaN(startDate.getTime()) || isNaN(startDate.getTime()) || this.addEventForm.value.location == undefined || this.addEventForm.value.location.length == 0 || this.themes.length == 0) {
             Swal.fire('Error', 'Debes rellenar todos los campos para crear un evento', 'error')
 
         }
-        else if (startDate.getTime() - new Date().getTime() <= 0 || endDate.getTime() - new Date().getTime() <= 0 ) {
-            Swal.fire('Error', 'La fecha de inicio y de fin no pueden ser anteriores a la fecha actual', 'error')
-
-        } else if (endDate.getTime() - startDate.getTime() <=0) {
+        else if (endDate.getTime() - startDate.getTime() <=0) {
             Swal.fire('Error', 'Las fecha de fin no puede ser anterior a la fecha de inicio', 'error')
 
         }

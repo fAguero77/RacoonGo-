@@ -19,7 +19,6 @@ namespace RacoonGo.Services
             if (dataObject == null || dataObject.Count == 0 ) {
                 return null;
             }
-            Console.WriteLine(dataObject[0]);
             return dataObject[0];
         }
     }

@@ -35,7 +35,7 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="date" formControlName="startDate">
+                                <input type="date" [min]="todayDate" formControlName="startDate">
                             </div>
                         </div>
                     </td>
@@ -43,7 +43,7 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="date" formControlName="endDate" >
+                                <input type="date" [min]="todayDate" formControlName="endDate" >
                             </div>
                         </div>
                     </td>
