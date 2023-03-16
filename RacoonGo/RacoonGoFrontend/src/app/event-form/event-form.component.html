@@ -66,8 +66,22 @@
                     <div>
 
                     <td class="locationInput" >
-                        <div  >
+                        <div class="div" >
                             <input  type="text" formControlName="location" placeholder="Localización">
+                        </div>
+                        <div style="padding-top: 15px;">
+                            <div style=" overflow: hidden visible; max-height:185px">
+                                <table style="">
+                                    <tr style="height: 10px;" *ngFor="let theme of themes;">
+                                        <td (click)="deleteTag(theme)" style="padding:2px;height:10px">
+                                            <div class="themeTag" [ngStyle]="{'background': randomColor(theme)}">
+                                                {{getThemeName(theme)}}
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </td>
     </div>

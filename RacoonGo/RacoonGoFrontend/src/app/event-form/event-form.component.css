@@ -25,14 +25,7 @@ tr {
 td {
     padding: 0.2rem;
 }
-.locationInput {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: middle;
-    margin-top:0.35rem;
-    
-}
+
 
 input {
     font-weight: bold;
@@ -77,6 +70,22 @@ textarea {
         background: #A9D6A1;
     }
 
+.locationInput {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: middle;
+    margin-top: 0.35rem;
+    
+
+}
+.themeTag {
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    border: solid #74d664 1px;
+}
 .boton {
     width: 8rem;
     height: 1.8rem;

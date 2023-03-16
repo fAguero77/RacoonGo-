@@ -32,6 +32,6 @@ export enum Theme {
     Psicología,
     Investigación,
     Arte,
-    Historía,
+    Historia,
     Otros
 }

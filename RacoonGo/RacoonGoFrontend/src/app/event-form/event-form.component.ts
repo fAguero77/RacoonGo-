@@ -18,10 +18,23 @@ export class EventFormComponent implements OnInit {
     addEventForm!: FormGroup;
     themeList: string[] = [];
     themes: number[] = [];
+    colorList: string[];
     constructor(private eventService: EventsService) {
         for (let i = 0; i < 10; i++) {
             this.themeList.push(Theme[i])
         }
+        this.colorList =
+        ['#81f774',
+            '#86fcf1',
+            '#e2eb7f',
+            '#f7bb92',
+            '#f59f9a',
+            '#ec92f7',
+            '#fc8dba',
+            '#a692f0',
+            '#ff6370',
+            '#ab989a'
+        ]
 }
 
     ngOnInit(): void {
@@ -89,4 +102,21 @@ export class EventFormComponent implements OnInit {
         }
     }
 
+    getThemeName(index: number) {
+        return Theme[index];
+
+    }
+
+    deleteTag(theme: number) {
+        
+        let auxDelante = this.themes.slice(0, this.themes.indexOf(theme));
+        let auxAtras = this.themes.slice(this.themes.indexOf(theme) + 1, this.themes.length);
+        this.themes = auxDelante.concat(auxAtras);
+        
+       
+    }
+
+    randomColor(index: number) {
+        return this.colorList[index];
+    }
 }
