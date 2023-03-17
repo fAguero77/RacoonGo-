@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5 mb-5">
+        <div class="d-flex justify-content-center row">
+            <div class="col-md-10">
+                <div *ngFor="let e of eventsList;">
+                    <div class="row p-2 bg-white border rounded">
+                        <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://www.sciencerendezvous.ca/wp-content/uploads/2018/03/sr-about.jpg"></div>
+                        <div class="col-md-6 mt-1">
+                            <h5 class="title text-truncate">{{e.title}}</h5>
+                            <div class="d-flex flex-row locationBox">
+                                <button class="glyphicon glyphicon-map-marker mapButton"></button>
+                                <p>{{e.location.name}}</p>
+                            </div>
+                            <!--Etiquetas-->
+
+                            <ng-container *ngFor="let t of e.themes;">
+                                <ng-container class="mt-1 mb-1 spec-1">
+                                    <button class="themeButton">{{getThemeName(t)[0]}}</button>
+                                </ng-container>
+                            </ng-container>
+
+                            <br><br>
+                            <p class="text-justify para mb-0 description">
+                                {{e.description}}
+                                <br><br>
+                            </p>
+                        </div>
+                        <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                            <div class="glyphicon glyphicon-calendar calendarIcon"></div>
+                            <h6 class="text-success date">{{e.startDate | date:'dd/MM/yyyy'}}</h6>
+                            <h6 class="text-success date">- {{e.endDate | date:'dd/MM/yyyy'}}</h6>
+                            <!--TODO: only show one date when start and end are the same-->
+ 
+                            <div class="d-flex flex-row align-items-center">
+                                <h4 class="mr-1 age">Edad recomendada: {{e.recommendedAge}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--<div *ngFor="let e of eventsList;">
+        <div class="caja">
+            <div class="caja-interno">
+
+                <table>
+                    <tr>
+                        <td>
+                            <p class="title">{{e.title}}</p>
+                        <td>
+                        <td>
+                            <p class="age">{{e.recommendedAge}}</p>
+                        </td>
+                    </tr>
+                </table>
+
+                <p class="location">{{e.location.name}}</p>
+                <p class="themes">{{e.themes}}</p>-->
+    <!--<div class="themes">
+        <div *ngFor="let t of {{e.themes}}">
+
+        </div>
+    </div>-->
+    <!--<p class="description">{{e.description}}</p>
+
+
+
+            </div>
+        </div>
+    </div>-->
+</body>

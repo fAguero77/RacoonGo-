@@ -20,7 +20,6 @@ export class Event {
         this.location = location;
         this.themes = themes;
     }
-
 }
 
 export enum Theme {

@@ -4,7 +4,7 @@ namespace RacoonGo.Modelo
 {
     public enum Theme
     {
-        Archeology=0,
+        Archeology = 0,
         Biology,
         Astronomy,
         Physics,
@@ -25,15 +25,7 @@ namespace RacoonGo.Modelo
         public List<int> themes { get; set; }
         public Location location { get; set; }
 
-        public Event()
-        {
-
-        }
-
-        
-
-
-
-
+        public Event() { }
     }
 }
+
