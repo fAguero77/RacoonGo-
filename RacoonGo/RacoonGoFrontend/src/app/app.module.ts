@@ -12,6 +12,7 @@ import { LoginComponent } from './vistas/login/login.component';
 import { EventsListComponent } from './events-list/events-list.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from "./app-routing.module";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -45,7 +46,12 @@ const firebaseConfig = {
     EventsListComponent,
   ],
     imports: [
-        BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppRoutingModule
+        BrowserModule, 
+        HttpClientModule, 
+      FormsModule, 
+      ReactiveFormsModule, 
+      AppRoutingModule, 
+      FontAwesomeModule
   ],
     providers: [],
     exports: [RouterModule],

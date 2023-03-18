@@ -9,8 +9,8 @@ public class UsersController: ControllerBase
     public UsersController()
     {
     }
-    
-    public void registerUser(User user)
+    /*
+    public void signUp(User user)
     {
         
     }
@@ -23,5 +23,5 @@ public class UsersController: ControllerBase
     public void deleteUser(String username)
     {
         
-    }
+    }*/
 }

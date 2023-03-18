@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { UserService } from 'src/app/services/user.service';
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCmVfdP2afXuFx8lux7VGfxyI8jxM7UYX4",
@@ -24,6 +25,8 @@ const auth=getAuth(app);
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
+    faUser = faUser;
+    faLock = faLock;
   email!:string
   password!:string
 
@@ -35,7 +38,8 @@ export class AccountComponent implements OnInit {
   signUp(){
     createUserWithEmailAndPassword(auth, this.email, this.password)
     .then((userCredential) => {
-      // Signed in 
+      console.log(this.email)
+      
       const user = userCredential.user;
       if (user) {
         sessionStorage.setItem("email", this.email);
@@ -50,8 +54,4 @@ export class AccountComponent implements OnInit {
       // ..
     });
   }
-
-    register() {
-        
-    }
 }
