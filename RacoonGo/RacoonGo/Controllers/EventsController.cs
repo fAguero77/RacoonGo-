@@ -29,7 +29,7 @@ namespace RacoonGo.Controllers
                 return NotFound(e);
             }
             e.location = location;
-            // Do something with the event object
+            // TODO AÑADIR EVENTO A BBDD
             return Ok(e);
         }
 

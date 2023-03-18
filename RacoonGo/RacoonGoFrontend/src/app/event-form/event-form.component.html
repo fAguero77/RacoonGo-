@@ -55,7 +55,7 @@
                 <tr class="iz">
                     <td>
                         <div style="padding: 7px 0px;">
-                            <select multiple (change)="onSelectionChange($event)">
+                            <select style="overflow: hidden visible; text-align:center" multiple (change)="onSelectionChange($event)">
                                 <option style="padding: 3px;" *ngFor="let theme of themeList; let i=index" [value]="i">{{theme}}</option>
                             </select>
                         </div>
