@@ -10,6 +10,9 @@ import { EventFormComponent } from './event-form/event-form.component';
 import { AccountComponent } from './user/account/account.component';
 import { LoginComponent } from './vistas/login/login.component';
 import { EventsListComponent } from './events-list/events-list.component';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from "./app-routing.module";
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -42,9 +45,11 @@ const firebaseConfig = {
     EventsListComponent,
   ],
     imports: [
-        BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule
+        BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule, AppRoutingModule
   ],
-  providers: [],
+    providers: [],
+    exports: [RouterModule],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
