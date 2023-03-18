@@ -6,16 +6,20 @@
         <form [formGroup]="addEventForm">
             <table>
                 <tr class="iz">
-                    <td><label>Título</label></td>
-                    <td><label>Edad Recomendada</label></td>
+                    <td><label>Título</label><label style="color:red">*</label></td>
+                    <td><label>Edad Recomendada</label><label style="color:red">*</label></td>
                 </tr>
                 <tr class="iz">
+                    <!-- Title Zone-->
+
                     <td>
                         <div class="input-field" [class.error]="addEventForm.controls['title'].dirty && addEventForm.hasError('required', 'title')">
                             <span class="fa fa-globe p-2"></span>
                             <input type="text" formControlName="title" placeholder="Titulo">
                         </div>
                     </td>
+                    <!-- Age Zone-->
+
                     <td>
                         <div class="form-group pt-3">
                             <div class="input-field">
@@ -27,10 +31,12 @@
                     </td>
                 </tr>
                 <tr class="iz">
-                    <td><label>Fecha de Inicio</label></td>
-                    <td><label>Fecha de Fin</label></td>
+                    <td><label>Fecha de Inicio</label><label style="color:red">*</label></td>
+                    <td><label>Fecha de Fin</label><label style="color:red">*</label></td>
                 </tr>
                 <tr class="iz">
+                    <!-- Dates Zone-->
+
                     <td>
                         <div class="form-group pt-3">
                             <div class="input-field">
@@ -43,16 +49,19 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="date" [min]="todayDate" formControlName="endDate" >
+                                <input type="date" [min]="todayDate" formControlName="endDate">
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr class="iz">
-                    <td><label>Etiquetas</label></td>
-                    <td><label>Ciudad</label></td>
+                    <td><label>Etiquetas</label><label style="color:red">*</label></td>
+                    <td><label>Ciudad</label><label style="color:red">*</label></td>
                 </tr>
+
                 <tr class="iz">
+                    <!-- Tag Zone-->
+
                     <td>
                         <div style="padding: 7px 0px;">
                             <select style="overflow: hidden visible; text-align:center" multiple (change)="onSelectionChange($event)">
@@ -65,39 +74,58 @@
                     </td>
                     <div>
 
-                    <td class="locationInput" >
-                        <div class="div" >
-                            <input  type="text" formControlName="location" placeholder="Localización">
+                        <!-- Location Zone-->
+
+                    <td class="locationInput">
+                        <div>
+                            <input type="text" formControlName="location" placeholder="Localización">
                         </div>
+                        <!-- Tag List Zone-->
+
                         <div style="padding-top: 15px;">
                             <div style=" overflow: hidden visible; max-height:185px">
-                                <table >
+                                <table>
                                     <tr style="height: 10px;" *ngFor="let theme of themes;">
                                         <td style="padding:2px;height:10px;">
-                                            <div  class="themeTag" [ngStyle]="{'background': randomColor(theme)}">
+                                            <div class="themeTag" [ngStyle]="{'background': randomColor(theme)}">
                                                 {{getThemeName(theme)}}
 
-                                            <img (click)="deleteTag(theme)" src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" />
+                                                <img (click)="deleteTag(theme)" src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" />
 
 
                                             </div>
                                         </td>
-
-
                                     </tr>
                                 </table>
                             </div>
                         </div>
                     </td>
+
     </div>
     </tr>
     </table>
+
+    <!-- Description Zone-->
+
     <div>
-        <label>Descripción</label>
+        <label>Descripción</label><label style="color:red">*</label>
         <div style="padding:0.5rem;">
-            <textarea name="description" cols="40" rows="5" formControlName="description"  placeholder="Descripción"></textarea>
+            <textarea name="description" cols="40" rows="5" formControlName="description" placeholder="Descripción"></textarea>
         </div>
     </div>
+    <!-- Image Zone-->
+    <label>Imagen</label>
+    <div style="padding:0.5rem;">
+        <input style="width:25.5rem" type="text" placeholder="Enlace a tu imagen" (keyup)="onWriteChange($event)">
+        <div style="padding:0.5rem;">
+
+            <img style="width: 12rem; border: solid #74d664 2px; " src="{{image}}" />
+        </div>
+    </div>
+
+
+
+    <!-- Button Zone-->
 
     <div justify-content: center>
         <div style="padding: 10px;">
@@ -108,4 +136,3 @@
 
     </form>
 </div>
-    </div>

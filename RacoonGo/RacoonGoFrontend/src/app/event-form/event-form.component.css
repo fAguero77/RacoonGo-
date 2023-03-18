@@ -1,8 +1,8 @@
 .caja {
     border-radius: 20px;
     background: #ffffff;
-    width: 30rem;
-    height: 43.5rem;
+    width: 35rem;
+    height: 57.5rem;
     margin: 0 auto;
     border: solid #74d664;
 }
@@ -30,7 +30,7 @@ td {
 input {
     font-weight: bold;
     color: #7d9abb;
-    width: 8.5rem;
+    width: 10.5rem;
     height: 1.5rem;
     border-radius: 5px;
     background: white;
@@ -38,11 +38,12 @@ input {
 }
     input:hover {
         background: #A9D6A1;
+        color: black;
     }
 select {
     font-weight: bold;
     color: #7d9abb;
-    width: 8rem;
+    width: 10.5rem;
     border: solid #74d664 1px;
     border-radius: 5px;
     height: 14rem;
@@ -55,10 +56,11 @@ option {
 }
     option:hover {
         background: #A9D6A1;
+        color: black;
     }
 textarea {
     font-weight: bold;
-    width: 21rem;
+    width: 25.5rem;
     height: 8rem;
     font-size: 15px;
     resize: none;
@@ -68,6 +70,7 @@ textarea {
 }
     textarea:focus {
         background: #A9D6A1;
+        color: black;
     }
 
 .locationInput {
@@ -81,7 +84,7 @@ textarea {
 
 }
 .themeTag {
-    width: 135px;
+    width: 10rem;
     border-radius: 10px;
     font-weight: bold;
     border: solid #74d664 1px;
@@ -108,3 +111,7 @@ textarea {
     border: solid #74d664 1px;
     box-shadow: 0 0 0 #ABB7A7;
 }
+    .boton:hover {
+        background: #A9D6A1;
+        color: black;
+    }

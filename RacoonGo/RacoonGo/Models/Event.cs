@@ -25,6 +25,8 @@ namespace RacoonGo.Modelo
         public List<int> themes { get; set; }
         public Location location { get; set; }
 
+        public String photoUrl { get; set; }
+
         public Event() { }
     }
 }
