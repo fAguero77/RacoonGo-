@@ -23,7 +23,9 @@
     "firebase": "^9.17.2",
     "firebaseui": "^6.0.2",
     "jest-editor-support": "*",
+    "jquery": "^3.6.4",
     "rxjs": "~7.5.0",
+    "save": "^2.9.0",
     "sweetalert2": "^11.7.3",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

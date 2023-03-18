@@ -1,8 +1,10 @@
-﻿using RacoonGo.Modelo;
+﻿using Microsoft.AspNetCore.Mvc;
+using RacoonGo.Modelo;
 
 namespace RacoonGo.Controllers;
-
-public class UsersController
+[ApiController]
+[Route("api/[controller]")]
+public class UsersController: ControllerBase
 {
     public UsersController()
     {

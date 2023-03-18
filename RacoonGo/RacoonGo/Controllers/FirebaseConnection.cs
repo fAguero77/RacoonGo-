@@ -1,5 +1,7 @@
 ﻿using FireSharp;
 using FireSharp.Config;
+using Microsoft.AspNetCore.Mvc;
+using RacoonGo.Modelo;
 
 namespace RacoonGo.Controllers;
 using FireSharp.Interfaces;
@@ -17,6 +19,20 @@ public class FirebaseConnection
         };
         
         cliente=new FirebaseClient(config);
+    }
+    
+    [HttpPost]
+    public ActionResult Crear(User user)
+    {
+        SetResponse setResponse = cliente.Set("User/" + user.getUsername(), user);
+        if (setResponse.StatusCode == System.Net.HttpStatusCode.OK)
+        {
+            return null;
+        }
+        else
+        {
+            return null;
+        }
     }
     
 }
