@@ -5,6 +5,7 @@ import { Location } from '../models/location';
 import { EventsService } from '../services/events.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
 
  
 
@@ -24,7 +25,7 @@ export class EventFormComponent implements OnInit {
     readonly defaultImg:  string = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
 
 
-    constructor(private eventService: EventsService) {
+    constructor(private eventService: EventsService, private httpClient: HttpClient) {
         this.image = this.defaultImg;
 
         for (let i = 0; i < 10; i++) {
@@ -121,7 +122,7 @@ export class EventFormComponent implements OnInit {
             new URL(img);
             this.image = img;
         } catch (err) {
-            this.image= "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
+            this.image = this.defaultImg;
         }
     }
     getThemeName(index: number) {
