@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component} from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
+import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -12,6 +12,9 @@ export class AppComponent {
     constructor(http: HttpClient,
         private route: ActivatedRoute,
         private router: Router   ) {
+        
+        
+            
     }
 
     public goAddEve() {
@@ -24,5 +27,9 @@ export class AppComponent {
 
     }
 
-  title = 'RacoonGoFrontend';
+    title = 'RacoonGoFrontend';
+
+    gologin() {
+        this.router.navigate(['/login']);
+    }
 }

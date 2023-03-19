@@ -13,6 +13,7 @@ import { EventsListComponent } from './events-list/events-list.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from "./app-routing.module";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {getAuth} from "firebase/auth";
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -20,7 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyCmVfdP2afXuFx8lux7VGfxyI8jxM7UYX4",
   authDomain: "racoongo.firebaseapp.com",
   projectId: "racoongo",
@@ -31,6 +32,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+// Initialize Firebase
+export const app = initializeApp(firebaseConfig);
+export const auth=getAuth(app);
+
 
 //-------------------------------------------------------------------------------ESTAS DOS LINEAS DE DEBAJO DAN ERROR, LO DEJO COMENTADO
 

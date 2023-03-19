@@ -3,21 +3,11 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { UserService } from 'src/app/services/user.service';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
+import {auth} from "../../app.module";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCmVfdP2afXuFx8lux7VGfxyI8jxM7UYX4",
-  authDomain: "racoongo.firebaseapp.com",
-  databaseURL: "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "racoongo",
-  storageBucket: "racoongo.appspot.com",
-  messagingSenderId: "498418850159",
-  appId: "1:498418850159:web:0f5ec85ca154ba163d709a",
-  measurementId: "G-CKR90DQ6VD"
-};
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth=getAuth(app);
+
+
 
 @Component({
   selector: 'app-account',
