@@ -18,7 +18,7 @@ public class UsersController : ControllerBase
     [HttpPost]
     public IActionResult AddUser(User user)
     {
-        _crudFirebase.Index(user);
+        _crudFirebase.addUser(user);
         return Ok(user);
     }
 

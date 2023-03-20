@@ -11,6 +11,7 @@ namespace RacoonGo.Controllers
     public class EventsController: ControllerBase
     {
 
+        CRUDFirebase _crudFirebase = new CRUDFirebase();
 
         private readonly IGeodecodeService _service;
 
@@ -29,71 +30,17 @@ namespace RacoonGo.Controllers
                 return NotFound(e);
             }
             e.location = location;
-            // TODO AÑADIR EVENTO A BBDD
+            _crudFirebase.addEvent(e);
             return Ok(e);
         }
 
         [HttpGet]
         public IActionResult GetEvents()
         {
-            Event e1 = new()
-            {
-                title = "Evento 1",
-                description = "descripcion evento 1",
-                recommendedAge = 5,
-                startDate = DateTime.Now,
-                endDate = DateTime.Now,
-                themes = new List<int>{ 0, 1 },
-                location = Location.Valencia()
-            };
+            Event[] eventList = _crudFirebase.getEvents().Result;
+            
 
-            Event e2 = new()
-            {
-                title = "Evento 2",
-                description = "descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. ",
-                recommendedAge = 15,
-                startDate = DateTime.MinValue,
-                endDate = DateTime.MaxValue,
-                themes = new List<int>{ 0,1,2,3,4,5,6,7 },
-                location = Location.Valencia()
-            };
-
-            Event e3 = new()
-            {
-                title = "Evento 3",
-                recommendedAge = 80,
-                startDate = DateTime.MinValue,
-                endDate = DateTime.MaxValue,
-                themes = new List<int>{ 0, 1, 2, 3 },
-                location = Location.Valencia()
-            };
-
-            Event e4 = new()
-            {
-                title = "Evento 4",
-                recommendedAge = 80,
-                startDate = DateTime.MinValue,
-                endDate = DateTime.MaxValue,
-                themes = new List<int> { 0, 1, 2, 3 },
-                location = Location.Valencia()
-            };
-
-            Event e5 = new()
-            {
-                title = "Evento 5",
-                recommendedAge = 80,
-                startDate = DateTime.MinValue,
-                endDate = DateTime.MaxValue,
-                themes = new List<int> { 0, 1, 2, 3 },
-                location = Location.Valencia(),
-                photoUrl = "https://www.sciencerendezvous.ca/wp-content/uploads/2018/03/sr-about.jpg"
-            };
-
-
-            Event[] events = { e1, e2, e3 , e4, e5};
-
-            // TODO: get events from DB
-            return Ok(events);
+            return Ok(eventList);
         }
     }
 

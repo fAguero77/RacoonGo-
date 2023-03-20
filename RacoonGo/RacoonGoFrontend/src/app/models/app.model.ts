@@ -30,8 +30,9 @@ export class Event {
     public themes!: number[];
     public location!: Location;
     public photoUrl !: string;
+    public user !: User;
 
-    constructor(title: string, description: string, recommendedAge: number, startDate: Date, endDate: Date, location: Location, themes: Theme[] = [], photoUrl: string) {
+    constructor(title: string, description: string, recommendedAge: number, startDate: Date, endDate: Date, location: Location, themes: Theme[] = [], photoUrl: string, user: User) {
         this.title = title;
         this.description = description;
         this.recommendedAge = recommendedAge;
@@ -40,6 +41,7 @@ export class Event {
         this.location = location;
         this.themes = themes;
         this.photoUrl = photoUrl;
+        this.user = user;
     }
 }
 

@@ -31,11 +31,12 @@ export class AccountComponent implements OnInit {
 
                 const user = userCredential.user;
                 if (user) {
-                     this.backEndResponse.endpoints.user.addUser(new User(this.email, this.username, 0)).subscribe({
+                    let loginUser = new User(this.email, this.username, 0);
+                     this.backEndResponse.endpoints.user.addUser(loginUser).subscribe({
 
                     //this.backEndResponse.endpoints.user.addUser(new User(this.email, this.username, 0)).subscribe({
                         next: () => {
-                            sessionStorage.setItem("email", this.email);
+                            sessionStorage.setItem("user", JSON.stringify(loginUser));
 
                             Swal.fire('\u00A1Muy bien!', 'Se ha creado correctamente tu usuario: ' + this.username, 'success')
                         },

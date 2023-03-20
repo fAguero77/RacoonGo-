@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import {Theme} from "../../models/app.enum";
-import {Event, Location} from "../../models/app.model";
+import {Event, Location, User} from "../../models/app.model";
 import {BackendRouterService} from "../../services/backend-router.service";
 import { HelperService } from '../../services/helper.service';
 
@@ -23,7 +23,8 @@ export class EventFormComponent implements OnInit {
     colorList: string[];
     todayDate: string;
     image: string;
-    readonly defaultImg:  string = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
+    readonly defaultImg: string = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
+    user!: User;
 
 
     constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, private helperService: HelperService) {
@@ -41,6 +42,7 @@ export class EventFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.user = JSON.parse(sessionStorage.getItem("user")!)  ;
 
         this.addEventForm = new FormGroup({
             title: new FormControl(''),
@@ -76,7 +78,8 @@ export class EventFormComponent implements OnInit {
                 this.addEventForm.value.endDate, 
                 new Location(this.addEventForm.value.location),
                 this.themes, 
-                this.image
+                this.image,
+                this.user
             );
 
             this.backendRouterService.endpoints.event.addEvent(event).subscribe({
