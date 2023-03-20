@@ -1,81 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <title>TRAVELER - Free Travel Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container mt-5 mb-5">
-        <div class="d-flex justify-content-center row">
-            <div class="col-md-10">
-                <div *ngFor="let e of eventsList;">
-                    <div class="row p-2 bg-white border rounded">
-                        <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://www.sciencerendezvous.ca/wp-content/uploads/2018/03/sr-about.jpg"></div>
-                        <div class="col-md-6 mt-1">
-                            <h5 class="title text-truncate">{{e.title}}</h5>
-                            <div class="d-flex flex-row locationBox">
-                                <button class="glyphicon glyphicon-map-marker mapButton"></button>
-                                <p>{{e.location.name}}</p>
+    <!-- Events START -->
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <div class="text-center mb-3 pb-3">
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Eventos</h6>
+                <h1>Eventos disponibles</h1>
+            </div>
+                <div class="row">
+                    <div *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4">
+                        <div class="package-item bg-white mb-2">
+
+                            <!-- Foto or default -->
+                            <div *ngIf="e.photoUrl; else defaultImage">
+                                <img class="img-fluid" src="{{e.photoUrl}}" alt="">
                             </div>
-                            <!--Etiquetas-->
+                            <ng-template #defaultImage>
+                                <img class="img-fluid" src="https://cdnph.upi.com/ph/st/th/5751650313577/2022/i/16503136903474/v1.2/Raccoon-bandit-evicted-from-trash-can-by-Michigan-police.jpg" alt="No image">
+                            </ng-template>
 
-                            <ng-container *ngFor="let t of e.themes;">
-                                <ng-container class="mt-1 mb-1 spec-1">
-                                    <button class="themeButton">{{getThemeName(t)[0]}}</button>
-                                </ng-container>
-                            </ng-container>
+                            <div class="p-4">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>{{e.location.name}}</small>
 
-                            <br><br>
-                            <p class="text-justify para mb-0 description">
-                                {{e.description}}
-                                <br><br>
-                            </p>
-                        </div>
-                        <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                            <div class="glyphicon glyphicon-calendar calendarIcon"></div>
-                            <h6 class="text-success date">{{e.startDate | date:'dd/MM/yyyy'}}</h6>
-                            <h6 class="text-success date">- {{e.endDate | date:'dd/MM/yyyy'}}</h6>
-                            <!--TODO: only show one date when start and end are the same-->
- 
-                            <div class="d-flex flex-row align-items-center">
-                                <h4 class="mr-1 age">Edad recomendada: {{e.recommendedAge}}</h4>
+                                    <ng-container *ngIf="e.startDate === e.endDate; else dateRange">{{ e.startDate | date:'dd/MM/yy' }}</ng-container>
+                                    <ng-template #dateRange>
+                                        <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>{{e.startDate | date:'dd/MM/yy'}} al {{e.endDate | date:'dd/MM/yy'}}</small>
+                                    </ng-template>
+
+                                    <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>{{e.recommendedAge}}+ ({{getAgeRecommendation(e.recommendedAge)}})</small>
+                                </div>
+                                <div class="d-flex flex-wrap  align-items-md-start mb-3" style="height: 70px; overflow: hidden;">
+                                    <ng-container *ngFor="let t of e.themes.slice(0, 6); let last=last;">
+                                        <button class="themeButton">{{getThemeName(t)[0]}}</button>
+                                    </ng-container>
+                                    <div class="align-items-md-center" *ngIf="e.themes.length > 6">
+                                        <span>+{{e.themes.length - 6}} {{e.themes.length - 6 === 1 ? 'theme' : 'themes'}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="border-top mt-4 pt-4">
+                                    <div class="d-flex justify-content-between">
+                                        <h6 class="d-inline-block text-truncate" style="max-width: 220px;"><i class="fa fa-flask text-primary mr-2"></i>Organizationnnnnnnnnnnnnnnnnnnnnn </h6>
+                                        <h5 class="m-0">$350 <small>(c/u)</small></h5>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <br>
                 </div>
-            </div>
         </div>
     </div>
+    <!-- Packages End -->
 
-
-
-    <!--<div *ngFor="let e of eventsList;">
-        <div class="caja">
-            <div class="caja-interno">
-
-                <table>
-                    <tr>
-                        <td>
-                            <p class="title">{{e.title}}</p>
-                        <td>
-                        <td>
-                            <p class="age">{{e.recommendedAge}}</p>
-                        </td>
-                    </tr>
-                </table>
-
-                <p class="location">{{e.location.name}}</p>
-                <p class="themes">{{e.themes}}</p>-->
-    <!--<div class="themes">
-        <div *ngFor="let t of {{e.themes}}">
-
-        </div>
-    </div>-->
-    <!--<p class="description">{{e.description}}</p>
-
-
-
-            </div>
-        </div>
-    </div>-->
 </body>
+
+</html>

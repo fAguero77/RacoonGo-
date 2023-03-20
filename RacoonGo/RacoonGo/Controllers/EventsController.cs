@@ -60,7 +60,7 @@ namespace RacoonGo.Controllers
 
             Event e3 = new()
             {
-                title = "Evento 2",
+                title = "Evento 3",
                 recommendedAge = 80,
                 startDate = DateTime.MinValue,
                 endDate = DateTime.MaxValue,
@@ -68,8 +68,29 @@ namespace RacoonGo.Controllers
                 location = Location.Valencia()
             };
 
+            Event e4 = new()
+            {
+                title = "Evento 4",
+                recommendedAge = 80,
+                startDate = DateTime.MinValue,
+                endDate = DateTime.MaxValue,
+                themes = new List<int> { 0, 1, 2, 3 },
+                location = Location.Valencia()
+            };
 
-            Event[] events = { e1, e2, e3 };
+            Event e5 = new()
+            {
+                title = "Evento 5",
+                recommendedAge = 80,
+                startDate = DateTime.MinValue,
+                endDate = DateTime.MaxValue,
+                themes = new List<int> { 0, 1, 2, 3 },
+                location = Location.Valencia(),
+                photoUrl = "https://www.sciencerendezvous.ca/wp-content/uploads/2018/03/sr-about.jpg"
+            };
+
+
+            Event[] events = { e1, e2, e3 , e4, e5};
 
             // TODO: get events from DB
             return Ok(events);
