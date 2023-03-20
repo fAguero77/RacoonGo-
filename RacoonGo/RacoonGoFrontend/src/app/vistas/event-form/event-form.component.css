@@ -1,36 +1,41 @@
 .caja {
     border-radius: 20px;
     background: #ffffff;
-    width: 35rem;
+    width: 33rem;
     height: 57.5rem;
     margin: 0 auto;
     border: solid #74d664;
 }
 
 .caja-interno {
-    margin: auto;
-    padding: 0 2rem;
-    padding-bottom: 2rem;
-    padding-top: 0.1rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
 }
 table {
     width: 100%;
+    padding: 0 important;
 }
 tr {
     width: 100%;
+    padding: 0 important;
+}
+.prueba {
+    text-align: center;
 }
 
-
 td {
-    padding: 0.2rem;
+    text-align: center;
+    padding: 0 important;
 }
 
 
 input {
     font-weight: bold;
     color: #7d9abb;
-    width: 10.5rem;
+    width: 12.5rem;
     height: 1.5rem;
     border-radius: 5px;
     background: white;
@@ -50,14 +55,25 @@ select {
     font-weight: bold;
 }
 
-
+label {
+    font-weight: bold;
+    color: #7d9abb;
+}
 option {
     font-weight: bold;
+
 }
     option:hover {
         background: #A9D6A1;
         color: black;
     }
+.inputDerecha {
+    padding-left: 2.5rem;
+}
+
+.inputIzquierda {
+    padding-left: 0.5rem;
+}
 textarea {
     font-weight: bold;
     width: 25.5rem;
@@ -69,6 +85,10 @@ textarea {
     border-radius: 5px;
 }
     textarea:focus {
+        background: #A9D6A1;
+        color: black;
+    }
+    textarea.hover {
         background: #A9D6A1;
         color: black;
     }

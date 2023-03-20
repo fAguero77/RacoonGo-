@@ -2,9 +2,12 @@
     <h1>Registrarse</h1>
     <form method="post">
         <div class="input-group mb-3 mt-3">
-            
-            <label class="input-group-text" for="email"><fa-icon [icon]="faUser"></fa-icon></label>
+            <label class="input-group-text" for="email">@</label>
             <input type="email" class="form-control" id="email" placeholder="Introduzca su correo" name="email" [(ngModel)]="email" required>
+        </div>
+        <div class="input-group mb-3 mt-3">
+            <label class="input-group-text" for="username"><fa-icon [icon]="faUser"></fa-icon></label>
+            <input type="text" class="form-control" id="username" placeholder="Introduzca su usuario" name="username" [(ngModel)]="username" required>
         </div>
         <div class="input-group mb-3">
             <label for="pwd" class="input-group-text"><fa-icon [icon]="faLock"></fa-icon></label>

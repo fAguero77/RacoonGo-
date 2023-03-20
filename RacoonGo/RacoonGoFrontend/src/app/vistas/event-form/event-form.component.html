@@ -1,14 +1,9 @@
-﻿
-
-<div class="caja">
+﻿<div class="caja">
     <div class="caja-interno">
         <h2>Crear Evento</h2>
         <form [formGroup]="addEventForm">
             <table>
-                <tr class="iz">
-                    <td><label>Título</label><label style="color:red">*</label></td>
-                    <td><label>Edad Recomendada</label><label style="color:red">*</label></td>
-                </tr>
+
                 <tr class="iz">
                     <!-- Title Zone-->
 
@@ -30,10 +25,7 @@
 
                     </td>
                 </tr>
-                <tr class="iz">
-                    <td><label>Fecha de Inicio</label><label style="color:red">*</label></td>
-                    <td><label>Fecha de Fin</label><label style="color:red">*</label></td>
-                </tr>
+
                 <tr class="iz">
                     <!-- Dates Zone-->
 
@@ -41,7 +33,7 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="date" [min]="todayDate" formControlName="startDate">
+                                <input type="date" [min]="todayDate" formControlName="startDate" placeholder="fecha ini">
                             </div>
                         </div>
                     </td>
@@ -54,10 +46,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr class="iz">
-                    <td><label>Etiquetas</label><label style="color:red">*</label></td>
-                    <td><label>Ciudad</label><label style="color:red">*</label></td>
-                </tr>
+
 
                 <tr class="iz">
                     <!-- Tag Zone-->
@@ -101,7 +90,7 @@
                         </div>
                     </td>
 
-    </div>
+</div>
     </tr>
     </table>
 

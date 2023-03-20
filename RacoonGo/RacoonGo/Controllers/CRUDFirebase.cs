@@ -1,16 +1,26 @@
-/*using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
+using FireSharp.Interfaces;
+using FireSharp.Response;
+using Microsoft.AspNetCore.Mvc;
+using RacoonGo.Controllers;
+using RacoonGo.Modelo;
 
 public class CRUDFirebase
 {
-    public static void RegisterRoutes(RouteCollection routes)
+   
+    FirebaseConnection firebaseConnection = new FirebaseConnection();
+    IFirebaseClient client;
+    public CRUDFirebase()
     {
-        routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-        routes.MapPageRoute("Default", "{controller}/{action}/{id}", new {controller="Home", action="Crear", 
-            id=UrlParameter.Optional});
+        client = firebaseConnection.GetClient();
     }
-}*/
+
+    public async Task<IActionResult> Index(User user)
+    {
+        PushResponse response = await client.PushAsync("Usuarios/", user);
+        User result = response.ResultAs<User>();
+        return new JsonResult(result);
+    }
+
+
+
+}

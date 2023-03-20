@@ -1,4 +1,4 @@
-﻿import {Theme} from "./app.enum";
+﻿import { Theme } from "./app.enum";
 
 export class BackEndResponse<T> {
     success!: boolean;
@@ -29,7 +29,7 @@ export class Event {
     public endDate!: Date;
     public themes!: number[];
     public location!: Location;
-    public photoUrl !: string ;
+    public photoUrl !: string;
 
     constructor(title: string, description: string, recommendedAge: number, startDate: Date, endDate: Date, location: Location, themes: Theme[] = [], photoUrl: string) {
         this.title = title;
@@ -43,7 +43,13 @@ export class Event {
     }
 }
 
-export interface User {
-    email: string;
-    password: string;
+export class User {
+    public email: string;
+    public username: string;
+    public score: number;
+    constructor(email: string, username: string, score: number) {
+        this.email = email;
+        this.username = username;
+        this.score = score;
+    }
 }
