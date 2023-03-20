@@ -3,56 +3,25 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { EventFormComponent } from './event-form/event-form.component';
-import { AccountComponent } from './user/account/account.component';
 import { LoginComponent } from './vistas/login/login.component';
-import { EventsListComponent } from './events-list/events-list.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from "./app-routing.module";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {getAuth} from "firebase/auth";
+import { EventsListComponent} from "./vistas/events-list/events-list.component";
+import { EventFormComponent } from './vistas/event-form/event-form.component';
+import { AccountComponent } from "./vistas/account/account.component";
 
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-export const firebaseConfig = {
-  apiKey: "AIzaSyCmVfdP2afXuFx8lux7VGfxyI8jxM7UYX4",
-  authDomain: "racoongo.firebaseapp.com",
-  projectId: "racoongo",
-  storageBucket: "racoongo.appspot.com",
-  messagingSenderId: "498418850159",
-  appId: "1:498418850159:web:0f5ec85ca154ba163d709a",
-  measurementId: "G-CKR90DQ6VD"
-};
-
-// Initialize Firebase
-// Initialize Firebase
-export const app = initializeApp(firebaseConfig);
-export const auth=getAuth(app);
-
-
-//-------------------------------------------------------------------------------ESTAS DOS LINEAS DE DEBAJO DAN ERROR, LO DEJO COMENTADO
-
-
-//const app = initializeApp(firebaseConfig);
-//const analytics = getAnalytics(app);
 @NgModule({
   declarations: [
     AppComponent,
-    EventFormComponent,
-    AccountComponent,
     LoginComponent,
     EventsListComponent,
+    EventFormComponent,
+    AccountComponent
   ],
     imports: [
-        BrowserModule, 
-        HttpClientModule, 
+      BrowserModule, 
+      HttpClientModule, 
       FormsModule, 
       ReactiveFormsModule, 
       AppRoutingModule, 

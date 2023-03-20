@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EventsService } from '../services/events.service';
-import { Event, Theme } from '../models/event';
 import Swal from 'sweetalert2';
-
+import {BackendRouterService} from "../../services/backend-router.service";
+import {Event} from "../../models/app.model";
 @Component({
     selector: 'events-list',
     templateUrl: './events-list.component.html',
@@ -12,23 +11,23 @@ export class EventsListComponent implements OnInit {
 
     eventsList: Event[] = [];
 
-    constructor(private eventsService: EventsService) { }
+    constructor(private backEndResponse: BackendRouterService) { }
 
     ngOnInit(): void { this.getEvents(); }
 
     getEvents(): void {
-        this.eventsService.getEvents().subscribe({
-            next: data => {
+        this.backEndResponse.endpoints.getEvents().subscribe({
+            next: (data: Event[]) => {
                 this.eventsList = data as Event[];
             },
-            error: error => {
-                Swal.fire('Error', 'Se ha producido un error al buscar eventos. Inténtelo de nuevo en unos minutos.')
+            error: () => {
+                Swal.fire('Error', 'Se ha producido un error al buscar eventos. Intï¿½ntelo de nuevo en unos minutos.', 'error')
             }
         })
     }
 
     getThemeName(index: number): [string, string]{
-        return this.eventsService.getThemeInfo(index);
+        return this.backEndResponse.endpoints.getThemeInfo(index);
     }
 
     formatDate(date: Date): string {

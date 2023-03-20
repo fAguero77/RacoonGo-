@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { UserService } from 'src/app/services/user.service';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
-import {auth} from "../../app.module";
+import {auth} from "../../models/app.constants";
 
 
 

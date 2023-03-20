@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
-import { Event, Theme } from '../models/event';
-import { Location } from '../models/location';
-import { EventsService } from '../services/events.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
+import {Theme} from "../../models/app.enum";
+import {Event, Location} from "../../models/app.model";
+import {BackendRouterService} from "../../services/backend-router.service";
 
  
 
@@ -25,7 +25,7 @@ export class EventFormComponent implements OnInit {
     readonly defaultImg:  string = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
 
 
-    constructor(private eventService: EventsService, private httpClient: HttpClient) {
+    constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient) {
         this.image = this.defaultImg;
 
         for (let i = 0; i < 10; i++) {
@@ -83,24 +83,23 @@ export class EventFormComponent implements OnInit {
                 this.addEventForm.value.description,
                 this.addEventForm.value.recommendedAge,
                 this.addEventForm.value.startDate,
-                this.addEventForm.value.endDate,
+                this.addEventForm.value.endDate, 
                 new Location(this.addEventForm.value.location),
-                this.themes,
-               this.image
+                this.themes, 
+                this.image
             );
 
-            this.eventService.addEvent(event).subscribe(
-                (response) => {
+            this.backendRouterService.endpoints.addEvent(event).subscribe({
+                next: () => {
 
                     Swal.fire('\u00A1Muy bien!', 'Se ha creado correctamente tu evento: ' + event.title, 'success')
                 },
-                (error) => { 
-
-                    Swal.fire('Error', 'La ciudad '+event.location.name+' no se ha encontrado', 'error')
-
+                error: () => {
+    
+                    Swal.fire('Error', 'La ciudad ' + event.location.name + ' no se ha encontrado', 'error')
+    
                 }
-
-            );
+            });
         }
     }
     onSelectionChange(event: any) {

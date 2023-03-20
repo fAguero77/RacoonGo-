@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { EventFormComponent } from "./event-form/event-form.component";
-import { EventsListComponent } from "./events-list/events-list.component";
-import {AccountComponent} from "./user/account/account.component";
+
 import {LoginComponent} from "./vistas/login/login.component";
+import {EventFormComponent} from "./vistas/event-form/event-form.component";
+import {EventsListComponent} from "./vistas/events-list/events-list.component";
+import {AccountComponent} from "./vistas/account/account.component";
 
 
 const routes: Routes = [

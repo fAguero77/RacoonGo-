@@ -1,5 +1,24 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { Location } from './location';
+﻿import {Theme} from "./app.enum";
+
+export class BackEndResponse<T> {
+    success!: boolean;
+    data?: T;
+    message?: any;
+    meta?: any;
+}
+
+export class Location {
+    public name!: string;
+    public lat!: number;
+    public lon!: number;
+
+    constructor(name: string, lat: number = 0, lon: number = 0) {
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+    }
+
+}
 
 export class Event {
 
@@ -24,15 +43,7 @@ export class Event {
     }
 }
 
-export enum Theme {
-    Arqueología = 0,
-    Biología,
-    Astronomía,
-    Física,
-    Nutrición,
-    Psicología,
-    Investigación,
-    Arte,
-    Historia,
-    Otros
+export interface User {
+    email: string;
+    password: string;
 }
