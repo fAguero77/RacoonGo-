@@ -23,13 +23,13 @@ export class BackendRouterService {
     let context = this;
     this.endpoints = {
       event: {
-        addEven: function(event: Event) { return context.api_create('Events', event) },
-        getEvents: function()             { return context.api_list('Events',{}) }
+        addEvent: function(event: Event) { return context.api_create('Events', event) },
+        getEvents: function()             { return context.api_list('Events', {}) }
       },
       user: {
-        register: function (email: string){ return context.api_create('registerUser', email) },
-        signIn: function (email: string)  { return context.api_create('signIn', email) },
-        deleteAccount: function (email: string | null) { return context.api_create('deleteUser', email)}
+        //register: function (email: string){ return context.api_create('registerUser', email) },
+        //signIn: function (email: string)  { return context.api_create('signIn', email) },
+        //deleteAccount: function (email: string | null) { return context.api_create('deleteUser', email)}
       }
     }
   }

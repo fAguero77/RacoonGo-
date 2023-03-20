@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import {Theme} from "../../models/app.enum";
 import {Event, Location} from "../../models/app.model";
 import {BackendRouterService} from "../../services/backend-router.service";
+import { HelperService } from '../../services/helper.service';
 
  
 
@@ -25,24 +26,13 @@ export class EventFormComponent implements OnInit {
     readonly defaultImg:  string = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
 
 
-    constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient) {
+    constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, private helperService: HelperService) {
         this.image = this.defaultImg;
-
+        this.colorList = this.helperService.colorList;
         for (let i = 0; i < 10; i++) {
             this.themeList.push(Theme[i])
         }
-        this.colorList =
-        ['#81f774',
-            '#86fcf1',
-            '#e2eb7f',
-            '#f7bb92',
-            '#f59f9a',
-            '#ec92f7',
-            '#fc8dba',
-            '#a692f0',
-            '#ff6370',
-            '#ab989a'
-            ]
+
         let date = new Date();
         const year = date.getFullYear().toString();
         const month = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -89,7 +79,7 @@ export class EventFormComponent implements OnInit {
                 this.image
             );
 
-            this.backendRouterService.endpoints.addEvent(event).subscribe({
+            this.backendRouterService.endpoints.event.addEvent(event).subscribe({
                 next: () => {
 
                     Swal.fire('\u00A1Muy bien!', 'Se ha creado correctamente tu evento: ' + event.title, 'success')
