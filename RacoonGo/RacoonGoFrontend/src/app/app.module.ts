@@ -10,6 +10,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EventsListComponent} from "./vistas/events-list/events-list.component";
 import { EventFormComponent } from './vistas/event-form/event-form.component';
 import { AccountComponent } from "./vistas/account/account.component";
+import { LogoutComponent } from './vistas/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AccountComponent } from "./vistas/account/account.component";
     LoginComponent,
     EventsListComponent,
     EventFormComponent,
-    AccountComponent
+    AccountComponent,
+    LogoutComponent
   ],
     imports: [
       BrowserModule, 
