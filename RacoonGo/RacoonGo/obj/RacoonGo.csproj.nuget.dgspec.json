@@ -15,6 +15,20 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\monic\\AppData\\Roaming\\NuGet\\NuGet.Config",
+    "C:\\Users\\usuario\\Source\\Repos\\RacoonGo\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\usuario\\Source\\Repos\\RacoonGo\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\usuario\\Source\\Repos\\RacoonGo\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+        "projectName": "RacoonGo",
+        "projectPath": "C:\\Users\\usuario\\Source\\Repos\\RacoonGo\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+        "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\usuario\\Source\\Repos\\RacoonGo\\RacoonGo\\RacoonGo\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -106,6 +120,25 @@
               "privateAssets": "all"
             }
           },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.15, 6.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[6.0.15, 6.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.15, 6.0.15]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.15, 6.0.15]"
+            }
+          ],
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
