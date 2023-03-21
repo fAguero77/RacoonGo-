@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {}
+    "C:\\Users\\usuario\\Source\\Repos\\RacoonGo\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {
+    "C:\\Users\\usuario\\Source\\Repos\\RacoonGo\\RacoonGo\\RacoonGo\\RacoonGo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+        "projectUniqueName": "C:\\Users\\usuario\\Source\\Repos\\RacoonGo\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
         "projectName": "RacoonGo",
-        "projectPath": "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
-        "packagesPath": "C:\\Users\\aguer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo\\RacoonGo\\obj\\",
+        "projectPath": "C:\\Users\\usuario\\Source\\Repos\\RacoonGo\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+        "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\usuario\\Source\\Repos\\RacoonGo\\RacoonGo\\RacoonGo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\aguer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +40,30 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "FireSharp": {
+              "target": "Package",
+              "version": "[2.0.4, )"
+            },
+            "FirebaseSharp": {
+              "target": "Package",
+              "version": "[2.0.4, )"
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Routing": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -64,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
