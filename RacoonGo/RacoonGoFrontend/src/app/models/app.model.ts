@@ -56,14 +56,16 @@ export class User {
     }
 }
 
-export class Company {
-    public user!: User;
+export class CompanyUser extends User{
     public website!: string;
     public phoneNumber!: string;
+    public sponsored: Date;
+
 
     constructor(user: User, website: string, phoneNumber: string) {
-        this.user = user;
+        super(user.email, user.username, user.score);
         this.website = website;
         this.phoneNumber = phoneNumber;
+        this.sponsored = new Date();
     }
 }
