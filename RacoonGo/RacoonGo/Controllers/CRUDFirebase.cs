@@ -26,6 +26,13 @@ namespace RacoonGo.Controllers
             User result = response.ResultAs<User>();
             return new JsonResult(result);
         }
+        
+        public async Task<IActionResult> addCompany(CompanyUser company)
+        {
+            PushResponse response = await client.PushAsync("Usuarios/", company);
+            CompanyUser result = response.ResultAs<CompanyUser>();
+            return new JsonResult(result);
+        }
 
         public async Task<IActionResult> addEvent(Event evento){
             PushResponse response = await client.PushAsync("Eventos/",evento);

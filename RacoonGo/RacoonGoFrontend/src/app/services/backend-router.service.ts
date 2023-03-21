@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { BackEndResponse, Event, User } from "../models/app.model";
+import {BackEndResponse, Company, Event, User} from "../models/app.model";
 
 @Injectable({
     providedIn: 'root'
@@ -32,6 +32,11 @@ export class BackendRouterService {
                 addUser: function (user: User) { return context.api_create('Users', user) },
                 signIn: function (email: string) { return context.api_list('Users', { email }) }
                 //deleteAccount: function (email: string | null) { return context.api_create('deleteUser', email)}
+            },
+            company: {
+                addCompany: function (company: Company) {
+                    return context.api_create('Companies', company)
+                }
             }
         }
     }

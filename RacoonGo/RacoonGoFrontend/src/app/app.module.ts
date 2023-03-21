@@ -11,6 +11,7 @@ import { EventsListComponent} from "./vistas/events-list/events-list.component";
 import { EventFormComponent } from './vistas/event-form/event-form.component';
 import { AccountComponent } from "./vistas/account/account.component";
 import { LogoutComponent } from './vistas/logout/logout.component';
+import { BusinessAccountComponent } from './vistas/business-account/business-account.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LogoutComponent } from './vistas/logout/logout.component';
     EventsListComponent,
     EventFormComponent,
     AccountComponent,
-    LogoutComponent
+    LogoutComponent,
+    BusinessAccountComponent
   ],
     imports: [
       BrowserModule, 

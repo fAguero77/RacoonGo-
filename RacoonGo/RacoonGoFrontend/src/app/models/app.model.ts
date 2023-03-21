@@ -55,3 +55,15 @@ export class User {
         this.score = score;
     }
 }
+
+export class Company {
+    public user!: User;
+    public website!: string;
+    public phoneNumber!: string;
+
+    constructor(user: User, website: string, phoneNumber: string) {
+        this.user = user;
+        this.website = website;
+        this.phoneNumber = phoneNumber;
+    }
+}

@@ -6,16 +6,15 @@ import { LoginComponent } from "./vistas/login/login.component";
 import { EventFormComponent } from "./vistas/event-form/event-form.component";
 import { EventsListComponent } from "./vistas/events-list/events-list.component";
 import { AccountComponent } from "./vistas/account/account.component";
-//import { BusinessAccountComponent } from "./vistas/business-account/business-account.component";
+import { BusinessAccountComponent } from "./vistas/business-account/business-account.component";
 
 
 const routes: Routes = [
     { path: 'addEvent', component: EventFormComponent },
     { path: 'events', component: EventsListComponent },
     { path: 'register', component: AccountComponent },
-    { path: 'login', component: LoginComponent }
-
-    //{ path: 'loginBusiness', component: BusinessAccountComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'loginBusiness', component: BusinessAccountComponent },
 ];
 
 @NgModule({
