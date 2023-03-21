@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {signInWithEmailAndPassword } from "firebase/auth";
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
-import {auth} from "../../app.module";
+import { auth } from "../../models/app.constants";
+import { BackendRouterService } from "../../services/backend-router.service";
+import { HelperService } from "../../services/helper.service";
+import { User } from '../../models/app.model';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,9 +16,9 @@ export class LoginComponent implements OnInit {
   email!:string
   password!:string
 
-  constructor() { }
+    constructor(private backEndResponse: BackendRouterService, private helperService: HelperService) { }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
   }
 
   signUp(){
@@ -23,8 +26,17 @@ export class LoginComponent implements OnInit {
         .then((userCredential) => {
 
           const user = userCredential.user;
-          if (user) {
-            sessionStorage.setItem("email", this.email);
+            if (user) {
+                this.backEndResponse.endpoints.user.signIn(this.email).subscribe({
+                    next: (data: User) => {
+                        console.log(JSON.stringify(data))
+                        sessionStorage.setItem("user", JSON.stringify(data));
+                        window.alert('login correct')
+                    }
+                })
+
+          } else {
+            window.alert('algop ha fallado')
           }
         })
         .catch((error) => {

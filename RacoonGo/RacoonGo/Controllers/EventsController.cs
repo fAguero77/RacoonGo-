@@ -11,6 +11,7 @@ namespace RacoonGo.Controllers
     public class EventsController: ControllerBase
     {
 
+        CRUDFirebase _crudFirebase = new CRUDFirebase();
 
         private readonly IGeodecodeService _service;
 
@@ -20,7 +21,7 @@ namespace RacoonGo.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("addEvent")]
         public IActionResult AddEvent(Event e)
         {
             Location location = _service.GetLocation(e.location.name).Result;
@@ -29,50 +30,27 @@ namespace RacoonGo.Controllers
                 return NotFound(e);
             }
             e.location = location;
-            // TODO AÑADIR EVENTO A BBDD
+            _crudFirebase.addEvent(e);
             return Ok(e);
         }
 
-        [HttpGet]
+        [HttpGet("events")]
         public IActionResult GetEvents()
         {
-            Event e1 = new()
-            {
-                title = "Evento 1",
-                description = "descripcion evento 1",
-                recommendedAge = 5,
-                startDate = DateTime.Now,
-                endDate = DateTime.Now,
-                themes = new List<int>{ 0, 1 },
-                location = Location.Valencia()
-            };
+            Event[] eventList = _crudFirebase.getEvents().Result;
+            
 
-            Event e2 = new()
-            {
-                title = "Evento 2",
-                description = "descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. descripcion muy larga del evento 2. ",
-                recommendedAge = 15,
-                startDate = DateTime.MinValue,
-                endDate = DateTime.MaxValue,
-                themes = new List<int>{ 0,1,2,3,4,5,6,7 },
-                location = Location.Valencia()
-            };
+            return Ok(eventList);
+        }
 
-            Event e3 = new()
-            {
-                title = "Evento 2",
-                recommendedAge = 80,
-                startDate = DateTime.MinValue,
-                endDate = DateTime.MaxValue,
-                themes = new List<int>{ 0, 1, 2, 3 },
-                location = Location.Valencia()
-            };
+        [HttpGet("myEvents")]
+        public IActionResult GetMyEvents(String username)
+        {
+            Console.WriteLine(username);
+            Event[] eventList = _crudFirebase.getMyEvents(username).Result;
 
 
-            Event[] events = { e1, e2, e3 };
-
-            // TODO: get events from DB
-            return Ok(events);
+            return Ok(eventList);
         }
     }
 

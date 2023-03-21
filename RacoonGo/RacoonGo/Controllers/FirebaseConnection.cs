@@ -9,7 +9,7 @@ using FireSharp.Response;
 
 public class FirebaseConnection
 {
-    IFirebaseClient cliente;
+    IFirebaseClient client;
     public FirebaseConnection()
     {
         IFirebaseConfig config = new FirebaseConfig
@@ -17,22 +17,12 @@ public class FirebaseConnection
             AuthSecret = "hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ",
             BasePath = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/"
         };
-        
-        cliente=new FirebaseClient(config);
+
+        client = new FirebaseClient(config);
     }
-    
-    [HttpPost]
-    public ActionResult Crear(User user)
+
+    public IFirebaseClient GetClient()
     {
-        SetResponse setResponse = cliente.Set("User/" + user.getUsername(), user);
-        if (setResponse.StatusCode == System.Net.HttpStatusCode.OK)
-        {
-            return null;
-        }
-        else
-        {
-            return null;
-        }
+        return client;
     }
-    
 }

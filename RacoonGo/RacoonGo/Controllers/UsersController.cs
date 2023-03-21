@@ -1,27 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RacoonGo.Modelo;
+using RacoonGo.Services;
 
 namespace RacoonGo.Controllers;
 [ApiController]
 [Route("api/[controller]")]
-public class UsersController: ControllerBase
+public class UsersController : ControllerBase
 {
+    CRUDFirebase _crudFirebase = new CRUDFirebase();
+
     public UsersController()
     {
+
+
     }
-    /*
-    public void signUp(User user)
+
+    [HttpPost]
+    public IActionResult AddUser(User user)
     {
-        
+        _crudFirebase.addUser(user);
+        return Ok(user);
+    }
+
+    
+    [HttpGet]
+    public IActionResult signIn(string email)
+    {
+
+        User usuario = _crudFirebase.getUser(email).Result[0];
+        return Ok(usuario);
     }
     
-    public void signIn(String username)
-    {
-        
-    }
-    
-    public void deleteUser(String username)
-    {
-        
-    }*/
 }

@@ -1,0 +1,64 @@
+    <!-- Events START -->
+<div class="container-fluid py-5">
+    <div class="container pt-5 pb-3">
+        <div class="text-center mb-3 pb-3">
+            <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Eventos</h6>
+            <h1>Eventos disponibles</h1>
+        </div>
+        <div class="row">
+            <div *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4">
+                <div class="package-item bg-white mb-2">
+
+                    <!-- Foto or default -->
+                    <div *ngIf="e.photoUrl; else defaultImage">
+                        <img class="img-fluid" src="{{e.photoUrl}}" alt="" (onerror)="replaceBrokenImage($event)">
+                    </div>
+                    <ng-template #defaultImage>
+                        <img class="img-fluid" src={{defaultImg}} alt="No image">
+                    </ng-template>
+
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>{{e.location.name}}</small>
+
+                            <ng-container *ngIf="e.startDate === e.endDate; else dateRange">
+                                <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>{{e.startDate | date:'dd/MM/yy'}}</small>
+                            </ng-container>
+                            <ng-template #dateRange>
+                                <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>{{e.startDate | date:'dd/MM/yy'}} al {{e.endDate | date:'dd/MM/yy'}}</small>
+                            </ng-template>
+
+                            <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>{{e.recommendedAge}}+ ({{getAgeRecommendation(e.recommendedAge)}})</small>
+                        </div>
+
+                        <div class="">
+                            <div class="d-flex justify-content-between" style="height: 65px;">
+                                <h5 class="d-inline-block" style="text-align: justify; max-width: 400px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; text-overflow: ellipsis;"><i class="fa fa-flask text-primary mr-2"></i>{{e.title}}</h5>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap  align-items-md-start mb-1" style="height: 85px; overflow: hidden;">
+                            <ng-container *ngFor="let t of e.themes.slice(0, 6); let last=last;">
+                                <button class="themeButton">{{getThemeName(t)[0]}}</button>
+                            </ng-container>
+                            <div class="align-items-md-center" *ngIf="e.themes.length > 6">
+                                <span>+{{e.themes.length - 6}} {{e.themes.length - 6 === 1 ? 'tema' : 'temas'}}</span>
+                            </div>
+                        </div>
+
+                        <div class="border-top mt-4 pt-4">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="d-inline-block text-truncate" style="max-width: 240px;"><i class="fa fa-flask text-primary mr-2"></i>Organizationnnnnnnnnnnnnnnnnnnnnn </h6>
+                                <!--<h5 class="m-0">$350 <small>(c/u)</small></h5>-->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button (click)="getMyEvents()">Mis eventos</button>
+
+<!-- Events  -->
