@@ -8575,19 +8575,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ibonek\\.nuget\\packages\\": {}
+    "C:\\Users\\usuario\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ibonek\\RiderProjects\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+      "projectUniqueName": "C:\\Users\\usuario\\source\\repos\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
       "projectName": "RacoonGo",
-      "projectPath": "C:\\Users\\ibonek\\RiderProjects\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
-      "packagesPath": "C:\\Users\\ibonek\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ibonek\\RiderProjects\\RacoonGo-\\RacoonGo\\RacoonGo\\obj\\",
+      "projectPath": "C:\\Users\\usuario\\source\\repos\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+      "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\usuario\\source\\repos\\RacoonGo-\\RacoonGo\\RacoonGo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ibonek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8661,7 +8661,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -8670,7 +8670,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'FirebaseSharp 2.0.4' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "El paquete \"FirebaseSharp 2.0.4\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net6.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
       "libraryId": "FirebaseSharp",
       "targetGraphs": [
         "net6.0"
@@ -8680,7 +8680,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'FireSharp 2.0.4' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "El paquete \"FireSharp 2.0.4\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net6.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
       "libraryId": "FireSharp",
       "targetGraphs": [
         "net6.0"
@@ -8690,7 +8690,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.Bcl 1.1.10' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "El paquete \"Microsoft.Bcl 1.1.10\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net6.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
       "libraryId": "Microsoft.Bcl",
       "targetGraphs": [
         "net6.0"
@@ -8700,7 +8700,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.Bcl.Async 1.0.168' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "El paquete \"Microsoft.Bcl.Async 1.0.168\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net6.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
       "libraryId": "Microsoft.Bcl.Async",
       "targetGraphs": [
         "net6.0"
@@ -8710,7 +8710,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.Net.Http 2.2.29' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "El paquete \"Microsoft.Net.Http 2.2.29\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net6.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
       "libraryId": "Microsoft.Net.Http",
       "targetGraphs": [
         "net6.0"
