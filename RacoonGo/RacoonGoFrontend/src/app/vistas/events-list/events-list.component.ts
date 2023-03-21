@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { BackendRouterService } from "../../services/backend-router.service";
-import { BackEndResponse, Event } from "../../models/app.model";
+import { BackEndResponse, Event, User } from "../../models/app.model";
 import { first } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { HelperService } from '../../services/helper.service';
@@ -25,7 +25,6 @@ export class EventsListComponent implements OnInit {
                 if (data.body) {
                     this.eventsList = data.body as unknown as Event[];
                     this.eventsList.filter((value, index) => index % 3 === 0);
-                    console.log(this.eventsList);
                 }
             },
             error: () => {
@@ -60,5 +59,15 @@ export class EventsListComponent implements OnInit {
 
     convertDate(d: Date): string {
         return d.getDay() + '/' + d.getMonth() + '/' + d.getFullYear();
+    }
+
+    getMyEvents() {
+        let user: User = JSON.parse(sessionStorage.getItem("user")!).body
+        this.backEndResponse.endpoints.event.getMyEvents(user.username).subscribe({
+            next: (data: HttpResponse<BackEndResponse<any>>) =>{
+                this.eventsList = data.body as unknown as Event[];
+
+            }
+        })
     }
 }

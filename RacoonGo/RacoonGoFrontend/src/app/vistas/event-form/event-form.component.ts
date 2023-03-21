@@ -42,8 +42,8 @@ export class EventFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.user = JSON.parse(sessionStorage.getItem("user")!)  ;
-
+        this.user = JSON.parse(sessionStorage.getItem("user")!).body  ;
+        alert(this.user.username)
         this.addEventForm = new FormGroup({
             title: new FormControl(''),
             description: new FormControl(''),

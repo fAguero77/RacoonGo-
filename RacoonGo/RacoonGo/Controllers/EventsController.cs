@@ -21,7 +21,7 @@ namespace RacoonGo.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("addEvent")]
         public IActionResult AddEvent(Event e)
         {
             Location location = _service.GetLocation(e.location.name).Result;
@@ -34,11 +34,21 @@ namespace RacoonGo.Controllers
             return Ok(e);
         }
 
-        [HttpGet]
+        [HttpGet("events")]
         public IActionResult GetEvents()
         {
             Event[] eventList = _crudFirebase.getEvents().Result;
             
+
+            return Ok(eventList);
+        }
+
+        [HttpGet("myEvents")]
+        public IActionResult GetMyEvents(String username)
+        {
+            Console.WriteLine(username);
+            Event[] eventList = _crudFirebase.getMyEvents(username).Result;
+
 
             return Ok(eventList);
         }

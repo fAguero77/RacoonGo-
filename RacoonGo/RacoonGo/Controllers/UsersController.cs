@@ -22,13 +22,13 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
 
-    /*
-    [HttpPost]
-    public IActionResult AddUser(User user)
+    
+    [HttpGet]
+    public IActionResult signIn(string email)
     {
-        Console.WriteLine(user);
-        _crudFirebase.Index();
-        return Ok(user);
+
+        User usuario = _crudFirebase.getUser(email).Result[0];
+        return Ok(usuario);
     }
-    */
+    
 }

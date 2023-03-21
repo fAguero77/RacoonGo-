@@ -1,10 +1,13 @@
-using FireSharp;
 using FireSharp.Interfaces;
 using FireSharp.Response;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using RacoonGo.Controllers;
+using FireSharp.Config;
+
+
 using RacoonGo.Modelo;
+using Newtonsoft.Json.Linq;
+
 namespace RacoonGo.Controllers
 {
     public class CRUDFirebase
@@ -36,6 +39,26 @@ namespace RacoonGo.Controllers
             var data = JsonConvert.DeserializeObject<Dictionary<string, Event>>(response.Body);
             var eventArray = data.Values.ToArray();
             return eventArray;
+        }
+
+        public async Task<Event[]> getMyEvents(String username)
+        {
+            FirebaseResponse response = await client.GetAsync("Eventos/");
+            string json = response.Body;
+            Dictionary<string, Event> myEvents = JsonConvert.DeserializeObject<Dictionary<string, Event>>(json);
+            var events = myEvents.Values.Where(evento => evento.user.username == username);
+
+            return events.ToArray();
+        }
+
+        public async Task<User[]> getUser(String email)
+        {
+            FirebaseResponse response = await client.GetAsync("Usuarios/");
+            string json = response.Body;
+            Dictionary<string, User> user = JsonConvert.DeserializeObject<Dictionary<string, User>>(json);
+            var users = user.Values.Where(user => user.email == email);
+
+            return users.ToArray();
         }
 
     }
