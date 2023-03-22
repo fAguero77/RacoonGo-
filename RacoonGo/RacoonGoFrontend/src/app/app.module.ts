@@ -12,6 +12,7 @@ import { EventFormComponent } from './vistas/event-form/event-form.component';
 import { AccountComponent } from "./vistas/account/account.component";
 import { LogoutComponent } from './vistas/logout/logout.component';
 import { BusinessAccountComponent } from './vistas/business-account/business-account.component';
+import { PasswordComponent } from './vistas/password/password.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { BusinessAccountComponent } from './vistas/business-account/business-acc
     EventFormComponent,
     AccountComponent,
     LogoutComponent,
-    BusinessAccountComponent
+    BusinessAccountComponent,
+    PasswordComponent
   ],
     imports: [
       BrowserModule, 

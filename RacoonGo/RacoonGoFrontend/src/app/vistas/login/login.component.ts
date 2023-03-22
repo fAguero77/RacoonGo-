@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {signInWithEmailAndPassword } from "firebase/auth";
+import {signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import { auth } from "../../models/app.constants";
 import { BackendRouterService } from "../../services/backend-router.service";
@@ -45,5 +45,4 @@ export class LoginComponent implements OnInit {
         
         });
   }
-
 }
