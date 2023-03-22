@@ -1,3 +1,9 @@
+.icono-gear {
+    position: absolute;
+    top: 10 px;
+    right: 20px;
+    width: 50px;
+}
 body {
     background: #eee;
 }

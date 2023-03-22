@@ -5,7 +5,6 @@ import { BackEndResponse, Event, User } from "../../models/app.model";
 import { first } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { HelperService } from '../../services/helper.service';
-
 @Component({
     selector: 'events-list',
     templateUrl: './events-list.component.html',
