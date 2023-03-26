@@ -12,6 +12,10 @@ import { EventFormComponent } from './vistas/event-form/event-form.component';
 import { AccountComponent } from "./vistas/account/account.component";
 import { LogoutComponent } from './vistas/logout/logout.component';
 import { BusinessAccountComponent } from './vistas/business-account/business-account.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from "@angular/material/menu";
+
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,10 @@ import { BusinessAccountComponent } from './vistas/business-account/business-acc
       FormsModule, 
       ReactiveFormsModule, 
       AppRoutingModule, 
-      FontAwesomeModule
+        FontAwesomeModule,
+        NoopAnimationsModule,
+        MatIconModule,
+        MatMenuModule
   ],
     providers: [],
     exports: [RouterModule],

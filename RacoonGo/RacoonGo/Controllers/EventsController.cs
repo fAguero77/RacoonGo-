@@ -29,6 +29,13 @@ namespace RacoonGo.Controllers
             {
                 return NotFound(e);
             }
+            Console.WriteLine(e.photoUrl + "aaa");
+
+            if (e.photoUrl.Length == 0)
+            {
+                e.photoUrl = "https://cdnph.upi.com/ph/st/th/5751650313577/2022/i/16503136903474/v1.2/Raccoon-bandit-evicted-from-trash-can-by-Michigan-police.jpg";
+
+            }
             e.location = location;
             _crudFirebase.addEvent(e);
             return Ok(e);

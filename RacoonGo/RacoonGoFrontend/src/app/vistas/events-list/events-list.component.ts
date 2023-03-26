@@ -13,7 +13,6 @@ import { HelperService } from '../../services/helper.service';
 export class EventsListComponent implements OnInit {
 
     eventsList: Event[] = [];
-    defaultImg: string = 'https://cdnph.upi.com/ph/st/th/5751650313577/2022/i/16503136903474/v1.2/Raccoon-bandit-evicted-from-trash-can-by-Michigan-police.jpg';
 
 
     constructor(private backEndResponse: BackendRouterService, private helperService: HelperService) { }
@@ -72,7 +71,4 @@ export class EventsListComponent implements OnInit {
         })
     }
 
-    replaceBrokenImage(event: any) {
-        event.target.src = this.defaultImg;
-    }
 }
