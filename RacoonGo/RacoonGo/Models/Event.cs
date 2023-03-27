@@ -17,6 +17,7 @@ namespace RacoonGo.Modelo
     }
     public class Event
     {
+        public String id { get;set; }
         public String title { get; set; }
         public String description { get; set; }
         public int recommendedAge { get; set; }

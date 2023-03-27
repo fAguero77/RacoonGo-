@@ -5,6 +5,8 @@ import { BackEndResponse, Event, User } from "../../models/app.model";
 import { first } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { HelperService } from '../../services/helper.service';
+import { ActivatedRoute, Router } from "@angular/router";
+
 @Component({
     selector: 'events-list',
     templateUrl: './events-list.component.html',
@@ -13,9 +15,17 @@ import { HelperService } from '../../services/helper.service';
 export class EventsListComponent implements OnInit {
 
     eventsList: Event[] = [];
+    user: User |undefined = undefined;
 
 
-    constructor(private backEndResponse: BackendRouterService, private helperService: HelperService) { }
+    constructor(private route: ActivatedRoute,
+        private router: Router,
+        private backEndResponse: BackendRouterService, private helperService: HelperService) {
+        if (JSON.parse(sessionStorage.getItem("user")!) != undefined) {
+            this.user = JSON.parse(sessionStorage.getItem("user")!).body;
+
+        }
+    }
 
     ngOnInit(): void { this.getEvents(); }
 
@@ -69,6 +79,29 @@ export class EventsListComponent implements OnInit {
 
             }
         })
+    }
+
+    deleteEvent(e: Event) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, bórralo',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            this.backEndResponse.endpoints.event.deleteEvent(e.id).subscribe({
+                next: (data: HttpResponse<BackEndResponse<any>>) => {
+                    Swal.fire('\u00A1Muy bien!', 'Se ha eliminado correctamente tu evento: ' + e.title, 'success').then((a) =>{
+                        window.location.reload();
+                    })
+                }
+            });
+            
+        })
+        
     }
 
 }

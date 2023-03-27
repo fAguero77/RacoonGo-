@@ -70,7 +70,7 @@ export class EventFormComponent implements OnInit {
             Swal.fire('Error', 'Las fecha de fin no puede ser anterior a la fecha de inicio', 'error')
         }
         else {
-            let event = new Event(
+            let event = new Event('',
                 this.addEventForm.value.title,
                 this.addEventForm.value.description,
                 this.addEventForm.value.recommendedAge,

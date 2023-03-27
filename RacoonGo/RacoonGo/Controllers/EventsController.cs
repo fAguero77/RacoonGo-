@@ -59,6 +59,15 @@ namespace RacoonGo.Controllers
 
             return Ok(eventList);
         }
+
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteEvent(String id)
+        {
+            //Si usas la id de evento quita el - antes de enviarlo a back y ponlo aqui de nuevo, da error de http si no
+            id = "-" + id;
+            _crudFirebase.deleteEvent(id);
+            return Ok();
+        }
     }
 
 }

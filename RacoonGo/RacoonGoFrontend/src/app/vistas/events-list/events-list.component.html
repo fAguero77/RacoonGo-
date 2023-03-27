@@ -10,11 +10,22 @@
             <h1>Eventos disponibles</h1>
         </div>
         <div class="row">
-            <div *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4">
+            <div  *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4">
                 <div class="package-item bg-white mb-2">
                     <!-- Foto or default -->
-                    <div>
-                        <img class="img-responsive" src="{{e.photoUrl}}" alt="">
+                    <div style="position:relative">
+                        <img class="img-responsive" src="{{e.photoUrl}}" >
+                        <div *ngIf="user && user.username == e.user.username" style="position:absolute; top:0; right:0">
+                            <button mat-icon-button class="icono-gear mat-elevation-z6" [matMenuTriggerFor]="menu">
+                                <mat-icon style="font-size: 3rem; padding: 2px; width: fit-content; line-height:1.2">settings</mat-icon>
+
+
+                            </button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="deleteEvent(e)">Borrar Evento</button>
+                            </mat-menu>
+                        </div>
+
                     </div>
 
                     <div class="p-4">
