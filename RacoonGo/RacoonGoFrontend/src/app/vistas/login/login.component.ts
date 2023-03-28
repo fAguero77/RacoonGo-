@@ -31,12 +31,12 @@ export class LoginComponent implements OnInit {
                     next: (data: User) => {
                         console.log(JSON.stringify(data))
                         sessionStorage.setItem("user", JSON.stringify(data));
-                        window.alert('login correct')
+                        window.alert('login correcto')
                     }
                 })
 
           } else {
-            window.alert('algop ha fallado')
+            window.alert('algo ha fallado')
           }
         })
         .catch((error) => {
