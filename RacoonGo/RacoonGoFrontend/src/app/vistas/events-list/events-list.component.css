@@ -1,3 +1,23 @@
+.icono-gear {
+    position: absolute;
+    width: 50px;
+    right: 13px;
+    border-radius: 50%;
+    font-size: 24px;
+    width: fit-content;
+    border: white;
+    background-color: transparent;
+    
+}
+
+.mat-menu-item:hover {
+    background-color: #e0e0e0;
+}
+
+.container {
+    position: relative;
+    display: inline-block;
+}
 body {
     background: #eee;
 }

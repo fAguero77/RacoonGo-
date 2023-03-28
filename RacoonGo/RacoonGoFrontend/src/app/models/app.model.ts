@@ -21,7 +21,7 @@ export class Location {
 }
 
 export class Event {
-
+    public id!: string;
     public title!: string;
     public description!: string;
     public recommendedAge!: number;
@@ -32,7 +32,8 @@ export class Event {
     public photoUrl !: string;
     public user !: User;
 
-    constructor(title: string, description: string, recommendedAge: number, startDate: Date, endDate: Date, location: Location, themes: Theme[] = [], photoUrl: string, user: User) {
+    constructor(id: string,title: string, description: string, recommendedAge: number, startDate: Date, endDate: Date, location: Location, themes: Theme[] = [], photoUrl: string, user: User) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.recommendedAge = recommendedAge;

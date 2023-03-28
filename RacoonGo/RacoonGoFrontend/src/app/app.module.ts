@@ -13,6 +13,10 @@ import { AccountComponent } from "./vistas/account/account.component";
 import { LogoutComponent } from './vistas/logout/logout.component';
 import { BusinessAccountComponent } from './vistas/business-account/business-account.component';
 import { PasswordComponent } from './vistas/password/password.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from "@angular/material/menu";
+
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,10 @@ import { PasswordComponent } from './vistas/password/password.component';
       FormsModule, 
       ReactiveFormsModule, 
       AppRoutingModule, 
-      FontAwesomeModule
+        FontAwesomeModule,
+        NoopAnimationsModule,
+        MatIconModule,
+        MatMenuModule
   ],
     providers: [],
     exports: [RouterModule],
