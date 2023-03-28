@@ -26,8 +26,7 @@ export class BackendRouterService {
                 addEvent: function (event: Event) { return context.api_create('Events/addEvent',  event ) },
                 getEvents: function () { return context.api_list('Events/events', {}) },
                 getMyEvents: function (username: string) { return context.api_list('Events/myEvents', { username }) },
-                deleteEvent: function (id: string) { return context.api_delete('Events/delete',  id.substring(1) )}
-
+                deleteEvent: function (id: string) { return context.api_delete('Events/delete', id.substring(1)) },
             },
             user: {
                 addUser: function (user: User) { return context.api_create('Users', user) },

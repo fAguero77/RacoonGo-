@@ -103,5 +103,8 @@ export class EventsListComponent implements OnInit {
         })
         
     }
+    updateEvent(e: Event) {
+        //Pasar al EventForm con el evento para que se ponga como predeterminado
+    }
 
 }
