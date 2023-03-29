@@ -32,4 +32,8 @@ export class AppComponent {
     gologin() {
         this.router.navigate(['/login']);
     }
+
+    goSponsor() {
+        this.router.navigate(['/sponsor']);
+    }
 }

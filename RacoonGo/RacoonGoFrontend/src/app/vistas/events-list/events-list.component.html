@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <div *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4">
-                <div class="package-item bg-white mb-2">
+                <div class="package-item bg-white border mb-2">
 
                     <!-- Foto or default -->
                     <div *ngIf="e.photoUrl; else defaultImage">

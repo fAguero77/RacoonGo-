@@ -17,8 +17,9 @@ namespace RacoonGo.Modelo
     }
     public class Event
     {
-        public String title { get; set; }
-        public String description { get; set; }
+        public string Id { get; set; }
+        public string title { get; set; }
+        public string description { get; set; }
         public int recommendedAge { get; set; }
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
@@ -27,7 +28,7 @@ namespace RacoonGo.Modelo
 
         public User user { get; set; }
 
-        public String photoUrl { get; set; }
+        public string photoUrl { get; set; }
 
         public Event() { }
     }

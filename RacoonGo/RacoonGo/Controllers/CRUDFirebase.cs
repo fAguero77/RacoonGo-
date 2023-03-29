@@ -67,6 +67,5 @@ namespace RacoonGo.Controllers
 
             return users.ToArray();
         }
-
     }
-    }
+}
