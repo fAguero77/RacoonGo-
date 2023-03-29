@@ -31,7 +31,8 @@ export class BackendRouterService {
             },
             user: {
                 addUser: function (user: User) { return context.api_create('Users', user) },
-                signIn: function (email: string) { return context.api_list('Users', { email }) }
+                signIn: function (email: string) { return context.api_list('Users', { email }) },
+                setSponsor: function (user: CompanyUser, days: number) { return context.api_create('Users/sponsor', { user , days}) }
                 //deleteAccount: function (email: string | null) { return context.api_create('deleteUser', email)}
             },
             company: {

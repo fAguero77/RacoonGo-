@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RacoonGo.Database;
 using RacoonGo.Modelo;
 using RacoonGo.Services;
 
@@ -30,5 +31,18 @@ public class UsersController : ControllerBase
         User usuario = _crudFirebase.getUser(email).Result[0];
         return Ok(usuario);
     }
-    
+
+    [HttpPost("sponsor")]
+    public async Task<IActionResult> SetSponsor(CompanyUser user, int days)
+    {
+        //// update sponsor days
+        user.sponsored.AddDays(days);
+
+        // update values in database
+        await FirebaseRealtimeDatabase.Instance.SetCompanyUser(user);
+
+        // return updated data
+        return Ok(user);
+    }
+
 }

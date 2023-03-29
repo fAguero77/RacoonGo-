@@ -15,6 +15,7 @@ import { BusinessAccountComponent } from './vistas/business-account/business-acc
 import { PasswordComponent } from './vistas/password/password.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from "@angular/material/menu";
+import { SponsorFormComponent } from './vistas/sponsor-form/sponsor-form.component';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -27,7 +28,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     AccountComponent,
     LogoutComponent,
     BusinessAccountComponent,
-    PasswordComponent
+    SponsorFormComponent
   ],
     imports: [
       BrowserModule, 
