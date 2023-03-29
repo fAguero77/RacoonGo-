@@ -1,22 +1,24 @@
 <div class="container mt-3">
     <h1>Iniciar sesión</h1>
-    <form method="post">
+    <form method="post" [formGroup]="logInForm" novalidate>
         <div class="input-group mb-3 mt-3">
-
             <label class="input-group-text" for="email"><fa-icon [icon]="faUser"></fa-icon></label>
-            <input type="email" class="form-control" id="email" placeholder="Introduzca su correo" name="email" [(ngModel)]="email" required>
+            <input type="email" class="form-control" id="email" placeholder="Introduzca su correo" name="email" [(ngModel)]="email" formControlName="email"
+                   (blur)="checkValidity('email')" [ngClass]="{ 'is-invalid': logInForm.get('email')?.invalid && (logInForm.get('email')?.touched || submitted), 'is-valid': logInForm.get('email')?.valid && logInForm.get('email')?.touched }">
+            <div class="invalid-feedback">El correo debe seguir este formato: usuario@ejemplo.com</div>
         </div>
         <div class="input-group mb-3">
             <label for="pwd" class="input-group-text"><fa-icon [icon]="faLock"></fa-icon></label>
-            <input type="password" class="form-control" id="pwd" placeholder="Introduzca su contraseña" name="pswd" [(ngModel)]="password">
-
+            <input type="password" class="form-control" id="pwd" placeholder="Introduzca su contraseña" name="pswd" [(ngModel)]="password" formControlName="password"
+                (blur)="checkValidity('password')" [ngClass]="{ 'is-invalid': logInForm.get('password')?.invalid && (logInForm.get('password')?.touched || submitted), 'is-valid': logInForm.get('password')?.valid && logInForm.get('password')?.touched }">
+            <div class="invalid-feedback">La contraseña debe contener 6 caracteres como mínmo.</div>
         </div>
         <div class="form-check mb-3">
             <label class="form-check-label">
                 <input class="form-check-input" type="checkbox" name="remember"> Recuérdame
             </label>
         </div>
-        <button type="submit" class="btn btn-primary" (click)="signUp()">Iniciar sesión</button>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Iniciar sesión</button>
         <p>¿No tienes una cuenta? <a routerLink="/register">Regístrate</a></p>
         <p>¿Contraseña olvidada? <a routerLink="/changePassword">Recuperar contraseña</a></p>
     </form>

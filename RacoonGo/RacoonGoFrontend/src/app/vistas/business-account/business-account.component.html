@@ -1,32 +1,42 @@
 <div class="container mt-3">
     <h1>Registrarse como empresa</h1>
-    <form method="post">
+    <form method="post" [formGroup]="businessSignUpForm" novalidate>
         <div class="input-group mb-3 mt-3">
             <label class="input-group-text" for="email">@</label>
-            <input type="email" class="form-control" id="email" placeholder="Introduzca su correo" name="email" [(ngModel)]="email" required>
+            <input type="email" class="form-control" id="email" placeholder="Introduzca su correo" name="email" [(ngModel)]="email" formControlName="email"
+                   (blur)="checkValidity('email')" [ngClass]="{ 'is-invalid': businessSignUpForm.get('email')?.invalid && (businessSignUpForm.get('email')?.touched || submitted), 'is-valid': businessSignUpForm.get('email')?.valid && businessSignUpForm.get('email')?.touched }">
+            <div class="invalid-feedback">El correo debe seguir este formato: usuario@ejemplo.com</div>
         </div>
         <div class="input-group mb-3 mt-3">
             <label class="input-group-text" for="username"><fa-icon [icon]="faUser"></fa-icon></label>
-            <input type="text" class="form-control" id="username" placeholder="Introduzca su usuario" name="username" [(ngModel)]="username" required>
+            <input type="text" class="form-control" id="username" placeholder="Introduzca su usuario" name="username" [(ngModel)]="username" formControlName="username"
+                     (blur)="checkValidity('username')" [ngClass]="{ 'is-invalid': businessSignUpForm.get('username')?.invalid && (businessSignUpForm.get('username')?.touched || submitted), 'is-valid': businessSignUpForm.get('username')?.valid && businessSignUpForm.get('username')?.touched }">
+            <div class="invalid-feedback">El nombre de usuario debe contener 4 caracteres como mínimo.</div>
         </div>
         <div class="input-group mb-3">
             <label for="pwd" class="input-group-text"><fa-icon [icon]="faLock"></fa-icon></label>
-            <input type="password" class="form-control" id="pwd" placeholder="Introduzca su contraseña" name="pswd" [(ngModel)]="password">
+            <input type="password" class="form-control" id="pwd" placeholder="Introduzca su contraseña" name="pswd" [(ngModel)]="password" formControlName="password"
+                   (blur)="checkValidity('password')" [ngClass]="{ 'is-invalid': businessSignUpForm.get('password')?.invalid && (businessSignUpForm.get('password')?.touched || submitted), 'is-valid': businessSignUpForm.get('password')?.valid && businessSignUpForm.get('password')?.touched }">
+            <div class="invalid-feedback">La contraseña debe contener 6 caracteres como mínmo.</div>
         </div>
         <div class="input-group mb-3">
             <label for="website" class="input-group-text"><fa-icon [icon]="faGlobe"></fa-icon></label>
-            <input type="url" class="form-control" id="website" placeholder="Introduzca la web de su empresa" name="website" [(ngModel)]="website">
+            <input type="url" class="form-control" id="website" placeholder="Introduzca la web de su empresa" name="website" [(ngModel)]="website" formControlName="website"
+                   (blur)="checkValidity('website')" [ngClass]="{ 'is-invalid': businessSignUpForm.get('website')?.invalid && (businessSignUpForm.get('website')?.touched || submitted), 'is-valid': businessSignUpForm.get('website')?.valid && businessSignUpForm.get('website')?.touched }">
+            <div class="invalid-feedback">La página web es obligatorio.</div>
         </div>
         <div class="input-group mb-3">
             <label for="tel" class="input-group-text"><fa-icon [icon]="faPhone"></fa-icon></label>
-            <input type="tel" class="form-control" id="tel" placeholder="Introduzca el teléfono de su empresa" name="tel" [(ngModel)]="phonenumber">
+            <input type="tel" class="form-control" id="tel" placeholder="Introduzca el teléfono de su empresa" name="tel" [(ngModel)]="phonenumber" formControlName="phonenumber"
+                   (blur)="checkValidity('phonenumber')" [ngClass]="{ 'is-invalid': businessSignUpForm.get('phonenumber')?.invalid && (businessSignUpForm.get('phonenumber')?.touched || submitted), 'is-valid': businessSignUpForm.get('phonenumber')?.valid && businessSignUpForm.get('phonenumber')?.touched }">
+            <div class="invalid-feedback">El teléfono debe ontener 9 digitos solo.</div>
         </div>
         <div class="form-check mb-3">
             <label class="form-check-label">
                 <input class="form-check-input" type="checkbox" name="remember"> Remember me
             </label>
         </div>
-        <button type="submit" class="btn btn-primary" (click)="signUp()">Registrarse</button>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Registrarse</button>
         <p>¿Prefieres registrarte como usuario básico? <a routerLink="/register">Registrarse como usuario básico</a></p>
         <p>¿Ya tienes una cuenta? <a routerLink="/login">Iniciar sesión</a></p>
     </form>

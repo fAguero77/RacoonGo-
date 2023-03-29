@@ -6,6 +6,7 @@ import {auth} from "../../models/app.constants";
 import {CompanyUser, User} from "../../models/app.model";
 import Swal from "sweetalert2";
 import {faLock, faUser, faGlobe, faPhone } from '@fortawesome/free-solid-svg-icons';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-business-account',
@@ -17,15 +18,39 @@ export class BusinessAccountComponent implements OnInit {
     faLock = faLock;
     faGlobe = faGlobe;
     faPhone = faPhone;
+    businessSignUpForm!: FormGroup;
+    submitted = false;
     email!:string
     password!:string
     username!:string
   website!:string
   phonenumber!:string
   
-    constructor(private backEndResponse: BackendRouterService, private helperService: HelperService) { }
+    constructor(private backEndResponse: BackendRouterService, private fb: FormBuilder) { }
   
     ngOnInit(): void {
+        this.businessSignUpForm = this.fb.group({
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required, Validators.minLength(6)]],
+            username: ['', [Validators.required, Validators.minLength(4)]],
+            website: ['', [Validators.required]],
+            phonenumber: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
+        })
+    }
+    
+    checkValidity(controlName: string) {
+        const control = this.businessSignUpForm.get(controlName);
+        if (control) {
+            control.markAsTouched();
+        }
+    }
+    
+    onSubmit() {
+        this.submitted = true;
+        if (this.businessSignUpForm.invalid) {
+            return;
+        }
+        this.signUp();
     }
   
     signUp(){

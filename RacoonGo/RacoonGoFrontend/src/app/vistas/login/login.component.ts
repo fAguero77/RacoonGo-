@@ -5,6 +5,7 @@ import { auth } from "../../models/app.constants";
 import { BackendRouterService } from "../../services/backend-router.service";
 import { HelperService } from "../../services/helper.service";
 import { User } from '../../models/app.model';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,12 +14,18 @@ import { User } from '../../models/app.model';
 export class LoginComponent implements OnInit {
   faUser = faUser;
   faLock = faLock;
+  logInForm!: FormGroup;
+  submitted = false;
   email!:string
   password!:string
 
-    constructor(private backEndResponse: BackendRouterService, private helperService: HelperService) { }
+    constructor(private backEndResponse: BackendRouterService, private helperService: HelperService, private fb: FormBuilder) { }
 
     ngOnInit(): void {
+      this.logInForm = this.fb.group({
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required, Validators.minLength(6)]]
+      })
   }
 
   signUp(){
@@ -45,4 +52,19 @@ export class LoginComponent implements OnInit {
         
         });
   }
+
+    checkValidity(controlName: string) {
+        const control = this.logInForm.get(controlName);
+        if (control) {
+            control.markAsTouched();
+        }
+    }
+    
+    onSubmit() {
+        this.submitted = true;
+        if (this.logInForm.invalid) {
+            return;
+        }
+        this.signUp();
+    }
 }
