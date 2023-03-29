@@ -21,37 +21,56 @@ export class EventFormComponent implements OnInit {
     themeList: string[] = [];
     themes: number[] = [];
     colorList: string[];
-    todayDate: string;
+    todayDate!: string;
     image: string;
     readonly defaultImg: string = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
     user!: User;
+    event: Event |undefined;
 
 
-    constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, private helperService: HelperService) {
+    constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService) {
+        
         this.image = this.defaultImg;
         this.colorList = this.helperService.colorList;
         for (let i = 0; i < 10; i++) {
             this.themeList.push(Theme[i])
         }
+        this.generarDiaActual;
+ 
+    }
 
+    generarDiaActual() {
         let date = new Date();
         const year = date.getFullYear().toString();
         const month = (date.getMonth() + 1).toString().padStart(2, '0');
         const day = date.getDate().toString().padStart(2, '0');
         this.todayDate = `${year}-${month}-${day}`;
     }
-
     ngOnInit(): void {
         this.user = JSON.parse(sessionStorage.getItem("user")!).body  ;
-        alert(this.user.username)
-        this.addEventForm = new FormGroup({
-            title: new FormControl(''),
-            description: new FormControl(''),
-            recommendedAge: new FormControl(''),
-            startDate: new FormControl(''),
-            endDate: new FormControl(''),
-            location: new FormControl('')
-           });
+        if (this.helperService.event != undefined) {
+            let e = this.helperService.event;
+            this.addEventForm = new FormGroup({
+                title: new FormControl(e.title),
+                description: new FormControl(e.description),
+                recommendedAge: new FormControl(e.recommendedAge),
+                startDate: new FormControl(e.startDate),
+                endDate: new FormControl(e.endDate),
+                location: new FormControl(e.location.name)
+            });
+            this.image = e.photoUrl
+            this.themes= e.themes
+        } else {
+            this.addEventForm = new FormGroup({
+                title: new FormControl(''),
+                description: new FormControl(''),
+                recommendedAge: new FormControl(''),
+                startDate: new FormControl(''),
+                endDate: new FormControl(''),
+                location: new FormControl('')
+            });
+        }
+
 
 
     }
@@ -96,18 +115,17 @@ export class EventFormComponent implements OnInit {
         }
     }
     onSelectionChange(event: any) {
-        if (this.themes.includes(event.target?.value)) {
-            let aux = this.themes
-            this.themes = []
-            for (let i = 0; i < aux.length; i++) {
-                if (aux[i] != event.target?.value )
-                    this.themes.push(aux[i] as number)
+        this.themes.push(event.target?.value as number)
+        for (let i = 0; i < this.themes.length-1; i++) {
+            if (this.themes[i] == event.target?.value){
+                let auxDelante = this.themes.slice(0, i);
+                let auxAtras = this.themes.slice(i + 1, this.themes.length);
+                this.themes = auxDelante.concat(auxAtras);
+                this.themes.pop();
+                break;
             }
-        } else {
-            this.themes.push(event.target?.value as number)
-
-        }
     }
+}
     onWriteChange(event: any) {
         let img = event.target?.value;
         try {

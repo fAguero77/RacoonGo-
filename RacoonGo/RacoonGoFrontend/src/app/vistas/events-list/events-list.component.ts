@@ -6,6 +6,7 @@ import { first } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { HelperService } from '../../services/helper.service';
 import { ActivatedRoute, Router } from "@angular/router";
+import { EventFormComponent } from '../event-form/event-form.component';
 
 @Component({
     selector: 'events-list',
@@ -103,8 +104,10 @@ export class EventsListComponent implements OnInit {
         })
         
     }
+
     updateEvent(e: Event) {
-        //Pasar al EventForm con el evento para que se ponga como predeterminado
+        this.helperService.event = e;
+        this.router.navigate(['/addEvent']);
     }
 
 }

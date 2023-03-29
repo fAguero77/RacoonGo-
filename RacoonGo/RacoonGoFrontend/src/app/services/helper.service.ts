@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Theme } from '../models/app.enum';
-
+import { Event } from "../models/app.model";
 @Injectable({
   providedIn: 'root'
 })
@@ -16,11 +16,14 @@ export class HelperService {
         '#a692f0',
         '#ff6370',
         '#ab989a'
-    ]
+        ]
+    event: Event |undefined;
     constructor() { }
 
 
     getThemeInfo(index: number): [string,string] {
         return [Theme[index], this.colorList[index]];
     }
+
+    
 }

@@ -1,6 +1,8 @@
 ﻿<div class="caja">
     <div class="caja-interno">
-        <h2>Crear Evento</h2>
+        <h2 *ngIf="helperService.event">Modificar Evento {{helperService.event.title}}</h2>
+        <h2 *ngIf="!helperService.event">Crear Evento</h2>
+
         <form [formGroup]="addEventForm">
             <table>
 
@@ -33,7 +35,7 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="date" [min]="todayDate" formControlName="startDate" placeholder="fecha ini">
+                                <input type="date" [min]="todayDate" formControlName="startDate" placeholder="fecha ini" [value]="helperService.event">
                             </div>
                         </div>
                     </td>
@@ -90,7 +92,7 @@
                         </div>
                     </td>
 
-</div>
+    </div>
     </tr>
     </table>
 
@@ -105,7 +107,8 @@
     <!-- Image Zone-->
     <label>Imagen</label>
     <div style="padding:0.5rem;">
-        <input style="width:25.5rem" type="text" placeholder="Enlace a tu imagen" (keyup)="onWriteChange($event)">
+        <input *ngIf="!helperService.event" style="width:25.5rem" type="text" placeholder="Enlace a tu imagen" (keyup)="onWriteChange($event)">
+        <input *ngIf="helperService.event" style="width:25.5rem" type="text" placeholder="Enlace a tu imagen" (keyup)="onWriteChange($event)" value="{{helperService.event.photoUrl}}">
         <div style="padding:0.5rem;">
 
             <img style="width: 12rem; border: solid #74d664 2px; " src="{{image}}" />
