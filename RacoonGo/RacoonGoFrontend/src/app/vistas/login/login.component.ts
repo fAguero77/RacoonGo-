@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {signInWithEmailAndPassword } from "firebase/auth";
+import {signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import { auth } from "../../models/app.constants";
 import { BackendRouterService } from "../../services/backend-router.service";
@@ -31,12 +31,12 @@ export class LoginComponent implements OnInit {
                     next: (data: User) => {
                         console.log(JSON.stringify(data))
                         sessionStorage.setItem("user", JSON.stringify(data));
-                        window.alert('login correct')
+                        window.alert('login correcto')
                     }
                 })
 
           } else {
-            window.alert('algop ha fallado')
+            window.alert('algo ha fallado')
           }
         })
         .catch((error) => {
@@ -45,5 +45,4 @@ export class LoginComponent implements OnInit {
         
         });
   }
-
 }
