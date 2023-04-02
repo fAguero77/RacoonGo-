@@ -15,6 +15,16 @@ namespace RacoonGo.Modelo
         History,
         Others
     }
+
+    public enum RecommendedAge
+    {
+        Todos = 0,
+        Niños,
+        Jóvenes,
+        Adolescentes,
+        Adultos
+    }
+
     public class Event
     {
         public String id { get;set; }

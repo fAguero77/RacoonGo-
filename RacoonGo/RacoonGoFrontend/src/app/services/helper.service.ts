@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Theme } from '../models/app.enum';
 import { Event } from "../models/app.model";
 @Injectable({
@@ -17,7 +17,17 @@ export class HelperService {
         '#ff6370',
         '#ab989a'
         ]
-    event: Event |undefined;
+
+    ageText = [
+        "Todos los públicos",
+        "Niños (8-11 años)",
+        "Jóvenes (12-14 años)",
+        "Adolescentes (15-18 años)",
+         "Adultos (+18 años)"
+        ]
+    event: Event | undefined;
+
+
     constructor() { }
 
 
@@ -25,5 +35,8 @@ export class HelperService {
         return [Theme[index], this.colorList[index]];
     }
 
+    getAgeText(index: number): string {
+        return this.ageText[index];
+    }
     
 }

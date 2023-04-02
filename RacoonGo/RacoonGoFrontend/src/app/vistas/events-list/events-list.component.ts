@@ -53,15 +53,7 @@ export class EventsListComponent implements OnInit {
     }
 
     getAgeRecommendation(age: number): string {
-        if (age < 10) {
-            return 'niños';
-        } else if (age < 18) {
-            return 'jóvenes'
-        } else if (age < 50) {
-            return 'adultos'
-        } 
-
-        return 'mayores'
+        return this.helperService.getAgeText(age);
     }
 
     isDifDate(start: Date, end: Date): boolean {

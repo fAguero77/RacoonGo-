@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from "@angular/material/menu";
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -27,9 +28,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     AccountComponent,
     LogoutComponent,
     BusinessAccountComponent,
-    PasswordComponent
+    PasswordComponent,
   ],
     imports: [
+        CommonModule,
       BrowserModule, 
       HttpClientModule, 
       FormsModule, 
