@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from "@angular/material/menu";
 import { SponsorFormComponent } from './vistas/sponsor-form/sponsor-form.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -31,11 +32,12 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
         PasswordComponent
     ],
     imports: [
-        BrowserModule,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
+        CommonModule,
+      BrowserModule, 
+      HttpClientModule, 
+      FormsModule, 
+      ReactiveFormsModule, 
+      AppRoutingModule, 
         FontAwesomeModule,
         NoopAnimationsModule,
         MatIconModule,

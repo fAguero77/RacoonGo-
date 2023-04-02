@@ -11,3 +11,11 @@
     Otros
 }
 
+export enum RecommendedAge {
+    Todos = 0,
+    Niños,
+    Jóvenes,
+    Adolescentes,
+    Adultos
+}
+

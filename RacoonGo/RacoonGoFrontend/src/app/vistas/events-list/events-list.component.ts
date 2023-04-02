@@ -6,6 +6,7 @@ import { first } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { HelperService } from '../../services/helper.service';
 import { ActivatedRoute, Router } from "@angular/router";
+import { EventFormComponent } from '../event-form/event-form.component';
 
 @Component({
     selector: 'events-list',
@@ -52,15 +53,7 @@ export class EventsListComponent implements OnInit {
     }
 
     getAgeRecommendation(age: number): string {
-        if (age < 10) {
-            return 'niños';
-        } else if (age < 18) {
-            return 'jóvenes'
-        } else if (age < 50) {
-            return 'adultos'
-        } 
-
-        return 'mayores'
+        return this.helperService.getAgeText(age);
     }
 
     isDifDate(start: Date, end: Date): boolean {
@@ -102,6 +95,11 @@ export class EventsListComponent implements OnInit {
             
         })
         
+    }
+
+    updateEvent(e: Event) {
+        this.helperService.event = e;
+        this.router.navigate(['/addEvent']);
     }
 
 }
