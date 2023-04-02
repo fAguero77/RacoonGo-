@@ -5,6 +5,7 @@ import { auth } from "../../models/app.constants";
 import { BackendRouterService } from "../../services/backend-router.service";
 import { HelperService } from "../../services/helper.service";
 import { User } from '../../models/app.model';
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   email!:string
   password!:string
 
-    constructor(private backEndResponse: BackendRouterService, private helperService: HelperService) { }
+    constructor(private backEndResponse: BackendRouterService, private helperService: HelperService, private router: Router) { }
 
     ngOnInit(): void {
   }
@@ -32,11 +33,12 @@ export class LoginComponent implements OnInit {
                         console.log(JSON.stringify(data))
                         sessionStorage.setItem("user", JSON.stringify(data));
                         window.alert('login correct')
+                        this.router.navigate(['/']);
                     }
                 })
 
           } else {
-            window.alert('algop ha fallado')
+            window.alert('El usuario o la contraseña no coinciden')
           }
         })
         .catch((error) => {

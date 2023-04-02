@@ -17,27 +17,15 @@ export class AppComponent {
             event => {
                 if (event instanceof NavigationStart) {
                     if (event.url == "/login" || event.url == "/register")
-                        document.body.style.backgroundColor = '#4d4d4d';
+                        document.body.style.backgroundColor = '#165933';
                     else
                         document.body.style.backgroundColor = 'white';
                 }
             }
         );
     }
-
-    public goAddEve() {
-        this.router.navigate(['/addEvent']);
-
-    }
-
-    public goEveList() {
-        this.router.navigate(['/events']);
-
-    }
-
+    
     title = 'RacoonGoFrontend';
 
-    gologin() {
-        this.router.navigate(['/login']);
-    }
+    
 }

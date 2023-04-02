@@ -1,0 +1,54 @@
+.porfile{
+    width: 70%;
+    padding-top: 7rem;
+    margin: 0 auto;
+}
+.userInfo{
+    padding: 3rem 5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    box-shadow: 2px 2px 10px 0 rgb(87, 87, 87);
+    border-radius: 25px;
+    border: 4px solid #2cad64;
+}
+
+.userImg{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    border: 4px solid #2cad64;
+    box-shadow: 2px 2px 10px 0 rgb(87, 87, 87);
+
+}
+
+.UserEvents{
+    text-align: center;
+    padding: 3rem 5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    box-shadow: 2px 2px 10px 0 rgb(87, 87, 87);
+    border-radius: 25px;
+    border: 4px solid #2cad64;
+}
+
+.UserGames{
+    text-align: center;
+    padding: 3rem 5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    box-shadow: 2px 2px 10px 0 rgb(87, 87, 87);
+    border-radius: 25px;
+    border: 4px solid #2cad64;
+}
