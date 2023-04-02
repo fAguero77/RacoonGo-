@@ -1,0 +1,71 @@
+<!-- Events START -->
+<div class="container-fluid py-5">
+    <div class="container pt-5 pb-3">
+        <div class="text-center mb-3 pb-3">
+            <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Patrocinios</h6>
+            <h1>Patrocinios disponibles</h1>
+
+            <div class="d-flex flex-wrap align-items-md-start mb-1 justify-content-center" style="height: 85px; overflow: hidden;">
+                <p class="align-self-md-center">Selecciona el periodo de tiempo en el que quieres que tus eventos aparezcan destacados.</p>
+            </div>
+        </div>
+        <div class="row">
+            <!--WEEK-->
+            <!--MONTH-->
+            <div class="col-md-4">
+                <div class="package-item bg-white mb-2 border border-primary">
+                    <div class="p-4">
+                        <div class="">
+                            <div class="d-flex justify-content-between" style="height: 65px;">
+                                <h5 class="d-inline-block">SEMANA</h5> <h4 class="mb-1">$9<small>,99</small></h4>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap align-items-md-start mb-1" style="height: 85px; overflow: hidden;">
+                            <p>Todos tus eventos disponibles aparecerán destacados por una <b>semana</b>.</p>
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                        <button type="button" class="btn btn-primary" (click)="checkOut(7)">Seleccionar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--MONTH-->
+            <div class="col-md-4">
+                <div class="package-item bg-white mb-2 border border-primary">
+                    <div class="p-4">
+                        <div class="">
+                            <div class="d-flex justify-content-between" style="height: 65px;">
+                                <h5 class="d-inline-block">MES</h5> <h4 class="mb-1">$19<small>,99</small></h4>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap align-items-md-start mb-1" style="height: 85px; overflow: hidden;">
+                            <p>Todos tus eventos disponibles aparecerán destacados por un <b>mes</b>.</p>
+                        </div>
+                        <button type="button" class="btn btn-primary" (click)="checkOut(30)">Seleccionar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--YEAR-->
+            <!--MONTH-->
+            <div class="col-md-4">
+                <div class="package-item bg-white mb-2 border border-primary">
+                    <div class="p-4">
+                        <div class="">
+                            <div class="d-flex justify-content-between" style="height: 65px;">
+                                <h5 class="d-inline-block">AÑO</h5> <h4 class="mb-1">$199<small>,99</small></h4>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap align-items-md-start mb-1" style="height: 85px; overflow: hidden;">
+                            <p>Todos tus eventos disponibles aparecerán destacados por un <b>año</b>.</p>
+                        </div>
+                        <button type="button" class="btn btn-primary" (click)="checkOut(365)">Seleccionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

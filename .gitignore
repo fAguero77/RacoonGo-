@@ -12,7 +12,6 @@
 .angular
 node_modules
 
-RacoonGo/RacoonGo/obj/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
