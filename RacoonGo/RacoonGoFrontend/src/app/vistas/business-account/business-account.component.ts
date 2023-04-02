@@ -13,6 +13,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   templateUrl: './business-account.component.html',
   styleUrls: ['./business-account.component.css']
 })
+
 export class BusinessAccountComponent implements OnInit {
     faUser = faUser;
     faLock = faLock;
@@ -20,6 +21,8 @@ export class BusinessAccountComponent implements OnInit {
     faPhone = faPhone;
     businessSignUpForm!: FormGroup;
     submitted = false;
+    invalidEmail = false;
+    invalidUsername = false;
     email!:string
     password!:string
     username!:string
@@ -27,14 +30,16 @@ export class BusinessAccountComponent implements OnInit {
   phonenumber!:string
   
     constructor(private backEndResponse: BackendRouterService, private fb: FormBuilder) { }
-  
+
+    
     ngOnInit(): void {
+        const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
         this.businessSignUpForm = this.fb.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
             username: ['', [Validators.required, Validators.minLength(4)]],
-            website: ['', [Validators.required]],
-            phonenumber: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
+            website: ['', [Validators.required, Validators.pattern(reg)]],
+            phonenumber: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9), Validators.pattern("^[0-9]*$")]],
         })
     }
     
@@ -56,10 +61,7 @@ export class BusinessAccountComponent implements OnInit {
     signUp(){
       createUserWithEmailAndPassword(auth, this.email, this.password)
           .then((userCredential) => {
-            console.log(this.email)
-  
             const user = userCredential.user;
-            let user2;
             if (user) {
               sessionStorage.setItem("email", this.email);
               var company = new CompanyUser(new User(this.email, this.username, 0),this.website, this.phonenumber);
@@ -68,18 +70,13 @@ export class BusinessAccountComponent implements OnInit {
                   Swal.fire('\u00A1Muy bien!', 'Te has registrado como ' + this.username, 'success')
                 },
                 error: () => {
-  
                   Swal.fire('Error', 'No te has registrado', 'error')
-  
                 }
               });
             }
           })
           .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
+            this.invalidEmail = true;
           });
     }
-
 }

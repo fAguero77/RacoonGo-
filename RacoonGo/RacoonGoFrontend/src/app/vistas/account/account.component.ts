@@ -19,6 +19,8 @@ export class AccountComponent implements OnInit {
     faLock = faLock;
     signUpForm!: FormGroup;
     submitted = false;
+    invalidEmail = false;
+    invalidUsername = false;
     email!: string
     password!: string
     username!: string
@@ -57,25 +59,19 @@ export class AccountComponent implements OnInit {
                 if (user) {
                     const loginUser = new User(this.email, this.username, 0);
                      this.backEndResponse.endpoints.user.addUser(loginUser).subscribe({
-
-                    //this.backEndResponse.endpoints.user.addUser(new User(this.email, this.username, 0)).subscribe({
-                        next: () => {
+                         next: () => {
                              sessionStorage.setItem("user", JSON.stringify(loginUser));
-
                             Swal.fire('\u00A1Muy bien!', 'Se ha creado correctamente tu usuario: ' + this.username, 'success')
                         },
                         error: () => {
 
                             Swal.fire('Error', 'No se ha creado el usuario', 'error')
-
                         }
                     });
                 }
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
+                this.invalidEmail = true;
             });
     }
 }

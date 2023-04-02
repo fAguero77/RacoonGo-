@@ -13,6 +13,7 @@ export class PasswordComponent implements OnInit {
     faUser = faUser;
     recoveryForm!: FormGroup;
     submitted = false;
+    invalidEmail = false;
     email!:string
   constructor(private fb: FormBuilder) { }
     
@@ -39,5 +40,12 @@ export class PasswordComponent implements OnInit {
 
   changePassword(){
     sendPasswordResetEmail(auth, this.email)
+        .then(() => {
+            this.invalidEmail = false;
+        }
+        ).catch((error) => {
+            this.invalidEmail = true;
+        }
+    );
   }
 }

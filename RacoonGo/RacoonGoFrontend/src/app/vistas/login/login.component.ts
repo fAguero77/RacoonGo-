@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   faLock = faLock;
   logInForm!: FormGroup;
   submitted = false;
+  invalidLogin = false;
   email!:string
   password!:string
 
@@ -38,18 +39,14 @@ export class LoginComponent implements OnInit {
                     next: (data: User) => {
                         console.log(JSON.stringify(data))
                         sessionStorage.setItem("user", JSON.stringify(data));
-                        window.alert('login correcto')
                     }
                 })
-
           } else {
             window.alert('algo ha fallado')
           }
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-        
+            this.invalidLogin = true;
         });
   }
 

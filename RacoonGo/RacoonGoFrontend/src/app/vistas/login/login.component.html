@@ -19,6 +19,8 @@
             </label>
         </div>
         <button type="submit" class="btn btn-primary" (click)="onSubmit()">Iniciar sesión</button>
+        <div *ngIf="submitted && logInForm.invalid" class="text-danger">Por favor soluciona los errores anteriores.</div>
+        <div *ngIf="invalidLogin" class="text-danger">El correo o la contraseña son incorrectos.</div>
         <p>¿No tienes una cuenta? <a routerLink="/register">Regístrate</a></p>
         <p>¿Contraseña olvidada? <a routerLink="/changePassword">Recuperar contraseña</a></p>
     </form>
