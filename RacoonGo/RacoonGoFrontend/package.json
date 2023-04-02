@@ -31,6 +31,7 @@
     "interface": "^1.2.1",
     "jest-editor-support": "*",
     "jquery": "^3.6.4",
+    "popper.js": "^1.16.1",
     "rxjs": "~7.5.0",
     "save": "^2.9.0",
     "sweetalert2": "^11.7.3",

@@ -75,7 +75,7 @@ namespace RacoonGo.Database
             await _httpClient.SendAsync(httpRequestMessage);
         }
 
-        public async Task DeletelUser(string email)
+        public async Task DeleteUser(string email)
         {
             string uri = string.Format(BASE_PATH_USER, email.Replace(".", " "));
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Delete, uri);
