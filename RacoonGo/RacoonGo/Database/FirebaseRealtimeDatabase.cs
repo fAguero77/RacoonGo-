@@ -46,8 +46,8 @@ namespace RacoonGo.Database
 
         public async Task SetEvent(string email, Event e) // Insert or update
         {
-            e.Id = GenerateKey();
-            string uri = string.Format(BASE_PATH_EVENT_USER, email.Replace(".", " "), e.Id);
+            e.id = GenerateKey();
+            string uri = string.Format(BASE_PATH_EVENT_USER, email.Replace(".", " "), e.id);
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
             string content = JsonConvert.SerializeObject(e);
             httpRequestMessage.Content = new StringContent(content);
@@ -69,7 +69,7 @@ namespace RacoonGo.Database
 
         public async Task DeleteEvent(string email, Event e)
         {
-            string uri = string.Format(BASE_PATH_EVENT_USER, email.Replace(".", " "), e.Id);
+            string uri = string.Format(BASE_PATH_EVENT_USER, email.Replace(".", " "), e.id);
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Delete, uri);
 
             await _httpClient.SendAsync(httpRequestMessage);
