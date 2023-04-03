@@ -17,7 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from "@angular/material/menu";
 import { SponsorFormComponent } from './vistas/sponsor-form/sponsor-form.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './vistas/header/header.component';
+import { DeleteComponent } from './vistas/delete/delete.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +30,7 @@ import { HeaderComponent } from './vistas/header/header.component';
         BusinessAccountComponent,
         SponsorFormComponent,
         PasswordComponent,
-        HeaderComponent
+        DeleteComponent
     ],
     imports: [
         BrowserModule,

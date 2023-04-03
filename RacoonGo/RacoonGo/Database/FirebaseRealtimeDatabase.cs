@@ -21,6 +21,7 @@ namespace RacoonGo.Database
         private readonly string BASE_PATH_COMPANY_USER = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/CompanyUsers/{0}.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private readonly string BASE_PATH_ALL_EVENTS_USER = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Events/{0}.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private readonly string BASE_PATH_EVENT_USER = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Events/{0}/{1}.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
+        private readonly string BASE_PATH_EVENTS = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Events/.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private readonly string BASE_PATH_DB = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Locations.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private HttpClient _httpClient = new HttpClient();
 
@@ -111,7 +112,30 @@ namespace RacoonGo.Database
             await _httpClient.SendAsync(httpRequestMessage);
         }
 
-        private static Random random = new Random();
+		public async Task<List<Event>> GetAllEvents()
+		{
+			string uri = string.Format(BASE_PATH_EVENTS);
+			HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
+
+			HttpResponseMessage response = await _httpClient.SendAsync(httpRequestMessage);
+			string responseData = await response.Content.ReadAsStringAsync();
+
+			Dictionary<string, Dictionary<string, Event>> eventsInStorage = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, Event>>>(responseData);
+
+            List<Event> all = new List<Event>();
+
+            foreach(Dictionary<string, Event> dict in eventsInStorage.Values)
+            {
+                foreach (Event e in dict.Values)
+                {
+                    all.Add(e);
+                }
+            }
+
+            return eventsInStorage is null ? new List<Event>() { } : new List<Event>(all);
+		}
+
+		private static Random random = new Random();
         public static string GenerateKey()
         {
             var length = 10;

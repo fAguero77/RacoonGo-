@@ -5,11 +5,11 @@ import { BackendRouterService } from '../../services/backend-router.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'delete',
+  templateUrl: './delete.component.html',
+  styleUrls: ['./delete.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class DeleteComponent implements OnInit {
 
     constructor(private routerService: BackendRouterService, private router: Router) { }
 

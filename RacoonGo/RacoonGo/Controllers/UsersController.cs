@@ -47,13 +47,13 @@ public class UsersController : ControllerBase
 
 
     [HttpDelete("delete/{id}")]
-    public async Task<IActionResult> DeleteUser(String id)
+    public async Task<IActionResult> DeleteUser(string id)
     {
         try
         {
-            //await FirebaseRealtimeDatabase.Instance.DeleteAllUsersEvents(id);
-            // TODO: DeleteAllUsersGames
-            //await FirebaseRealtimeDatabase.Instance.DeleteUser(id);
+            await FirebaseRealtimeDatabase.Instance.DeleteAllUsersEvents(id);
+            //TODO: DeleteAllUsersGames
+            await FirebaseRealtimeDatabase.Instance.DeleteUser(id);
 
             return Ok();
         }

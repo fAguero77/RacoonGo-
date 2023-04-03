@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using RacoonGo.Database;
 using RacoonGo.Modelo;
 using RacoonGo.Services;
 using System.Diagnostics.CodeAnalysis;
@@ -42,12 +43,10 @@ namespace RacoonGo.Controllers
         }
 
         [HttpGet("events")]
-        public IActionResult GetEvents()
+        public async Task<IActionResult> GetEvents()
         {
-            Event[] eventList = _crudFirebase.getEvents().Result;
-            
-
-            return Ok(eventList);
+            var test = await FirebaseRealtimeDatabase.Instance.GetAllEvents();
+			return Ok(test);
         }
 
         [HttpGet("myEvents")]
