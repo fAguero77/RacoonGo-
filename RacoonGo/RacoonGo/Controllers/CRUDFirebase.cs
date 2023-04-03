@@ -28,7 +28,7 @@ namespace RacoonGo.Controllers
             var usersArray = users.Values.ToArray();
             foreach (var user2 in usersArray)
             {
-                if (user.username == user2.username)
+                if (user.username == user2.username || user.email == user2.email)
                 {
                     return false;
                 }
