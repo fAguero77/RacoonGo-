@@ -12,8 +12,6 @@ namespace RacoonGo.Controllers
     public class EventsController: ControllerBase
     {
 
-        CRUDFirebase _crudFirebase = new CRUDFirebase();
-
         private readonly IGeodecodeService _service;
 
         public EventsController(IGeodecodeService service)

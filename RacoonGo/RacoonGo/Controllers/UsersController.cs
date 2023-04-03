@@ -8,7 +8,6 @@ namespace RacoonGo.Controllers;
 [Route("api/[controller]")]
 public class UsersController : ControllerBase
 {
-    CRUDFirebase _crudFirebase = new CRUDFirebase();
 
     public UsersController()
     {
