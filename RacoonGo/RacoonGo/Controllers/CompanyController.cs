@@ -8,15 +8,11 @@ namespace RacoonGo.Controllers;
 [Route("api/[controller]")]
 public class CompanyController : ControllerBase
 {
-    public CompanyController()
-    {
-        
-    }
+    public CompanyController() { }
     
     [HttpPost]
     public async Task<IActionResult> AddCompany(CompanyUser company)
     {
-        return Ok(company);
         if (await FirebaseRealtimeDatabase.Instance.SetCompanyUser(company))
         {
             return Ok(company);

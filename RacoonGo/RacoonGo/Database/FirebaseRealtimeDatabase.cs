@@ -1,6 +1,7 @@
 ﻿using RacoonGo.Models;
 using Newtonsoft.Json;
 using System;
+using FireSharp.Response;
 using RacoonGo.Models;
 
 namespace RacoonGo.Database
@@ -26,24 +27,56 @@ namespace RacoonGo.Database
         private readonly string BASE_PATH_EVENTS = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Events/.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private HttpClient _httpClient = new HttpClient();
 
-        public async Task SetUser(User user) // Insert or update
+        public async Task<bool> SetUser(User user) // Insert or update
         {
+            if (await checkUser(user, BASE_PATH_USER))
+            {
+                return true;
+            }
             string uri = string.Format(BASE_PATH_USER, user.email.Replace(".", " "));
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
             string content = JsonConvert.SerializeObject(user);
             httpRequestMessage.Content = new StringContent(content);
 
             await _httpClient.SendAsync(httpRequestMessage);
+            return false;
         }
 
-        public async Task SetCompanyUser(CompanyUser user) // Insert or update
+        public async Task<bool> SetCompanyUser(CompanyUser user) // Insert or update
         {
+            if (await checkUser(user, BASE_PATH_COMPANY_USER))
+            {
+                return true;
+            }
             string uri = string.Format(BASE_PATH_COMPANY_USER, user.email.Replace(".", " "));
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
             string content = JsonConvert.SerializeObject(user);
             httpRequestMessage.Content = new StringContent(content);
 
             await _httpClient.SendAsync(httpRequestMessage);
+            return false;
+        }
+        
+        private async Task<bool> checkUser(User user, String path)
+        {
+            string uri = string.Format(path);
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
+
+            HttpResponseMessage response = await _httpClient.SendAsync(httpRequestMessage);
+            string responseData = await response.Content.ReadAsStringAsync();
+
+            Dictionary<string, Dictionary<string, User>> eventsInStorage = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, User>>>(responseData);
+            foreach (Dictionary<string, User> dict in eventsInStorage.Values)
+            {
+                foreach (User e in dict.Values)
+                {
+                    if (e.username == user.username || e.email == user.email)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
         public async Task SetEvent(string email, Event e) // Insert or update
@@ -96,7 +129,6 @@ namespace RacoonGo.Database
 
         public async Task<User> GetUser(string email)
         {
-
             string uri = string.Format(BASE_PATH_USER, email.Replace(".", " "));
 
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
