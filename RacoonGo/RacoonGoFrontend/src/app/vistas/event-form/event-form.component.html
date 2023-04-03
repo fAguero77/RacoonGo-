@@ -11,7 +11,7 @@
                     <td>
                         <div class="input-field" [class.error]="addEventForm.controls['title'].dirty && addEventForm.hasError('required', 'title')">
                             <span class="fa fa-globe p-2"></span>
-                            <input type="text" class="form-control" id="title" formControlName="title" placeholder="Titulo" name="title" [(ngModel)]="title" formControlName="title"
+                            <input type="text" class="form-control" id="title" placeholder="Titulo" name="title" [(ngModel)]="title" formControlName="title"
                                 (blur)="checkValidity('title')" [ngClass]="{ 'is-invalid': addEventForm.get('title')?.invalid && (addEventForm.get('title')?.touched || submitted), 'is-valid': addEventForm.get('title')?.valid && addEventForm.get('title')?.touched}">
                             <div class="invalid-feedback">El título es obligatorio</div>
                         </div>
@@ -35,7 +35,7 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="date" class="form-control" id="startDate" formControlName="startDate" placeholder="fecha ini" name="startDate" [(ngModel)]="startDate"
+                                <input type="date" class="form-control" id="startDate" placeholder="fecha ini" name="startDate" [(ngModel)]="startDate"
                                     formControlName="startDate" (blur)="checkValidity('startDate')" [ngClass]="{ 'is-invalid': addEventForm.get('startDate')?.invalid && (addEventForm.get('startDate')?.touched || submitted), 'is-valid': addEventForm.get('startDate')?.valid && addEventForm.get('startDate')?.touched}">
                                     <div class="invalid-feedback">La fecha de inicio es obligatoria</div>
                                 <div *ngIf="invalidStartDate" class="text-danger">La fecha de inicio debe ser posterior a la fecha actual</div>
@@ -46,7 +46,7 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="date" class="form-control" id="endDate" formControlName="endDate" placeholder="fecha fin" name="endDate" [(ngModel)]="endDate" formControlName="endDate"
+                                <input type="date" class="form-control" id="endDate" placeholder="fecha fin" name="endDate" [(ngModel)]="endDate" formControlName="endDate"
                                     (blur)="checkValidity('endDate')" [ngClass]="{ 'is-invalid': addEventForm.get('endDate')?.invalid && (addEventForm.get('endDate')?.touched || submitted), 'is-valid': addEventForm.get('endDate')?.valid && addEventForm.get('endDate')?.touched}">
                                     <div class="invalid-feedback">La fecha de fin es obligatoria</div>
                                 <div *ngIf="invalidEndDate" class="text-danger">La fecha de fin debe ser posterior a la fecha de inicio</div>
@@ -76,7 +76,7 @@
 
                     <td class="locationInput">
                         <div>
-                            <input type="text" class="form-control" id="location" formControlName="location" placeholder="Localización" name="location" [(ngModel)]="location" formControlName="location"
+                            <input type="text" class="form-control" id="location" placeholder="Localización" name="location" [(ngModel)]="location" formControlName="location"
                                 (blur)="checkValidity('location')" [ngClass]="{ 'is-invalid': addEventForm.get('location')?.invalid && (addEventForm.get('location')?.touched || submitted), 'is-valid': addEventForm.get('location')?.valid && addEventForm.get('location')?.touched}">
                                 <div class="invalid-feedback">La localización es obligatoria</div>
                         </div>
@@ -108,7 +108,7 @@
     <!-- Description Zone-->
 
         <div style="padding:0.5rem;">
-            <textarea name="description" class="form-control" cols="40" rows="5" formControlName="description" placeholder="Descripción" [(ngModel)]="description" formControlName="description" (blur)="checkValidity('description')"
+            <textarea name="description" class="form-control" cols="40" rows="5" placeholder="Descripción" [(ngModel)]="description" formControlName="description" (blur)="checkValidity('description')"
                 [ngClass]="{ 'is-invalid': addEventForm.get('description')?.invalid && (addEventForm.get('description')?.touched || submitted), 'is-valid': addEventForm.get('description')?.valid && addEventForm.get('description')?.touched}">
                 
             </textarea>

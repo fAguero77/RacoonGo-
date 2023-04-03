@@ -74,6 +74,7 @@ export class EventFormComponent implements OnInit {
             description: ['', [Validators.required]],
             age: ['', [Validators.required]],
             startDate: ['', [Validators.required]],
+            endDate: ['', [Validators.required]],
             location: ['', [Validators.required]],
             image: ['', [Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]]
         })
