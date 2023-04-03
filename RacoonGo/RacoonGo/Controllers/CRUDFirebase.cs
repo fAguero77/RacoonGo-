@@ -42,7 +42,7 @@ namespace RacoonGo.Controllers
 
         public async Task<Event[]> getEvents()
         {
-            FirebaseResponse response = await client.GetAsync("Eventos/");
+            FirebaseResponse response = await client.GetAsync("Events/NANA@gmail com");
             var data = JsonConvert.DeserializeObject<Dictionary<string, Event>>(response.Body);
             var eventArray = data.Values.ToArray();
             //Cogemos la id
@@ -51,6 +51,7 @@ namespace RacoonGo.Controllers
             {
                 eventArray[i].id = keys[i];
             }
+            Console.WriteLine(eventArray[0].id);
             return eventArray;
         }
 

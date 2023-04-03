@@ -66,7 +66,7 @@ export class EventsListComponent implements OnInit {
 
     getMyEvents() {
         let user: User = JSON.parse(sessionStorage.getItem("user")!).body
-        this.backEndResponse.endpoints.event.getMyEvents(user.username).subscribe({
+        this.backEndResponse.endpoints.event.getMyEvents(user.email).subscribe({
             next: (data: HttpResponse<BackEndResponse<any>>) =>{
                 this.eventsList = data.body as unknown as Event[];
 
@@ -85,7 +85,7 @@ export class EventsListComponent implements OnInit {
             confirmButtonText: 'Sí, bórralo',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
-            this.backEndResponse.endpoints.event.deleteEvent(e.id).subscribe({
+            this.backEndResponse.endpoints.event.deleteEvent(this.user?.email,e.id).subscribe({
                 next: (data: HttpResponse<BackEndResponse<any>>) => {
                     Swal.fire('\u00A1Muy bien!', 'Se ha eliminado correctamente tu evento: ' + e.title, 'success').then((a) =>{
                         window.location.reload();

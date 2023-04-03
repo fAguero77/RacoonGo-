@@ -98,18 +98,22 @@ export class EventFormComponent implements OnInit {
             Swal.fire('Error', 'Las fecha de fin no puede ser anterior a la fecha de inicio', 'error')
         }
         else {
-            let event = new Event('',
+            let id =''
+            if (this.helperService.event != undefined) {
+                id = this.helperService.event.id;
+            }
+            
+            let event = new Event(id,
                 this.addEventForm.value.title,
                 this.addEventForm.value.description,
                 this.addEventForm.value.recommendedAge,
                 this.addEventForm.value.startDate,
-                this.addEventForm.value.endDate, 
+                this.addEventForm.value.endDate,
                 new Location(this.addEventForm.value.location),
-                this.themes, 
+                this.themes,
                 this.image,
                 this.user
             );
-            
                 this.backendRouterService.endpoints.event.addEvent(event).subscribe({
                     next: () => {
                         if (this.helperService.event === undefined) {
