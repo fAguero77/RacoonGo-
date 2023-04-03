@@ -45,8 +45,8 @@ export class EventFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        //this.user = JSON.parse(sessionStorage.getItem("user")!).body  ;
-        //alert(this.user.username)
+        this.user = JSON.parse(sessionStorage.getItem("user")!).body  ;
+        alert(this.user.username)
         this.addEventForm = this.fb.group({
             title: ['', [Validators.required]],
             description: ['', [Validators.required]],
@@ -67,16 +67,9 @@ export class EventFormComponent implements OnInit {
     
     onSubmit() {
         this.submitted = true;
-        if (this.addEventForm.invalid) {
-            return;
-        }
-        this.addEvent();
-    }
-
-    addEvent(): void {
         if (this.defaultImg === this.image) {
             this.image = "";
-        }   
+        }
         let startDate = new Date(this.addEventForm.value.startDate)
         let endDate = new Date(this.addEventForm.value.endDate)
         if (startDate.getTime() - new Date().getTime() <0) {
@@ -88,31 +81,36 @@ export class EventFormComponent implements OnInit {
         if (this.themes.length == 0) {
             this.invalidLength = true;
         }
-        else {
-            let event = new Event('',
-                this.addEventForm.value.title,
-                this.addEventForm.value.description,
-                this.addEventForm.value.age,
-                this.addEventForm.value.startDate,
-                this.addEventForm.value.endDate, 
-                new Location(this.addEventForm.value.location),
-                this.themes, 
-                this.image,
-                this.user
-            );
-
-            this.backendRouterService.endpoints.event.addEvent(event).subscribe({
-                next: () => {
-
-                    Swal.fire('\u00A1Muy bien!', 'Se ha creado correctamente tu evento: ' + event.title, 'success')
-                },
-                error: () => {
-    
-                    Swal.fire('Error', 'La ciudad ' + event.location.name + ' no se ha encontrado', 'error')
-    
-                }
-            });
+        if (this.addEventForm.invalid) {
+            return;
         }
+        this.addEvent();
+    }
+
+    addEvent(): void {
+        let event = new Event('',
+            this.addEventForm.value.title,
+            this.addEventForm.value.description,
+            this.addEventForm.value.age,
+            this.addEventForm.value.startDate,
+            this.addEventForm.value.endDate, 
+            new Location(this.addEventForm.value.location),
+            this.themes, 
+            this.image,
+            this.user
+        );
+
+        this.backendRouterService.endpoints.event.addEvent(event).subscribe({
+            next: () => {
+
+                Swal.fire('\u00A1Muy bien!', 'Se ha creado correctamente tu evento: ' + event.title, 'success')
+            },
+            error: () => {
+
+                Swal.fire('Error', 'La ciudad ' + event.location.name + ' no se ha encontrado', 'error')
+
+            }
+        });
     }
     onSelectionChange(event: any) {
         if (this.themes.includes(event.target?.value)) {
