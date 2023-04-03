@@ -1,23 +1,27 @@
-<div class="container mt-3">
-    <h1>Iniciar sesión</h1>
-    <form method="post">
-        <div class="input-group mb-3 mt-3">
+<div class="login-box">
+    <div class="login-box-body">
+        <p class="login-box-msg">Inicio de sesión</p>
+        <form method="post">
+            <div class="input-group mb-3 mt-3">
+    
+                <label class="input-group-text" for="email"><fa-icon [icon]="faUser"></fa-icon></label>
+                <input type="email" class="form-control" id="email" placeholder="Introduzca su correo" name="email" [(ngModel)]="email" required>
+            </div>
+            <div class="input-group mb-3">
+                <label for="pwd" class="input-group-text"><fa-icon [icon]="faLock"></fa-icon></label>
+                <input type="password" class="form-control" id="pwd" placeholder="Introduzca su contraseña" name="pswd" [(ngModel)]="password">
+            </div>
+            <div class="form-check mb-3 label-check">
+                <label class="form-check-label ">
+                    <input class="form-check-input" type="checkbox" name="remember"> Remember me
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary button" (click)="signUp()">Iniciar sesion</button>
+           
+        </form>
+    </div>
 
-            <label class="input-group-text" for="email"><fa-icon [icon]="faUser"></fa-icon></label>
-            <input type="email" class="form-control" id="email" placeholder="Introduzca su correo" name="email" [(ngModel)]="email" required>
-        </div>
-        <div class="input-group mb-3">
-            <label for="pwd" class="input-group-text"><fa-icon [icon]="faLock"></fa-icon></label>
-            <input type="password" class="form-control" id="pwd" placeholder="Introduzca su contraseña" name="pswd" [(ngModel)]="password">
-
-        </div>
-        <div class="form-check mb-3">
-            <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" name="remember"> Recuérdame
-            </label>
-        </div>
-        <button type="submit" class="btn btn-primary" (click)="signUp()">Iniciar sesión</button>
-        <p>¿No tienes una cuenta? <a routerLink="/register">Regístrate</a></p>
-        <p>¿Contraseña olvidada? <a routerLink="/changePassword">Recuperar contraseña</a></p>
-    </form>
+    <div class="text-center mt-3 text-white">
+        <small>¿No tienes cuenta? <a routerLink="/register">Registrarse</a></small>
+    </div>
 </div>

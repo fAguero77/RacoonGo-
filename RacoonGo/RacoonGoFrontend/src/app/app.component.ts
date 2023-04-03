@@ -12,28 +12,20 @@ export class AppComponent {
     constructor(http: HttpClient,
         private route: ActivatedRoute,
         private router: Router   ) {
-        
-        
-            
+
+        this.router.events.subscribe(
+            event => {
+                if (event instanceof NavigationStart) {
+                    if (event.url == "/login" || event.url == "/register")
+                        document.body.style.backgroundColor = '#165933';
+                    else
+                        document.body.style.backgroundColor = 'white';
+                }
+            }
+        );
     }
-
-    public goAddEve() {
-        this.router.navigate(['/addEvent']);
-
-    }
-
-    public goEveList() {
-        this.router.navigate(['/events']);
-
-    }
-
+    
     title = 'RacoonGoFrontend';
 
-    gologin() {
-        this.router.navigate(['/login']);
-    }
-
-    goSponsor() {
-        this.router.navigate(['/sponsor']);
-    }
+    
 }
