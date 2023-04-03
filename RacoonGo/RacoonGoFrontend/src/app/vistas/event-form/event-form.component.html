@@ -23,9 +23,6 @@
                             <select class="age" formControlName="recommendedAge">
                                 <option *ngFor="let age of ageList; let i=index" [value]="i-1">{{age}}</option>
                             </select>
-                            <input type="number" class="form-control" id="age" formControlName="recommendedAge" placeholder="Edad Recomendada" name="age" [(ngModel)]="age" formControlName="age"
-                                   (blur)="checkValidity('age')" [ngClass]="{ 'is-invalid': addEventForm.get('age')?.invalid && (addEventForm.get('age')?.touched || submitted), 'is-valid': addEventForm.get('age')?.valid && addEventForm.get('age')?.touched}">
-                            <div class="invalid-feedback">La edad es obligatoria</div>
                         </div>
 
                     </td>

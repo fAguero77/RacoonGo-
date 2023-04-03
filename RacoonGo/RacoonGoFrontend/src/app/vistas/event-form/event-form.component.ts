@@ -28,6 +28,7 @@ export class EventFormComponent implements OnInit {
     invalidStartDate = false;
     invalidEndDate = false;
     invalidLength = false;
+    invalidAge = false;
     location: string="";
     themeList: string[] = [];
     themes: number[] = [];
@@ -47,7 +48,7 @@ export class EventFormComponent implements OnInit {
         for (let i = 0; i < 10; i++) {
             this.themeList.push(Theme[i])
         }
-        this.todayDate = this.generarDiaActual();
+        //this.todayDate = this.generarDiaActual();
         this.datePipe = new DatePipe('en-US');
 
         this.ageList.push("Edad recomendada")
@@ -57,13 +58,13 @@ export class EventFormComponent implements OnInit {
 
     }
 
-    generarDiaActual() {
+    /*generarDiaActual() {
         let date = new Date();
         const year = date.getFullYear().toString();
         const month = (date.getMonth() + 1).toString().padStart(2, '0');
         const day = date.getDate().toString().padStart(2, '0');
         return `${year}-${month}-${day}`;
-    }
+    }*/
 
     ngOnInit(): void {
         this.user = JSON.parse(sessionStorage.getItem("user")!).body  ;
@@ -73,7 +74,6 @@ export class EventFormComponent implements OnInit {
             description: ['', [Validators.required]],
             age: ['', [Validators.required]],
             startDate: ['', [Validators.required]],
-            endDate: ['', [Validators.required]],
             location: ['', [Validators.required]],
             image: ['', [Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]]
         })
@@ -110,6 +110,9 @@ export class EventFormComponent implements OnInit {
         if (this.themes.length == 0) {
             this.invalidLength = true;
         }
+        if (this.addEventForm.value.age == 0) {
+            this.invalidAge = true;
+        }
         if (this.addEventForm.invalid) {
             return;
         }
@@ -117,6 +120,7 @@ export class EventFormComponent implements OnInit {
             this.invalidStartDate = false;
             this.invalidEndDate = false;
             this.invalidLength = false;
+            this.invalidAge = false;
             this.addEvent();
         }
     }
