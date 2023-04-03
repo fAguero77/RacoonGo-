@@ -84,7 +84,12 @@ export class EventFormComponent implements OnInit {
         if (this.addEventForm.invalid) {
             return;
         }
-        this.addEvent();
+        else {
+            this.invalidStartDate = false;
+            this.invalidEndDate = false;
+            this.invalidLength = false;
+            this.addEvent();
+        }
     }
 
     addEvent(): void {
