@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.backEndResponse.endpoints.event.getMyEvents(this.username).subscribe({
+    this.backEndResponse.endpoints.event.getMyEvents(this.email).subscribe({
       next: (data: HttpResponse<BackEndResponse<any>>) =>{
         this.eventsList = data.body as unknown as Event[];
 
@@ -34,18 +34,22 @@ export class ProfileComponent implements OnInit {
 
   getThemeName(index: number): [string, string] {
     return this.helperService.getThemeInfo(index);
-  }
-  
-  getAgeRecommendation(age: number): string {
-    if (age < 10) {
-      return 'niños';
-    } else if (age < 18) {
-      return 'jóvenes'
-    } else if (age < 50) {
-      return 'adultos'
     }
-    return 'mayores'
-  }
+
+    getAgeRecommendation(age: number): string {
+        return this.helperService.getAgeText(age);
+    }
+
+
+    deleteEvent(e: Event) {
+        this.helperService.deleteEvent(e);
+
+    }
+
+    updateEvent(e: Event) {
+        this.helperService.updateEvent(e);
+    }
+
   
 
 }
