@@ -6,6 +6,7 @@ import { first } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { HelperService } from '../../services/helper.service';
 import { ActivatedRoute, Router } from "@angular/router";
+import { EventFormComponent } from '../event-form/event-form.component';
 
 @Component({
     selector: 'events-list',
@@ -52,15 +53,7 @@ export class EventsListComponent implements OnInit {
     }
 
     getAgeRecommendation(age: number): string {
-        if (age < 10) {
-            return 'niños';
-        } else if (age < 18) {
-            return 'jóvenes'
-        } else if (age < 50) {
-            return 'adultos'
-        } 
-
-        return 'mayores'
+        return this.helperService.getAgeText(age);
     }
 
     isDifDate(start: Date, end: Date): boolean {
@@ -73,7 +66,7 @@ export class EventsListComponent implements OnInit {
 
     getMyEvents() {
         let user: User = JSON.parse(sessionStorage.getItem("user")!).body
-        this.backEndResponse.endpoints.event.getMyEvents(user.username).subscribe({
+        this.backEndResponse.endpoints.event.getMyEvents(user.email).subscribe({
             next: (data: HttpResponse<BackEndResponse<any>>) =>{
                 this.eventsList = data.body as unknown as Event[];
 
@@ -92,7 +85,7 @@ export class EventsListComponent implements OnInit {
             confirmButtonText: 'Sí, bórralo',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
-            this.backEndResponse.endpoints.event.deleteEvent(e.id).subscribe({
+            this.backEndResponse.endpoints.event.deleteEvent(this.user?.email,e.id).subscribe({
                 next: (data: HttpResponse<BackEndResponse<any>>) => {
                     Swal.fire('\u00A1Muy bien!', 'Se ha eliminado correctamente tu evento: ' + e.title, 'success').then((a) =>{
                         window.location.reload();
@@ -102,6 +95,11 @@ export class EventsListComponent implements OnInit {
             
         })
         
+    }
+
+    updateEvent(e: Event) {
+        this.helperService.event = e;
+        this.router.navigate(['/addEvent']);
     }
 
 }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using RacoonGo.Models;
 
-namespace RacoonGo.Modelo
+namespace RacoonGo.Models
 {
     public enum Theme
     {
@@ -15,6 +16,16 @@ namespace RacoonGo.Modelo
         History,
         Others
     }
+
+    public enum RecommendedAge
+    {
+        Todos = 0,
+        Niños,
+        Jóvenes,
+        Adolescentes,
+        Adultos
+    }
+
     public class Event
     {
         public string id { get; set; }

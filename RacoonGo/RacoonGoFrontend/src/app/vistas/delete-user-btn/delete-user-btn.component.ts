@@ -5,11 +5,11 @@ import { BackendRouterService } from '../../services/backend-router.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'delete',
-  templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.css']
+    selector: 'delete-user-btn',
+    templateUrl: './delete-user-btn.component.html',
+    styleUrls: ['./delete-user-btn.component.css']
 })
-export class DeleteComponent implements OnInit {
+export class DeleteUserBtnComponent implements OnInit {
 
     constructor(private routerService: BackendRouterService, private router: Router) { }
 

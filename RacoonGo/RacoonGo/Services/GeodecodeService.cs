@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using RacoonGo.Modelo;
+using RacoonGo.Models;
 
 namespace RacoonGo.Services
 {

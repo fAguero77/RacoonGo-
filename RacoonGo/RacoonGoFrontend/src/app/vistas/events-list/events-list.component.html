@@ -22,6 +22,8 @@
                             </button>
                             <mat-menu #menu="matMenu">
                                 <button mat-menu-item (click)="deleteEvent(e)">Borrar Evento</button>
+                                <button mat-menu-item (click)="updateEvent(e)">Editar Evento</button>
+
                             </mat-menu>
                         </div>
 
@@ -42,7 +44,7 @@
                                 <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>{{e.startDate | date:'dd/MM/yy'}} al {{e.endDate | date:'dd/MM/yy'}}</small>
                             </ng-template>
 
-                            <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>{{e.recommendedAge}}+ ({{getAgeRecommendation(e.recommendedAge)}})</small>
+                            <small class="m-0"><i class="fa fa-user text-primary mr-2"></i> {{getAgeRecommendation(e.recommendedAge)}}</small>
                         </div>
 
                         <div class="">

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using RacoonGo.Database;
-using RacoonGo.Modelo;
+using RacoonGo.Models;
 using RacoonGo.Services;
 using System.Diagnostics.CodeAnalysis;
 
@@ -23,14 +23,13 @@ namespace RacoonGo.Controllers
 
 
         [HttpPost("addEvent")]
-        public IActionResult AddEvent(Event e)
+        public async Task<IActionResult> AddEvent(Event e)
         {
             Location location = _service.GetLocation(e.location.name).Result;
             if (location == null)
             {
                 return NotFound(e);
             }
-            Console.WriteLine(e.photoUrl + "aaa");
 
             if (e.photoUrl.Length == 0)
             {
@@ -38,33 +37,36 @@ namespace RacoonGo.Controllers
 
             }
             e.location = location;
-            _crudFirebase.addEvent(e);
+            await FirebaseRealtimeDatabase.Instance.SetEvent(e.user.email,e);
             return Ok(e);
         }
 
         [HttpGet("events")]
         public async Task<IActionResult> GetEvents()
         {
-            var test = await FirebaseRealtimeDatabase.Instance.GetAllEvents();
-			return Ok(test);
+            //Event[] eventList = _crudFirebase.getEvents().Result;
+            var events = await FirebaseRealtimeDatabase.Instance.GetAllEvents();
+
+
+            return Ok(events);
         }
 
         [HttpGet("myEvents")]
-        public IActionResult GetMyEvents(String username)
+        public async Task<IActionResult> GetMyEvents(String email)
         {
-            Console.WriteLine(username);
-            Event[] eventList = _crudFirebase.getMyEvents(username).Result;
+            var myevents = await FirebaseRealtimeDatabase.Instance.GetUserEvents(email);
 
 
-            return Ok(eventList);
+            return Ok(myevents);
         }
 
-        [HttpDelete("delete/{id}")]
-        public IActionResult DeleteEvent(String id)
+        [HttpDelete("delete/{body}")]
+        public async Task<IActionResult> DeleteEvent(String body)
         {
-            //Si usas la id de evento quita el - antes de enviarlo a back y ponlo aqui de nuevo, da error de http si no
-            id = "-" + id;
-            _crudFirebase.deleteEvent(id);
+            string email = body.Substring(0, body.IndexOf('&'));
+            string id = body.Substring(body.IndexOf('&')+1);
+            await FirebaseRealtimeDatabase.Instance.DeleteEvent(email, id);
+
             return Ok();
         }
     }

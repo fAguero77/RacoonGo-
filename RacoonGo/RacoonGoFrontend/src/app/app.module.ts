@@ -17,7 +17,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from "@angular/material/menu";
 import { SponsorFormComponent } from './vistas/sponsor-form/sponsor-form.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DeleteComponent } from './vistas/delete/delete.component';
+import { CommonModule } from '@angular/common';
+import { DeleteUserBtnComponent } from './vistas/delete-user-btn/delete-user-btn.component';
+
 
 @NgModule({
     declarations: [
@@ -30,18 +32,20 @@ import { DeleteComponent } from './vistas/delete/delete.component';
         BusinessAccountComponent,
         SponsorFormComponent,
         PasswordComponent,
-        DeleteComponent
+        DeleteUserBtnComponent
     ],
     imports: [
-        BrowserModule,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
+        CommonModule,
+      BrowserModule, 
+      HttpClientModule, 
+      FormsModule, 
+      ReactiveFormsModule, 
+      AppRoutingModule, 
         FontAwesomeModule,
         NoopAnimationsModule,
         MatIconModule,
         MatMenuModule,
+
     ],
     providers: [],
     exports: [RouterModule],

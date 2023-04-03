@@ -1,6 +1,7 @@
-﻿using RacoonGo.Modelo;
+﻿using RacoonGo.Models;
 using Newtonsoft.Json;
 using System;
+using RacoonGo.Models;
 
 namespace RacoonGo.Database
 {
@@ -21,8 +22,8 @@ namespace RacoonGo.Database
         private readonly string BASE_PATH_COMPANY_USER = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/CompanyUsers/{0}.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private readonly string BASE_PATH_ALL_EVENTS_USER = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Events/{0}.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private readonly string BASE_PATH_EVENT_USER = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Events/{0}/{1}.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
-        private readonly string BASE_PATH_EVENTS = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Events/.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private readonly string BASE_PATH_DB = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Locations.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
+        private readonly string BASE_PATH_EVENTS = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Events/.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private HttpClient _httpClient = new HttpClient();
 
         public async Task SetUser(User user) // Insert or update
@@ -47,7 +48,9 @@ namespace RacoonGo.Database
 
         public async Task SetEvent(string email, Event e) // Insert or update
         {
-            e.id = GenerateKey();
+            if (string.IsNullOrEmpty(e.id)) {
+                e.id = GenerateKey();
+            }
             string uri = string.Format(BASE_PATH_EVENT_USER, email.Replace(".", " "), e.id);
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
             string content = JsonConvert.SerializeObject(e);
@@ -55,22 +58,59 @@ namespace RacoonGo.Database
 
             await _httpClient.SendAsync(httpRequestMessage);
         }
+        public async Task<List<Event>> GetAllEvents()
+        {
+            string uri = string.Format(BASE_PATH_EVENTS);
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
+
+            HttpResponseMessage response = await _httpClient.SendAsync(httpRequestMessage);
+            string responseData = await response.Content.ReadAsStringAsync();
+
+            Dictionary<string, Dictionary<string, Event>> eventsInStorage = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, Event>>>(responseData);
+
+            List<Event> all = new List<Event>();
+
+            foreach (Dictionary<string, Event> dict in eventsInStorage.Values)
+            {
+                foreach (Event e in dict.Values)
+                {
+                    all.Add(e);
+                }
+            }
+
+            return eventsInStorage is null ? new List<Event>() { } : new List<Event>(all);
+        }
 
         public async Task<List<Event>> GetUserEvents(string email)
         {
+
             string uri = string.Format(BASE_PATH_ALL_EVENTS_USER, email.Replace(".", " "));
+
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
 
             HttpResponseMessage response = await _httpClient.SendAsync(httpRequestMessage);
             string responseData = await response.Content.ReadAsStringAsync();
             Dictionary<string, Event> eventsInStorage = JsonConvert.DeserializeObject<Dictionary<string, Event>>(responseData);
-
             return eventsInStorage is null ? new List<Event>(){} : new List<Event>(eventsInStorage.Values);
         }
 
-        public async Task DeleteEvent(string email, Event e)
+        public async Task<User> GetUser(string email)
         {
-            string uri = string.Format(BASE_PATH_EVENT_USER, email.Replace(".", " "), e.id);
+
+            string uri = string.Format(BASE_PATH_USER, email.Replace(".", " "));
+
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
+
+            HttpResponseMessage response = await _httpClient.SendAsync(httpRequestMessage);
+            string responseData = await response.Content.ReadAsStringAsync();
+            User userStorage = JsonConvert.DeserializeObject< User>(responseData);
+            return userStorage is null ? null : userStorage;
+        }
+
+        public async Task DeleteEvent(string email, string id)
+        {
+            Console.WriteLine(email + "  " + id);
+            string uri = string.Format(BASE_PATH_EVENT_USER, email.Replace(".", " "), id);
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Delete, uri);
 
             await _httpClient.SendAsync(httpRequestMessage);
@@ -81,9 +121,10 @@ namespace RacoonGo.Database
             string uri = string.Format(BASE_PATH_USER, email.Replace(".", " "));
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Delete, uri);
 
-            // if they have events they get deleted
+            // if they have events or games they get deleted
             await DeleteAllUsersEvents(email);
-            await _httpClient.SendAsync(httpRequestMessage);
+			//TODO: DeleteAllUsersGames
+			await _httpClient.SendAsync(httpRequestMessage);
         }
 
         public async Task DeleteCompanyUser(string email)
@@ -111,29 +152,6 @@ namespace RacoonGo.Database
 
             await _httpClient.SendAsync(httpRequestMessage);
         }
-
-		public async Task<List<Event>> GetAllEvents()
-		{
-			string uri = string.Format(BASE_PATH_EVENTS);
-			HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
-
-			HttpResponseMessage response = await _httpClient.SendAsync(httpRequestMessage);
-			string responseData = await response.Content.ReadAsStringAsync();
-
-			Dictionary<string, Dictionary<string, Event>> eventsInStorage = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, Event>>>(responseData);
-
-            List<Event> all = new List<Event>();
-
-            foreach(Dictionary<string, Event> dict in eventsInStorage.Values)
-            {
-                foreach (Event e in dict.Values)
-                {
-                    all.Add(e);
-                }
-            }
-
-            return eventsInStorage is null ? new List<Event>() { } : new List<Event>(all);
-		}
 
 		private static Random random = new Random();
         public static string GenerateKey()

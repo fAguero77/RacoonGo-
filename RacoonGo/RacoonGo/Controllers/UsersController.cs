@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RacoonGo.Database;
-using RacoonGo.Modelo;
+using RacoonGo.Models;
 using RacoonGo.Services;
 
 namespace RacoonGo.Controllers;
@@ -17,18 +17,18 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult AddUser(User user)
+    public async Task<IActionResult> AddUser(User user)
     {
-        _crudFirebase.addUser(user);
+        await FirebaseRealtimeDatabase.Instance.SetUser(user);
         return Ok(user);
     }
 
     
     [HttpGet]
-    public IActionResult signIn(string email)
+    public async Task<IActionResult> signIn(string email)
     {
 
-        User usuario = _crudFirebase.getUser(email).Result[0];
+        User usuario = await FirebaseRealtimeDatabase.Instance.GetUser(email);
         return Ok(usuario);
     }
 
@@ -51,8 +51,6 @@ public class UsersController : ControllerBase
     {
         try
         {
-            await FirebaseRealtimeDatabase.Instance.DeleteAllUsersEvents(id);
-            //TODO: DeleteAllUsersGames
             await FirebaseRealtimeDatabase.Instance.DeleteUser(id);
 
             return Ok();

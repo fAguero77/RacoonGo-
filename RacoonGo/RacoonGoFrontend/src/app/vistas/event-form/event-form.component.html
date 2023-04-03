@@ -1,6 +1,8 @@
 ﻿<div class="caja">
     <div class="caja-interno">
-        <h2>Crear Evento</h2>
+        <h2 *ngIf="helperService.event">Modificar Evento {{helperService.event.title}}</h2>
+        <h2 *ngIf="!helperService.event">Crear Evento</h2>
+
         <form [formGroup]="addEventForm">
             <table>
 
@@ -16,11 +18,10 @@
                     <!-- Age Zone-->
 
                     <td>
-                        <div class="form-group pt-3">
-                            <div class="input-field">
-                                <span class="fa fa-globe p-2"></span>
-                                <input type="number" formControlName="recommendedAge" placeholder="Edad Recomendada">
-                            </div>
+                        <div style="padding: 7px 5px;">
+                            <select class="age" formControlName="recommendedAge">
+                                <option *ngFor="let age of ageList; let i=index" [value]="i-1">{{age}}</option>
+                            </select>
                         </div>
 
                     </td>
@@ -33,7 +34,7 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="date" [min]="todayDate" formControlName="startDate" placeholder="fecha ini">
+                                <input type="date" [min]="todayDate" formControlName="startDate" placeholder="fecha ini" >
                             </div>
                         </div>
                     </td>
@@ -41,7 +42,7 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="date" [min]="todayDate" formControlName="endDate">
+                                <input type="date" [min]="todayDate" formControlName="endDate" >
                             </div>
                         </div>
                     </td>
@@ -53,8 +54,8 @@
 
                     <td>
                         <div style="padding: 7px 0px;">
-                            <select style="overflow: hidden visible; text-align:center" multiple (change)="onSelectionChange($event)">
-                                <option style="padding: 3px;" *ngFor="let theme of themeList; let i=index" [value]="i">{{theme}}</option>
+                            <select class="tags" multiple (change)="onSelectionChange($event)">
+                                <option  *ngFor="let theme of themeList; let i=index" [value]="i">{{theme}}</option>
                             </select>
                         </div>
 
@@ -90,22 +91,21 @@
                         </div>
                     </td>
 
-</div>
+    </div>
     </tr>
     </table>
 
     <!-- Description Zone-->
 
-    <div>
-        <label>Descripción</label><label style="color:red">*</label>
         <div style="padding:0.5rem;">
             <textarea name="description" cols="40" rows="5" formControlName="description" placeholder="Descripción"></textarea>
         </div>
-    </div>
+
     <!-- Image Zone-->
-    <label>Imagen</label>
+    
     <div style="padding:0.5rem;">
-        <input style="width:25.5rem" type="text" placeholder="Enlace a tu imagen" (keyup)="onWriteChange($event)">
+        <input *ngIf="!helperService.event" style="width:25.5rem" type="text" placeholder="Enlace a tu imagen" (keyup)="onWriteChange($event)">
+        <input *ngIf="helperService.event" style="width:25.5rem" type="text" placeholder="Enlace a tu imagen" (keyup)="onWriteChange($event)" value="{{helperService.event.photoUrl}}">
         <div style="padding:0.5rem;">
 
             <img style="width: 12rem; border: solid #74d664 2px; " src="{{image}}" />
@@ -117,10 +117,14 @@
     <!-- Button Zone-->
 
     <div justify-content: center>
-        <div style="padding: 10px;">
+        <div style="padding: 10px;" *ngIf="!helperService.event">
             <button type="submit" class="boton" (click)="addEvent()">Crear Evento</button>
 
         </div>
+        <div style="padding: 10px;" *ngIf="helperService.event">
+            <button type="submit" class="boton" style="width:9rem;" (click)="addEvent()">Modificar Evento</button>
+        </div>
+
     </div>
 
     </form>
