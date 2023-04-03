@@ -41,7 +41,7 @@ export class EventFormComponent implements OnInit {
     ageList: string[] = [];
 
 
-    constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, private helperService: HelperService, private fb: FormBuilder) {
+    constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService, private fb: FormBuilder) {
         this.image = this.defaultImg;
         this.colorList = this.helperService.colorList;
         for (let i = 0; i < 10; i++) {
