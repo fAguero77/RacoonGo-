@@ -17,7 +17,7 @@
             <label for="pwd" class="input-group-text"><fa-icon [icon]="faLock"></fa-icon></label>
             <input type="password" class="form-control" id="pwd" placeholder="Introduzca su contraseña" name="pswd" [(ngModel)]="password" formControlName="password"
                    (blur)="checkValidity('password')" [ngClass]="{ 'is-invalid': businessSignUpForm.get('password')?.invalid && (businessSignUpForm.get('password')?.touched || submitted), 'is-valid': businessSignUpForm.get('password')?.valid && businessSignUpForm.get('password')?.touched }">
-            <div class="invalid-feedback">La contraseña debe contener 6 caracteres como mínmo.</div>
+            <div class="invalid-feedback">La contraseña debe contener 6 caracteres como mínimo.</div>
         </div>
         <div class="input-group mb-3">
             <label for="website" class="input-group-text"><fa-icon [icon]="faGlobe"></fa-icon></label>

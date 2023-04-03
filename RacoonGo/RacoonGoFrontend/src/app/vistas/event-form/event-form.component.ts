@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import {FormControl, FormGroup, FormArray, FormBuilder, Validators} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
@@ -18,6 +18,13 @@ import { HelperService } from '../../services/helper.service';
 export class EventFormComponent implements OnInit {
 
     addEventForm!: FormGroup;
+    submitted = false;
+    title: string="";
+    age: number=0;
+    description: string="";
+    startDate: string="";
+    endDate: string="";
+    location: string="";
     themeList: string[] = [];
     themes: number[] = [];
     colorList: string[];
@@ -27,7 +34,7 @@ export class EventFormComponent implements OnInit {
     user!: User;
 
 
-    constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, private helperService: HelperService) {
+    constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, private helperService: HelperService, private fb: FormBuilder) {
         this.image = this.defaultImg;
         this.colorList = this.helperService.colorList;
         for (let i = 0; i < 10; i++) {
@@ -42,18 +49,33 @@ export class EventFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.user = JSON.parse(sessionStorage.getItem("user")!).body  ;
-        alert(this.user.username)
-        this.addEventForm = new FormGroup({
-            title: new FormControl(''),
-            description: new FormControl(''),
-            recommendedAge: new FormControl(''),
-            startDate: new FormControl(''),
-            endDate: new FormControl(''),
-            location: new FormControl('')
-           });
-
-
+        //this.user = JSON.parse(sessionStorage.getItem("user")!).body  ;
+        //alert(this.user.username)
+        this.addEventForm = this.fb.group({
+            title: ['', [Validators.required]],
+            description: ['', [Validators.required]],
+            age: ['', [Validators.required]],
+            startDate: ['', [Validators.required]],
+            endDate: ['', [Validators.required]],
+            location: ['', [Validators.required]],
+            themes: this.fb.array([]).length > 0 ? this.fb.array([]) : this.fb.array([this.fb.control(false)]),
+            image: ['', [Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]]
+        })
+    }
+    
+    checkValidity(controlName: string) {
+        const control = this.addEventForm.get(controlName);
+        if (control) {
+            control.markAsTouched();
+        }
+    }
+    
+    onSubmit() {
+        this.submitted = true;
+        if (this.addEventForm.invalid) {
+            return;
+        }
+        this.addEvent();
     }
 
     addEvent(): void {
@@ -62,18 +84,14 @@ export class EventFormComponent implements OnInit {
         }   
         let startDate = new Date(this.addEventForm.value.startDate)
         let endDate = new Date(this.addEventForm.value.endDate)
-        if (this.addEventForm.value.title == undefined || this.addEventForm.value.description == undefined || this.addEventForm.value.recommendedAge == undefined || isNaN(startDate.getTime()) || isNaN(startDate.getTime()) || this.addEventForm.value.location == undefined || this.addEventForm.value.location.length == 0 || this.themes.length == 0) {
-            Swal.fire('Error', 'Debes rellenar todos los campos para crear un evento', 'error')
-
-        }
-        else if (endDate.getTime() - startDate.getTime() <0) {
-            Swal.fire('Error', 'Las fecha de fin no puede ser anterior a la fecha de inicio', 'error')
+        if (endDate.getTime() - startDate.getTime() <0) {
+            
         }
         else {
             let event = new Event('',
                 this.addEventForm.value.title,
                 this.addEventForm.value.description,
-                this.addEventForm.value.recommendedAge,
+                this.addEventForm.value.age,
                 this.addEventForm.value.startDate,
                 this.addEventForm.value.endDate, 
                 new Location(this.addEventForm.value.location),

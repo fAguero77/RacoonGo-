@@ -1,7 +1,7 @@
 ﻿<div class="caja">
     <div class="caja-interno">
         <h2>Crear Evento</h2>
-        <form [formGroup]="addEventForm">
+        <form [formGroup]="addEventForm" novalidate>
             <table>
 
                 <tr class="iz">
@@ -10,7 +10,9 @@
                     <td>
                         <div class="input-field" [class.error]="addEventForm.controls['title'].dirty && addEventForm.hasError('required', 'title')">
                             <span class="fa fa-globe p-2"></span>
-                            <input type="text" formControlName="title" placeholder="Titulo">
+                            <input type="text" class="form-control" id="title" formControlName="title" placeholder="Titulo" name="title" [(ngModel)]="title" formControlName="title"
+                                (blur)="checkValidity('title')" [ngClass]="{ 'is-invalid': addEventForm.get('title')?.invalid && (addEventForm.get('title')?.touched || submitted), 'is-valid': addEventForm.get('title')?.valid && addEventForm.get('title')?.touched}">
+                            <div class="invalid-feedback">El título es obligatorio</div>
                         </div>
                     </td>
                     <!-- Age Zone-->
@@ -19,7 +21,9 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="number" formControlName="recommendedAge" placeholder="Edad Recomendada">
+                                <input type="number" class="form-control" id="age" formControlName="recommendedAge" placeholder="Edad Recomendada" name="age" [(ngModel)]="age" formControlName="age"
+                                    (blur)="checkValidity('age')" [ngClass]="{ 'is-invalid': addEventForm.get('age')?.invalid && (addEventForm.get('age')?.touched || submitted), 'is-valid': addEventForm.get('age')?.valid && addEventForm.get('age')?.touched}">
+                                    <div class="invalid-feedback">La edad es obligatoria</div>
                             </div>
                         </div>
 
@@ -33,7 +37,9 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="date" [min]="todayDate" formControlName="startDate" placeholder="fecha ini">
+                                <input type="date" class="form-control" id="startDate" [min]="todayDate" formControlName="startDate" placeholder="fecha ini" name="startDate" [(ngModel)]="startDate"
+                                    formControlName="startDate" (blur)="checkValidity('startDate')" [ngClass]="{ 'is-invalid': addEventForm.get('startDate')?.invalid && (addEventForm.get('startDate')?.touched || submitted), 'is-valid': addEventForm.get('startDate')?.valid && addEventForm.get('startDate')?.touched}">
+                                    <div class="invalid-feedback">La fecha de inicio es obligatoria</div>
                             </div>
                         </div>
                     </td>
@@ -41,7 +47,9 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="date" [min]="todayDate" formControlName="endDate">
+                                <input type="date" class="form-control" id="endDate" [min]="todayDate" formControlName="endDate" placeholder="fecha fin" name="endDate" [(ngModel)]="endDate" formControlName="endDate"
+                                    (blur)="checkValidity('endDate')" [ngClass]="{ 'is-invalid': addEventForm.get('endDate')?.invalid && (addEventForm.get('endDate')?.touched || submitted), 'is-valid': addEventForm.get('endDate')?.valid && addEventForm.get('endDate')?.touched}">
+                                    <div class="invalid-feedback">La fecha de fin es obligatoria</div>
                             </div>
                         </div>
                     </td>
@@ -53,9 +61,11 @@
 
                     <td>
                         <div style="padding: 7px 0px;">
-                            <select style="overflow: hidden visible; text-align:center" multiple (change)="onSelectionChange($event)">
+                            <select style="overflow: hidden visible; text-align:center" multiple (change)="onSelectionChange($event)" class="form-control" id="themes" formControlName="themes" placeholder="Tema" name="themes"
+                                [(ngModel)]="themeList" formControlName="themes" (blur)="checkValidity('themes')" [ngClass]="{ 'is-invalid': addEventForm.get('themes')?.invalid && (addEventForm.get('themes')?.touched || submitted), 'is-valid': addEventForm.get('themes')?.valid && addEventForm.get('themes')?.touched}">
                                 <option style="padding: 3px;" *ngFor="let theme of themeList; let i=index" [value]="i">{{theme}}</option>
                             </select>
+                            <div class="invalid-feedback">El tema es obligatorio</div>
                         </div>
 
 
@@ -67,7 +77,9 @@
 
                     <td class="locationInput">
                         <div>
-                            <input type="text" formControlName="location" placeholder="Localización">
+                            <input type="text" class="form-control" id="location" formControlName="location" placeholder="Localización" name="location" [(ngModel)]="location" formControlName="location"
+                                (blur)="checkValidity('location')" [ngClass]="{ 'is-invalid': addEventForm.get('location')?.invalid && (addEventForm.get('location')?.touched || submitted), 'is-valid': addEventForm.get('location')?.valid && addEventForm.get('location')?.touched}">
+                                <div class="invalid-feedback">La localización es obligatoria</div>
                         </div>
                         <!-- Tag List Zone-->
 
@@ -99,13 +111,17 @@
     <div>
         <label>Descripción</label><label style="color:red">*</label>
         <div style="padding:0.5rem;">
-            <textarea name="description" cols="40" rows="5" formControlName="description" placeholder="Descripción"></textarea>
+            <textarea name="description" class="form-control" cols="40" rows="5" formControlName="description" placeholder="Descripción" [(ngModel)]="description" formControlName="description" (blur)="checkValidity('description')"
+                [ngClass]="{ 'is-invalid': addEventForm.get('description')?.invalid && (addEventForm.get('description')?.touched || submitted), 'is-valid': addEventForm.get('description')?.valid && addEventForm.get('description')?.touched}">
+                
+            </textarea>
+            <div class="invalid-feedback">La descripción es obligatoria</div>
         </div>
     </div>
     <!-- Image Zone-->
     <label>Imagen</label>
     <div style="padding:0.5rem;">
-        <input style="width:25.5rem" type="text" placeholder="Enlace a tu imagen" (keyup)="onWriteChange($event)">
+        <input style="width:25.5rem" type="text" placeholder="Enlace a tu imagen" (keyup)="onWriteChange($event)" formControlName="image" [(ngModel)]="image">
         <div style="padding:0.5rem;">
 
             <img style="width: 12rem; border: solid #74d664 2px; " src="{{image}}" />
