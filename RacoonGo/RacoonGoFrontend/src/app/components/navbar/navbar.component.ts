@@ -15,7 +15,7 @@ export class NavbarComponent {
   static navSearch: boolean
   constructor(public navService: NavbarService,
     private router: Router) {
-    
+    sessionStorage.getItem("user") ? this.userName = JSON.parse(sessionStorage.getItem("user")!).username : this.userName = "Invitado";
   }
 
   goAddEve() {
