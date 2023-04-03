@@ -24,11 +24,13 @@ export class EventFormComponent implements OnInit {
     description: string="";
     startDate: string="";
     endDate: string="";
+    invalidStartDate = false;
+    invalidEndDate = false;
+    invalidLength = false;
     location: string="";
     themeList: string[] = [];
     themes: number[] = [];
     colorList: string[];
-    todayDate: string;
     image: string;
     readonly defaultImg: string = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
     user!: User;
@@ -40,12 +42,6 @@ export class EventFormComponent implements OnInit {
         for (let i = 0; i < 10; i++) {
             this.themeList.push(Theme[i])
         }
-
-        let date = new Date();
-        const year = date.getFullYear().toString();
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const day = date.getDate().toString().padStart(2, '0');
-        this.todayDate = `${year}-${month}-${day}`;
     }
 
     ngOnInit(): void {
@@ -58,7 +54,6 @@ export class EventFormComponent implements OnInit {
             startDate: ['', [Validators.required]],
             endDate: ['', [Validators.required]],
             location: ['', [Validators.required]],
-            themes: this.fb.array([]).length > 0 ? this.fb.array([]) : this.fb.array([this.fb.control(false)]),
             image: ['', [Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]]
         })
     }
@@ -84,8 +79,14 @@ export class EventFormComponent implements OnInit {
         }   
         let startDate = new Date(this.addEventForm.value.startDate)
         let endDate = new Date(this.addEventForm.value.endDate)
+        if (startDate.getTime() - new Date().getTime() <0) {
+            this.invalidStartDate = true;
+        }
         if (endDate.getTime() - startDate.getTime() <0) {
-            
+            this.invalidEndDate = true;
+        }
+        if (this.themes.length == 0) {
+            this.invalidLength = true;
         }
         else {
             let event = new Event('',

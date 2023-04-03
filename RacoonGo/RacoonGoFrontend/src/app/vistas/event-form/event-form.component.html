@@ -37,9 +37,10 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="date" class="form-control" id="startDate" [min]="todayDate" formControlName="startDate" placeholder="fecha ini" name="startDate" [(ngModel)]="startDate"
+                                <input type="date" class="form-control" id="startDate" formControlName="startDate" placeholder="fecha ini" name="startDate" [(ngModel)]="startDate"
                                     formControlName="startDate" (blur)="checkValidity('startDate')" [ngClass]="{ 'is-invalid': addEventForm.get('startDate')?.invalid && (addEventForm.get('startDate')?.touched || submitted), 'is-valid': addEventForm.get('startDate')?.valid && addEventForm.get('startDate')?.touched}">
                                     <div class="invalid-feedback">La fecha de inicio es obligatoria</div>
+                                <div *ngIf="invalidStartDate" class="invalid-feedback">La fecha de inicio debe ser posterior a la fecha actual</div>
                             </div>
                         </div>
                     </td>
@@ -47,9 +48,10 @@
                         <div class="form-group pt-3">
                             <div class="input-field">
                                 <span class="fa fa-globe p-2"></span>
-                                <input type="date" class="form-control" id="endDate" [min]="todayDate" formControlName="endDate" placeholder="fecha fin" name="endDate" [(ngModel)]="endDate" formControlName="endDate"
+                                <input type="date" class="form-control" id="endDate" formControlName="endDate" placeholder="fecha fin" name="endDate" [(ngModel)]="endDate" formControlName="endDate"
                                     (blur)="checkValidity('endDate')" [ngClass]="{ 'is-invalid': addEventForm.get('endDate')?.invalid && (addEventForm.get('endDate')?.touched || submitted), 'is-valid': addEventForm.get('endDate')?.valid && addEventForm.get('endDate')?.touched}">
                                     <div class="invalid-feedback">La fecha de fin es obligatoria</div>
+                                <div *ngIf="invalidEndDate" class="invalid-feedback">La fecha de fin debe ser posterior a la fecha de inicio</div>
                             </div>
                         </div>
                     </td>
@@ -61,11 +63,10 @@
 
                     <td>
                         <div style="padding: 7px 0px;">
-                            <select style="overflow: hidden visible; text-align:center" multiple (change)="onSelectionChange($event)" class="form-control" id="themes" formControlName="themes" placeholder="Tema" name="themes"
-                                [(ngModel)]="themeList" formControlName="themes" (blur)="checkValidity('themes')" [ngClass]="{ 'is-invalid': addEventForm.get('themes')?.invalid && (addEventForm.get('themes')?.touched || submitted), 'is-valid': addEventForm.get('themes')?.valid && addEventForm.get('themes')?.touched}">
+                            <select style="overflow: hidden visible; text-align:center" multiple (change)="onSelectionChange($event)"  placeholder="Tema">
                                 <option style="padding: 3px;" *ngFor="let theme of themeList; let i=index" [value]="i">{{theme}}</option>
                             </select>
-                            <div class="invalid-feedback">El tema es obligatorio</div>
+                            <div *ngIf="invalidLength" class="invalid-feedback">Selecciona un tema como mínimo</div>
                         </div>
 
 
