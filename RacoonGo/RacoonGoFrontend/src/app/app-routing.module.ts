@@ -9,6 +9,7 @@ import { AccountComponent } from "./vistas/account/account.component";
 import { BusinessAccountComponent } from "./vistas/business-account/business-account.component";
 import {PasswordComponent} from "./vistas/password/password.component";
 import { SponsorFormComponent } from './vistas/sponsor-form/sponsor-form.component';
+import {ProfileComponent} from "./vistas/profile/profile.component";
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'changePassword', component: PasswordComponent },
     { path: 'loginBusiness', component: BusinessAccountComponent },
     { path: 'sponsor', component: SponsorFormComponent },
+    { path: 'profile', component: ProfileComponent },
 ];
 
 @NgModule({

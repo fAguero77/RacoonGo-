@@ -6,6 +6,7 @@ import { BackendRouterService } from "../../services/backend-router.service";
 import { HelperService } from "../../services/helper.service";
 import { User } from '../../models/app.model';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   email!:string
   password!:string
 
-    constructor(private backEndResponse: BackendRouterService, private helperService: HelperService, private fb: FormBuilder) { }
+    constructor(private backEndResponse: BackendRouterService, private helperService: HelperService, private fb: FormBuilder, private router: Router) { }
 
     ngOnInit(): void {
       this.logInForm = this.fb.group({
@@ -32,13 +33,13 @@ export class LoginComponent implements OnInit {
   signUp(){
       signInWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
-
           const user = userCredential.user;
             if (user) {
                 this.backEndResponse.endpoints.user.signIn(this.email).subscribe({
                     next: (data: User) => {
                         console.log(JSON.stringify(data))
                         sessionStorage.setItem("user", JSON.stringify(data));
+                        this.router.navigate(['/']);
                     }
                 })
           } else {

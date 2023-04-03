@@ -1,27 +1,30 @@
-<div class="container mt-3">
-    <h1>Iniciar sesión</h1>
+<div class="login-box">
+    <div class="login-box-body">
+        <p class="login-box-msg">Inicio de sesión</p>
     <form method="post" [formGroup]="logInForm" novalidate>
         <div class="input-group mb-3 mt-3">
             <label class="input-group-text" for="email"><fa-icon [icon]="faUser"></fa-icon></label>
             <input type="email" class="form-control" id="email" placeholder="Introduzca su correo" name="email" [(ngModel)]="email" formControlName="email"
                    (blur)="checkValidity('email')" [ngClass]="{ 'is-invalid': logInForm.get('email')?.invalid && (logInForm.get('email')?.touched || submitted), 'is-valid': logInForm.get('email')?.valid && logInForm.get('email')?.touched }">
-            <div class="invalid-feedback">El correo debe seguir este formato: usuario@ejemplo.com</div>
+            <div class="invalid-feedback">El correo debe seguir este formato: usuario@ejemplo.com</div>        
         </div>
         <div class="input-group mb-3">
             <label for="pwd" class="input-group-text"><fa-icon [icon]="faLock"></fa-icon></label>
             <input type="password" class="form-control" id="pwd" placeholder="Introduzca su contraseña" name="pswd" [(ngModel)]="password" formControlName="password"
-                (blur)="checkValidity('password')" [ngClass]="{ 'is-invalid': logInForm.get('password')?.invalid && (logInForm.get('password')?.touched || submitted), 'is-valid': logInForm.get('password')?.valid && logInForm.get('password')?.touched }">
+                   (blur)="checkValidity('password')" [ngClass]="{ 'is-invalid': logInForm.get('password')?.invalid && (logInForm.get('password')?.touched || submitted), 'is-valid': logInForm.get('password')?.valid && logInForm.get('password')?.touched }">
             <div class="invalid-feedback">La contraseña debe contener 6 caracteres como mínmo.</div>
         </div>
-        <div class="form-check mb-3">
+        <div class="form-check mb-3 label-check">
             <label class="form-check-label">
                 <input class="form-check-input" type="checkbox" name="remember"> Recuérdame
             </label>
         </div>
         <button type="submit" class="btn btn-primary" (click)="onSubmit()">Iniciar sesión</button>
+    </form>
         <div *ngIf="submitted && logInForm.invalid" class="text-danger">Por favor soluciona los errores anteriores.</div>
         <div *ngIf="invalidLogin" class="text-danger">El correo o la contraseña son incorrectos.</div>
-        <p>¿No tienes una cuenta? <a routerLink="/register">Regístrate</a></p>
-        <p>¿Contraseña olvidada? <a routerLink="/changePassword">Recuperar contraseña</a></p>
-    </form>
+        <div class="text-center mt-3 text-white">
+            <small>¿No tienes cuenta? <a routerLink="/register">Registrarse</a></small>
+            <small>¿Contraseña olvidada? <a routerLink="/changePassword">Recuperar contraseña</a></small>
+        </div>
 </div>

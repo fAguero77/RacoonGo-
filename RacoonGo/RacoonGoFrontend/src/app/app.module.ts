@@ -19,6 +19,8 @@ import { SponsorFormComponent } from './vistas/sponsor-form/sponsor-form.compone
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { DeleteUserBtnComponent } from './vistas/delete-user-btn/delete-user-btn.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ProfileComponent } from './vistas/profile/profile.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { DeleteUserBtnComponent } from './vistas/delete-user-btn/delete-user-btn
         BusinessAccountComponent,
         SponsorFormComponent,
         PasswordComponent,
-        DeleteUserBtnComponent
+        DeleteUserBtnComponent,
+        NavbarComponent,
+        ProfileComponent
     ],
     imports: [
         CommonModule,
