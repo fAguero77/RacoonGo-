@@ -38,8 +38,7 @@
         </div>
         <button type="submit" class="btn btn-primary" (click)="onSubmit()">Registrarse</button>
         <div *ngIf="submitted && businessSignUpForm.invalid" class="text-danger">Por favor soluciona los errores anteriores.</div>
-        <div *ngIf="invalidEmail" class="text-danger">El correo introducido pertenece a una cuenta.</div>
-        <div *ngIf="invalidUsername" class="text-danger">El usuario introducido pertenece a una cuenta.</div>
+        <div *ngIf="invalidSignUp" class="text-danger">El correo o usuario introducido pertenece a una cuenta.</div>
         <p>¿Prefieres registrarte como usuario básico? <a routerLink="/register">Registrarse como usuario básico</a></p>
         <p>¿Ya tienes una cuenta? <a routerLink="/login">Iniciar sesión</a></p>
     </form>

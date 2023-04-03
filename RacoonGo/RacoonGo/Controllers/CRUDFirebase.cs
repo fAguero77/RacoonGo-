@@ -22,7 +22,17 @@ namespace RacoonGo.Controllers
 
         public async Task<bool> addUser(User user)
         {
-            FirebaseResponse response1 = await client.GetAsync("Usuarios/");
+            if (checkUser(user, "Users/"))
+            {
+                await client.PushAsync("Users/", user);
+                return true;
+            }
+            return false;
+        }
+        
+        private bool checkUser(User user, String path)
+        {
+            FirebaseResponse response1 = client.GetAsync(path).Result;
             string json = response1.Body;
             Dictionary<string, User> users = JsonConvert.DeserializeObject<Dictionary<string, User>>(json);
             var usersArray = users.Values.ToArray();
@@ -33,17 +43,15 @@ namespace RacoonGo.Controllers
                     return false;
                 }
             }
-            
-            PushResponse response = await client.PushAsync("Usuarios/", user);
-            User result = response.ResultAs<User>();
             return true;
         }
-        
-        public async Task<IActionResult> addCompany(CompanyUser company)
+        public async Task<bool> addCompany(CompanyUser company)
         {
-            PushResponse response = await client.PushAsync("Usuarios/", company);
-            CompanyUser result = response.ResultAs<CompanyUser>();
-            return new JsonResult(result);
+            //if(checkUser(company, "CompanyUsers")){
+                await client.PushAsync("CompanyUsers/", company);
+                return true;
+            //}
+            //return false;
         }
 
         public async Task<IActionResult> addEvent(Event evento){

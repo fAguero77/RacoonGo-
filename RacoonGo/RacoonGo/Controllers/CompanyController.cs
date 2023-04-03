@@ -15,9 +15,12 @@ public class CompanyController : ControllerBase
     }
     
     [HttpPost]
-    public IActionResult AddCompany(CompanyUser company)
+    public async Task<IActionResult> AddCompany(CompanyUser company)
     {
-        _crudFirebase.addCompany(company);
-        return Ok(company);
+        if (await _crudFirebase.addCompany(company))
+        {
+            return Ok(company);
+        }
+        return BadRequest("El usuario ya existe");
     }
 }

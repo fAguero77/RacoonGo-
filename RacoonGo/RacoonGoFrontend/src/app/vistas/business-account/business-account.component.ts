@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {BackendRouterService} from "../../services/backend-router.service";
-import {HelperService} from "../../services/helper.service";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../../models/app.constants";
 import {CompanyUser, User} from "../../models/app.model";
-import Swal from "sweetalert2";
 import {faLock, faUser, faGlobe, faPhone } from '@fortawesome/free-solid-svg-icons';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
@@ -21,8 +19,7 @@ export class BusinessAccountComponent implements OnInit {
     faPhone = faPhone;
     businessSignUpForm!: FormGroup;
     submitted = false;
-    invalidEmail = false;
-    invalidUsername = false;
+    invalidSignUp = false;
     email!:string
     password!:string
     username!:string
@@ -30,15 +27,13 @@ export class BusinessAccountComponent implements OnInit {
   phonenumber!:string
   
     constructor(private backEndResponse: BackendRouterService, private fb: FormBuilder) { }
-
     
     ngOnInit(): void {
-        const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
         this.businessSignUpForm = this.fb.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
             username: ['', [Validators.required, Validators.minLength(4)]],
-            website: ['', [Validators.required, Validators.pattern(reg)]],
+            website: ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]],
             phonenumber: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9), Validators.pattern("^[0-9]*$")]],
         })
     }
@@ -62,21 +57,19 @@ export class BusinessAccountComponent implements OnInit {
         var company = new CompanyUser(new User(this.email, this.username, 0),this.website, this.phonenumber);
         this.backEndResponse.endpoints.company.addCompany(company).subscribe({
             next: () => {
-                this.invalidUsername = false;
+                this.invalidSignUp = false;
                 createUserWithEmailAndPassword(auth, this.email, this.password)
                     .then((userCredential) => {
                         const user = userCredential.user;
                         if (user) {
                             sessionStorage.setItem("email", this.email);
-                            this.invalidEmail = false;
                         }
                     })
                     .catch((error) => {
-                        this.invalidEmail = true;
                     });
             },
             error: () => {
-                this.invalidUsername = true;
+                this.invalidSignUp = true;
             }
         });
     }

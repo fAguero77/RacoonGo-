@@ -35,8 +35,7 @@ export class BackendRouterService {
                 //deleteAccount: function (email: string | null) { return context.api_create('deleteUser', email)}
             },
             company: {
-                addCompany: function (company: CompanyUser) { return context.api_create('Company', company)
-                }
+                addCompany: function (company: CompanyUser) { return context.api_create('Company', company)}
             }
         }
     }
