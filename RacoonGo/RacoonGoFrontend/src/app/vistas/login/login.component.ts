@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {signInWithEmailAndPassword } from "firebase/auth";
+import {signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import { auth } from "../../models/app.constants";
 import { BackendRouterService } from "../../services/backend-router.service";
@@ -39,6 +39,9 @@ export class LoginComponent implements OnInit {
                     error: () => {
                         Swal.fire('Error', 'No se ha podido inciar sesion, compreuba la contraseña y el ususario', 'error')                    }
                 })
+
+          } else {
+            window.alert('algop ha fallado')
           }
         })
         .catch((error) => {
@@ -47,5 +50,4 @@ export class LoginComponent implements OnInit {
         
         });
   }
-
 }

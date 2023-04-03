@@ -5,6 +5,8 @@ import { BackEndResponse, Event, User } from "../../models/app.model";
 import { first } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { HelperService } from '../../services/helper.service';
+import { ActivatedRoute, Router } from "@angular/router";
+import { EventFormComponent } from '../event-form/event-form.component';
 
 @Component({
     selector: 'events-list',
@@ -14,10 +16,17 @@ import { HelperService } from '../../services/helper.service';
 export class EventsListComponent implements OnInit {
 
     eventsList: Event[] = [];
-    defaultImg: string = 'https://cdnph.upi.com/ph/st/th/5751650313577/2022/i/16503136903474/v1.2/Raccoon-bandit-evicted-from-trash-can-by-Michigan-police.jpg';
+    user: User |undefined = undefined;
 
 
-    constructor(private backEndResponse: BackendRouterService, private helperService: HelperService) { }
+    constructor(private route: ActivatedRoute,
+        private router: Router,
+        private backEndResponse: BackendRouterService, private helperService: HelperService) {
+        if (JSON.parse(sessionStorage.getItem("user")!) != undefined) {
+            this.user = JSON.parse(sessionStorage.getItem("user")!).body;
+
+        }
+    }
 
     ngOnInit(): void { this.getEvents(); }
 
@@ -44,15 +53,7 @@ export class EventsListComponent implements OnInit {
     }
 
     getAgeRecommendation(age: number): string {
-        if (age < 10) {
-            return 'niños';
-        } else if (age < 18) {
-            return 'jóvenes'
-        } else if (age < 50) {
-            return 'adultos'
-        } 
-
-        return 'mayores'
+        return this.helperService.getAgeText(age);
     }
 
     isDifDate(start: Date, end: Date): boolean {
@@ -65,7 +66,7 @@ export class EventsListComponent implements OnInit {
 
     getMyEvents() {
         let user: User = JSON.parse(sessionStorage.getItem("user")!).body
-        this.backEndResponse.endpoints.event.getMyEvents(user.username).subscribe({
+        this.backEndResponse.endpoints.event.getMyEvents(user.email).subscribe({
             next: (data: HttpResponse<BackEndResponse<any>>) =>{
                 this.eventsList = data.body as unknown as Event[];
 
@@ -73,7 +74,32 @@ export class EventsListComponent implements OnInit {
         })
     }
 
-    replaceBrokenImage(event: any) {
-        event.target.src = this.defaultImg;
+    deleteEvent(e: Event) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, bórralo',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            this.backEndResponse.endpoints.event.deleteEvent(this.user?.email,e.id).subscribe({
+                next: (data: HttpResponse<BackEndResponse<any>>) => {
+                    Swal.fire('\u00A1Muy bien!', 'Se ha eliminado correctamente tu evento: ' + e.title, 'success').then((a) =>{
+                        window.location.reload();
+                    })
+                }
+            });
+            
+        })
+        
     }
+
+    updateEvent(e: Event) {
+        this.helperService.event = e;
+        this.router.navigate(['/addEvent']);
+    }
+
 }

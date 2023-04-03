@@ -2,7 +2,7 @@
     border-radius: 20px;
     background: #ffffff;
     width: 33rem;
-    height: 57.5rem;
+    height: 51rem;
     margin: 0 auto;
     border: solid #74d664;
 }
@@ -21,9 +21,6 @@ table {
 tr {
     width: 100%;
     padding: 0 important;
-}
-.prueba {
-    text-align: center;
 }
 
 td {
@@ -45,14 +42,23 @@ input {
         background: #A9D6A1;
         color: black;
     }
+
+.tags {
+    height: 14rem;
+    overflow: hidden visible;
+    text-align: center
+}
+.age {
+    height: 1.5rem;
+    width: fit-content;
+}
+
 select {
+    width: 12.5rem;
     font-weight: bold;
     color: #7d9abb;
-    width: 10.5rem;
     border: solid #74d664 1px;
     border-radius: 5px;
-    height: 14rem;
-    font-weight: bold;
 }
 
 label {
@@ -61,6 +67,7 @@ label {
 }
 option {
     font-weight: bold;
+    cursor: pointer;
 
 }
     option:hover {

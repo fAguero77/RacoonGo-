@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RacoonGo.Modelo;
+using RacoonGo.Database;
+using RacoonGo.Models;
 using RacoonGo.Services;
 
 namespace RacoonGo.Controllers;
@@ -7,7 +8,6 @@ namespace RacoonGo.Controllers;
 [Route("api/[controller]")]
 public class UsersController : ControllerBase
 {
-    CRUDFirebase _crudFirebase = new CRUDFirebase();
 
     public UsersController()
     {
@@ -16,19 +16,47 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult AddUser(User user)
+    public async Task<IActionResult> AddUser(User user)
     {
-        _crudFirebase.addUser(user);
+        await FirebaseRealtimeDatabase.Instance.SetUser(user);
         return Ok(user);
     }
 
     
     [HttpGet]
-    public IActionResult signIn(string email)
+    public async Task<IActionResult> signIn(string email)
     {
 
-        User usuario = _crudFirebase.getUser(email).Result[0];
+        User usuario = await FirebaseRealtimeDatabase.Instance.GetUser(email);
         return Ok(usuario);
     }
-    
+
+    [HttpPost("sponsor")]
+    public async Task<IActionResult> SetSponsor(CompanyUser user, int days)
+    {
+        //// update sponsor days
+        user.sponsored.AddDays(days);
+
+        // update values in database
+        await FirebaseRealtimeDatabase.Instance.SetCompanyUser(user);
+
+        // return updated data
+        return Ok(user);
+    }
+
+
+    [HttpDelete("delete/{id}")]
+    public async Task<IActionResult> DeleteUser(string id)
+    {
+        try
+        {
+            await FirebaseRealtimeDatabase.Instance.DeleteUser(id);
+
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return BadRequest();
+        }
+    }
 }
