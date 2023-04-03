@@ -1,6 +1,7 @@
 ﻿<div class="caja">
     <div class="caja-interno">
-        <h2>Crear Evento</h2>
+        <h2 *ngIf="helperService.event">Modificar Evento {{helperService.event.title}}</h2>
+        <h2 *ngIf="!helperService.event">Crear Evento</h2>
         <form [formGroup]="addEventForm" novalidate>
             <table>
 
@@ -18,13 +19,13 @@
                     <!-- Age Zone-->
 
                     <td>
-                        <div class="form-group pt-3">
-                            <div class="input-field">
-                                <span class="fa fa-globe p-2"></span>
-                                <input type="number" class="form-control" id="age" formControlName="recommendedAge" placeholder="Edad Recomendada" name="age" [(ngModel)]="age" formControlName="age"
-                                    (blur)="checkValidity('age')" [ngClass]="{ 'is-invalid': addEventForm.get('age')?.invalid && (addEventForm.get('age')?.touched || submitted), 'is-valid': addEventForm.get('age')?.valid && addEventForm.get('age')?.touched}">
-                                    <div class="invalid-feedback">La edad es obligatoria</div>
-                            </div>
+                        <div style="padding: 7px 5px;">
+                            <select class="age" formControlName="recommendedAge">
+                                <option *ngFor="let age of ageList; let i=index" [value]="i-1">{{age}}</option>
+                            </select>
+                            <input type="number" class="form-control" id="age" formControlName="recommendedAge" placeholder="Edad Recomendada" name="age" [(ngModel)]="age" formControlName="age"
+                                   (blur)="checkValidity('age')" [ngClass]="{ 'is-invalid': addEventForm.get('age')?.invalid && (addEventForm.get('age')?.touched || submitted), 'is-valid': addEventForm.get('age')?.valid && addEventForm.get('age')?.touched}">
+                            <div class="invalid-feedback">La edad es obligatoria</div>
                         </div>
 
                     </td>
@@ -63,8 +64,8 @@
 
                     <td>
                         <div style="padding: 7px 0px;">
-                            <select style="overflow: hidden visible; text-align:center" multiple (change)="onSelectionChange($event)"  placeholder="Tema">
-                                <option style="padding: 3px;" *ngFor="let theme of themeList; let i=index" [value]="i">{{theme}}</option>
+                            <select class="tags" multiple (change)="onSelectionChange($event)" placeholder="Tema">
+                                <option  *ngFor="let theme of themeList; let i=index" [value]="i">{{theme}}</option>
                             </select>
                             <div *ngIf="invalidLength" class="text-danger">Selecciona un tema como mínimo</div>
                         </div>
@@ -109,8 +110,6 @@
 
     <!-- Description Zone-->
 
-    <div>
-        <label>Descripción</label><label style="color:red">*</label>
         <div style="padding:0.5rem;">
             <textarea name="description" class="form-control" cols="40" rows="5" formControlName="description" placeholder="Descripción" [(ngModel)]="description" formControlName="description" (blur)="checkValidity('description')"
                 [ngClass]="{ 'is-invalid': addEventForm.get('description')?.invalid && (addEventForm.get('description')?.touched || submitted), 'is-valid': addEventForm.get('description')?.valid && addEventForm.get('description')?.touched}">
@@ -118,11 +117,12 @@
             </textarea>
             <div class="invalid-feedback">La descripción es obligatoria</div>
         </div>
-    </div>
+
     <!-- Image Zone-->
-    <label>Imagen</label>
+    
     <div style="padding:0.5rem;">
-        <input style="width:25.5rem" type="text" placeholder="Enlace a tu imagen" (keyup)="onWriteChange($event)" formControlName="image" [(ngModel)]="image">
+        <input *ngIf="!helperService.event" style="width:25.5rem" type="text" placeholder="Enlace a tu imagen" (keyup)="onWriteChange($event)" formControlName="image" [(ngModel)]="image">
+        <input *ngIf="helperService.event" style="width:25.5rem" type="text" placeholder="Enlace a tu imagen" (keyup)="onWriteChange($event)" value="{{helperService.event.photoUrl}}" formControlName="image" [(ngModel)]="image">
         <div style="padding:0.5rem;">
 
             <img style="width: 12rem; border: solid #74d664 2px; " src="{{image}}" />
@@ -134,10 +134,14 @@
     <!-- Button Zone-->
 
     <div justify-content: center>
-        <div style="padding: 10px;">
+        <div style="padding: 10px;" *ngIf="!helperService.event">
             <button type="submit" class="boton" (click)="onSubmit()">Crear Evento</button>
 
         </div>
+        <div style="padding: 10px;" *ngIf="helperService.event">
+            <button type="submit" class="boton" style="width:9rem;" (click)="addEvent()">Modificar Evento</button>
+        </div>
+
     </div>
 
     </form>
