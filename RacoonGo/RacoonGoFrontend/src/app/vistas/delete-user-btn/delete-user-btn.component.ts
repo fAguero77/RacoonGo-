@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { User } from '../../models/app.model';
 import { BackendRouterService } from '../../services/backend-router.service';
 import { Router } from '@angular/router';
+import { getAuth, deleteUser } from 'firebase/auth';
 
 @Component({
     selector: 'delete-user-btn',
@@ -46,6 +47,7 @@ export class DeleteUserBtnComponent implements OnInit {
         // Delete user account, events and games
         this.routerService.endpoints.user.deleteAccount(user.email).subscribe({
             next: (data: any) => {
+                this.deleteFromFirebaseAuth();
                 // Delete session and redirect to main page
                 sessionStorage.removeItem("user");
                 this.router.navigate(['/login']);
@@ -61,7 +63,18 @@ export class DeleteUserBtnComponent implements OnInit {
             }
         });
 
-        
+    }
 
+    async deleteFromFirebaseAuth() {
+        try {
+            // Delete the user from Firebase Authentication
+            const auth = getAuth();
+            const currentUser = auth.currentUser;
+            if (currentUser) {
+                await deleteUser(currentUser);
+            }
+        } catch (error) {
+            throw new Error('Error al eliminar la cuenta de firebase auth ');
+        }
     }
 }
