@@ -20,11 +20,23 @@ namespace RacoonGo.Controllers
             client = firebaseConnection.GetClient();
         }
 
-        public async Task<IActionResult> addUser(User user)
+        public async Task<bool> addUser(User user)
         {
+            FirebaseResponse response1 = await client.GetAsync("Usuarios/");
+            string json = response1.Body;
+            Dictionary<string, User> users = JsonConvert.DeserializeObject<Dictionary<string, User>>(json);
+            var usersArray = users.Values.ToArray();
+            foreach (var user2 in usersArray)
+            {
+                if (user.username == user2.username)
+                {
+                    return false;
+                }
+            }
+            
             PushResponse response = await client.PushAsync("Usuarios/", user);
             User result = response.ResultAs<User>();
-            return new JsonResult(result);
+            return true;
         }
         
         public async Task<IActionResult> addCompany(CompanyUser company)

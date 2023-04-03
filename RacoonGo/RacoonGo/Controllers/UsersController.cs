@@ -16,10 +16,13 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult AddUser(User user)
+    public async Task<IActionResult> AddUser(User user)
     {
-        _crudFirebase.addUser(user);
-        return Ok(user);
+        if (await _crudFirebase.addUser(user))
+        {
+            return Ok(user);
+        }
+        return BadRequest("El usuario ya existe");
     }
 
     

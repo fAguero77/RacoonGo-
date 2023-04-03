@@ -59,24 +59,25 @@ export class BusinessAccountComponent implements OnInit {
     }
   
     signUp(){
-      createUserWithEmailAndPassword(auth, this.email, this.password)
-          .then((userCredential) => {
-            const user = userCredential.user;
-            if (user) {
-              sessionStorage.setItem("email", this.email);
-              var company = new CompanyUser(new User(this.email, this.username, 0),this.website, this.phonenumber);
-              this.backEndResponse.endpoints.company.addCompany(company).subscribe({
-                next: () => {
-                  Swal.fire('\u00A1Muy bien!', 'Te has registrado como ' + this.username, 'success')
-                },
-                error: () => {
-                  Swal.fire('Error', 'No te has registrado', 'error')
-                }
-              });
+        var company = new CompanyUser(new User(this.email, this.username, 0),this.website, this.phonenumber);
+        this.backEndResponse.endpoints.company.addCompany(company).subscribe({
+            next: () => {
+                this.invalidUsername = false;
+                createUserWithEmailAndPassword(auth, this.email, this.password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        if (user) {
+                            sessionStorage.setItem("email", this.email);
+                            this.invalidEmail = false;
+                        }
+                    })
+                    .catch((error) => {
+                        this.invalidEmail = true;
+                    });
+            },
+            error: () => {
+                this.invalidUsername = true;
             }
-          })
-          .catch((error) => {
-            this.invalidEmail = true;
-          });
+        });
     }
 }

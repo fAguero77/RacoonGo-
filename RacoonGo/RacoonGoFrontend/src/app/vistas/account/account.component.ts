@@ -52,26 +52,22 @@ export class AccountComponent implements OnInit {
     }
 
     signUp() {
-        createUserWithEmailAndPassword(auth, this.email, this.password)
-            .then((userCredential) => {
-
-                const user = userCredential.user;
-                if (user) {
-                    const loginUser = new User(this.email, this.username, 0);
-                     this.backEndResponse.endpoints.user.addUser(loginUser).subscribe({
-                         next: () => {
-                             sessionStorage.setItem("user", JSON.stringify(loginUser));
-                            Swal.fire('\u00A1Muy bien!', 'Se ha creado correctamente tu usuario: ' + this.username, 'success')
-                        },
-                        error: () => {
-
-                            Swal.fire('Error', 'No se ha creado el usuario', 'error')
-                        }
+        const loginUser = new User(this.email, this.username, 0);
+        this.backEndResponse.endpoints.user.addUser(loginUser).subscribe({
+            next: () => {
+                sessionStorage.setItem("user", JSON.stringify(loginUser));
+                this.invalidUsername = false;
+                createUserWithEmailAndPassword(auth, this.email, this.password)
+                    .then((userCredential) => {
+                        this.invalidEmail = false;
+                    })
+                    .catch((error) => {
+                        this.invalidEmail = true;
                     });
-                }
-            })
-            .catch((error) => {
-                this.invalidEmail = true;
-            });
+            },
+            error: () => {
+                this.invalidUsername = true;
+            }
+        });
     }
 }
