@@ -20,9 +20,10 @@
 
                     <td>
                         <div style="padding: 7px 5px;">
-                            <select class="age" formControlName="recommendedAge">
+                            <select class="age">
                                 <option *ngFor="let age of ageList; let i=index" [value]="i-1">{{age}}</option>
                             </select>
+                            <div *ngIf="invalidAge" class="text-danger">Selecciona una edad</div>
                         </div>
 
                     </td>
