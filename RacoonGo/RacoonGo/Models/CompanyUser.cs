@@ -1,6 +1,7 @@
 ﻿using System.Transactions;
+using RacoonGo.Models;
 
-namespace RacoonGo.Modelo;
+namespace RacoonGo.Models;
 
 public class CompanyUser : User{
     public String phonenumber { get;set; } 

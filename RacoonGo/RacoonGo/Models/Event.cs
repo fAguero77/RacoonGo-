@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using RacoonGo.Models;
 
-namespace RacoonGo.Modelo
+namespace RacoonGo.Models
 {
     public enum Theme
     {

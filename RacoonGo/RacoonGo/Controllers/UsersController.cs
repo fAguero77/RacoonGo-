@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RacoonGo.Database;
-using RacoonGo.Modelo;
+using RacoonGo.Models;
 using RacoonGo.Services;
 
 namespace RacoonGo.Controllers;
@@ -45,4 +45,19 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
 
+
+    [HttpDelete("delete/{id}")]
+    public async Task<IActionResult> DeleteUser(string id)
+    {
+        try
+        {
+            await FirebaseRealtimeDatabase.Instance.DeleteUser(id);
+
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return BadRequest();
+        }
+    }
 }

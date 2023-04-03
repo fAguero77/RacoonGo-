@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RacoonGo.Database;
-using RacoonGo.Modelo;
+using RacoonGo.Models;
 
 namespace RacoonGo.Controllers;
 

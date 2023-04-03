@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using RacoonGo.Database;
-using RacoonGo.Modelo;
+using RacoonGo.Models;
 using RacoonGo.Services;
 using System.Diagnostics.CodeAnalysis;
 

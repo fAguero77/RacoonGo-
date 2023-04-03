@@ -18,6 +18,8 @@ import { MatMenuModule } from "@angular/material/menu";
 import { SponsorFormComponent } from './vistas/sponsor-form/sponsor-form.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { DeleteUserBtnComponent } from './vistas/delete-user-btn/delete-user-btn.component';
+
 
 @NgModule({
     declarations: [
@@ -29,7 +31,8 @@ import { CommonModule } from '@angular/common';
         LogoutComponent,
         BusinessAccountComponent,
         SponsorFormComponent,
-        PasswordComponent
+        PasswordComponent,
+        DeleteUserBtnComponent
     ],
     imports: [
         CommonModule,
@@ -42,6 +45,7 @@ import { CommonModule } from '@angular/common';
         NoopAnimationsModule,
         MatIconModule,
         MatMenuModule,
+
     ],
     providers: [],
     exports: [RouterModule],

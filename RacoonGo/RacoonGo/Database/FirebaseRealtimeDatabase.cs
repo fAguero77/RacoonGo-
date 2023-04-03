@@ -1,6 +1,7 @@
-﻿using RacoonGo.Modelo;
+﻿using RacoonGo.Models;
 using Newtonsoft.Json;
 using System;
+using RacoonGo.Models;
 
 namespace RacoonGo.Database
 {
@@ -115,14 +116,15 @@ namespace RacoonGo.Database
             await _httpClient.SendAsync(httpRequestMessage);
         }
 
-        public async Task DeletelUser(string email)
+        public async Task DeleteUser(string email)
         {
             string uri = string.Format(BASE_PATH_USER, email.Replace(".", " "));
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Delete, uri);
 
-            // if they have events they get deleted
+            // if they have events or games they get deleted
             await DeleteAllUsersEvents(email);
-            await _httpClient.SendAsync(httpRequestMessage);
+			//TODO: DeleteAllUsersGames
+			await _httpClient.SendAsync(httpRequestMessage);
         }
 
         public async Task DeleteCompanyUser(string email)
@@ -151,7 +153,7 @@ namespace RacoonGo.Database
             await _httpClient.SendAsync(httpRequestMessage);
         }
 
-        private static Random random = new Random();
+		private static Random random = new Random();
         public static string GenerateKey()
         {
             var length = 10;
