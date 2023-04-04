@@ -15,7 +15,7 @@ export class NavbarService {
     this.router.events.subscribe(
       event => {
         if (event instanceof NavigationStart) {
-          this.visible = !(event.url == "/login" || event.url == "/register");
+          this.visible = !(event.url == "/login" || event.url == "/register" ||event.url == '/changePassword');
           this.visibleS = event.url != "/";
         }
       }

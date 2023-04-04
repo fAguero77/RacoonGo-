@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
 
     constructor(private backEndResponse: BackendRouterService, private helperService: HelperService) {
         let user: User = JSON.parse(sessionStorage.getItem("user")!)
+        console.log(user)
         this.username = user.username;
         this.email = user.email;
     }

@@ -7,6 +7,7 @@ import { HelperService } from "../../services/helper.service";
 import { User } from '../../models/app.model';
 import {Router} from "@angular/router";
 import Swal from "sweetalert2";
+import { HttpResponse } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -31,12 +32,15 @@ export class LoginComponent implements OnInit {
           const user = userCredential.user;
             if (user) {
                 this.backEndResponse.endpoints.user.signIn(this.email).subscribe({
-                    next: (data: User) => {
-                        sessionStorage.setItem("user", JSON.stringify(data));
+                    //Encontrar tipo de data
+                    
+                    next: (data: HttpResponse<User>) => {
+
+                        sessionStorage.setItem("user", JSON.stringify(data.body));
                         this.router.navigate(['/']);
                     },
                     error: () => {
-                        Swal.fire('Error', 'No se ha podido inciar sesion, comprueba la contraseña y el ususario', 'error')                    }
+                        Swal.fire('Error', 'No se ha podido inciar sesion, comprueba la contraseña y el usuario', 'error')                    }
                 })
 
           }

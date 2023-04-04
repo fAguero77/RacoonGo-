@@ -40,6 +40,13 @@ export class NavbarComponent {
         this.router.navigate(['/profile']);
     }
     logout(): void {
+        sessionStorage.clear();
+        // TODO: redirect to main page
+        this.router.navigate(['/login']);
+    }
+
+    goSponsor() {
+        this.router.navigate(['/sponsor']);
 
     }
     deleteAcount() {

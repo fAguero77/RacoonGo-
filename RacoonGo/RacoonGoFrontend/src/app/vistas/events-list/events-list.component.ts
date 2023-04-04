@@ -23,7 +23,7 @@ export class EventsListComponent implements OnInit {
         private router: Router,
         private backEndResponse: BackendRouterService, private helperService: HelperService) {
         if (JSON.parse(sessionStorage.getItem("user")!) != undefined) {
-            this.user = JSON.parse(sessionStorage.getItem("user")!).body;
+            this.user = JSON.parse(sessionStorage.getItem("user")!);
 
         }
     }
@@ -39,7 +39,7 @@ export class EventsListComponent implements OnInit {
                 }
             },
             error: () => {
-                Swal.fire('Error', 'Se ha producido un error al buscar eventos. Int�ntelo de nuevo en unos minutos.', 'error')
+                Swal.fire('Error', 'Se ha producido un error al buscar eventos. Inténtelo de nuevo en unos minutos.', 'error')
             }
         });
     }

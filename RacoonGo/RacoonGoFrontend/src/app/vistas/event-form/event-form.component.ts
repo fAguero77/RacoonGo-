@@ -55,7 +55,7 @@ export class EventFormComponent implements OnInit {
         return `${year}-${month}-${day}`;
     }
     ngOnInit(): void {
-        this.user = JSON.parse(sessionStorage.getItem("user")!).body;
+        this.user = JSON.parse(sessionStorage.getItem("user")!);
 
         if (this.helperService.event != undefined) {
             let e = this.helperService.event;
