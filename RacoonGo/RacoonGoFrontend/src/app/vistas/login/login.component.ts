@@ -32,16 +32,13 @@ export class LoginComponent implements OnInit {
             if (user) {
                 this.backEndResponse.endpoints.user.signIn(this.email).subscribe({
                     next: (data: User) => {
-                        console.log(JSON.stringify(data))
                         sessionStorage.setItem("user", JSON.stringify(data));
                         this.router.navigate(['/']);
                     },
                     error: () => {
-                        Swal.fire('Error', 'No se ha podido inciar sesion, compreuba la contraseña y el ususario', 'error')                    }
+                        Swal.fire('Error', 'No se ha podido inciar sesion, comprueba la contraseña y el ususario', 'error')                    }
                 })
 
-          } else {
-            window.alert('algop ha fallado')
           }
         })
         .catch((error) => {

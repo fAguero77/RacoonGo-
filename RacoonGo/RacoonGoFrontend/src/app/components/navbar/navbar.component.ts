@@ -18,7 +18,9 @@ export class NavbarComponent {
     static navSearch: boolean
     constructor(public navService: NavbarService,
         private router: Router, private routerService: BackendRouterService) {
-        sessionStorage.getItem("user") ? this.userName = JSON.parse(sessionStorage.getItem("user")!).username : this.userName = "Invitado";
+        let user: User = JSON.parse(sessionStorage.getItem("user")!);
+
+        user ? this.userName =user.username : this.userName = "Invitado";
     }
 
     goAddEve() {
@@ -46,11 +48,15 @@ export class NavbarComponent {
             text: '¡No podrás recuperar tu cuenta!',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'S&iacute;, eliminar.',
-            cancelButtonText: 'No, cancelar.'
+            confirmButtonText: 'Sí, eliminar.',
+            cancelButtonText: 'No, cancelar.',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
         }).then(async (result) => {
             if (result.isConfirmed) {
                 await this.deleteUserInfo();
+                sessionStorage.removeItem("user");
+
                 //try {
                 //    await this.deleteUserInfo();
 
@@ -66,14 +72,14 @@ export class NavbarComponent {
 
     }
     async deleteUserInfo(): Promise<void> {
-        let user: User = JSON.parse(sessionStorage.getItem("user")!).body;
+        let user: User = JSON.parse(sessionStorage.getItem("user")!);
         // Delete user account, events and games
         this.routerService.endpoints.user.deleteAccount(user.email).subscribe({
             next: (data: any) => {
                 this.deleteFromFirebaseAuth();
                 // Delete session and redirect to main page
                 sessionStorage.removeItem("user");
-                this.router.navigate(['/login']);
+                this.router.navigate(['/events']);
                 // TODO: derigir a home (cuando la creemos):
                 //this.router.navigate(['/home']);
             },

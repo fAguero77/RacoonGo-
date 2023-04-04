@@ -7,6 +7,7 @@ import { BackendRouterService } from "../../services/backend-router.service";
 import { HelperService } from "../../services/helper.service";
 import Swal from "sweetalert2";
 import { User } from "../../models/app.model";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-account',
@@ -20,7 +21,7 @@ export class AccountComponent implements OnInit {
     password!: string
     username!: string
 
-    constructor(private backEndResponse: BackendRouterService, private helperService: HelperService) { }
+    constructor(private backEndResponse: BackendRouterService, private helperService: HelperService, private router: Router) { }
 
     ngOnInit(): void {
     }
@@ -30,19 +31,27 @@ export class AccountComponent implements OnInit {
             .then((userCredential) => {
 
                 const user = userCredential.user;
+                let loginUser : User;
                 if (user) {
-                    const loginUser = new User(this.email, this.username, 0);
+                    loginUser = new User(this.email, this.username, 0);
                      this.backEndResponse.endpoints.user.addUser(loginUser).subscribe({
 
                     //this.backEndResponse.endpoints.user.addUser(new User(this.email, this.username, 0)).subscribe({
                         next: () => {
-                             sessionStorage.setItem("user", JSON.stringify(loginUser));
+                             Swal.fire('\u00A1Muy bien!', 'Se ha creado correctamente tu usuario: ' + this.username, 'success')
+                             this.router.navigate(['/']);
 
-                            Swal.fire('\u00A1Muy bien!', 'Se ha creado correctamente tu usuario: ' + this.username, 'success')
                         },
                         error: () => {
 
                             Swal.fire('Error', 'No se ha creado el usuario', 'error')
+
+                         },
+                         complete: () => {
+                             console.log(JSON.stringify(loginUser));
+                            sessionStorage.setItem("user", JSON.stringify(loginUser));
+                            console.log(JSON.parse(sessionStorage.getItem("user")!))
+
 
                         }
                     });
