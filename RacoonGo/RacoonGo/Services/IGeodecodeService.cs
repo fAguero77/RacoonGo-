@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RacoonGo.Modelo;
+using RacoonGo.Models;
 
 namespace RacoonGo.Services
 {

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using RacoonGo.Models;
 
-namespace RacoonGo.Modelo
+namespace RacoonGo.Models
 {
     public enum Theme
     {
@@ -15,10 +16,21 @@ namespace RacoonGo.Modelo
         History,
         Others
     }
+
+    public enum RecommendedAge
+    {
+        Todos = 0,
+        Niños,
+        Jóvenes,
+        Adolescentes,
+        Adultos
+    }
+
     public class Event
     {
-        public String title { get; set; }
-        public String description { get; set; }
+        public string id { get; set; }
+        public string title { get; set; }
+        public string description { get; set; }
         public int recommendedAge { get; set; }
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
@@ -27,7 +39,7 @@ namespace RacoonGo.Modelo
 
         public User user { get; set; }
 
-        public String photoUrl { get; set; }
+        public string photoUrl { get; set; }
 
         public Event() { }
     }

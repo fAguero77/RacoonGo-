@@ -8575,19 +8575,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\usuario\\.nuget\\packages\\": {}
+    "C:\\Users\\david\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\usuario\\Source\\Repos\\RacoonGo\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+      "projectUniqueName": "C:\\Users\\david\\source\\Repos\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
       "projectName": "RacoonGo",
-      "projectPath": "C:\\Users\\usuario\\Source\\Repos\\RacoonGo\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
-      "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\usuario\\Source\\Repos\\RacoonGo\\RacoonGo\\RacoonGo\\obj\\",
+      "projectPath": "C:\\Users\\david\\source\\Repos\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+      "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\david\\source\\Repos\\RacoonGo-\\RacoonGo\\RacoonGo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8661,7 +8661,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   },

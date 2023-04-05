@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace RacoonGo.Modelo
+namespace RacoonGo.Models
 {
  
     public class Location

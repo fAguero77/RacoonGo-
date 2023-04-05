@@ -1,3 +1,23 @@
+.icono-gear {
+    position: absolute;
+    width: 50px;
+    right: 13px;
+    border-radius: 50%;
+    font-size: 24px;
+    width: fit-content;
+    border: white;
+    background-color: transparent;
+}
+
+.mat-menu-item:hover {
+    background-color: #e0e0e0;
+}
+
+.container {
+    position: relative;
+    display: inline-block;
+}
+
 body {
     background: #eee;
 }
@@ -39,6 +59,7 @@ h5 {
 .para {
     font-size: 16px
 }
+
 .themeButton {
     background-color: whitesmoke;
     border-radius: 10%;
@@ -47,7 +68,7 @@ h5 {
     max-height: 35px;
 }
 
-.title{
+.title {
     font-size: 180%;
 }
 
@@ -69,16 +90,17 @@ h5 {
     margin-bottom: 1%;
     font-size: 120%;
 }
+
 .mapButton {
     border: none;
     background: none;
     display: block;
-    
 }
 
 .date {
     display: inline-block;
 }
+
 .calendarIcon {
     margin-right: 5%;
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RacoonGo.Modelo;
+using RacoonGo.Database;
+using RacoonGo.Models;
 
 namespace RacoonGo.Controllers;
 
@@ -7,7 +8,6 @@ namespace RacoonGo.Controllers;
 [Route("api/[controller]")]
 public class CompanyController : ControllerBase
 {
-    CRUDFirebase _crudFirebase = new CRUDFirebase();
     
     public CompanyController()
     {
@@ -15,9 +15,9 @@ public class CompanyController : ControllerBase
     }
     
     [HttpPost]
-    public IActionResult AddCompany(CompanyUser company)
+    public async Task<IActionResult> AddCompany(CompanyUser company)
     {
-        _crudFirebase.addCompany(company);
+        await FirebaseRealtimeDatabase.Instance.SetCompanyUser(company);
         return Ok(company);
     }
 }
