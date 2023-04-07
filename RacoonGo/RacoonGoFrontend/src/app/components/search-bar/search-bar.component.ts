@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { HelperService } from '../../services/helper.service';
 
 @Component({
     selector: 'search-bar',
@@ -8,7 +9,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class SearchBarComponent implements OnInit {
 
-    constructor() { }
+    constructor(public helperService: HelperService) { }
 
     // menu de etiquetas
     dropdownListTags: any[] = [];
@@ -21,25 +22,10 @@ export class SearchBarComponent implements OnInit {
     dropdownSettingsAge: IDropdownSettings = {};
 
     ngOnInit() {
-        this.dropdownListTags = [
-            { item_id: 1, item_text: 'Mumbai' },
-            { item_id: 2, item_text: 'Bangaluru' },
-            { item_id: 3, item_text: 'Pune' },
-            { item_id: 4, item_text: 'Navsari' },
-            { item_id: 5, item_text: 'New Delhi' },
-            { item_id: 6, item_text: 'Pune' },
-            { item_id: 7, item_text: 'Navsari' },
-            { item_id: 8, item_text: 'New Delhi' },
-            { item_id: 9, item_text: 'Pune' },
-            { item_id: 10, item_text: 'Navsari' },
-            { item_id: 11, item_text: 'New Delhi' }
-        ];
-        this.selectedItemsTags = [
-            { item_id: 3, item_text: 'Pune' },
-            { item_id: 4, item_text: 'Navsari' }
-        ];
-
-
+        // inicializar menu de etiquetas
+        for (let i = 0; i < 10; i++) {
+            this.dropdownListTags.push({ item_id: i, item_text: this.helperService.getThemeInfo(i)[0]})
+        }
         this.dropdownSettingsTags = {
             singleSelection: false,
             idField: 'item_id',
@@ -54,6 +40,11 @@ export class SearchBarComponent implements OnInit {
             noFilteredDataAvailablePlaceholderText: 'No hay etiquetas filtradas',
         };
 
+
+        // inicializar menu de rango de edades
+        for (let i = 0; i < 5; i++) {
+            this.dropdownListAge.push({ item_id: i, item_text: this.helperService.getAgeText(i)})
+        }
         this.dropdownSettingsAge = {
             singleSelection: true,
             idField: 'item_id',
