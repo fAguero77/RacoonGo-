@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FauEwddrk+gd0mYq7RU022gTfgkBYRGcG4gjyvabUg1lvoC2i1iAE32F8sXq8CWDWry6HT3YZj1XT2YuqTqfZQ==",
+  "dgSpecHash": "wrv7pnmJJQA3dTKIpTncyBWcJvPh1evut3CQPLXtiH1zJ1VbNIZSpWGyYzOLXPUCUUFQhq8bzDfZ4Rd6IubX0Q==",
   "success": true,
   "projectFilePath": "M:\\EI\\Taller\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
   "expectedPackageFiles": [
@@ -177,11 +177,7 @@
     "C:\\Users\\monic\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\monic\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\monic\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
-    "C:\\Users\\monic\\.nuget\\packages\\system.xml.xpath.xdocument\\4.3.0\\system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\monic\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.15\\microsoft.netcore.app.ref.6.0.15.nupkg.sha512",
-    "C:\\Users\\monic\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.15\\microsoft.windowsdesktop.app.ref.6.0.15.nupkg.sha512",
-    "C:\\Users\\monic\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.15\\microsoft.aspnetcore.app.ref.6.0.15.nupkg.sha512",
-    "C:\\Users\\monic\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.15\\microsoft.netcore.app.host.win-x64.6.0.15.nupkg.sha512"
+    "C:\\Users\\monic\\.nuget\\packages\\system.xml.xpath.xdocument\\4.3.0\\system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
   ],
   "logs": [
     {

@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, FormArray, FormBuilder, Validators} from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
-import {RecommendedAge, Theme} from "../../models/app.enum";
+import {Theme} from "../../models/app.enum";
 import {Event, Location, User} from "../../models/app.model";
 import {BackendRouterService} from "../../services/backend-router.service";
 import { HelperService } from '../../services/helper.service';
-import { DatePipe } from '@angular/common';
-
  
 
 @Component({
@@ -28,7 +25,6 @@ export class EventFormComponent implements OnInit {
     invalidStartDate = false;
     invalidEndDate = false;
     invalidLength = false;
-    invalidAge = false;
     location: string="";
     themeList: string[] = [];
     themes: number[] = [];
@@ -38,7 +34,6 @@ export class EventFormComponent implements OnInit {
     readonly defaultImg: string = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
     user!: User;
     event: Event | undefined;
-    datePipe: DatePipe;
     ageList: string[] = [];
 
     constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService, private fb: FormBuilder) {
@@ -47,49 +42,26 @@ export class EventFormComponent implements OnInit {
         for (let i = 0; i < 10; i++) {
             this.themeList.push(Theme[i])
         }
-        //this.todayDate = this.generarDiaActual();
-        this.datePipe = new DatePipe('en-US');
-
         this.ageList.push("Edad recomendada")
         for (let i = 0; i < 5; i++) {
             this.ageList.push(this.helperService.getAgeText(i))
         }
-
     }
-
-    /*generarDiaActual() {
-        let date = new Date();
-        const year = date.getFullYear().toString();
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const day = date.getDate().toString().padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    }*/
 
     ngOnInit(): void {
         this.user = JSON.parse(sessionStorage.getItem("user")!);
         alert(this.user.username)
-        if (this.helperService.event != undefined) {
-            let e = this.helperService.event;
-            this.addEventForm = this.fb.group({
-                title: ['', [Validators.required]],
-                description: ['', [Validators.required]],
-                age: ['', [Validators.required]],
-                startDate: ['', [Validators.required]],
-                endDate: ['', [Validators.required]],
-                location: ['', [Validators.required]],
-                image: ['', [Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]]
-            })
-        }
-        /*this.addEventForm = new FormGroup({
-            title: new FormControl(e.title),
-            description: new FormControl(e.description),
-            recommendedAge: new FormControl(e.recommendedAge),
-            startDate: new FormControl(this.datePipe.transform(e.startDate, 'yyyy-MM-dd')),
-            endDate: new FormControl(this.datePipe.transform(e.endDate, 'yyyy-MM-dd')),
-            location: new FormControl(e.location.name)
-        });*/
+        let e = this.helperService.event;
+        this.addEventForm = this.fb.group({
+            title: ['', [Validators.required]],
+            description: ['', [Validators.required]],
+            startDate: ['', [Validators.required]],
+            endDate: ['', [Validators.required]],
+            location: ['', [Validators.required]],
+            image: ['', [Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]],
+            ageF: [0, [Validators.required, Validators.min(0)]]
+        });
     }
-    
     checkValidity(controlName: string) {
         const control = this.addEventForm.get(controlName);
         if (control) {
@@ -107,23 +79,19 @@ export class EventFormComponent implements OnInit {
         if (startDate.getTime() - new Date().getTime() <0) {
             this.invalidStartDate = true;
         }
+        else this.invalidStartDate = false;
         if (endDate.getTime() - startDate.getTime() <0) {
             this.invalidEndDate = true;
         }
+        else this.invalidEndDate = false;
         if (this.themes.length == 0) {
             this.invalidLength = true;
         }
-        if (this.addEventForm.value.age == 0) {
-            this.invalidAge = true;
-        }
+        else this.invalidLength = false;
         if (this.addEventForm.invalid) {
             return;
         }
-        else {
-            this.invalidStartDate = false;
-            this.invalidEndDate = false;
-            this.invalidLength = false;
-            this.invalidAge = false;
+        else if (!this.invalidEndDate && !this.invalidEndDate && !this.invalidLength) {
             this.addEvent();
         }
     }
@@ -144,7 +112,7 @@ export class EventFormComponent implements OnInit {
         this.backendRouterService.endpoints.event.addEvent(event).subscribe({
             next: () => {
 
-                Swal.fire('\u00A1Muy bien!', 'Se ha creado correctamente tu evento: ' + event.title, 'success')
+                Swal.fire('Muy bien!', 'Se ha creado correctamente tu evento: ' + event.title, 'success')
             },
             error: () => {
 

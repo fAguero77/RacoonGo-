@@ -6,6 +6,7 @@ import { BackendRouterService } from "../../services/backend-router.service";
 import { User } from "../../models/app.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { Router } from '@angular/router';
+import { HelperService } from '../../services/helper.service';
 
 @Component({
     selector: 'app-account',
