@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RacoonGo.Database;
 using RacoonGo.Models;
-using RacoonGo.Services;
 
 namespace RacoonGo.Controllers;
 [ApiController]
@@ -18,8 +17,12 @@ public class UsersController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddUser(User user)
     {
-        await FirebaseRealtimeDatabase.Instance.SetUser(user);
         return Ok(user);
+        if (await FirebaseRealtimeDatabase.Instance.SetUser(user))
+        {
+            return Ok(user);
+        }
+        return BadRequest("El usuario ya existe");
     }
 
     

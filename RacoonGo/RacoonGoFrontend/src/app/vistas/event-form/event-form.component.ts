@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormArray } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
-import {RecommendedAge, Theme} from "../../models/app.enum";
+import {Theme} from "../../models/app.enum";
 import {Event, Location, User} from "../../models/app.model";
 import {BackendRouterService} from "../../services/backend-router.service";
 import { HelperService } from '../../services/helper.service';
-import { DatePipe } from '@angular/common';
-
  
 
 @Component({
@@ -19,6 +16,16 @@ import { DatePipe } from '@angular/common';
 export class EventFormComponent implements OnInit {
 
     addEventForm!: FormGroup;
+    submitted = false;
+    title: string="";
+    age: number=0;
+    description: string="";
+    startDate: string="";
+    endDate: string="";
+    invalidStartDate = false;
+    invalidEndDate = false;
+    invalidLength = false;
+    location: string="";
     themeList: string[] = [];
     themes: number[] = [];
     colorList: string[];
@@ -27,111 +34,92 @@ export class EventFormComponent implements OnInit {
     readonly defaultImg: string = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
     user!: User;
     event: Event | undefined;
-    datePipe: DatePipe;
     ageList: string[] = [];
 
-    constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService) {
-        
+    constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService, private fb: FormBuilder) {
         this.image = this.defaultImg;
         this.colorList = this.helperService.colorList;
         for (let i = 0; i < 10; i++) {
             this.themeList.push(Theme[i])
         }
-        this.todayDate = this.generarDiaActual();
-        this.datePipe = new DatePipe('en-US');
-
         this.ageList.push("Edad recomendada")
         for (let i = 0; i < 5; i++) {
             this.ageList.push(this.helperService.getAgeText(i))
         }
-
     }
 
-    generarDiaActual() {
-        let date = new Date();
-        const year = date.getFullYear().toString();
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const day = date.getDate().toString().padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    }
     ngOnInit(): void {
         this.user = JSON.parse(sessionStorage.getItem("user")!);
-
-        if (this.helperService.event != undefined) {
-            let e = this.helperService.event;
-            this.addEventForm = new FormGroup({
-                title: new FormControl(e.title),
-                description: new FormControl(e.description),
-                recommendedAge: new FormControl(e.recommendedAge),
-                startDate: new FormControl(this.datePipe.transform(e.startDate, 'yyyy-MM-dd')),
-                endDate: new FormControl(this.datePipe.transform(e.endDate, 'yyyy-MM-dd')),
-                location: new FormControl(e.location.name)
-            });
-            this.image = e.photoUrl
-            this.themes= e.themes
-        } else {
-            this.addEventForm = new FormGroup({
-                title: new FormControl(''),
-                description: new FormControl(''),
-                recommendedAge: new FormControl('-1'),
-                startDate: new FormControl(''),
-                endDate: new FormControl(''),
-                location: new FormControl('')
-            });
+        alert(this.user.username)
+        let e = this.helperService.event;
+        this.addEventForm = this.fb.group({
+            title: ['', [Validators.required]],
+            description: ['', [Validators.required]],
+            startDate: ['', [Validators.required]],
+            endDate: ['', [Validators.required]],
+            location: ['', [Validators.required]],
+            image: ['', [Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]],
+            ageF: [0, [Validators.required, Validators.min(0)]]
+        });
+    }
+    checkValidity(controlName: string) {
+        const control = this.addEventForm.get(controlName);
+        if (control) {
+            control.markAsTouched();
         }
-
-
-
+    }
+    
+    onSubmit() {
+        this.submitted = true;
+        if (this.defaultImg === this.image) {
+            this.image = "";
+        }
+        let startDate = new Date(this.addEventForm.value.startDate)
+        let endDate = new Date(this.addEventForm.value.endDate)
+        if (startDate.getTime() - new Date().getTime() <0) {
+            this.invalidStartDate = true;
+        }
+        else this.invalidStartDate = false;
+        if (endDate.getTime() - startDate.getTime() <0) {
+            this.invalidEndDate = true;
+        }
+        else this.invalidEndDate = false;
+        if (this.themes.length == 0) {
+            this.invalidLength = true;
+        }
+        else this.invalidLength = false;
+        if (this.addEventForm.invalid) {
+            return;
+        }
+        else if (!this.invalidEndDate && !this.invalidEndDate && !this.invalidLength) {
+            this.addEvent();
+        }
     }
 
     addEvent(): void {
-        if (this.defaultImg === this.image) {
-            this.image = "";
-        }   
-        let startDate = new Date(this.addEventForm.value.startDate)
-        let endDate = new Date(this.addEventForm.value.endDate)
-        if (this.addEventForm.value.title == undefined || this.addEventForm.value.description == undefined || this.addEventForm.value.recommendedAge < 0 || isNaN(startDate.getTime()) || isNaN(startDate.getTime()) || this.addEventForm.value.location == undefined || this.addEventForm.value.location.length == 0 || this.themes.length == 0) {
-            Swal.fire('Error', 'Debes rellenar todos los campos para crear un evento', 'error')
+        let event = new Event('',
+            this.addEventForm.value.title,
+            this.addEventForm.value.description,
+            this.addEventForm.value.age,
+            this.addEventForm.value.startDate,
+            this.addEventForm.value.endDate, 
+            new Location(this.addEventForm.value.location),
+            this.themes, 
+            this.image,
+            this.user
+        );
 
-        }
-        else if (endDate.getTime() - startDate.getTime() <0) {
-            Swal.fire('Error', 'Las fecha de fin no puede ser anterior a la fecha de inicio', 'error')
-        }
-        else {
-            let id =''
-            if (this.helperService.event != undefined) {
-                id = this.helperService.event.id;
+        this.backendRouterService.endpoints.event.addEvent(event).subscribe({
+            next: () => {
+
+                Swal.fire('Muy bien!', 'Se ha creado correctamente tu evento: ' + event.title, 'success')
+            },
+            error: () => {
+
+                Swal.fire('Error', 'La ciudad ' + event.location.name + ' no se ha encontrado', 'error')
+
             }
-            
-            let event = new Event(id,
-                this.addEventForm.value.title,
-                this.addEventForm.value.description,
-                this.addEventForm.value.recommendedAge,
-                this.addEventForm.value.startDate,
-                this.addEventForm.value.endDate,
-                new Location(this.addEventForm.value.location),
-                this.themes,
-                this.image,
-                this.user
-            );
-                this.backendRouterService.endpoints.event.addEvent(event).subscribe({
-                    next: () => {
-                        if (this.helperService.event === undefined) {
-                            Swal.fire('\u00A1Muy bien!', 'Se ha creado correctamente tu evento: ' + event.title, 'success')
-                        } else {
-                            Swal.fire('\u00A1Muy bien!', 'Se ha modificado correctamente tu evento: ' + event.title, 'success')
-
-                        }
-                    },
-                    error: () => {
-
-                        Swal.fire('Error', 'La ciudad ' + event.location.name + ' no se ha encontrado', 'error')
-
-                    }
-                });
-            
-
-        }
+        });
     }
     onSelectionChange(event: any) {
         this.themes.push(event.target?.value as number)
