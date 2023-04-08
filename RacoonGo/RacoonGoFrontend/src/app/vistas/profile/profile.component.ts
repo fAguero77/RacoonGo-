@@ -18,7 +18,8 @@ export class ProfileComponent implements OnInit {
   defaultImg: string = 'https://cdnph.upi.com/ph/st/th/5751650313577/2022/i/16503136903474/v1.2/Raccoon-bandit-evicted-from-trash-can-by-Michigan-police.jpg';
 
     constructor(private backEndResponse: BackendRouterService, private helperService: HelperService) {
-        let user: User = JSON.parse(sessionStorage.getItem("user")!).body
+        let user: User = JSON.parse(sessionStorage.getItem("user")!)
+        console.log(user)
         this.username = user.username;
         this.email = user.email;
     }

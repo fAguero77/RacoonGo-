@@ -23,7 +23,7 @@ export class LogoutComponent implements OnInit {
     signOut() {
         sessionStorage.clear();
         // TODO: redirect to main page
-        this.router.navigate(['/events']);
+        this.router.navigate(['/login']);
         this.email = "";
     }
 }

@@ -7,6 +7,8 @@ import { HelperService } from "../../services/helper.service";
 import { User } from '../../models/app.model';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import Swal from "sweetalert2";
+import { HttpResponse } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -36,9 +38,8 @@ export class LoginComponent implements OnInit {
           const user = userCredential.user;
             if (user) {
                 this.backEndResponse.endpoints.user.signIn(this.email).subscribe({
-                    next: (data: User) => {
-                        console.log(JSON.stringify(data))
-                        sessionStorage.setItem("user", JSON.stringify(data));
+                    next: (data: HttpResponse<User>) => {
+                        sessionStorage.setItem("user", JSON.stringify(data.body));
                         this.router.navigate(['/']);
                     }
                 })

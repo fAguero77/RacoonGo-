@@ -5,6 +5,7 @@ import { auth } from "../../models/app.constants";
 import { BackendRouterService } from "../../services/backend-router.service";
 import { User } from "../../models/app.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-account',
@@ -21,7 +22,7 @@ export class AccountComponent implements OnInit {
     password!: string
     username!: string
 
-    constructor(private backEndResponse: BackendRouterService, private fb: FormBuilder) {}
+    constructor(private backEndResponse: BackendRouterService, private fb: FormBuilder, private helperService: HelperService, private router: Router) { }
 
     ngOnInit(): void {
         this.signUpForm = this.fb.group({
@@ -50,16 +51,15 @@ export class AccountComponent implements OnInit {
         const loginUser = new User(this.email, this.username, 0);
         this.backEndResponse.endpoints.user.addUser(loginUser).subscribe({
             next: () => {
-                sessionStorage.setItem("user", JSON.stringify(loginUser));
                 this.invalidSignup = false;
-                createUserWithEmailAndPassword(auth, this.email, this.password)
-                    .then((userCredential) => {
-                    })
-                    .catch((error) => {
-                    });
+                this.router.navigate(['/']);
+                createUserWithEmailAndPassword(auth, this.email, this.password);
             },
             error: () => {
                 this.invalidSignup = true;
+            },
+            complete: () => {
+                sessionStorage.setItem("user", JSON.stringify(loginUser));
             }
         });
     }

@@ -41,7 +41,6 @@ export class EventFormComponent implements OnInit {
     datePipe: DatePipe;
     ageList: string[] = [];
 
-
     constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService, private fb: FormBuilder) {
         this.image = this.defaultImg;
         this.colorList = this.helperService.colorList;
@@ -67,17 +66,20 @@ export class EventFormComponent implements OnInit {
     }*/
 
     ngOnInit(): void {
-        this.user = JSON.parse(sessionStorage.getItem("user")!).body  ;
+        this.user = JSON.parse(sessionStorage.getItem("user")!);
         alert(this.user.username)
-        this.addEventForm = this.fb.group({
-            title: ['', [Validators.required]],
-            description: ['', [Validators.required]],
-            age: ['', [Validators.required]],
-            startDate: ['', [Validators.required]],
-            endDate: ['', [Validators.required]],
-            location: ['', [Validators.required]],
-            image: ['', [Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]]
-        })
+        if (this.helperService.event != undefined) {
+            let e = this.helperService.event;
+            this.addEventForm = this.fb.group({
+                title: ['', [Validators.required]],
+                description: ['', [Validators.required]],
+                age: ['', [Validators.required]],
+                startDate: ['', [Validators.required]],
+                endDate: ['', [Validators.required]],
+                location: ['', [Validators.required]],
+                image: ['', [Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]]
+            })
+        }
         /*this.addEventForm = new FormGroup({
             title: new FormControl(e.title),
             description: new FormControl(e.description),
