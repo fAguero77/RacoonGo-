@@ -10,7 +10,7 @@
 	    </div>
         
         
-	    <search-bar></search-bar>
+	    <search-bar [isEventSearch]=true (parentListUpdate)="onEventsListUpdate($event)"></search-bar>
 
 	    <div class="row">
             <div *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4">

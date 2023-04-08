@@ -5,16 +5,12 @@
         <div class="col-lg-8 mx-auto">
             <div class="bg-white p-3 rounded shadow">
 
-                <form action="">
-
-
-                    <!-- BARRA -->
+                <form [formGroup]="submitSearch">
+                    <!-- BÚSQUEDA BÁSICA -->
                     <div class="input-group mb-4 border rounded-pill shadow-sm p-1">
-
-                        <!--(MUCC, Castell&#xf3;n, Divertido, ...)-->
-                        <input type="search" placeholder="Qu&#233; buscas?" aria-describedby="button-addon3" class="form-control bg-none border-0">
+                        <input type="search" formControlName="query" placeholder="Qu&#233; buscas?" aria-describedby="button-addon3" class="form-control bg-none border-0">
                         <div class="input-group-append border-0">
-                            <button id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-search"></i></button>
+                            <button id="button-addon3" type="submit" (click)="submitSearchFunction()" class="btn btn-link text-success"><i class="fa fa-search"></i></button>
                         </div>
 
 
@@ -29,65 +25,65 @@
 
                     </div>
                 </form>
-                <!-- / BARRA -->
-                <!-- OPTS BUSQUEDA AVANZADA -->
+	            <!-- FIN BÚSQUEDA BÁSICA -->
+
+                <!-- BÚSQUEDA AVANZADA -->
                 <div class="collapse" id="collapseOptions">
                     <td class="card card-body">
 
+                    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Búsqueda Avanzada</h6>
 
-                        <form>
+                        <form novalidate [formGroup]="submitSearchAdvance">
                             <div style="border-spacing: 10px; border-collapse: separate;">
 
                                 <div class="row">
                                     <div class="col-md-8 box">
                                         <div class="input-icons">
                                             <i class="fa fa-font icon"></i>
-                                            <input type="text" placeholder="Título" aria-describedby="button-addon3" class="form-control input-field">
+                                            <input type="text" formControlName="title" placeholder="Título" aria-describedby="button-addon3" class="form-control input-field">
                                         </div>
                                     </div>
                                     <div class="col-md-4 box">
                                         <div class="input-icons">
                                             <i class="fa fa-map-marker icon" aria-hidden="true"></i>
-                                            <input type="text" placeholder="Localización" aria-describedby="button-addon3" class="form-control input-field">
+                                            <input type="text" formControlName="location" placeholder="Localización" aria-describedby="button-addon3" class="form-control input-field">
                                         </div>
                                     </div>
                                 </div>
                                 <!--/row-->
                                 <div class="row">
                                     <div class="col-md-8 box">
-                                        <ng-multiselect-dropdown [placeholder]="'Etiquetas'"
+                                        <ng-multiselect-dropdown formControlName="selectedTags" required="false"
+                                                                 [placeholder]="'Etiquetas'"
                                                                  [settings]="dropdownSettingsTags"
                                                                  [data]="dropdownListTags"
-                                                                 [(ngModel)]="selectedItemsTags"
-                                                                 (onSelect)="onItemSelectTag($event)"
-                                                                 (onSelectAll)="onSelectAllTags($event)">
+                                                                 [(ngModel)]="selectedTags">
                                         </ng-multiselect-dropdown>
                                     </div>
                                     <div class="col-md-4 box">
-                                        <ng-multiselect-dropdown [placeholder]="'Rango de edad'"
+                                        <ng-multiselect-dropdown formControlName="age" required="false"
+                                                                 [placeholder]="'Rango de edad'"
                                                                  [settings]="dropdownSettingsAge"
                                                                  [data]="dropdownListAge"
-                                                                 [(ngModel)]="selectedItemsAge"
-                                                                 (onSelect)="onItemSelectAge($event)"
-                                                                 (onSelectAll)="onSelectAllAge($event)">
+                                                                 [(ngModel)]="selectedAge">
                                         </ng-multiselect-dropdown>
                                     </div>
                                 </div>
                                 <!--/row-->
                                 <div class="row align-items-center">
-	                                <div class="col-md-2 box">
-		                                Desde/hasta:
-	                                </div>
-                                    <div class="col-md-3 box">
-                                        <input type="date" placeholder="Fecha inicio" aria-describedby="button-addon3" class="form-control">
+                                    <div class="col-md-2 box">
+                                        Desde/hasta:
                                     </div>
                                     <div class="col-md-3 box">
-                                        <input type="date" placeholder="Fecha fin" aria-describedby="button-addon3" class="form-control">
+                                        <input type="date" formControlName="iniDate" placeholder="Fecha inicio" aria-describedby="button-addon3" class="form-control">
+                                    </div>
+                                    <div class="col-md-3 box">
+                                        <input type="date" formControlName="endDate" placeholder="Fecha fin" aria-describedby="button-addon3" class="form-control">
                                     </div>
                                     <div class="col-md-4 box">
                                         <div class="input-icons">
                                             <i class="fa fa-suitcase icon"></i>
-                                            <input type="text" placeholder="Organizador" aria-describedby="button-addon3" class="form-control input-field">
+                                            <input type="text" formControlName="userCompany" placeholder="Organizador" aria-describedby="button-addon3" class="form-control input-field">
                                         </div>
                                     </div>
                                 </div>
@@ -95,11 +91,11 @@
                                 <div class="row align-items-end text-right">
                                     <div class="col-md-8 box">
 
-                                        <textarea style="height: 100px;" placeholder="Descripción" aria-describedby="button-addon3" class="form-control "></textarea>
+                                        <textarea style="height: 100px;" formControlName="description" placeholder="Descripción" aria-describedby="button-addon3" class="form-control"></textarea>
 
                                     </div>
                                     <div class="col-md-4 box" style="position: relative">
-                                        <button type="submit" class="btn btn-success">
+                                        <button type="submit" (click)="submitSearchAdvanceFunction()" class="btn btn-success">
                                             Búsqueda Avanzada
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
                                                 <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
@@ -110,9 +106,9 @@
                                 <!--/row-->
                             </div>
                         </form>
-                </div>
+</div>
             </div>
-            <!--/ OPTS BUSQUEDA AVANZADA-->
+            <!-- FIN BÚSQUEDA AVANZADA-->
 
 
 
