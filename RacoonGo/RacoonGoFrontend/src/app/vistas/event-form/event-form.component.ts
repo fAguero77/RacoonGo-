@@ -6,7 +6,7 @@ import {Theme} from "../../models/app.enum";
 import {Event, Location, User} from "../../models/app.model";
 import {BackendRouterService} from "../../services/backend-router.service";
 import { HelperService } from '../../services/helper.service';
- 
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'event-form',
@@ -14,7 +14,6 @@ import { HelperService } from '../../services/helper.service';
     styleUrls: ['./event-form.component.css']
 })
 export class EventFormComponent implements OnInit {
-
     addEventForm!: FormGroup;
     submitted = false;
     title: string="";
@@ -36,7 +35,7 @@ export class EventFormComponent implements OnInit {
     event: Event | undefined;
     ageList: string[] = [];
 
-    constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService, private fb: FormBuilder) {
+    constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService, private fb: FormBuilder, private router: Router) {
         this.image = this.defaultImg;
         this.colorList = this.helperService.colorList;
         for (let i = 0; i < 10; i++) {
@@ -47,10 +46,11 @@ export class EventFormComponent implements OnInit {
             this.ageList.push(this.helperService.getAgeText(i))
         }
     }
-
     ngOnInit(): void {
         this.user = JSON.parse(sessionStorage.getItem("user")!);
-        alert(this.user.username)
+        if (this.user == null) {
+            this.router.navigate(['/login']);
+        }
         let e = this.helperService.event;
         this.addEventForm = this.fb.group({
             title: ['', [Validators.required]],
@@ -131,8 +131,8 @@ export class EventFormComponent implements OnInit {
                 this.themes.pop();
                 break;
             }
+        }
     }
-}
     onWriteChange(event: any) {
         let img = event.target?.value;
         try {
@@ -144,7 +144,6 @@ export class EventFormComponent implements OnInit {
     }
     getThemeName(index: number) {
         return Theme[index];
-
     }
 
     deleteTag(theme: number) {
@@ -152,8 +151,6 @@ export class EventFormComponent implements OnInit {
         let auxDelante = this.themes.slice(0, this.themes.indexOf(theme));
         let auxAtras = this.themes.slice(this.themes.indexOf(theme) + 1, this.themes.length);
         this.themes = auxDelante.concat(auxAtras);
-        
-       
     }
 
     randomColor(index: number) {

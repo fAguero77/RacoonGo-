@@ -11,41 +11,37 @@ import { getAuth, deleteUser } from 'firebase/auth';
     styleUrls: ['./delete-user-btn.component.css']
 })
 export class DeleteUserBtnComponent implements OnInit {
-
+    user!: User;
     constructor(private routerService: BackendRouterService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
     deleteAcount(){
-        Swal.fire({
-            title: '&#191;Est&aacute;s seguro?',
-            text: '&iquest;No podr&aacute;s recuperar tu cuenta!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'S&iacute;, eliminar.',
-            cancelButtonText: 'No, cancelar.'
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                await this.deleteUserInfo();
-                //try {
-                //    await this.deleteUserInfo();
+        this.user = JSON.parse(sessionStorage.getItem("user")!).body;
+        if (this.user == null) {
+            this.router.navigate(['/login']);
+        }
+        else {
+            Swal.fire({
+                title: '&#191;Est&aacute;s seguro?',
+                text: '&iquest;No podr&aacute;s recuperar tu cuenta!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'S&iacute;, eliminar.',
+                cancelButtonText: 'No, cancelar.'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await this.deleteUserInfo();
 
-                //} catch (error) {
-                //    Swal.fire({
-                //        icon: 'error',
-                //        title: 'Error al eliminar la cuenta',
-                //        text: 'Intentelo de nuevo en unos minutos'
-                //    });
-                //}
-            }
-        })
+                }
+            })
+        }
     }
 
     async deleteUserInfo(): Promise<void> {
-        let user: User = JSON.parse(sessionStorage.getItem("user")!).body;
         // Delete user account, events and games
-        this.routerService.endpoints.user.deleteAccount(user.email).subscribe({
+        this.routerService.endpoints.user.deleteAccount(this.user.email).subscribe({
             next: (data: any) => {
                 this.deleteFromFirebaseAuth();
                 // Delete session and redirect to main page
