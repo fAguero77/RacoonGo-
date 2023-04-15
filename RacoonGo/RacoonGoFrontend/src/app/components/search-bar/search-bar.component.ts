@@ -129,7 +129,7 @@ export class SearchBarComponent implements OnInit {
                 title: this.submitSearchAdvance.value.title,
                 description: this.submitSearchAdvance.value.description,
                 id: '',
-                recommendedAge: 0,
+                recommendedAge: -1,
                 startDate: this.submitSearchAdvance.value.iniDate,
                 endDate: this.submitSearchAdvance.value.endDate,
                 themes: [],
@@ -137,6 +137,19 @@ export class SearchBarComponent implements OnInit {
                 photoUrl: '',
                 user: { username: this.submitSearchAdvance.value.userCompany, email: "", score: -1}
             };
+
+            if (this.submitSearchAdvance.value.age.length > 0)
+            {
+                query.recommendedAge = this.submitSearchAdvance.value.age[0].item_id;
+            }
+
+            if (this.submitSearchAdvance.value.selectedTags.length > 0) {
+                query.themes = [this.submitSearchAdvance.value.selectedTags.length];
+                for (var i = 0; i < this.submitSearchAdvance.value.selectedTags.length; i++) {
+                    query.themes[i] = this.submitSearchAdvance.value.selectedTags[i].item_id;
+                }
+            }
+
             console.log(query);
             this.backEndResponse.endpoints.event.searchAdvance(query).subscribe({
                 next: (data: HttpResponse<BackEndResponse<any>>) => {

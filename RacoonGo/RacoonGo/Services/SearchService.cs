@@ -14,7 +14,7 @@ public class SearchService : ISearchService
 		foreach (var e in events){
 			if (keywords.Any(k => ContainsIfEmpty(e.title, k) || ContainsIfEmpty(e.description, k) ||
 			                      ContainsIfEmpty(e.location.name, k) || ContainsIfEmpty(e.user.username, k) ||
-			                      ContainsIfEmpty(e.user.email, k)))
+			                      ContainsIfEmpty(e.user.email, k) || EqualThemes(e.themes, k)))
 			{
 				result.Add(e);
 			}
@@ -30,7 +30,9 @@ public class SearchService : ISearchService
 		{
 			if (EqualIfEmpty(e.title, query.title) && EqualIfEmpty(e.description, query.description) &&
 			    EqualIfEmpty(e.location.name, query.location.name) &&
-			    EqualIfEmpty(e.user.username, query.user.username))
+			    EqualIfEmpty(e.user.username, query.user.username) && 
+			    EqualThemes(e.themes, query.themes) && 
+			    EqualAge(e.recommendedAge, query.recommendedAge))
 			{
 				result.Add(e);
 			}
@@ -67,6 +69,51 @@ public class SearchService : ISearchService
 			return true;
 
 		return s.Contains(q);
+	}
+
+	private static bool EqualThemes(List<int> a, List<int> q)
+	{
+		if(a.Count == 0 || q.Count == 0) return true;
+
+		if(a.Count != q.Count)
+			return false;
+
+		foreach (var i in a)
+		{
+			bool found = false;
+			foreach (var y in q)
+			{
+				if(i == y)
+					found = true;
+			}
+
+			if(!found)
+				return false;
+		}
+		return true;
+	}
+
+	private static bool EqualThemes(List<int> a, string q)
+	{
+		if (a.Count == 0 || q == "") return true;
+
+		foreach (var iTheme in a)
+		{
+			Theme nameTheme = (Theme)iTheme;
+			if (ContainsIfEmpty(nameTheme.ToString(), q))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public static bool EqualAge(int a, int q)
+	{
+		if (a == -1 || q == -1)
+			return true;
+		return a == q;
 	}
 }
 

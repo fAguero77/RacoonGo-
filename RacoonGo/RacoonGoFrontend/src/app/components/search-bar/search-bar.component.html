@@ -37,22 +37,28 @@
                             <div style="border-spacing: 10px; border-collapse: separate;">
 
                                 <div class="row">
-                                    <div class="col-md-8 box">
-                                        <div class="input-icons">
-                                            <i class="fa fa-font icon"></i>
-                                            <input type="text" formControlName="title" placeholder="Título" aria-describedby="button-addon3" class="form-control input-field">
-                                        </div>
-                                    </div>
+	                                <div class="col-md-8 box">
+			                                
+                                        <h6>Título</h6>
+			                             <input type="text" formControlName="title" placeholder="Título" aria-describedby="button-addon3" class="form-control">
+		                                <!--<div class="input-icons">
+			                                <i class="fa fa-font icon"></i>
+			                                <input type="text" formControlName="title" placeholder="Título" aria-describedby="button-addon3" class="form-control input-field">
+		                                </div>-->
+	                                </div>
                                     <div class="col-md-4 box">
-                                        <div class="input-icons">
+                                        <h6>Localización</h6>
+                                        <input type="text" formControlName="location" placeholder="Localización" aria-describedby="button-addon3" class="form-control">
+                                        <!--<div class="input-icons">
                                             <i class="fa fa-map-marker icon" aria-hidden="true"></i>
                                             <input type="text" formControlName="location" placeholder="Localización" aria-describedby="button-addon3" class="form-control input-field">
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                                 <!--/row-->
                                 <div class="row">
                                     <div class="col-md-8 box">
+                                        <h6>Etiquetas</h6>
                                         <ng-multiselect-dropdown formControlName="selectedTags" required="false"
                                                                  [placeholder]="'Etiquetas'"
                                                                  [settings]="dropdownSettingsTags"
@@ -61,6 +67,7 @@
                                         </ng-multiselect-dropdown>
                                     </div>
                                     <div class="col-md-4 box">
+                                        <h6>Rango de edad</h6>
                                         <ng-multiselect-dropdown formControlName="age" required="false"
                                                                  [placeholder]="'Rango de edad'"
                                                                  [settings]="dropdownSettingsAge"
@@ -71,35 +78,34 @@
                                 </div>
                                 <!--/row-->
                                 <div class="row align-items-center">
-                                    <div class="col-md-2 box">
-                                        Desde/hasta:
-                                    </div>
-                                    <div class="col-md-3 box">
+	                                <div class="col-md-4 box">
+	                                    <h6>Desde</h6>
                                         <input type="date" formControlName="iniDate" placeholder="Fecha inicio" aria-describedby="button-addon3" class="form-control">
                                     </div>
-                                    <div class="col-md-3 box">
+                                    <div class="col-md-4 box">
+	                                    <h6>Hasta</h6>
                                         <input type="date" formControlName="endDate" placeholder="Fecha fin" aria-describedby="button-addon3" class="form-control">
                                     </div>
                                     <div class="col-md-4 box">
-                                        <div class="input-icons">
+                                        <h6>Organizador</h6>
+	                                    <input type="text" formControlName="userCompany" placeholder="Organizador" aria-describedby="button-addon3" class="form-control">
+                                        <!--<div class="input-icons">
                                             <i class="fa fa-suitcase icon"></i>
                                             <input type="text" formControlName="userCompany" placeholder="Organizador" aria-describedby="button-addon3" class="form-control input-field">
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                                 <!--/row-->
                                 <div class="row align-items-end text-right">
                                     <div class="col-md-8 box">
-
+                                        <h6 class="text-left">Descripción</h6>
                                         <textarea style="height: 100px;" formControlName="description" placeholder="Descripción" aria-describedby="button-addon3" class="form-control"></textarea>
 
                                     </div>
                                     <div class="col-md-4 box" style="position: relative">
                                         <button type="submit" (click)="submitSearchAdvanceFunction()" class="btn btn-success">
+                                            <i class="fa fa-search"></i>
                                             Búsqueda Avanzada
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
-                                                <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
-                                            </svg>
                                         </button>
                                     </div>
                                 </div>
