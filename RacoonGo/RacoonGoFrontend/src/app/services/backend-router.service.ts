@@ -27,6 +27,8 @@ export class BackendRouterService {
                 getEvents: function () { return context.api_list('Events/events', {}) },
                 getMyEvents: function (email: string) { return context.api_list('Events/myEvents', { email }) },
                 deleteEvent: function (email: string, id: string) { return context.api_delete('Events/delete',  email+"&"+id ) },
+                search: function (query: string) { return context.api_list('Events/search', { query }) },
+                searchAdvance: function (event: Event) { return context.api_create('Events/searchAdvance', event)},
             },
             user: {
                 addUser: function (user: User) { return context.api_create('Users', user) },

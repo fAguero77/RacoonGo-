@@ -1,4 +1,6 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RacoonGo.Models;
 
 namespace RacoonGo.Models
@@ -32,8 +34,8 @@ namespace RacoonGo.Models
         public string title { get; set; }
         public string description { get; set; }
         public int recommendedAge { get; set; }
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
+        public DateTime? startDate { get; set; }
+        public DateTime? endDate { get; set; }
         public List<int> themes { get; set; }
         public Location location { get; set; }
 

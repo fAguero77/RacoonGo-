@@ -4,11 +4,15 @@
 
 <div class="container-fluid py-5">
     <div class="container pt-5 pb-3">
-        <div class="text-center mb-3 pb-3">
-            <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Eventos</h6>
-            <h1>Eventos disponibles</h1>
-        </div>
-        <div class="row">
+	    <div class="text-center mb-3 pb-3">
+		    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Eventos</h6>
+		    <h1>Eventos disponibles</h1>
+	    </div>
+        
+        
+	    <search-bar [isEventSearch]=true (parentListUpdate)="onEventsListUpdate($event)"></search-bar>
+
+	    <div class="row">
             <div *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4">
                 <div class="package-item bg-white mb-2">
                     <!-- Foto or default -->

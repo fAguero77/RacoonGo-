@@ -30,6 +30,11 @@ export class EventsListComponent implements OnInit {
 
     ngOnInit(): void { this.getEvents(); }
 
+    onEventsListUpdate(data: Event[]) {
+        // Para recibir lista actualizada del hijo (search-bar) con las listas filtradas
+        this.eventsList = data;
+    }
+
     getEvents(): void {
         this.backEndResponse.endpoints.event.getEvents().subscribe({
             next: (data: HttpResponse<BackEndResponse<any>>) => {

@@ -21,6 +21,8 @@ import { CommonModule } from '@angular/common';
 import { DeleteUserBtnComponent } from './vistas/delete-user-btn/delete-user-btn.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './vistas/profile/profile.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { ProfileComponent } from './vistas/profile/profile.component';
         PasswordComponent,
         DeleteUserBtnComponent,
         NavbarComponent,
-        ProfileComponent
+        ProfileComponent,
+        SearchBarComponent
     ],
     imports: [
         CommonModule,
@@ -49,7 +52,7 @@ import { ProfileComponent } from './vistas/profile/profile.component';
         NoopAnimationsModule,
         MatIconModule,
         MatMenuModule,
-
+        NgMultiSelectDropDownModule.forRoot()
     ],
     providers: [],
     exports: [RouterModule],
