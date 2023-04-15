@@ -23,6 +23,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './vistas/profile/profile.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { GameFormComponent } from './vistas/game-form/game-form.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
         DeleteUserBtnComponent,
         NavbarComponent,
         ProfileComponent,
-        SearchBarComponent
+        SearchBarComponent,
+        GameFormComponent
     ],
     imports: [
         CommonModule,

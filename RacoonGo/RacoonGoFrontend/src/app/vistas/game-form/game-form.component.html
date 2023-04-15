@@ -1,0 +1,56 @@
+﻿<div class="caja container-fluid">
+    <div class="caja-interno container-fluid">
+        <h1>Crear nuevo Juego</h1>
+        <form >
+            <div class="form-group">
+
+                <!-- Name Zone-->
+
+                <input class="form-control" [(ngModel)]="game.name" name="name" type="text" />
+
+                <!-- Difficulty Zone-->
+
+                <h3>Dificultad</h3>
+                <div class="form-inline">
+                    <div class="radio">
+                        <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="0">Novato</label>
+                    </div>
+                    <div class="radio">
+                        <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="1">Medio</label>
+                    </div>
+                    <div class="radio">
+                        <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="2">Experto</label>
+                    </div>
+                </div>
+
+                <!-- Description Zone-->
+
+                <div>
+                    <textarea name="description" class="form-control" cols="40" rows="5" placeholder="Descripción" [(ngModel)]="game.description"></textarea>
+                </div>
+                <!-- Questions Zone-->
+                <div style="overflow: hidden visible; max-height:440px">
+                    <ul style=" list-style: none; ">
+                        <li *ngFor="let question of game.questions; let i = index">
+                            <div class="btn-group" role="group">
+
+                                <input type="button" class="form-control questionList" value="Editar {{question.title}}" (click)="editQuestion(question)" />
+                                <button type="button" class="form-control deleteList" (click)="deleteQuestion(i)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                    </svg>
+                                </button>
+                                
+
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+                <input class="form-control" type="button" value="Añadir Pregunta" (click)="addQuestion()" />
+
+
+            </div>
+        </form>
+    </div>
+</div>

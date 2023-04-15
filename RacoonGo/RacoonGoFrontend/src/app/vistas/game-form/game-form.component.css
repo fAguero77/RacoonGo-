@@ -1,0 +1,28 @@
+.caja {
+    border-radius: 20px;
+    background: #ffffff;
+    width: 33rem;
+    height: 51rem;
+    margin: 0 auto;
+    border: solid #74d664;
+}
+
+.caja-interno {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.radio {
+    margin-right: 20px;
+}
+.deleteList {
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.questionList {
+    background-color: #74d664;
+    border-radius: 10px;
+    margin-top: 10px;
+}

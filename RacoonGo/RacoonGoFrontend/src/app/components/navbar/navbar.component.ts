@@ -49,6 +49,10 @@ export class NavbarComponent {
         this.router.navigate(['/sponsor']);
 
     }
+    goAddGame() {
+        this.router.navigate(['/addGame']);
+
+    }
     deleteAcount() {
         Swal.fire({
             title: '¿Estás seguro?',

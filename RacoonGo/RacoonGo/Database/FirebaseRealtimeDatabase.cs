@@ -35,7 +35,6 @@ namespace RacoonGo.Database
             {
                 return false;
             }
-            Console.WriteLine(user.email);
 
             string uri = string.Format(BASE_PATH_USER, user.email.Replace(".", " "));
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
@@ -141,7 +140,6 @@ namespace RacoonGo.Database
 
         public async Task DeleteEvent(string email, string id)
         {
-            Console.WriteLine(email + "  " + id);
             string uri = string.Format(BASE_PATH_EVENT_USER, email.Replace(".", " "), id);
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Delete, uri);
 

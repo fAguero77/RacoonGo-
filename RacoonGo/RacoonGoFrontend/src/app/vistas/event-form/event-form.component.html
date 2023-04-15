@@ -9,7 +9,6 @@
 
                     <td>
                         <div class="input-field" [class.error]="addEventForm.controls['title'].dirty && addEventForm.hasError('required', 'title')">
-                            <span class="fa fa-globe p-2"></span>
                             <input type="text" class="form-control" id="title" placeholder="Titulo" name="title" [(ngModel)]="title" formControlName="title"
                                 (blur)="checkValidity('title')" [ngClass]="{ 'is-invalid': addEventForm.get('title')?.invalid && (addEventForm.get('title')?.touched || submitted), 'is-valid': addEventForm.get('title')?.valid && addEventForm.get('title')?.touched}">
                             <div class="invalid-feedback">El título es obligatorio</div>

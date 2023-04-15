@@ -18,4 +18,9 @@ export enum RecommendedAge {
     Adolescentes,
     Adultos
 }
+export enum Difficulty {
+    Novato = 0,
+    Medio,
+    Experto
+}
 
