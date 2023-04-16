@@ -30,6 +30,11 @@ export class Question {
 export class Option {
     public body !: string;
     public correct!: boolean;
+
+    constructor(body: string) {
+        this.body = body;
+        this.correct = false;
+    }
 }
 export class Location {
     public name!: string;
