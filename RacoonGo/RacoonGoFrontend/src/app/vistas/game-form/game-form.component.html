@@ -48,6 +48,10 @@
                         </ul>
 
                     </div>
+                    <div *ngIf="invalidQuestions" class="text-danger">Todas las preguntas deben tener opciones.</div>
+                    <div *ngIf="invalidQuestions" class="text-danger">Revisa las preguntas: {{preguntasError}}</div>
+
+
                     <input class="form-control" type="button" value="Añadir Pregunta" (click)="addQuestion()" />
 
 
@@ -59,6 +63,7 @@
 
 
     </div>
+
     <div class="d-flex flex-column align-items-center justify-content-end">
         <hr class="separador">
         <button class="submitButton form-control" (click)="submit()">Crear juego</button>

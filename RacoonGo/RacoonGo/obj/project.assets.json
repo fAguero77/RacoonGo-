@@ -8575,19 +8575,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\david\\.nuget\\packages\\": {}
+    "C:\\Users\\aguer\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\david\\source\\Repos\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+      "projectUniqueName": "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
       "projectName": "RacoonGo",
-      "projectPath": "C:\\Users\\david\\source\\Repos\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
-      "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\david\\source\\Repos\\RacoonGo-\\RacoonGo\\RacoonGo\\obj\\",
+      "projectPath": "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\RacoonGo.csproj",
+      "packagesPath": "C:\\Users\\aguer\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\aguer\\OneDrive\\UJI\\4to año (2022 - 2023)\\Segundo Semestre\\EI1049 - Taller de Ingeniería del Software\\RacoonGo-\\RacoonGo\\RacoonGo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\aguer\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8661,7 +8661,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   },

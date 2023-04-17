@@ -15,9 +15,13 @@ import { QuestionDialogComponent } from '../question-dialog/question-dialog.comp
 })
 export class GameFormComponent implements OnInit {
 
+    invalidQuestions: boolean;
     game: Game;
     user!: User;
+    preguntasError: string;
     constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService,  private router: Router, private dialog: MatDialog) {
+        this.preguntasError = "";
+        this.invalidQuestions = false;
         this.user = JSON.parse(sessionStorage.getItem("user")!);
         if (this.user == undefined) {
             this.router.navigate(['/'])
@@ -42,7 +46,9 @@ export class GameFormComponent implements OnInit {
     }
 
     addQuestion() {
-        this.game.questions.push(new Question("Pregunta #"+ (this.game.questions.length+1),10))
+        if (this.game.questions.length  < 15) {
+            this.game.questions.push(new Question("Pregunta #" + (this.game.questions.length + 1), 10));
+        } 
     }
     editQuestion(question: Question, index:number) {
         this.openDialog(question, index);
@@ -60,8 +66,29 @@ export class GameFormComponent implements OnInit {
         this.game.questions = auxDelante.concat(auxAtras);
     }
 
+    errorPreguntas(): boolean {
+        this.invalidQuestions = false;
+        if (this.game.questions.length == 0) {
+            return true;
+        }
+        this.preguntasError = "";
+        for (let question of this.game.questions) {
+            if (question.options.length < 2) {
+                this.preguntasError += question.title + ", "
+                this.invalidQuestions = true;
+            }
+        }
+        if (this.invalidQuestions) {
+            this.preguntasError = this.preguntasError.substring(0, this.preguntasError.length - 2);
+            return true;
+        }
+        return false;
+    }
+
     submit() {
+        if(this.errorPreguntas())
+            alert("polla")
 //HACER CONEXION CON BBDD Y .NET Y COMPROBACIONES DE >=1 NRO PREGUNTAS, PREGUNTAS EXISTENTES NO VACIAS...
-        alert("polla")
+    
     }
 }
