@@ -7,6 +7,7 @@ import { HttpResponse } from '@angular/common/http';
 import { HelperService } from '../../services/helper.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { EventFormComponent } from '../event-form/event-form.component';
+import {InfoService} from "../event-info/info.service";
 
 @Component({
     selector: 'events-list',
@@ -19,9 +20,11 @@ export class EventsListComponent implements OnInit {
     user: User |undefined = undefined;
 
 
-    constructor(private route: ActivatedRoute,
-        private router: Router,
-        private backEndResponse: BackendRouterService, private helperService: HelperService) {
+    constructor(private route: ActivatedRoute, 
+                private router: Router, 
+                private backEndResponse: BackendRouterService, 
+                private helperService: HelperService,
+                private infoService:InfoService) {
         if (JSON.parse(sessionStorage.getItem("user")!) != undefined) {
             this.user = JSON.parse(sessionStorage.getItem("user")!);
 
@@ -40,7 +43,7 @@ export class EventsListComponent implements OnInit {
             next: (data: HttpResponse<BackEndResponse<any>>) => {
                 if (data.body) {
                     this.eventsList = data.body as unknown as Event[];
-                    this.eventsList.filter((value, index) => index % 3 === 0);
+                    this.eventsList = this.eventsList.filter((value, index) => index % 3 === 0);
                 }
             },
             error: () => {
@@ -86,6 +89,12 @@ export class EventsListComponent implements OnInit {
 
     updateEvent(e: Event) {
         this.helperService.updateEvent(e);
+    }
+    
+    wievEvent(e: Event) {
+        console.log(e);
+        this.infoService.setData(e);
+        this.router.navigate(['event/info']);
     }
 
 }
