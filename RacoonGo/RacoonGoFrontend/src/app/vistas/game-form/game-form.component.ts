@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { Game, Question, User } from "../../models/app.model";
 import { MatDialog } from '@angular/material/dialog';
 import { QuestionDialogComponent } from '../question-dialog/question-dialog.component';
+import Swal from 'sweetalert2';
+
 
 
 @Component({
@@ -23,8 +25,9 @@ export class GameFormComponent implements OnInit {
         this.preguntasError = "";
         this.invalidQuestions = false;
         this.user = JSON.parse(sessionStorage.getItem("user")!);
-        if (this.user == undefined) {
-            this.router.navigate(['/'])
+
+        if (this.user == null) {
+            this.router.navigate(['/login'])
         }
         this.game = new Game();
         this.game.name = "Juego de "+this.user.username
@@ -86,9 +89,16 @@ export class GameFormComponent implements OnInit {
     }
 
     submit() {
-        if(this.errorPreguntas())
-            alert("polla")
-//HACER CONEXION CON BBDD Y .NET Y COMPROBACIONES DE >=1 NRO PREGUNTAS, PREGUNTAS EXISTENTES NO VACIAS...
+        if (!this.errorPreguntas()) {
+            this.game.id = this.user.email
+            this.backendRouterService.endpoints.game.addGame(this.game).subscribe({
+                next: () => {
+                    Swal.fire('Muy bien!', 'Se ha creado correctamente tu juego: ' + this.game.name, 'success')
+
+                }
+            })
+        }
+           
     
     }
 }

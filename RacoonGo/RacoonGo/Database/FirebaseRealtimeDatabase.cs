@@ -25,6 +25,8 @@ namespace RacoonGo.Database
         private readonly string BASE_PATH_COMPANY_USER = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/CompanyUsers/{0}.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private readonly string BASE_PATH_ALL_EVENTS_USER = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Events/{0}.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private readonly string BASE_PATH_EVENT_USER = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Events/{0}/{1}.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
+        private readonly string BASE_PATH_GAME_USER = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Games/{0}/{1}.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
+
         private readonly string BASE_PATH_DB = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Locations.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private readonly string BASE_PATH_EVENTS = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Events/.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private HttpClient _httpClient = new HttpClient();
@@ -89,6 +91,18 @@ namespace RacoonGo.Database
             httpRequestMessage.Content = new StringContent(content);
 
             await _httpClient.SendAsync(httpRequestMessage);
+        }
+
+        public async Task SetGame(string email, Game game)
+        {
+            //Necesito el mail, he hecho que en principio el id almacene el mail, aquí ya se genera un id bueno
+            game.id = GenerateKey();
+            string uri = string.Format(BASE_PATH_GAME_USER, email.Replace(".", " "), game.id);
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
+            string content = JsonConvert.SerializeObject(game);
+            httpRequestMessage.Content = new StringContent(content);
+                        await _httpClient.SendAsync(httpRequestMessage);
+
         }
         public async Task<List<Event>> GetAllEvents()
         {

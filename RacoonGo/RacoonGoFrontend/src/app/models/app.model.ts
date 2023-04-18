@@ -11,6 +11,7 @@ export class Game {
     public name!: string;
     public description !: string;
     public difficulty !: number;
+    public id : string = "";
     public questions : Question[] = [];
 }
 
