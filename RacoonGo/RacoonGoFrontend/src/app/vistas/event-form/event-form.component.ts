@@ -7,6 +7,7 @@ import {Event, Location, User} from "../../models/app.model";
 import {BackendRouterService} from "../../services/backend-router.service";
 import { HelperService } from '../../services/helper.service';
 import {Router} from "@angular/router";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'event-form',
@@ -16,15 +17,10 @@ import {Router} from "@angular/router";
 export class EventFormComponent implements OnInit {
     addEventForm!: FormGroup;
     submitted = false;
-    title: string="";
     age: number=0;
-    description: string="";
-    startDate: string="";
-    endDate: string="";
     invalidStartDate = false;
     invalidEndDate = false;
     invalidLength = false;
-    location: string="";
     themeList: string[] = [];
     themes: number[] = [];
     colorList: string[];
@@ -34,6 +30,7 @@ export class EventFormComponent implements OnInit {
     user!: User;
     event: Event | undefined;
     ageList: string[] = [];
+    datePipe: DatePipe;
 
     constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService, private fb: FormBuilder, private router: Router) {
         this.image = this.defaultImg;
@@ -41,17 +38,28 @@ export class EventFormComponent implements OnInit {
         for (let i = 0; i < 10; i++) {
             this.themeList.push(Theme[i])
         }
+
+        this.todayDate = this.generarDiaActual();
+        this.datePipe = new DatePipe('en-US');
+        
         this.ageList.push("Edad recomendada")
         for (let i = 0; i < 5; i++) {
             this.ageList.push(this.helperService.getAgeText(i))
         }
+    }
+
+    generarDiaActual() {
+        let date = new Date();
+        const year = date.getFullYear().toString();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
     }
     ngOnInit(): void {
         this.user = JSON.parse(sessionStorage.getItem("user")!);
         if (this.user == null) {
             this.router.navigate(['/login']);
         }
-        let e = this.helperService.event;
         this.addEventForm = this.fb.group({
             title: ['', [Validators.required]],
             description: ['', [Validators.required]],
@@ -61,6 +69,19 @@ export class EventFormComponent implements OnInit {
             image: ['', [Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]],
             ageF: [0, [Validators.required, Validators.min(0)]]
         });
+        if(this.helperService.event != undefined) {
+            let e = this.helperService.event;
+            this.addEventForm.patchValue({
+                title: e.title,
+                description: e.description,
+                startDate: this.datePipe.transform(e.startDate, 'yyyy-MM-dd'),
+                endDate: this.datePipe.transform(e.endDate, 'yyyy-MM-dd'),
+                location: e.location.name,
+                ageF: e.recommendedAge
+            });
+            this.image = e.photoUrl;
+            this.themes = e.themes;
+        }
     }
     checkValidity(controlName: string) {
         const control = this.addEventForm.get(controlName);
@@ -76,18 +97,9 @@ export class EventFormComponent implements OnInit {
         }
         let startDate = new Date(this.addEventForm.value.startDate)
         let endDate = new Date(this.addEventForm.value.endDate)
-        if (startDate.getTime() - new Date().getTime() <0) {
-            this.invalidStartDate = true;
-        }
-        else this.invalidStartDate = false;
-        if (endDate.getTime() - startDate.getTime() <0) {
-            this.invalidEndDate = true;
-        }
-        else this.invalidEndDate = false;
-        if (this.themes.length == 0) {
-            this.invalidLength = true;
-        }
-        else this.invalidLength = false;
+        this.invalidStartDate = startDate.getTime() - new Date().getTime() < 0;
+        this.invalidEndDate = endDate.getTime() - startDate.getTime() < 0;
+        this.invalidLength = this.themes.length == 0;
         if (this.addEventForm.invalid) {
             return;
         }
@@ -97,27 +109,46 @@ export class EventFormComponent implements OnInit {
     }
 
     addEvent(): void {
-        let event = new Event('',
-            this.addEventForm.value.title,
-            this.addEventForm.value.description,
-            this.addEventForm.value.age,
-            this.addEventForm.value.startDate,
-            this.addEventForm.value.endDate, 
-            new Location(this.addEventForm.value.location),
-            this.themes, 
-            this.image,
-            this.user
-        );
+        let event: Event;
+        if (this.helperService.event != undefined) {
+            event = new Event(this.helperService.event.id,
+                this.addEventForm.value.title,
+                this.addEventForm.value.description,
+                this.addEventForm.value.age,
+                this.addEventForm.value.startDate,
+                this.addEventForm.value.endDate,
+                new Location(this.addEventForm.value.location),
+                this.themes,
+                this.image,
+                this.user
+            );
+        }
+        else {
+            event = new Event('',
+                this.addEventForm.value.title,
+                this.addEventForm.value.description,
+                this.addEventForm.value.age,
+                this.addEventForm.value.startDate,
+                this.addEventForm.value.endDate, 
+                new Location(this.addEventForm.value.location),
+                this.themes, 
+                this.image,
+                this.user
+            );
+        }
 
         this.backendRouterService.endpoints.event.addEvent(event).subscribe({
             next: () => {
-
-                Swal.fire('Muy bien!', 'Se ha creado correctamente tu evento: ' + event.title, 'success')
+                if (this.helperService.event === undefined) {
+                    Swal.fire('\u00A1Muy bien!', 'Se ha creado correctamente tu evento: ' + event.title, 'success')
+                } else {
+                    Swal.fire('\u00A1Muy bien!', 'Se ha modificado correctamente tu evento: ' + event.title, 'success')
+                    this.helperService.event = undefined;
+                }
+                this.router.navigate(['/events']);
             },
             error: () => {
-
                 Swal.fire('Error', 'La ciudad ' + event.location.name + ' no se ha encontrado', 'error')
-
             }
         });
     }
@@ -147,7 +178,6 @@ export class EventFormComponent implements OnInit {
     }
 
     deleteTag(theme: number) {
-        
         let auxDelante = this.themes.slice(0, this.themes.indexOf(theme));
         let auxAtras = this.themes.slice(this.themes.indexOf(theme) + 1, this.themes.length);
         this.themes = auxDelante.concat(auxAtras);

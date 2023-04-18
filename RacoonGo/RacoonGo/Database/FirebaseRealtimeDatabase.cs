@@ -81,6 +81,7 @@ namespace RacoonGo.Database
 
         public async Task SetEvent(string email, Event e) // Insert or update
         {
+            Console.WriteLine(e.id);
             if (string.IsNullOrEmpty(e.id)) {
                 e.id = GenerateKey();
             }
