@@ -7,6 +7,36 @@ export class BackEndResponse<T> {
     meta?: any;
 }
 
+export class Game {
+    public name!: string;
+    public description !: string;
+    public difficulty !: number;
+    public id : string = "";
+    public questions : Question[] = [];
+}
+
+export class Question {
+    public title!: string;
+    public timesPlayed !: number;
+    public points !: number;
+    public options : Option[] = [];
+
+    constructor(title: string, points: number) {
+        this.title = title;
+        this.timesPlayed = 0;
+        this.points = points;
+    }
+}
+
+export class Option {
+    public body !: string;
+    public correct!: boolean;
+
+    constructor(body: string) {
+        this.body = body;
+        this.correct = false;
+    }
+}
 export class Location {
     public name!: string;
     public lat!: number;

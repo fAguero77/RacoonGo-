@@ -17,7 +17,6 @@ public class UsersController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddUser(User user)
     {
-        return Ok(user);
         if (await FirebaseRealtimeDatabase.Instance.SetUser(user))
         {
             return Ok(user);

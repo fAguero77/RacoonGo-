@@ -1,0 +1,34 @@
+.optionContainer {
+    list-style: none;
+    padding-inline:0;
+    padding-top:20px;
+}
+
+.option{
+    padding-left:0;
+    padding-top:20px;
+}
+
+/deep/ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: #cff7c8;
+}
+/deep/ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: #74d664;
+}
+
+.submitButton {
+    background: #74d664;
+
+}
+input {
+    font-weight: bold;
+    width: 100%;
+    border-radius: 5px;
+    background: white;
+    border: solid #74d664 1px;
+}
+
+    input:hover {
+        background: #A9D6A1;
+        color: black;
+    }
