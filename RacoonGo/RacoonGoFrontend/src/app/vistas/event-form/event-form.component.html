@@ -107,12 +107,14 @@
             <!-- Image Zone-->
     
             <div style="padding:0.5rem;">
-                <input *ngIf="!helperService.event" style="width:25.5rem" type="text" placeholder="Enlace a tu imagen" (keyup)="onWriteChange($event)" formControlName="image">
-                <input *ngIf="helperService.event" style="width:25.5rem" type="text" placeholder="Enlace a tu imagen" (keyup)="onWriteChange($event)" value="{{helperService.event.photoUrl}}" formControlName="image">
+                <input *ngIf="!helperService.event" style="width:25.5rem" type="text" placeholder="Enlace a tu imagen" (keyup)="onWriteChange($event)" formControlName="image"
+                    (blur)="checkValidity('image')" [ngClass]="{ 'is-invalid': addEventForm.get('image')?.invalid && (addEventForm.get('image')?.touched || submitted), 'is-valid': addEventForm.get('image')?.valid && addEventForm.get('image')?.touched}">
+                <input *ngIf="helperService.event" style="width:25.5rem" type="text" placeholder="{{image}}" (keyup)="onWriteChange($event)" value="{{helperService.event.photoUrl}}" formControlName="image"
+                    (blur)="checkValidity('image')" [ngClass]="{ 'is-invalid': addEventForm.get('image')?.invalid && (addEventForm.get('image')?.touched || submitted), 'is-valid': addEventForm.get('image')?.valid && addEventForm.get('image')?.touched}">
                 <div style="padding:0.5rem;">
-
                     <img style="width: 12rem; border: solid #74d664 2px; " src="{{image}}" />
                 </div>
+                <div class="invalid-feedback">Enlace inválido</div>
             </div>
 
             <!-- Button Zone-->

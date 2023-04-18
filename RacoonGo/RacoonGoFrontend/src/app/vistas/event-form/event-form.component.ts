@@ -92,9 +92,6 @@ export class EventFormComponent implements OnInit {
     
     onSubmit() {
         this.submitted = true;
-        if (this.defaultImg === this.image) {
-            this.image = "";
-        }
         let startDate = new Date(this.addEventForm.value.startDate)
         let endDate = new Date(this.addEventForm.value.endDate)
         this.invalidStartDate = startDate.getTime() - new Date().getTime() < 0;
@@ -109,6 +106,9 @@ export class EventFormComponent implements OnInit {
     }
 
     addEvent(): void {
+        if (this.defaultImg === this.image) {
+            this.image = "";
+        }
         let event: Event;
         if (this.helperService.event != undefined) {
             event = new Event(this.helperService.event.id,
