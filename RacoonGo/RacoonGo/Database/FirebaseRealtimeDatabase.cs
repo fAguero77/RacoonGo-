@@ -11,7 +11,7 @@ namespace RacoonGo.Database
         // DB -> Users/id_mail_user -> User
         // DB -> CompanyUsers/id_mail_user -> CompanyUser
         // DB -> Events/id_mail_user -> All users events
-        // DB -> Events/id_mial_user/id_event -> Event
+        // DB -> Events/id_mail_user/id_event -> Event
 
         private static readonly FirebaseRealtimeDatabase i = new FirebaseRealtimeDatabase();
         static FirebaseRealtimeDatabase() { } // Make sure it's truly lazy
@@ -29,6 +29,7 @@ namespace RacoonGo.Database
 
         private readonly string BASE_PATH_DB = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Locations.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private readonly string BASE_PATH_EVENTS = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Events/.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
+        private readonly string BASE_PATH_GAMES = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Games/.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private HttpClient _httpClient = new HttpClient();
 
         public async Task<bool> SetUser(User user) // Insert or update
@@ -152,7 +153,29 @@ namespace RacoonGo.Database
             User userStorage = JsonConvert.DeserializeObject< User>(responseData);
             return userStorage is null ? null : userStorage;
         }
+        
+        public async Task<List<Game>> GetAllGames()
+        {
+            string uri = string.Format(BASE_PATH_GAMES);
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
+            HttpResponseMessage response = await _httpClient.SendAsync(httpRequestMessage);
+            string responseData = await response.Content.ReadAsStringAsync();
 
+            Dictionary<string, Dictionary<string, Game>> gamesInStorage = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, Game>>>(responseData);
+
+            List<Game> all = new List<Game>();
+
+            foreach (Dictionary<string, Game> dict in gamesInStorage.Values)
+            {
+                foreach (Game e in dict.Values)
+                {
+                    all.Add(e);
+                }
+            }
+
+            return gamesInStorage is null ? new List<Game>() { } : new List<Game>(all);
+        }
+        
         public async Task DeleteEvent(string email, string id)
         {
             string uri = string.Format(BASE_PATH_EVENT_USER, email.Replace(".", " "), id);
