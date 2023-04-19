@@ -7,15 +7,10 @@ namespace RacoonGo.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class GameController : ControllerBase
+public class GamesController : ControllerBase
 {
 
-    public GameController()
-    {
-        
-
-
-    }
+    public GamesController(){}
 
     [HttpPost]
     public async Task<IActionResult> AddGame(Game game)
@@ -24,6 +19,11 @@ public class GameController : ControllerBase
         
        return Ok(game);
     }
-
-
+    
+    [HttpGet("games")]
+    public async Task<IActionResult> GetGames()
+    {
+        var games = await FirebaseRealtimeDatabase.Instance.GetAllGames();
+        return Ok(games);
+    }
 }

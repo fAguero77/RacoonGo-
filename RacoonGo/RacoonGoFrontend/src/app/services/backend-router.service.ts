@@ -40,7 +40,8 @@ export class BackendRouterService {
                 addCompany: function (company: CompanyUser) { return context.api_create('Company', company)}
             },
             game: {
-                addGame: function (game: Game) {   return context.api_create('Game',  game)}
+                addGame: function (game: Game) {   return context.api_create('Games',  game)},
+                getGames: function () { return context.api_list('Games/games', {}) },
             }
         }
     }

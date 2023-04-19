@@ -118,4 +118,8 @@ export class NavbarComponent {
             throw new Error('Error al eliminar la cuenta de firebase auth ');
         }
     }
+
+    goGameList() {
+        this.router.navigate(['/games']);
+    }
 }

@@ -11,6 +11,7 @@ import {PasswordComponent} from "./vistas/password/password.component";
 import { SponsorFormComponent } from './vistas/sponsor-form/sponsor-form.component';
 import {ProfileComponent} from "./vistas/profile/profile.component";
 import { GameFormComponent } from './vistas/game-form/game-form.component';
+import {GamesListComponent} from "./vistas/games-list/games-list.component";
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
     { path: 'sponsor', component: SponsorFormComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'addGame', component: GameFormComponent },
+    { path: 'games', component: GamesListComponent }
 
 ];
 

@@ -28,6 +28,7 @@ import { QuestionDialogComponent } from './vistas/question-dialog/question-dialo
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { GamesListComponent } from './vistas/games-list/games-list.component';
 
 
 
@@ -48,7 +49,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
         ProfileComponent,
         SearchBarComponent,
         GameFormComponent,
-        QuestionDialogComponent
+        QuestionDialogComponent,
+        GamesListComponent
     ],
     imports: [
         CommonModule,
