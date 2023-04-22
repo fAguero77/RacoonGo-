@@ -23,7 +23,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './vistas/profile/profile.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { EventInfoComponent } from './vistas/event-info/event-info.component';
 
 
 @NgModule({
@@ -41,7 +40,6 @@ import { EventInfoComponent } from './vistas/event-info/event-info.component';
         NavbarComponent,
         ProfileComponent,
         SearchBarComponent,
-        EventInfoComponent
     ],
     imports: [
         CommonModule,

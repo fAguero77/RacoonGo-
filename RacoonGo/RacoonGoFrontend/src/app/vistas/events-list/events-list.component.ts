@@ -7,7 +7,6 @@ import { HttpResponse } from '@angular/common/http';
 import { HelperService } from '../../services/helper.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { EventFormComponent } from '../event-form/event-form.component';
-import {InfoService} from "../event-info/info.service";
 
 @Component({
     selector: 'events-list',
@@ -23,8 +22,7 @@ export class EventsListComponent implements OnInit {
     constructor(private route: ActivatedRoute, 
                 private router: Router, 
                 private backEndResponse: BackendRouterService, 
-                private helperService: HelperService,
-                private infoService:InfoService) {
+                private helperService: HelperService) {
         if (JSON.parse(sessionStorage.getItem("user")!) != undefined) {
             this.user = JSON.parse(sessionStorage.getItem("user")!);
 
@@ -90,11 +88,16 @@ export class EventsListComponent implements OnInit {
     updateEvent(e: Event) {
         this.helperService.updateEvent(e);
     }
+
+    evento!: Event;
+    eventoGrande = false;
     
     wievEvent(e: Event) {
-        console.log(e);
-        this.infoService.setData(e);
-        this.router.navigate(['event/info']);
+        this.evento = e;
+        this.eventoGrande = true;
     }
-
+    notWievEvent() {
+        this.eventoGrande = false;
+    }
+    
 }

@@ -110,3 +110,30 @@ h5 {
     height: 200px;
     object-fit: cover;
 }
+
+
+.evento{
+    position: fixed;
+    top: 20%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
+    z-index: 3;
+}
+.fondo{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+
+.misEventos{
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+}
