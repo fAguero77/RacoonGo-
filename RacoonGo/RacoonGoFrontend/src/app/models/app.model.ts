@@ -60,9 +60,9 @@ export class Event {
     public themes!: number[];
     public location!: Location;
     public photoUrl !: string;
-    public user !: User;
+    public user !: CompanyUser;
 
-    constructor(id: string,title: string, description: string, recommendedAge: number, startDate: Date, endDate: Date, location: Location, themes: Theme[] = [], photoUrl: string, user: User) {
+    constructor(id: string,title: string, description: string, recommendedAge: number, startDate: Date, endDate: Date, location: Location, themes: Theme[] = [], photoUrl: string, user: CompanyUser) {
         this.id = id;
         this.title = title;
         this.description = description;

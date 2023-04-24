@@ -135,7 +135,7 @@ export class SearchBarComponent implements OnInit {
                 themes: [],
                 location: { name: this.submitSearchAdvance.value.location, lat: -1, lon: -1 },
                 photoUrl: '',
-                user: { username: this.submitSearchAdvance.value.userCompany, email: "", score: -1}
+                user: { username: this.submitSearchAdvance.value.userCompany, email: "", score: -1, phoneNumber: "", website: "", sponsored: new Date()}
             };
 
             if (this.submitSearchAdvance.value.age.length > 0)

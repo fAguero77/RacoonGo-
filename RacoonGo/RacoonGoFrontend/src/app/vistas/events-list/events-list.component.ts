@@ -68,7 +68,7 @@ export class EventsListComponent implements OnInit {
     }
 
     getMyEvents() {
-        let user: User = JSON.parse(sessionStorage.getItem("user")!).body
+        let user: User = JSON.parse(sessionStorage.getItem("user")!)
         this.backEndResponse.endpoints.event.getMyEvents(user.email).subscribe({
             next: (data: HttpResponse<BackEndResponse<any>>) =>{
                 this.eventsList = data.body as unknown as Event[];

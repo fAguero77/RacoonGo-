@@ -4,7 +4,7 @@ import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import { auth } from "../../models/app.constants";
 import { BackendRouterService } from "../../services/backend-router.service";
 import { HelperService } from "../../services/helper.service";
-import { User } from '../../models/app.model';
+import { CompanyUser, User } from '../../models/app.model';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import Swal from "sweetalert2";
@@ -35,13 +35,27 @@ export class LoginComponent implements OnInit {
   signUp(){
       signInWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
-          const user = userCredential.user;
+            const user = userCredential.user;
             if (user) {
                 this.backEndResponse.endpoints.user.signIn(this.email).subscribe({
                     next: (data: HttpResponse<User>) => {
                         sessionStorage.setItem("user", JSON.stringify(data.body));
                         this.router.navigate(['/']);
-                    }
+                    },
+                    error: () => {
+                        this.backEndResponse.endpoints.company.signIn(this.email).subscribe({
+                            next: (data: HttpResponse<CompanyUser>) => {
+                                console.log(data.body)
+                                sessionStorage.setItem("user", JSON.stringify(data.body));
+                                this.router.navigate(['/']);
+                            },
+                            error: () => {
+                                this.invalidLogin = true
+                            }
+                        })
+                       
+                    },
+
                 })
           } else {
             window.alert('algo ha fallado')

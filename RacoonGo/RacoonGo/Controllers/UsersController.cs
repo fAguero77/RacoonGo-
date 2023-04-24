@@ -30,6 +30,10 @@ public class UsersController : ControllerBase
     {
 
         User usuario = await FirebaseRealtimeDatabase.Instance.GetUser(email);
+        if (usuario == null)
+        {
+            return BadRequest();
+        }
         return Ok(usuario);
     }
 

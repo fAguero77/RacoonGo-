@@ -153,7 +153,19 @@ namespace RacoonGo.Database
             User userStorage = JsonConvert.DeserializeObject< User>(responseData);
             return userStorage is null ? null : userStorage;
         }
-        
+
+        public async Task<CompanyUser> GetCompanyUser(string email)
+        {
+            string uri = string.Format(BASE_PATH_COMPANY_USER, email.Replace(".", " "));
+
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
+
+            HttpResponseMessage response = await _httpClient.SendAsync(httpRequestMessage);
+            string responseData = await response.Content.ReadAsStringAsync();
+            CompanyUser userStorage = JsonConvert.DeserializeObject<CompanyUser>(responseData);
+            return userStorage is null ? null : userStorage;
+        }
+
         public async Task<List<Game>> GetAllGames()
         {
             string uri = string.Format(BASE_PATH_GAMES);

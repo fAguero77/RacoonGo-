@@ -20,6 +20,7 @@ export class BackendRouterService {
     public endpoints: any;
 
     constructor(private http: HttpClient) {
+
         let context = this;
         this.endpoints = {
             event: {
@@ -32,12 +33,15 @@ export class BackendRouterService {
             },
             user: {
                 addUser: function (user: User) { return context.api_create('Users', user) },
-                signIn: function (email: string) { return context.api_list('Users', { email }) },
+                signIn: function (email: string) { return context.api_list('Users', { email })
+
+                },
                 setSponsor: function (user: CompanyUser, days: number) { return context.api_create('Users/sponsor', { user , days}) },
                 deleteAccount: function (email: string) { return context.api_delete('Users/delete', email )}
             },
             company: {
-                addCompany: function (company: CompanyUser) { return context.api_create('Company', company)}
+                addCompany: function (company: CompanyUser) { return context.api_create('Company', company) },
+                signIn: function (email: string) { return context.api_list("Company", {email} ) }
             },
             game: {
                 addGame: function (game: Game) {   return context.api_create('Games',  game)},

@@ -3,7 +3,7 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import {Theme} from "../../models/app.enum";
-import {Event, Location, User} from "../../models/app.model";
+import {CompanyUser, Event, Location, User} from "../../models/app.model";
 import {BackendRouterService} from "../../services/backend-router.service";
 import { HelperService } from '../../services/helper.service';
 import {Router} from "@angular/router";
@@ -27,7 +27,7 @@ export class EventFormComponent implements OnInit {
     todayDate!: string;
     image: string;
     readonly defaultImg: string = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
-    user!: User;
+    user!: CompanyUser;
     event: Event | undefined;
     ageList: string[] = [];
     datePipe: DatePipe;
@@ -57,7 +57,7 @@ export class EventFormComponent implements OnInit {
     }
     ngOnInit(): void {
         this.user = JSON.parse(sessionStorage.getItem("user")!);
-        if (this.user == null) {
+        if (this.user.website == null) {
             this.router.navigate(['/login']);
         }
         this.addEventForm = this.fb.group({
