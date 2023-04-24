@@ -22,8 +22,8 @@ namespace RacoonGo.Models
     public enum RecommendedAge
     {
         Todos = 0,
-        Niños,
-        Jóvenes,
+        NiÃ±os,
+        JÃ³venes,
         Adolescentes,
         Adultos
     }

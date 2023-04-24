@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
-import {BackEndResponse, CompanyUser, Event, User} from "../models/app.model";
+import {BackEndResponse, CompanyUser, Event, Game, User} from "../models/app.model";
 
 @Injectable({
     providedIn: 'root'
@@ -38,6 +38,10 @@ export class BackendRouterService {
             },
             company: {
                 addCompany: function (company: CompanyUser) { return context.api_create('Company', company)}
+            },
+            game: {
+                addGame: function (game: Game) {   return context.api_create('Games',  game)},
+                getGames: function () { return context.api_list('Games/games', {}) },
             }
         }
     }

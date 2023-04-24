@@ -30,6 +30,12 @@ export class HelperService {
         "Adolescentes (15-18 años)",
          "Adultos (+18 años)"
         ]
+    
+    difficultyText = [
+        "Fácil",
+        "Medio",
+        "Difícil"
+    ]
     event: Event | undefined;
 
 
@@ -73,5 +79,8 @@ export class HelperService {
         this.event = e;
         this.router.navigate(['/addEvent']);
     }
-    
+
+    getDifficultyInfo(index: number) {
+        return this.difficultyText[index];
+    }
 }

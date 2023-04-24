@@ -1,10 +1,11 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { NavbarService } from './navbar.service';
-import { Event, User } from '../../models/app.model';
+import { User } from '../../models/app.model';
 import { BackendRouterService } from '../../services/backend-router.service';
 import { getAuth, deleteUser } from 'firebase/auth';
+import {HelperService} from "../../services/helper.service";
 
 
 @Component({
@@ -17,15 +18,15 @@ export class NavbarComponent {
 
     static navSearch: boolean
     constructor(public navService: NavbarService,
-        private router: Router, private routerService: BackendRouterService) {
+        private router: Router, private routerService: BackendRouterService, public helperService: HelperService) {
         let user: User = JSON.parse(sessionStorage.getItem("user")!);
 
         user ? this.userName =user.username : this.userName = "Invitado";
     }
 
     goAddEve() {
-        this.router.navigate(['/addEvent']);
-
+        this.helperService.event= undefined;
+        window.location.assign('/addEvent');
     }
 
     goEveList() {
@@ -47,6 +48,10 @@ export class NavbarComponent {
 
     goSponsor() {
         this.router.navigate(['/sponsor']);
+
+    }
+    goAddGame() {
+        this.router.navigate(['/addGame']);
 
     }
     deleteAcount() {
@@ -112,5 +117,9 @@ export class NavbarComponent {
         } catch (error) {
             throw new Error('Error al eliminar la cuenta de firebase auth ');
         }
+    }
+
+    goGameList() {
+        this.router.navigate(['/games']);
     }
 }

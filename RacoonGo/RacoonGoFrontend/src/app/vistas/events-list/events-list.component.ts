@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { BackendRouterService } from "../../services/backend-router.service";
 import { BackEndResponse, Event, User } from "../../models/app.model";
-import { first } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { HelperService } from '../../services/helper.service';
 import { ActivatedRoute, Router } from "@angular/router";
-import { EventFormComponent } from '../event-form/event-form.component';
 
 @Component({
     selector: 'events-list',
@@ -25,7 +23,6 @@ export class EventsListComponent implements OnInit {
                 private helperService: HelperService) {
         if (JSON.parse(sessionStorage.getItem("user")!) != undefined) {
             this.user = JSON.parse(sessionStorage.getItem("user")!);
-
         }
     }
 
