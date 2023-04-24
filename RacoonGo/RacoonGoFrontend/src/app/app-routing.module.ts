@@ -14,6 +14,7 @@ import { GameFormComponent } from './vistas/game-form/game-form.component';
 import {GamesListComponent} from "./vistas/games-list/games-list.component";
 
 
+
 const routes: Routes = [
     { path: 'addEvent', component: EventFormComponent },
     { path: 'events', component: EventsListComponent },

@@ -15,9 +15,12 @@ export class EventsListComponent implements OnInit {
 
     eventsList: Event[] = [];
     user: User |undefined = undefined;
-    
-    constructor(private route: ActivatedRoute,
-        private backEndResponse: BackendRouterService, private helperService: HelperService) {
+
+
+    constructor(private route: ActivatedRoute, 
+                private router: Router, 
+                private backEndResponse: BackendRouterService, 
+                private helperService: HelperService) {
         if (JSON.parse(sessionStorage.getItem("user")!) != undefined) {
             this.user = JSON.parse(sessionStorage.getItem("user")!);
         }
@@ -35,7 +38,7 @@ export class EventsListComponent implements OnInit {
             next: (data: HttpResponse<BackEndResponse<any>>) => {
                 if (data.body) {
                     this.eventsList = data.body as unknown as Event[];
-                    this.eventsList.filter((value, index) => index % 3 === 0);
+                    this.eventsList = this.eventsList.filter((value, index) => index % 3 === 0);
                 }
             },
             error: () => {
@@ -83,4 +86,15 @@ export class EventsListComponent implements OnInit {
         this.helperService.updateEvent(e);
     }
 
+    evento!: Event;
+    eventoGrande = false;
+    
+    wievEvent(e: Event) {
+        this.evento = e;
+        this.eventoGrande = true;
+    }
+    notWievEvent() {
+        this.eventoGrande = false;
+    }
+    
 }
