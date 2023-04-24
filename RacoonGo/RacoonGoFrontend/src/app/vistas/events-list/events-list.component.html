@@ -89,7 +89,6 @@
         <div style="position:relative">
             <img class="img-responsive" src="{{evento.photoUrl}}">
         </div>
-
         <div class="p-4">
 
             <div class="d-flex justify-content-between mb-3">
@@ -129,11 +128,17 @@
                 </div>
             </div>
 
-            <div class="border-top mt-4 pt-4">
+            <div class="mt-3 pt-3">
                 <div class="d-flex justify-content-between">
                     <h6 class="d-inline-block text-truncate" style="max-width: 240px;"><i class="fa fa-user text-primary mr-2"></i> {{evento.user.username}} </h6>
                     <!--<h5 class="m-0">$350 <small>(c/u)</small></h5>-->
 
+                </div>
+            </div>
+            <div class="mt-3 pt-3">
+                <h6 class="d-inline-block text-truncate" style="max-width: 240px;">Entradas</h6>
+                <div>
+                    <button type="button" class="btn btn-primary" ><a style="text-decoration: none; color: white" href="{{evento.user.website}}"> Web</a></button>
                 </div>
             </div>
             
