@@ -21,6 +21,16 @@ import { CommonModule } from '@angular/common';
 import { DeleteUserBtnComponent } from './vistas/delete-user-btn/delete-user-btn.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './vistas/profile/profile.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { GameFormComponent } from './vistas/game-form/game-form.component';
+import { QuestionDialogComponent } from './vistas/question-dialog/question-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { GamesListComponent } from './vistas/games-list/games-list.component';
+
+
 
 
 @NgModule({
@@ -36,7 +46,11 @@ import { ProfileComponent } from './vistas/profile/profile.component';
         PasswordComponent,
         DeleteUserBtnComponent,
         NavbarComponent,
-        ProfileComponent
+        ProfileComponent,
+        SearchBarComponent,
+        GameFormComponent,
+        QuestionDialogComponent,
+        GamesListComponent
     ],
     imports: [
         CommonModule,
@@ -49,6 +63,10 @@ import { ProfileComponent } from './vistas/profile/profile.component';
         NoopAnimationsModule,
         MatIconModule,
         MatMenuModule,
+        NgMultiSelectDropDownModule.forRoot(),
+        MatDialogModule,
+        MatButtonModule,
+        MatSlideToggleModule
 
     ],
     providers: [],

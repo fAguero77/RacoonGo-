@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { BackendRouterService } from "../../services/backend-router.service";
 import { BackEndResponse, Event, User } from "../../models/app.model";
-import { first } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { HelperService } from '../../services/helper.service';
 import { ActivatedRoute, Router } from "@angular/router";
-import { EventFormComponent } from '../event-form/event-form.component';
 
 @Component({
     selector: 'events-list',
@@ -19,23 +17,28 @@ export class EventsListComponent implements OnInit {
     user: User |undefined = undefined;
 
 
-    constructor(private route: ActivatedRoute,
-        private router: Router,
-        private backEndResponse: BackendRouterService, private helperService: HelperService) {
+    constructor(private route: ActivatedRoute, 
+                private router: Router, 
+                private backEndResponse: BackendRouterService, 
+                private helperService: HelperService) {
         if (JSON.parse(sessionStorage.getItem("user")!) != undefined) {
             this.user = JSON.parse(sessionStorage.getItem("user")!);
-
         }
     }
 
     ngOnInit(): void { this.getEvents(); }
+
+    onEventsListUpdate(data: Event[]) {
+        // Para recibir lista actualizada del hijo (search-bar) con las listas filtradas
+        this.eventsList = data;
+    }
 
     getEvents(): void {
         this.backEndResponse.endpoints.event.getEvents().subscribe({
             next: (data: HttpResponse<BackEndResponse<any>>) => {
                 if (data.body) {
                     this.eventsList = data.body as unknown as Event[];
-                    this.eventsList.filter((value, index) => index % 3 === 0);
+                    this.eventsList = this.eventsList.filter((value, index) => index % 3 === 0);
                 }
             },
             error: () => {
@@ -65,7 +68,7 @@ export class EventsListComponent implements OnInit {
     }
 
     getMyEvents() {
-        let user: User = JSON.parse(sessionStorage.getItem("user")!).body
+        let user: User = JSON.parse(sessionStorage.getItem("user")!)
         this.backEndResponse.endpoints.event.getMyEvents(user.email).subscribe({
             next: (data: HttpResponse<BackEndResponse<any>>) =>{
                 this.eventsList = data.body as unknown as Event[];
@@ -83,4 +86,15 @@ export class EventsListComponent implements OnInit {
         this.helperService.updateEvent(e);
     }
 
+    evento!: Event;
+    eventoGrande = false;
+    
+    wievEvent(e: Event) {
+        this.evento = e;
+        this.eventoGrande = true;
+    }
+    notWievEvent() {
+        this.eventoGrande = false;
+    }
+    
 }

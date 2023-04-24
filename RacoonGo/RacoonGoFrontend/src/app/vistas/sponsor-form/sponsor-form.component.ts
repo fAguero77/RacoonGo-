@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { CompanyUser, User } from '../../models/app.model';
 import { BackendRouterService } from '../../services/backend-router.service';
 import { HelperService } from '../../services/helper.service';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'sponsor-form',
@@ -12,7 +13,7 @@ import { HelperService } from '../../services/helper.service';
 })
 export class SponsorFormComponent implements OnInit {
 
-    constructor(private routerService: BackendRouterService) { }
+    constructor(private routerService: BackendRouterService, private router: Router) { }
 
     ngOnInit(): void {
     }
@@ -31,6 +32,9 @@ export class SponsorFormComponent implements OnInit {
 
         // it has to be a companyUser becouse they are the only ones with events
         this.company = JSON.parse(sessionStorage.getItem("testCompany")!).body;
+        if (this.company == null) {
+            this.router.navigate(['/login']);
+        }
 
         this.routerService.endpoints.user.setSponsor(this.company, n).subscribe({
             next: () => {

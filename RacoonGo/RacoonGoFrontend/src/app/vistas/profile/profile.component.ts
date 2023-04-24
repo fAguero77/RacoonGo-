@@ -3,6 +3,7 @@ import {BackEndResponse, Event, User} from "../../models/app.model";
 import {HttpResponse} from "@angular/common/http";
 import {BackendRouterService} from "../../services/backend-router.service";
 import {HelperService} from "../../services/helper.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -17,18 +18,21 @@ export class ProfileComponent implements OnInit {
 
   defaultImg: string = 'https://cdnph.upi.com/ph/st/th/5751650313577/2022/i/16503136903474/v1.2/Raccoon-bandit-evicted-from-trash-can-by-Michigan-police.jpg';
 
-    constructor(private backEndResponse: BackendRouterService, private helperService: HelperService) {
+    constructor(private backEndResponse: BackendRouterService, private helperService: HelperService, private router: Router) {
         let user: User = JSON.parse(sessionStorage.getItem("user")!)
-        console.log(user)
-        this.username = user.username;
-        this.email = user.email;
+        if (user == null) {
+            this.router.navigate(['/login']);
+        }
+        else {
+            this.username = user.username;
+            this.email = user.email;
+        }
     }
 
   ngOnInit(): void {
     this.backEndResponse.endpoints.event.getMyEvents(this.email).subscribe({
       next: (data: HttpResponse<BackEndResponse<any>>) =>{
         this.eventsList = data.body as unknown as Event[];
-
       }
     })
   }
@@ -44,13 +48,9 @@ export class ProfileComponent implements OnInit {
 
     deleteEvent(e: Event) {
         this.helperService.deleteEvent(e);
-
     }
 
     updateEvent(e: Event) {
         this.helperService.updateEvent(e);
     }
-
-  
-
 }

@@ -1,0 +1,58 @@
+﻿<div>
+    <h2 mat-dialog-title style="display: flex; justify-content: space-between; align-items: center;">
+        Editar Pregunta
+        <button mat-icon-button (click)="onClose()" tabindex="-1">
+            <mat-icon aria-label="Cerrar ventana">close</mat-icon>
+        </button>
+    </h2>
+    <mat-dialog-content>
+        <!-- Title Zone-->
+
+        <input type="text" value="question.title" [(ngModel)]="question.title" name="question.title" style="width:100%" />
+        <!-- Score Zone-->
+
+        <br />
+        <div class="row" style="padding-top:20px">
+            <div class="col-sm-9">
+                <label style="justify-content: left;">Puntuación de la Pregunta:</label>
+            </div>
+            <div class="col-sm-3 text-right">
+                <input style="width:100%" type="number" value="question.points" [(ngModel)]="question.points" name="question.points" />
+            </div>
+        </div>
+
+        <!-- Options Zone-->
+        <div class="row">
+            <ul class="optionContainer">
+                <li class="option d-flex" *ngFor="let option of question.options; let i = index">
+                    <div class="col-sm-7 justify-content-center">
+
+                        <input type="text" value="option.body" [(ngModel)]="option.body" name="option.body" />
+                    </div>
+                    <div class="col-sm-5">
+
+                        <mat-slide-toggle [(ngModel)]="option.correct" (change)="changeState(i)" #correctSwitch>
+                            <label style="padding-top:10px" *ngIf="option.correct">Correcto</label>
+                            <label style="padding-top:10px" *ngIf="!option.correct">Incorrecto</label>
+                        </mat-slide-toggle>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+        <input [disabled]="question.options.length == 4" class="form-control" type="button" value="Añadir Opción" (click)="addOption()" />
+
+    </mat-dialog-content>
+    <!-- Errors Zone-->
+
+    <mat-dialog-actions style="display: flex; justify-content: center; ">
+        <button mat-button class="submitButton" (click)="confirm()">Aceptar</button>
+        <div *ngIf="invalidOptions" class="text-danger">Debe haber al menos 2 opciones y una de ellas correcta.</div>
+        <div *ngIf="invalidTitle" class="text-danger">La pregunta debe contener un título.</div>
+        <div *ngIf="invalidPoints" class="text-danger">La pregunta debe tener una puntuación válida.</div>
+
+
+    </mat-dialog-actions>
+</div>

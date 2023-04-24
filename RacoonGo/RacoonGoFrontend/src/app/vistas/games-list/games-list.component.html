@@ -1,0 +1,31 @@
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<div class="container-fluid py-5">
+    <div class="container pt-5 pb-3">
+        <div class="text-center mb-3 pb-3">
+            <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Juegos</h6>
+            <h1>Juegos disponibles</h1>
+        </div>
+        <div class="row">
+            <div *ngFor="let g of gamesList" class="col-md-4">
+                <div class="package-item mb-2">
+                    <div class="card">
+                        <div class="card-header" style="background-color: #74d664">
+                            <h4 class="card-title">{{ g.name }} <span class="badge" [ngClass]="{
+                                    'bg-success': g.difficulty === 0,
+                                    'bg-warning': g.difficulty === 1,
+                                    'bg-danger': g.difficulty === 2
+                                }">{{ getDifficultyName(g.difficulty) }}</span>
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{ g.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
