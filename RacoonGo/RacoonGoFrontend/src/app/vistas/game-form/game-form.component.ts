@@ -18,11 +18,13 @@ import Swal from 'sweetalert2';
 export class GameFormComponent implements OnInit {
 
     invalidQuestions: boolean;
+    invalidGame: boolean
     game: Game;
     user!: User;
     preguntasError: string;
     constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService,  private router: Router, private dialog: MatDialog) {
         this.preguntasError = "";
+        this.invalidGame = false;
         this.invalidQuestions = false;
         this.user = JSON.parse(sessionStorage.getItem("user")!);
 
@@ -71,9 +73,6 @@ export class GameFormComponent implements OnInit {
 
     errorPreguntas(): boolean {
         this.invalidQuestions = false;
-        if (this.game.questions.length == 0) {
-            return true;
-        }
         this.preguntasError = "";
         for (let question of this.game.questions) {
             if (question.options.length < 2) {
@@ -87,9 +86,17 @@ export class GameFormComponent implements OnInit {
         }
         return false;
     }
-
+    errorCampos() {
+        if (!this.game.description || !this.game.difficulty || !this.game.name || this.game.questions.length == 0) {
+            this.invalidGame = true;
+            return true
+        }
+        return false
+    }
     submit() {
-        if (!this.errorPreguntas()) {
+        let condPreguntas = this.errorPreguntas()
+        let condCampos = this.errorCampos()
+        if (!condCampos && condPreguntas) {
             this.game.id = this.user.email
             this.backendRouterService.endpoints.game.addGame(this.game).subscribe({
                 next: (data: HttpResponse<Game>) => {

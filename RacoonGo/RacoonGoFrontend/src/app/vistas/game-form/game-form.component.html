@@ -49,7 +49,8 @@
 
                     </div>
                     <div *ngIf="invalidQuestions" class="text-danger">Todas las preguntas deben tener opciones.</div>
-                    <div *ngIf="invalidQuestions" class="text-danger">Revisa las preguntas: {{preguntasError}}</div>
+                    <div *ngIf="invalidQuestions" style="overflow: hidden visible; max-height:40px; max-width:400px" class=" text-danger">Revisa las preguntas: {{preguntasError}}</div>
+
 
 
                     <input class="form-control" type="button" value="Añadir Pregunta" (click)="addQuestion()" />
@@ -67,12 +68,16 @@
     <div class="d-flex flex-column align-items-center justify-content-end">
         <hr class="separador">
         <div class="form-check checkbox">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"  [(ngModel)]="game.hidden">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [(ngModel)]="game.hidden">
             <label class="form-check-label" for="flexCheckDefault">
-               Privado
+                Privado
             </label>
         </div>
+
         <button class="submitButton form-control" (click)="submit()">Crear juego</button>
+        <div  *ngIf="invalidGame" class="text-danger errorBox">
+        Debes rellenar todos los campos</div>
+
 
     </div>
 

@@ -1,0 +1,59 @@
+.caja {
+    border-radius: 20px;
+    background: #ffffff;
+    width: 80%;
+    align-items: center;
+    text-align: center;
+    height: 55rem;
+    margin: 0 auto;
+    border: solid #74d664;
+    position: relative;
+}
+
+.caja-interno {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.optionBox {
+    padding-top: 50px;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+}
+.option {
+    height: 200px;
+    width: 400px;
+    background-color: #A9D6A1;
+    font-weight: bold;
+}
+
+.optionTrue {
+    height: 200px;
+    width: 400px;
+    background-color: #74d664;
+    font-weight: bold;
+    cursor: default
+}
+
+.optionFalse {
+    height: 200px;
+    width: 400px;
+    background-color: #e07f75;
+    font-weight: bold;
+    cursor: default
+}
+ .option:hover {
+    background-color: green;
+}
+.option:focus {
+        background-color: green;
+}
+.submitButton {
+    position: absolute;
+    margin-bottom: 50px;
+    bottom: 0;
+    width: 25%;
+}

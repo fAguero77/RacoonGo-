@@ -5,6 +5,8 @@ import {BackendRouterService} from "../../services/backend-router.service";
 import {HelperService} from "../../services/helper.service";
 import {HttpResponse} from "@angular/common/http";
 import Swal from "sweetalert2";
+import { Router } from "@angular/router";
+
 
 @Component({
   selector: 'app-games-list',
@@ -15,7 +17,7 @@ export class GamesListComponent implements OnInit {
 
   gamesList: Game[] = [];
   user: User |undefined = undefined;
-  constructor(private route: ActivatedRoute, private backEndResponse: BackendRouterService, private helperService: HelperService) {
+    constructor(private route: ActivatedRoute, private backEndResponse: BackendRouterService, private helperService: HelperService, private router: Router) {
     if (JSON.parse(sessionStorage.getItem("user")!) != undefined) {
       this.user = JSON.parse(sessionStorage.getItem("user")!);
     }
@@ -40,5 +42,9 @@ export class GamesListComponent implements OnInit {
   
   getDifficultyName(index: number): string {
     return this.helperService.getDifficultyInfo(index);
-  }
+    }
+
+    goToGame(g: Game) {
+        this.helperService.playMatch(g);
+    }
 }

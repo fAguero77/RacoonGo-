@@ -1,0 +1,32 @@
+﻿<div class="caja container-fluid d-flex flex-column ">
+    <div class="caja-interno container-fluid">
+        <h1 style="margin-top:100px">{{game.name}}</h1>
+        <p>Puntuación: {{points}} puntos</p>
+        <div>
+            <h3>{{actualQuestion.title}}</h3>
+            <div class="row">
+                <div *ngFor="let option of actualQuestion.options; let i = index" class="col-md-6 ">
+                    <div class="optionBox d-flex justify-content-center">
+                        <input *ngIf="!checked" class="form-control option" type="button" value={{option.body}} (click)="select(option)" />
+                        <input *ngIf="checked && option.correct" class="form-control optionTrue" type="button" value={{option.body}} />
+                        <input *ngIf="checked && !option.correct" class="form-control optionFalse" type="button" value={{option.body}} />
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column align-items-center justify-content-end">
+
+
+        <button *ngIf="!checked" class="submitButton form-control" (click)="check()">Aceptar</button>
+        <button  *ngIf="checked" class="submitButton form-control" (click)="continue()">Continuar</button>
+
+
+
+    </div>
+
+</div>
+
