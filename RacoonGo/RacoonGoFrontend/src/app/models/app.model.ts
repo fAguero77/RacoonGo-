@@ -13,6 +13,7 @@ export class Game {
     public difficulty !: number;
     public id : string = "";
     public questions : Question[] = [];
+    public hidden: boolean = false;
 }
 
 export class Question {
