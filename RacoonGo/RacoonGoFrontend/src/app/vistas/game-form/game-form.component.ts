@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { BackendRouterService } from "../../services/backend-router.service";
 import { HelperService } from '../../services/helper.service';
 import { Router } from "@angular/router";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Game, Question, User } from "../../models/app.model";
 import { MatDialog } from '@angular/material/dialog';
 import { QuestionDialogComponent } from '../question-dialog/question-dialog.component';
@@ -92,8 +92,17 @@ export class GameFormComponent implements OnInit {
         if (!this.errorPreguntas()) {
             this.game.id = this.user.email
             this.backendRouterService.endpoints.game.addGame(this.game).subscribe({
-                next: () => {
-                    Swal.fire('Muy bien!', 'Se ha creado correctamente tu juego: ' + this.game.name, 'success')
+                next: (data: HttpResponse<Game>) => {
+                    if (data.body?.hidden) {
+                        Swal.fire({
+                            title: '¡Muy bien!',
+                            html: 'Se ha creado correctamente tu juego: ' + this.game.name + '<br><br> Para que otros accedan a tu juego pásales el código: <br> <b>' + data.body.id+'</b>',
+                            icon:'success'
+                        })
+                    } else {
+                        Swal.fire('¡Muy bien!', 'Se ha creado correctamente tu juego: ' + this.game.name, 'success')
+
+                    }
 
                 }
             })

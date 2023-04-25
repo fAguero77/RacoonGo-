@@ -23,12 +23,19 @@
         background: #A9D6A1;
         color: black;
     }
-
+.checkbox {
+    position: absolute;
+    margin-bottom: 130px;
+    bottom: 0;
+}
 .submitButton {
     position: absolute;
     margin-bottom: 50px;
     bottom: 0;
     width: 75%;
+}
+.form-check-input:checked {
+    background-color: #A9D6A1
 }
 
 .separador {
