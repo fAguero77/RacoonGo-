@@ -11,6 +11,8 @@
 
     public bool hidden { get; set; }
 
+    public int timesPlayed { get;set; }    
+
      public List<Question> questions { get; set; }
     }
 }

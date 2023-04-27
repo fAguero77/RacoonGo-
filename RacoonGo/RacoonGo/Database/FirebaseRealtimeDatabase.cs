@@ -32,9 +32,10 @@ namespace RacoonGo.Database
         private readonly string BASE_PATH_GAMES = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Games/.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private HttpClient _httpClient = new HttpClient();
 
-        public async Task<bool> SetUser(User user) // Insert or update
+        public async Task<bool> SetUser(User user, Boolean comprobation) // Insert or update
         {
-            if (await checkUser(user, string.Format(BASE_PATH_USER, "")))
+
+            if (comprobation && await checkUser(user, string.Format(BASE_PATH_USER, "")))
             {
                 return false;
             }
@@ -83,10 +84,10 @@ namespace RacoonGo.Database
 
         public async Task SetEvent(string email, Event e) // Insert or update
         {
-            Console.WriteLine(e.id);
             if (string.IsNullOrEmpty(e.id)) {
                 e.id = GenerateKey();
             }
+
             string uri = string.Format(BASE_PATH_EVENT_USER, email.Replace(".", " "), e.id);
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
             string content = JsonConvert.SerializeObject(e);
@@ -98,7 +99,11 @@ namespace RacoonGo.Database
         public async Task SetGame(string email, Game game)
         {
             //Necesito el mail, he hecho que en principio el id almacene el mail, aquí ya se genera un id bueno
-            game.id = GenerateKey();
+            if (game.id.Contains('@'))
+            {
+                game.id = GenerateKey();
+            }
+            Console.WriteLine(game.id);
 
             string uri = string.Format(BASE_PATH_GAME_USER, email.Replace(".", " "), game.id);
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);

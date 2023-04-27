@@ -33,11 +33,17 @@ export class BackendRouterService {
             },
             user: {
                 addUser: function (user: User) { return context.api_create('Users', user) },
-                signIn: function (email: string) { return context.api_list('Users', { email })
-
-                },
+                signIn: function (email: string) { return context.api_list('Users', { email })},
                 setSponsor: function (user: CompanyUser, days: number) { return context.api_create('Users/sponsor', { user , days}) },
-                deleteAccount: function (email: string) { return context.api_delete('Users/delete', email )}
+                deleteAccount: function (email: string) { return context.api_delete('Users/delete', email) },
+                setFinishedGame: function (user: User, game: Game) {
+                    const request = {
+                        user: user,
+                        game: game
+                    };
+                    return context.api_create('Users/completeGame', request)
+                }
+
             },
             company: {
                 addCompany: function (company: CompanyUser) { return context.api_create('Company', company) },
