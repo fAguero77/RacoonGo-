@@ -58,7 +58,7 @@ export class EventFormComponent implements OnInit {
     ngOnInit(): void {
         this.user = JSON.parse(sessionStorage.getItem("user")!);
         if (this.user.website == null) {
-            this.router.navigate(['/login']);
+         //   this.router.navigate(['/login']);
         }
         this.addEventForm = this.fb.group({
             title: ['', [Validators.required]],

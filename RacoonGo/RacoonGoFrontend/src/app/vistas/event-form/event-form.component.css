@@ -1,13 +1,16 @@
 .caja {
-    border-radius: 20px;
-    background: #ffffff;
-    width: 33rem;
+    
+    width: 43rem;
     height: 51rem;
     margin: 0 auto;
-    border: solid #74d664;
+    
+    padding-top: 6rem;
 }
 
 .caja-interno {
+    border: solid #74d664;
+    border-radius: 20px;
+    background: #ffffff;
     margin: 0 auto;
     display: flex;
     flex-direction: column;

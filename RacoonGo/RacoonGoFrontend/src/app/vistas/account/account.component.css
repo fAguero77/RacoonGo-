@@ -1,43 +1,56 @@
-/*
-.registerBody{
-    margin: 3rem auto;
-    background: #2ab2b9;
-    width: 25rem;
-    padding: 1rem;
-    color: white;
-    text-align: center;
-    border-radius: 7px;
-    box-shadow: 0.1rem 0.1rem 0.2rem #7b7b7b;
+.login-box,
+.register-box {
+    max-width: 320px;
+    margin: 7% auto;
+}
+@media (max-width: 768px) {
+    .login-box,
+    .register-box {
+        width: 90%;
+        margin-top: 20px;
+    }
 }
 
-.formReg{
-    display: flex;
-    flex-direction: column;
+.login-box-body,
+.register-box-body {
+    text-align: center;
+    background: #fff;
+    padding: 1.5rem 2rem;
+    border-top: 0;
+    color: #666;
+    border-radius: 10px;
+
+}
+.login-box-body .form-control-feedback,
+.register-box-body .form-control-feedback {
+    color: #777;
+}
+.login-box-msg,
+.register-box-msg {
+    font-size: 1.5rem;
+    margin: 0;
+    text-align: center;
+    padding: 0 20px 0 20px;
+}
+.button{
+    padding: 0.5rem 2rem;
+    background-color: #2aa861 !important;
+    border: #2aa861 !important;
+}
+.button:hover{
+    background-color: #2f9a62 !important;
+    border: #2f9a62 !important;
+}
+.label-check {
     text-align: left;
-    gap: 0.5rem;
-    padding: 1rem 2rem 0;
 }
 
-.formReg div{text-align: center}
-
-button{
-    font-size: larger;
-    width: 9rem;
-    padding: 0.4rem 1rem;
+a{
+    font-size: 1rem;
+    color: #3bdc80;
 }
 
-input{
-    font-size:medium;
-    padding: 0.8rem 0.4rem;
-    border: none;
-    border-radius: 7px;
-    box-shadow: 0.1rem 0.1rem 0.2rem #7b7b7b;
-}
+a:hover{
+    color: #2aa861;
 
-p{
-    text-align: center;
 }
-
-label{
-    font-size: xx-large;
-}*/
