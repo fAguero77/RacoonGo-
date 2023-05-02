@@ -30,10 +30,15 @@ export class GameFormComponent implements OnInit {
             this.router.navigate(['/login'])
         }
         this.game = new Game();
+        this.game.user = this.user;
         this.game.name = "Juego de "+this.user.username
     }
 
     ngOnInit(): void {
+        if (this.helperService.game != undefined){
+            console.log(this.helperService.game.difficulty)
+            this.game = this.helperService.game;
+        }
   }
 
     openDialog(question: Question, index:number) {
@@ -90,7 +95,7 @@ export class GameFormComponent implements OnInit {
 
     submit() {
         if (!this.errorPreguntas()) {
-            this.game.id = this.user.email
+            this.game.id = ""
             this.backendRouterService.endpoints.game.addGame(this.game).subscribe({
                 next: (data: HttpResponse<Game>) => {
                     if (data.body?.hidden) {

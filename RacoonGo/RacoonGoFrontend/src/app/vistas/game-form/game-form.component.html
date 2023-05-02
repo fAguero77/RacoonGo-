@@ -12,15 +12,15 @@
                     <!-- Difficulty Zone-->
 
                     <h3>Dificultad</h3>
-                    <div class="form-inline d-flex justify-content-center">
+                    <div class="form-inline d-flex justify-content-center form-control">
                         <div class="radio">
-                            <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="0">Novato</label>
+                            <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="0" [checked]="game.difficulty == 0">Novato</label>
                         </div>
                         <div class="radio">
-                            <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="1">Medio</label>
+                            <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="1" [checked]="game.difficulty == 1">Medio</label>
                         </div>
                         <div class="radio">
-                            <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="2">Experto</label>
+                            <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="2" [checked]="game.difficulty == 2">Experto</label>
                         </div>
                     </div>
 

@@ -44,4 +44,8 @@ export class GamesListComponent implements OnInit {
   getDifficultyName(index: number): string {
     return this.helperService.getDifficultyInfo(index);
   }
+
+    updateGame(g: Game) {
+        this.helperService.updateGame(g);
+    }
 }
