@@ -30,10 +30,14 @@ export class GameFormComponent implements OnInit {
             this.router.navigate(['/login'])
         }
         this.game = new Game();
+        this.game.email = this.user.email;
         this.game.name = "Juego de "+this.user.username
     }
 
     ngOnInit(): void {
+        if (this.helperService.game != undefined){
+            this.game = this.helperService.game;
+       }
   }
 
     openDialog(question: Question, index:number) {
@@ -90,20 +94,31 @@ export class GameFormComponent implements OnInit {
 
     submit() {
         if (!this.errorPreguntas()) {
-            this.game.id = this.user.email
+            if (this.helperService.game == undefined)
+                this.game.id = ""
             this.backendRouterService.endpoints.game.addGame(this.game).subscribe({
                 next: (data: HttpResponse<Game>) => {
-                    if (data.body?.hidden) {
-                        Swal.fire({
-                            title: '¡Muy bien!',
-                            html: 'Se ha creado correctamente tu juego: ' + this.game.name + '<br><br> Para que otros accedan a tu juego pásales el código: <br> <b>' + data.body.id+'</b>',
-                            icon:'success'
-                        })
+                    if (this.helperService.game == undefined) {
+                        if (data.body?.hidden) {
+                            Swal.fire({
+                                title: '¡Muy bien!',
+                                html: 'Se ha creado correctamente tu juego: ' + this.game.name + '<br><br> Para que otros accedan a tu juego pásales el código: <br> <b>' + data.body.id+'</b>',
+                                icon:'success'
+                            })
+                        } else {
+                            Swal.fire('¡Muy bien!', 'Se ha creado correctamente tu juego: ' + this.game.name, 'success')
+                        }
                     } else {
-                        Swal.fire('¡Muy bien!', 'Se ha creado correctamente tu juego: ' + this.game.name, 'success')
-
+                        if (data.body?.hidden) {
+                            Swal.fire({
+                                title: '¡Muy bien!',
+                                html: 'Se ha modificado correctamente tu juego: ' + this.game.name + '<br><br> Para que otros accedan a tu juego pásales el código: <br> <b>' + data.body.id + '</b>',
+                                icon: 'success'
+                            })
+                        } else {
+                            Swal.fire('¡Muy bien!', 'Se ha modificado correctamente tu juego: ' + this.game.name, 'success')
+                        }
                     }
-
                 }
             })
         }

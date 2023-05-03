@@ -5,6 +5,7 @@ import {BackendRouterService} from "../../services/backend-router.service";
 import {HelperService} from "../../services/helper.service";
 import {HttpResponse} from "@angular/common/http";
 import Swal from "sweetalert2";
+import {faPenSquare} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-games-list',
@@ -15,6 +16,8 @@ export class GamesListComponent implements OnInit {
 
   gamesList: Game[] = [];
   user: User |undefined = undefined;
+  
+    faPenSquare = faPenSquare;
   constructor(private route: ActivatedRoute, private backEndResponse: BackendRouterService, private helperService: HelperService) {
     if (JSON.parse(sessionStorage.getItem("user")!) != undefined) {
       this.user = JSON.parse(sessionStorage.getItem("user")!);
@@ -41,4 +44,8 @@ export class GamesListComponent implements OnInit {
   getDifficultyName(index: number): string {
     return this.helperService.getDifficultyInfo(index);
   }
+
+    updateGame(g: Game) {
+        this.helperService.updateGame(g);
+    }
 }

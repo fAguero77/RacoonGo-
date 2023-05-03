@@ -1,6 +1,7 @@
 ﻿using RacoonGo.Models;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using FireSharp.Response;
 using RacoonGo.Models;
 
@@ -83,7 +84,6 @@ namespace RacoonGo.Database
 
         public async Task SetEvent(string email, Event e) // Insert or update
         {
-            Console.WriteLine(e.id);
             if (string.IsNullOrEmpty(e.id)) {
                 e.id = GenerateKey();
             }
@@ -95,17 +95,17 @@ namespace RacoonGo.Database
             await _httpClient.SendAsync(httpRequestMessage);
         }
 
-        public async Task SetGame(string email, Game game)
-        {
-            //Necesito el mail, he hecho que en principio el id almacene el mail, aquí ya se genera un id bueno
-            game.id = GenerateKey();
-
+        public async Task SetGame(String email, Game game)
+        { 
+            if (string.IsNullOrEmpty(game.id))
+            {
+                game.id = GenerateKey();
+            }
             string uri = string.Format(BASE_PATH_GAME_USER, email.Replace(".", " "), game.id);
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
             string content = JsonConvert.SerializeObject(game);
             httpRequestMessage.Content = new StringContent(content);
-                        await _httpClient.SendAsync(httpRequestMessage);
-
+            await _httpClient.SendAsync(httpRequestMessage);
         }
 
         
@@ -174,6 +174,10 @@ namespace RacoonGo.Database
             string uri = string.Format(BASE_PATH_GAMES);
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
             HttpResponseMessage response = await _httpClient.SendAsync(httpRequestMessage);
+            if (response.StatusCode == HttpStatusCode.NotFound)
+            {
+                return new List<Game>();
+            }
             string responseData = await response.Content.ReadAsStringAsync();
 
             Dictionary<string, Dictionary<string, Game>> gamesInStorage = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, Game>>>(responseData);

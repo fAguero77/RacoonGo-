@@ -12,7 +12,7 @@
                     <!-- Difficulty Zone-->
 
                     <h3>Dificultad</h3>
-                    <div class="form-inline d-flex justify-content-center">
+                    <div class="form-inline d-flex justify-content-center form-control">
                         <div class="radio">
                             <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="0">Novato</label>
                         </div>
@@ -72,8 +72,9 @@
                Privado
             </label>
         </div>
-        <button class="submitButton form-control" (click)="submit()">Crear juego</button>
-
+        
+            <button *ngIf="!helperService.game" class="submitButton form-control" (click)="submit()">Crear juego</button>
+            <button *ngIf="helperService.game" class="submitButton form-control" (click)="submit()">Modificar juego</button>        
     </div>
 
 
