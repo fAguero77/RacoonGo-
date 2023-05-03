@@ -14,7 +14,7 @@ export class Game {
     public id : string = "";
     public questions : Question[] = [];
     public hidden: boolean = false;
-    public user!: User ;
+    public email!: string;
 }
 
 export class Question {

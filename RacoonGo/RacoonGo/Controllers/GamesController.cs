@@ -15,7 +15,7 @@ public class GamesController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddGame(Game game)
     {
-        await FirebaseRealtimeDatabase.Instance.SetGame(game.user.email, game);
+        await FirebaseRealtimeDatabase.Instance.SetGame(game.email, game);
         
        return Ok(game);
     }

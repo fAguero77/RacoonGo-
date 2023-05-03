@@ -30,7 +30,7 @@ export class GameFormComponent implements OnInit {
             this.router.navigate(['/login'])
         }
         this.game = new Game();
-        this.game.user = this.user;
+        this.game.email = this.user.email;
         this.game.name = "Juego de "+this.user.username
     }
 
@@ -38,6 +38,7 @@ export class GameFormComponent implements OnInit {
         if (this.helperService.game != undefined){
             console.log(this.helperService.game.difficulty)
             this.game = this.helperService.game;
+            console.log(this.game.id)
         }
   }
 
@@ -95,7 +96,8 @@ export class GameFormComponent implements OnInit {
 
     submit() {
         if (!this.errorPreguntas()) {
-            this.game.id = ""
+            if (this.helperService.game == undefined)
+                this.game.id = ""
             this.backendRouterService.endpoints.game.addGame(this.game).subscribe({
                 next: (data: HttpResponse<Game>) => {
                     if (data.body?.hidden) {

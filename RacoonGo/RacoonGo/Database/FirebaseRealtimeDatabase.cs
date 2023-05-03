@@ -1,6 +1,7 @@
 ﻿using RacoonGo.Models;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using FireSharp.Response;
 using RacoonGo.Models;
 
@@ -96,6 +97,10 @@ namespace RacoonGo.Database
 
         public async Task SetGame(String email, Game game)
         {
+            if (string.IsNullOrEmpty(game.id))
+            {
+                game.id = GenerateKey();
+            }
             game.id = GenerateKey();
             string uri = string.Format(BASE_PATH_GAME_USER, email.Replace(".", " "), game.id);
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
@@ -170,6 +175,13 @@ namespace RacoonGo.Database
             string uri = string.Format(BASE_PATH_GAMES);
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
             HttpResponseMessage response = await _httpClient.SendAsync(httpRequestMessage);
+            if (response.StatusCode == HttpStatusCode.NotFound)
+            {
+                return new List<Game>();
+            }
+            {
+                return new List<Game>();
+            }
             string responseData = await response.Content.ReadAsStringAsync();
 
             Dictionary<string, Dictionary<string, Game>> gamesInStorage = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, Game>>>(responseData);

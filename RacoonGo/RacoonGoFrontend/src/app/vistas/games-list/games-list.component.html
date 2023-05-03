@@ -8,7 +8,8 @@
             <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Juegos</h6>
             <h1>Juegos disponibles</h1>
         </div>
-        <div class="row">
+        <p *ngIf="gamesList.length==0">No hay juegos disponibles.</p>
+        <div *ngIf="gamesList.length!=0" class="row">
             <div *ngFor="let g of gamesList" class="col-md-4">
                 <div class="package-item mb-2">
                     <div class="card">
@@ -18,7 +19,7 @@
                                     'bg-warning': g.difficulty === 1,
                                     'bg-danger': g.difficulty === 2
                                 }">{{ getDifficultyName(g.difficulty) }}</span>
-                                <div *ngIf="user && g.user.email==user.email">
+                                <div *ngIf="user && g.email==user.email">
                                     <button class="btn btn-secondary btn-sm float-right" (click)="updateGame(g)">
                                         <fa-icon [icon]="faPenSquare"></fa-icon>
                                     </button>

@@ -13,7 +13,7 @@
 
         public List<Question> questions { get; set; }
 
-        public User user { get; set; }
+        public string email { get; set; }
         
         public Game() { }
     }
