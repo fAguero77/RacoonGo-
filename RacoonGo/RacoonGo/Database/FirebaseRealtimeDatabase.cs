@@ -96,12 +96,11 @@ namespace RacoonGo.Database
         }
 
         public async Task SetGame(String email, Game game)
-        {
+        { 
             if (string.IsNullOrEmpty(game.id))
             {
                 game.id = GenerateKey();
             }
-            game.id = GenerateKey();
             string uri = string.Format(BASE_PATH_GAME_USER, email.Replace(".", " "), game.id);
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
             string content = JsonConvert.SerializeObject(game);
@@ -176,9 +175,6 @@ namespace RacoonGo.Database
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
             HttpResponseMessage response = await _httpClient.SendAsync(httpRequestMessage);
             if (response.StatusCode == HttpStatusCode.NotFound)
-            {
-                return new List<Game>();
-            }
             {
                 return new List<Game>();
             }
