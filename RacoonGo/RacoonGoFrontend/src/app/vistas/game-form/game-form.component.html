@@ -12,15 +12,15 @@
                     <!-- Difficulty Zone-->
 
                     <h3>Dificultad</h3>
-                    <div class="form-inline d-flex justify-content-center">
-                        <div class="radio">
-                            <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="0">Novato</label>
+                    <div class="form-inline d-flex justify-content-center form-control">
+                        <div class="radio" >
+                            <label> <input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="0">Novato  </label>
                         </div>
                         <div class="radio">
                             <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="1">Medio</label>
                         </div>
                         <div class="radio">
-                            <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="2">Experto</label>
+                            <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="2"  >Experto</label>
                         </div>
                     </div>
 
@@ -73,8 +73,10 @@
                 Privado
             </label>
         </div>
+        
+            <button *ngIf="!helperService.game" class="submitButton form-control" (click)="submit()">Crear juego</button>
+            <button *ngIf="helperService.game" class="submitButton form-control" (click)="submit()">Modificar juego</button>        
 
-        <button class="submitButton form-control" (click)="submit()">Crear juego</button>
         <div  *ngIf="invalidGame" class="text-danger errorBox">
         Debes rellenar todos los campos</div>
 

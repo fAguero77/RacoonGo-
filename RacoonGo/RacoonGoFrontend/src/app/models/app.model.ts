@@ -15,6 +15,8 @@ export class Game {
     public questions : Question[] = [];
     public hidden: boolean = false;
     public timesPlayed: number = 0
+    public email!: string;
+
 }
 
 export class Question {

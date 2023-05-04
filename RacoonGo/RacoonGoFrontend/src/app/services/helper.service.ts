@@ -90,4 +90,9 @@ export class HelperService {
         this.router.navigate(['/match']);
 
     }
+
+    updateGame(g: Game) {
+        this.game=g;
+        this.router.navigate(['/addGame']);
+    }
 }

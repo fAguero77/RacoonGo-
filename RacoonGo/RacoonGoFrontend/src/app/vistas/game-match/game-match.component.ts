@@ -37,7 +37,6 @@ export class GameMatchComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        
     }
     select(option: Option) {
         this.selectedOption = option;
@@ -72,6 +71,8 @@ export class GameMatchComponent implements OnInit {
                         html: 'Has completado ' + data.body?.name + '.<br><br>Has acertado <b>' + this.correctQuestions + '</b> preguntas, consiguiendo una puntuación de <br> <b style="font-size:36px">' + this.points + '/' + this.totalPoints() + '</b> <label style="font-size:36px">puntos</label>',
                         icon: 'success'
                     })
+                    sessionStorage.setItem("user", JSON.stringify(this.user));
+
                     this.router.navigate(['/'])
 
                 }
