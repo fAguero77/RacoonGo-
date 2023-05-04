@@ -1,36 +1,21 @@
 .caja {
-    
-    width: 43rem;
-    height: 51rem;
     margin: 0 auto;
-    
-    padding-top: 6rem;
+    padding: 6rem;
+    width: fit-content;
 }
 
 .caja-interno {
-    border: solid #74d664;
-    border-radius: 20px;
+    border: solid #74d664 2px;
+    border-radius: 10px;
     background: #ffffff;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: fit-content;
+    padding: 1rem;
+    box-shadow: 0.2rem 0.2rem 0.2rem 0.1rem #000000;
 }
-table {
-    width: 100%;
-    padding: 0 important;
-}
-tr {
-    width: 100%;
-    padding: 0 important;
-}
-
-td {
-    text-align: center;
-    padding: 0 important;
-}
-
 
 input {
     font-weight: bold;
@@ -41,10 +26,10 @@ input {
     background: white;
     border: solid #74d664 1px;
 }
-    input:hover {
-        background: #A9D6A1;
-        color: black;
-    }
+input:hover {
+    background: #A9D6A1;
+    color: black;
+}
 
 .tags {
     height: 14rem;
@@ -73,10 +58,10 @@ option {
     cursor: pointer;
 
 }
-    option:hover {
-        background: #A9D6A1;
-        color: black;
-    }
+option:hover {
+    background: #A9D6A1;
+    color: black;
+}
 .inputDerecha {
     padding-left: 2.5rem;
 }
@@ -94,21 +79,21 @@ textarea {
     border: solid #74d664 1px;
     border-radius: 5px;
 }
-    textarea:focus {
-        background: #A9D6A1;
-        color: black;
-    }
-    textarea.hover {
-        background: #A9D6A1;
-        color: black;
-    }
+textarea:focus {
+    background: #A9D6A1;
+    color: black;
+}
+textarea.hover {
+    background: #A9D6A1;
+    color: black;
+}
 
 .locationInput {
     display: flex;
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    text-align: middle;
+    text-align: center;
     margin-top: 0.35rem;
     
 
@@ -141,7 +126,13 @@ textarea {
     border: solid #74d664 1px;
     box-shadow: 0 0 0 #ABB7A7;
 }
-    .boton:hover {
-        background: #A9D6A1;
-        color: black;
-    }
+.boton:hover {
+    background: #A9D6A1;
+    color: black;
+}
+
+.table{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: red;
+}

@@ -3,100 +3,76 @@
         <h2 *ngIf="helperService.event">Modificar Evento {{helperService.event.title}}</h2>
         <h2 *ngIf="!helperService.event">Crear Evento</h2>
         <form [formGroup]="addEventForm" novalidate>
-            <table>
-                <tr class="iz">
-                    <!-- Title Zone-->
-
-                    <td>
+            <div class="table">
+                <div>
+                    <span class="fa fa-globe p-2"></span>
+                    <input type="text" class="form-control" id="title" placeholder="Titulo" formControlName="title"
+                        (blur)="checkValidity('title')" [ngClass]="{ 'is-invalid': addEventForm.get('title')?.invalid && (addEventForm.get('title')?.touched || submitted), 'is-valid': addEventForm.get('title')?.valid && addEventForm.get('title')?.touched}">
+                    <div class="invalid-feedback">El título es obligatorio</div>
+                </div>
+                <!-- Age Zone-->
+                
+                <div>
+                    <select class="age" formControlName="ageF"
+                            (blur)="checkValidity('ageF')" [ngClass]="{ 'is-invalid': addEventForm.get('ageF')?.invalid && (addEventForm.get('ageF')?.touched || submitted), 'is-valid': addEventForm.get('ageF')?.valid && addEventForm.get('ageF')?.touched}">
+                        <option *ngFor="let age of ageList; let i=index" [value]="i-1">{{age}}</option>
+                    </select>
+                    <div class="invalid-feedback">Selecciona una edad</div>
+                </div>
+               
+                <!-- Dates Zone-->
+                
+                <div class="form-group pt-3">
+                    <div class="input-field">
                         <span class="fa fa-globe p-2"></span>
-                        <input type="text" class="form-control" id="title" placeholder="Titulo" formControlName="title"
-                            (blur)="checkValidity('title')" [ngClass]="{ 'is-invalid': addEventForm.get('title')?.invalid && (addEventForm.get('title')?.touched || submitted), 'is-valid': addEventForm.get('title')?.valid && addEventForm.get('title')?.touched}">
-                        <div class="invalid-feedback">El título es obligatorio</div>
-                    </td>
-                    <!-- Age Zone-->
+                        <input type="date" [min]="todayDate" class="form-control" id="startDate" placeholder="fecha ini"
+                            formControlName="startDate" (blur)="checkValidity('startDate')" [ngClass]="{ 'is-invalid': addEventForm.get('startDate')?.invalid && (addEventForm.get('startDate')?.touched || submitted), 'is-valid': addEventForm.get('startDate')?.valid && addEventForm.get('startDate')?.touched}">
+                            <div class="invalid-feedback">La fecha de inicio es obligatoria</div>
+                        <div *ngIf="invalidStartDate" class="text-danger">La fecha de inicio debe ser posterior a la fecha actual</div>
+                    </div>
+                </div>
+            
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                        <span class="fa fa-globe p-2"></span>
+                        <input type="date" [min]="todayDate" class="form-control" id="endDate" placeholder="fecha fin" formControlName="endDate"
+                            (blur)="checkValidity('endDate')" [ngClass]="{ 'is-invalid': addEventForm.get('endDate')?.invalid && (addEventForm.get('endDate')?.touched || submitted), 'is-valid': addEventForm.get('endDate')?.valid && addEventForm.get('endDate')?.touched}">
+                            <div class="invalid-feedback">La fecha de fin es obligatoria</div>
+                        <div *ngIf="invalidEndDate" class="text-danger">La fecha de fin debe ser posterior a la fecha de inicio</div>
+                    </div>
+                </div>
+            
+                <div>
+                    <select class="tags" multiple (change)="onSelectionChange($event)" placeholder="Tema">
+                        <option  *ngFor="let theme of themeList; let i=index" [value]="i">{{theme}}</option>
+                    </select>
+                    <div *ngIf="invalidLength" class="text-danger">Selecciona un tema como mínimo</div>
+                </div>
+            
 
-                    <td>
-                        <div style="padding: 7px 5px;">
-                            <select class="age" formControlName="ageF"
-                                    (blur)="checkValidity('ageF')" [ngClass]="{ 'is-invalid': addEventForm.get('ageF')?.invalid && (addEventForm.get('ageF')?.touched || submitted), 'is-valid': addEventForm.get('ageF')?.valid && addEventForm.get('ageF')?.touched}">
-                                <option *ngFor="let age of ageList; let i=index" [value]="i-1">{{age}}</option>
-                            </select>
-                            <div class="invalid-feedback">Selecciona una edad</div>
+                <!-- Location Zone-->
+                <div>
+                    <div *ngFor="let theme of themes;">
+                        <div class="themeTag" [ngStyle]="{'background': randomColor(theme)}">
+                            {{getThemeName(theme)}}
+                            <img (click)="deleteTag(theme)" src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" />
                         </div>
-                    </td>
-                </tr>
+                    </div>
+                </div>
+            
+                <div>
+                    <input type="text" class="form-control" id="location" placeholder="Localización" formControlName="location"
+                        (blur)="checkValidity('location')" [ngClass]="{ 'is-invalid': addEventForm.get('location')?.invalid && (addEventForm.get('location')?.touched || submitted), 'is-valid': addEventForm.get('location')?.valid && addEventForm.get('location')?.touched}">
+                        <div class="invalid-feedback">La localización es obligatoria</div>
+                </div>
+                <!-- Tag List Zone-->
 
-                <tr class="iz">
-                    <!-- Dates Zone-->
-
-                    <td>
-                        <div class="form-group pt-3">
-                            <div class="input-field">
-                                <span class="fa fa-globe p-2"></span>
-                                <input type="date" [min]="todayDate" class="form-control" id="startDate" placeholder="fecha ini"
-                                    formControlName="startDate" (blur)="checkValidity('startDate')" [ngClass]="{ 'is-invalid': addEventForm.get('startDate')?.invalid && (addEventForm.get('startDate')?.touched || submitted), 'is-valid': addEventForm.get('startDate')?.valid && addEventForm.get('startDate')?.touched}">
-                                    <div class="invalid-feedback">La fecha de inicio es obligatoria</div>
-                                <div *ngIf="invalidStartDate" class="text-danger">La fecha de inicio debe ser posterior a la fecha actual</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-group pt-3">
-                            <div class="input-field">
-                                <span class="fa fa-globe p-2"></span>
-                                <input type="date" [min]="todayDate" class="form-control" id="endDate" placeholder="fecha fin" formControlName="endDate"
-                                    (blur)="checkValidity('endDate')" [ngClass]="{ 'is-invalid': addEventForm.get('endDate')?.invalid && (addEventForm.get('endDate')?.touched || submitted), 'is-valid': addEventForm.get('endDate')?.valid && addEventForm.get('endDate')?.touched}">
-                                    <div class="invalid-feedback">La fecha de fin es obligatoria</div>
-                                <div *ngIf="invalidEndDate" class="text-danger">La fecha de fin debe ser posterior a la fecha de inicio</div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-
-
-                <tr class="iz">
-                    <!-- Tag Zone-->
-
-                    <td>
-                        <div style="padding: 7px 0px;">
-                            <select class="tags" multiple (change)="onSelectionChange($event)" placeholder="Tema">
-                                <option  *ngFor="let theme of themeList; let i=index" [value]="i">{{theme}}</option>
-                            </select>
-                            <div *ngIf="invalidLength" class="text-danger">Selecciona un tema como mínimo</div>
-                        </div>
-                    </td>
-
-                        <!-- Location Zone-->
-
-                    <td class="locationInput">
-                        <div>
-                            <input type="text" class="form-control" id="location" placeholder="Localización" formControlName="location"
-                                (blur)="checkValidity('location')" [ngClass]="{ 'is-invalid': addEventForm.get('location')?.invalid && (addEventForm.get('location')?.touched || submitted), 'is-valid': addEventForm.get('location')?.valid && addEventForm.get('location')?.touched}">
-                                <div class="invalid-feedback">La localización es obligatoria</div>
-                        </div>
-                        <!-- Tag List Zone-->
-
-                        <div style="padding-top: 15px;">
-                            <div style=" overflow: hidden visible; max-height:185px">
-                                <table>
-                                    <tr style="height: 10px;" *ngFor="let theme of themes;">
-                                        <td style="padding:2px;height:10px;">
-                                            <div class="themeTag" [ngStyle]="{'background': randomColor(theme)}">
-                                                {{getThemeName(theme)}}
-                                                <img (click)="deleteTag(theme)" src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" />
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+                
+            </div>
 
             <!-- Description Zone-->
 
-            <div style="padding:0.5rem;">
+            <div>
                 <textarea name="description" class="form-control" cols="40" rows="5" formControlName="description" (blur)="checkValidity('description')"
                     [ngClass]="{ 'is-invalid': addEventForm.get('description')?.invalid && (addEventForm.get('description')?.touched || submitted), 'is-valid': addEventForm.get('description')?.valid && addEventForm.get('description')?.touched}">
                 
@@ -119,7 +95,7 @@
 
             <!-- Button Zone-->
 
-            <div justify-content: center>
+            <div>
                 <div style="padding: 10px;" *ngIf="!helperService.event">
                     <button type="submit" class="boton" (click)="onSubmit()">Crear Evento</button>
                 </div>
