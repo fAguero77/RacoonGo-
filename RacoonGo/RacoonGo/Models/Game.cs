@@ -9,12 +9,12 @@
 
         public string id { get; set; }
 
+        public string email { get; set; }
+
         public bool hidden { get; set; }
 
-        public List<Question> questions { get; set; }
+    public int timesPlayed { get;set; }    
 
-        public string email { get; set; }
-        
-        public Game() { }
+     public List<Question> questions { get; set; }
     }
 }

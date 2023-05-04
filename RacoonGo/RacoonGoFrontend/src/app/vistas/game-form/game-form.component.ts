@@ -18,26 +18,34 @@ import Swal from 'sweetalert2';
 export class GameFormComponent implements OnInit {
 
     invalidQuestions: boolean;
+    invalidGame: boolean
     game: Game;
     user!: User;
     preguntasError: string;
     constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService,  private router: Router, private dialog: MatDialog) {
         this.preguntasError = "";
+        this.invalidGame = false;
         this.invalidQuestions = false;
         this.user = JSON.parse(sessionStorage.getItem("user")!);
 
         if (this.user == null) {
             this.router.navigate(['/login'])
         }
-        this.game = new Game();
-        this.game.email = this.user.email;
-        this.game.name = "Juego de "+this.user.username
+        
+
+            this.game = new Game();
+            this.game.email = this.user.email;
+            this.game.name = "Juego de " + this.user.username
+        
+
+
     }
 
     ngOnInit(): void {
-        if (this.helperService.game != undefined){
+        if (this.helperService.game != undefined) {
             this.game = this.helperService.game;
-       }
+        } 
+        
   }
 
     openDialog(question: Question, index:number) {
@@ -75,9 +83,6 @@ export class GameFormComponent implements OnInit {
 
     errorPreguntas(): boolean {
         this.invalidQuestions = false;
-        if (this.game.questions.length == 0) {
-            return true;
-        }
         this.preguntasError = "";
         for (let question of this.game.questions) {
             if (question.options.length < 2) {
@@ -91,11 +96,20 @@ export class GameFormComponent implements OnInit {
         }
         return false;
     }
-
+    errorCampos() {
+        if (!this.game.description || !this.game.difficulty || !this.game.name || this.game.questions.length == 0) {
+            this.invalidGame = true;
+            return true
+        }
+        return false
+    }
     submit() {
-        if (!this.errorPreguntas()) {
-            if (this.helperService.game == undefined)
-                this.game.id = ""
+        let condPreguntas = this.errorPreguntas()
+        let condCampos = this.errorCampos()         
+            if (!condCampos && !condPreguntas) {
+                if (this.helperService.game == undefined)
+                    this.game.id = ""
+            this.game.email = this.user.email
             this.backendRouterService.endpoints.game.addGame(this.game).subscribe({
                 next: (data: HttpResponse<Game>) => {
                     if (this.helperService.game == undefined) {

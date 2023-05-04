@@ -29,6 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { GamesListComponent } from './vistas/games-list/games-list.component';
+import { GameMatchComponent } from './vistas/game-match/game-match.component';
 
 
 
@@ -50,7 +51,8 @@ import { GamesListComponent } from './vistas/games-list/games-list.component';
         SearchBarComponent,
         GameFormComponent,
         QuestionDialogComponent,
-        GamesListComponent
+        GamesListComponent,
+        GameMatchComponent
     ],
     imports: [
         CommonModule,

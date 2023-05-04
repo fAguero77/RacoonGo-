@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { Theme } from '../models/app.enum';
-import {BackEndResponse, Event, Game, User} from "../models/app.model";
+import { BackEndResponse, Event, Game, User } from "../models/app.model";
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from "@angular/router";
 import { BackendRouterService } from "../services/backend-router.service";
@@ -83,6 +83,12 @@ export class HelperService {
 
     getDifficultyInfo(index: number) {
         return this.difficultyText[index];
+    }
+
+    playMatch(g: Game) {
+        this.game = g;
+        this.router.navigate(['/match']);
+
     }
 
     updateGame(g: Game) {

@@ -2,7 +2,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 </head>
 
-<div class="container-fluid py-5">
+<div class="container-fluid py-5" >
     <div class="container pt-5 pb-3">
         <div class="text-center mb-3 pb-3">
             <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Juegos</h6>
@@ -11,7 +11,7 @@
         <p *ngIf="gamesList.length==0">No hay juegos disponibles.</p>
         <div *ngIf="gamesList.length!=0" class="row">
             <div *ngFor="let g of gamesList" class="col-md-4">
-                <div class="package-item mb-2">
+                <div class="package-item mb-2" (click)="goToGame(g)" style="cursor:pointer">
                     <div class="card">
                         <div class="card-header" style="background-color: #74d664">
                             <h4 class="card-title">{{ g.name }} <span class="badge" [ngClass]="{

@@ -4,12 +4,18 @@
     width: 33rem;
     align-items: center;
     text-align: center;
-    height: 51rem;
+    height: 55rem;
     margin: 0 auto;
     border: solid #74d664;
     position: relative;
 }
-
+.caja-interno {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
 .title {
     font-weight: bold;
@@ -26,6 +32,12 @@
 .checkbox {
     position: absolute;
     margin-bottom: 130px;
+    bottom: 0;
+}
+
+.errorBox {
+    position: absolute;
+    margin-bottom: 20px;
     bottom: 0;
 }
 .submitButton {
@@ -70,13 +82,7 @@ textarea {
         background: #A9D6A1;
         color: black;
     }
-.caja-interno {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
+
 .radio {
     margin-right: 20px;
 }

@@ -13,14 +13,14 @@
 
                     <h3>Dificultad</h3>
                     <div class="form-inline d-flex justify-content-center form-control">
-                        <div class="radio">
-                            <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="0">Novato</label>
+                        <div class="radio" >
+                            <label> <input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="0">Novato  </label>
                         </div>
                         <div class="radio">
                             <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="1">Medio</label>
                         </div>
                         <div class="radio">
-                            <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="2">Experto</label>
+                            <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="2"  >Experto</label>
                         </div>
                     </div>
 
@@ -49,7 +49,8 @@
 
                     </div>
                     <div *ngIf="invalidQuestions" class="text-danger">Todas las preguntas deben tener opciones.</div>
-                    <div *ngIf="invalidQuestions" class="text-danger">Revisa las preguntas: {{preguntasError}}</div>
+                    <div *ngIf="invalidQuestions" style="overflow: hidden visible; max-height:40px; max-width:400px" class=" text-danger">Revisa las preguntas: {{preguntasError}}</div>
+
 
 
                     <input class="form-control" type="button" value="Añadir Pregunta" (click)="addQuestion()" />
@@ -67,14 +68,19 @@
     <div class="d-flex flex-column align-items-center justify-content-end">
         <hr class="separador">
         <div class="form-check checkbox">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"  [(ngModel)]="game.hidden">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [(ngModel)]="game.hidden">
             <label class="form-check-label" for="flexCheckDefault">
-               Privado
+                Privado
             </label>
         </div>
         
             <button *ngIf="!helperService.game" class="submitButton form-control" (click)="submit()">Crear juego</button>
             <button *ngIf="helperService.game" class="submitButton form-control" (click)="submit()">Modificar juego</button>        
+
+        <div  *ngIf="invalidGame" class="text-danger errorBox">
+        Debes rellenar todos los campos</div>
+
+
     </div>
 
 

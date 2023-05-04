@@ -14,18 +14,20 @@ export class Game {
     public id : string = "";
     public questions : Question[] = [];
     public hidden: boolean = false;
+    public timesPlayed: number = 0
     public email!: string;
+
 }
 
 export class Question {
     public title!: string;
-    public timesPlayed !: number;
+    public corrects !: number;
     public points !: number;
     public options : Option[] = [];
 
     constructor(title: string, points: number) {
         this.title = title;
-        this.timesPlayed = 0;
+        this.corrects = 0;
         this.points = points;
     }
 }

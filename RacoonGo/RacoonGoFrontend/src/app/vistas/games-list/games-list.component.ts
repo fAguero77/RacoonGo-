@@ -6,6 +6,8 @@ import {HelperService} from "../../services/helper.service";
 import {HttpResponse} from "@angular/common/http";
 import Swal from "sweetalert2";
 import {faPenSquare} from '@fortawesome/free-solid-svg-icons';
+import { Router } from "@angular/router";
+
 
 @Component({
   selector: 'app-games-list',
@@ -43,7 +45,12 @@ export class GamesListComponent implements OnInit {
   
   getDifficultyName(index: number): string {
     return this.helperService.getDifficultyInfo(index);
-  }
+    }
+
+    goToGame(g: Game) {
+        this.helperService.playMatch(g);
+    }
+  
 
     updateGame(g: Game) {
         this.helperService.updateGame(g);
