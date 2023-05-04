@@ -53,6 +53,8 @@ export class BackendRouterService {
                 addGame: function (game: Game) {   return context.api_create('Games',  game)},
                 getGames: function () { return context.api_list('Games/games', {}) },
                 getMyGames: function (email: string) { return context.api_list('Games/myGames', { email }) },
+                search: function (query: string) { return context.api_list('Games/search', { query }) },
+                searchAdvance: function (game: Game) { return context.api_create('Games/searchAdvance', game) },
             }
         }
     }

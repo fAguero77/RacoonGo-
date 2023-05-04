@@ -43,9 +43,40 @@ public class SearchService : ISearchService
 
 
 	// TODO: Implementar los métodos de búsqueda de juegos
-	//public List<Game> SearchGames(string query){}
-	//public List<Game> SearchGames(Game game){}
-	
+	public HashSet<Game> SearchGames(string query)
+	{
+		var keywords = query.Split(' ');
+		List<Game> games = FirebaseRealtimeDatabase.Instance.GetAllGames().Result;
+		HashSet<Game> result = new();
+		foreach (var g in games)
+		{
+			if (keywords.Any(k => ContainsIfEmpty(g.name, k) || ContainsIfEmpty(g.description, k)))
+			{
+				result.Add(g);
+			}
+		}
+		return result;
+	}
+
+	public HashSet<Game> SearchGames(Game query)
+	{
+		var games = FirebaseRealtimeDatabase.Instance.GetAllGames().Result;
+		HashSet<Game> result = new();
+		foreach (var g in games)
+		{
+			if (EqualIfEmpty(g.name, query.name) && EqualIfEmpty(g.description, query.description) &&
+			    EqualIfEmpty(g.email, query.email) &&
+			    EqualAge(g.difficulty, query.difficulty) &&
+			    EqualAge(g.timesPlayed, query.timesPlayed) &&
+				EqualAmountQuestions(g.questions, query.id))
+			{
+				result.Add(g);
+			}
+		}
+
+		return result;
+	}
+
 
 	// En caso de que el usuario no haya introducido nada en el campo de búsqueda, se devuelve true
 	private static bool EqualIfEmpty(string s, string q)
@@ -109,11 +140,25 @@ public class SearchService : ISearchService
 		return false;
 	}
 
-	public static bool EqualAge(int a, int q)
+	public static bool EqualAge(int? a, int? q)
 	{
 		if (a == -1 || q == -1)
 			return true;
+
+		if (a == null || q == null)
+			return true;
+
 		return a == q;
+	}
+
+	public static bool EqualAmountQuestions(List<Question>? a, string? q)
+	{
+		if (q.Length == 0)
+			return true;
+
+		if (a == null || q == null)
+			return true;
+		return a.Count == Int32.Parse(q);
 	}
 }
 
@@ -122,6 +167,6 @@ public interface ISearchService
 	HashSet<Event> SearchEvents(string query);
 	HashSet<Event> SearchEvents(Event query);
 
-	//List<Game> SearchGames(string query);
-	//List<Game> SearchGames(Game query);
+	HashSet<Game> SearchGames(string query);
+	HashSet<Game> SearchGames(Game query);
 }

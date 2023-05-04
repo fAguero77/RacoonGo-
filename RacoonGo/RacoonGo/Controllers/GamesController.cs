@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RacoonGo.Database;
 using RacoonGo.Models;
+using RacoonGo.Services;
 
 namespace RacoonGo.Controllers;
 
@@ -9,8 +10,12 @@ namespace RacoonGo.Controllers;
 [Route("api/[controller]")]
 public class GamesController : ControllerBase
 {
+	private readonly ISearchService _searchService;
 
-    public GamesController(){}
+	public GamesController(ISearchService searchService)
+	{
+		_searchService = searchService;
+	}
 
     [HttpPost]
     public async Task<IActionResult> AddGame(Game game)
@@ -35,5 +40,29 @@ public class GamesController : ControllerBase
         Console.WriteLine(email);
         var games = await FirebaseRealtimeDatabase.Instance.GetMyGames(email);
         return Ok(games);
+    }
+
+    [HttpGet("search")]
+    public IActionResult Search(string? query)
+    {
+	    if (query == null)
+	    {
+		    return Ok(FirebaseRealtimeDatabase.Instance.GetAllEvents());
+	    }
+
+	    HashSet<Game> games = _searchService.SearchGames(query);
+        return Ok(games);
+    }
+
+    [HttpPost("searchAdvance")]
+    public IActionResult SearchAdvance(Game game)
+    {
+	    if (game == null)
+	    {
+		    return Ok(FirebaseRealtimeDatabase.Instance.GetAllEvents());
+	    }
+
+	    HashSet<Game> games = _searchService.SearchGames(game);
+	    return Ok(games);
     }
 }
