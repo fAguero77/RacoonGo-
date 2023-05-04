@@ -47,7 +47,7 @@ namespace RacoonGo.Controllers
 			//Event[] eventList = _crudFirebase.getEvents().Result;
 			var events = await FirebaseRealtimeDatabase.Instance.GetAllEvents();
 
-
+			Console.WriteLine(events);
 			return Ok(events);
 		}
 
