@@ -103,7 +103,6 @@ namespace RacoonGo.Database
             {
                 game.id = GenerateKey();
             }
-            Console.WriteLine(game.id);
 
             string uri = string.Format(BASE_PATH_GAME_USER, email.Replace(".", " "), game.id);
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);

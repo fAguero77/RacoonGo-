@@ -96,7 +96,8 @@ export class GameFormComponent implements OnInit {
     submit() {
         let condPreguntas = this.errorPreguntas()
         let condCampos = this.errorCampos()
-        if (!condCampos && condPreguntas) {
+
+        if (!condCampos && !condPreguntas) {
             this.game.id = this.user.email
             this.backendRouterService.endpoints.game.addGame(this.game).subscribe({
                 next: (data: HttpResponse<Game>) => {
