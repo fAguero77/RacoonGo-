@@ -3,7 +3,7 @@ import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { HelperService } from '../../services/helper.service';
 import { BackendRouterService } from '../../services/backend-router.service';
-import { Event, Location, User, BackEndResponse } from "../../models/app.model";
+import { Option, Question, Game, Event, Location, User, BackEndResponse } from "../../models/app.model";
 import { HttpResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
@@ -34,6 +34,10 @@ export class SearchBarComponent implements OnInit {
     dropdownListAge: any[] = [];
     selectedAge: any[] = [];
     dropdownSettingsAge: IDropdownSettings = {};
+    // menu dificultad de juego
+    dropdownListDifficulty: any[] = [];
+    selectedDifficulty: any[] = [];
+    dropdownSettingsDifficulty: IDropdownSettings = {};
 
     ngOnInit() {
         // -- BÚSQUEDA BÁSICA --
@@ -42,46 +46,71 @@ export class SearchBarComponent implements OnInit {
         });
 
         // -- BÚSQUEDA AVANZADA --
-        this.submitSearchAdvance = new FormGroup({
-            title: new FormControl(''),
-            location: new FormControl(''),
-            iniDate: new FormControl(null),
-            endDate: new FormControl(null),
-            userCompany: new FormControl(''),
-            description: new FormControl(''),
-            selectedTags: new FormControl([]),
-            age: new FormControl(-1),
-        });
-        // inicializar menu de etiquetas
-        for (let i = 0; i < 10; i++) {
-            this.dropdownListTags.push({ item_id: i, item_text: this.helperService.getThemeInfo(i)[0] });
+
+        if (this.isEventSearch) {
+            this.submitSearchAdvance = new FormGroup({
+                title: new FormControl(''),
+                location: new FormControl(''),
+                iniDate: new FormControl(null),
+                endDate: new FormControl(null),
+                userCompany: new FormControl(''),
+                description: new FormControl(''),
+                selectedTags: new FormControl([]),
+                age: new FormControl(-1),
+            });
+            // inicializar menu de etiquetas
+            for (let i = 0; i < 10; i++) {
+                this.dropdownListTags.push({ item_id: i, item_text: this.helperService.getThemeInfo(i)[0] });
+            }
+            this.dropdownSettingsTags = {
+                singleSelection: false,
+                idField: 'item_id',
+                textField: 'item_text',
+                selectAllText: 'Seleccionar todas',
+                unSelectAllText: 'Deseleccionar todas',
+                enableCheckAll: false,
+                itemsShowLimit: 3,
+                allowSearchFilter: true,
+                searchPlaceholderText: 'Buscar',
+                noDataAvailablePlaceholderText: 'No hay etiquetas disponibles',
+                noFilteredDataAvailablePlaceholderText: 'No hay etiquetas filtradas',
+            };
+            // inicializar menu de rango de edades
+            for (let i = 0; i < 5; i++) {
+                this.dropdownListAge.push({ item_id: i, item_text: this.helperService.getAgeText(i) });
+            }
+            this.dropdownSettingsAge = {
+                singleSelection: true,
+                idField: 'item_id',
+                textField: 'item_text',
+                allowSearchFilter: true,
+                searchPlaceholderText: 'Buscar',
+                noDataAvailablePlaceholderText: 'No hay edades disponibles',
+                noFilteredDataAvailablePlaceholderText: 'No hay edades filtradas',
+            };
+        } else {
+            this.submitSearchAdvance = new FormGroup({
+                title: new FormControl(''),
+                user: new FormControl(''),
+                description: new FormControl(''),
+                difficulty: new FormControl(-1),
+                numQuestions: new FormControl(),
+                numPlayers: new FormControl(),
+            });
+            // inicializar menu de dificultad
+            for (let i = 0; i < 3; i++) {
+                this.dropdownListDifficulty.push({ item_id: i, item_text: this.helperService.getDifficultyInfo(i) });
+            }
+            this.dropdownSettingsDifficulty = {
+                singleSelection: true,
+                idField: 'item_id',
+                textField: 'item_text',
+                allowSearchFilter: false,
+                noDataAvailablePlaceholderText: 'No hay dificultades disponibles',
+                noFilteredDataAvailablePlaceholderText: 'No hay dificultades filtradas',
+            };
         }
-        this.dropdownSettingsTags = {
-            singleSelection: false,
-            idField: 'item_id',
-            textField: 'item_text',
-            selectAllText: 'Seleccionar todas',
-            unSelectAllText: 'Deseleccionar todas',
-            enableCheckAll: false,
-            itemsShowLimit: 3,
-            allowSearchFilter: true,
-            searchPlaceholderText: 'Buscar',
-            noDataAvailablePlaceholderText: 'No hay etiquetas disponibles',
-            noFilteredDataAvailablePlaceholderText: 'No hay etiquetas filtradas',
-        };
-        // inicializar menu de rango de edades
-        for (let i = 0; i < 5; i++) {
-            this.dropdownListAge.push({ item_id: i, item_text: this.helperService.getAgeText(i) });
-        }
-        this.dropdownSettingsAge = {
-            singleSelection: true,
-            idField: 'item_id',
-            textField: 'item_text',
-            allowSearchFilter: true,
-            searchPlaceholderText: 'Buscar',
-            noDataAvailablePlaceholderText: 'No hay edades disponibles',
-            noFilteredDataAvailablePlaceholderText: 'No hay edades filtradas',
-        };
+
     }
 
     // -- BÚSQUEDA BÁSICA --
@@ -91,7 +120,7 @@ export class SearchBarComponent implements OnInit {
         // Búsqueda básica de eventos
         if (this.isEventSearch) {
             // Si no hay nada en el input de búsqueda, se hace una petición para obtener todos los eventos
-            if (query == "") {
+            if (query === "") {
                 this.backEndResponse.endpoints.event.getEvents().subscribe({
                     next: (data: HttpResponse<BackEndResponse<any>>) => {
                         this.parentListUpdate.emit(data.body);
@@ -112,7 +141,26 @@ export class SearchBarComponent implements OnInit {
             }
 
         } else {
-            // TODO implementar búsqueda básica de juegos
+            // Si no hay nada en el input de búsqueda, se hace una petición para obtener todos los juegos
+            if (query === "") {
+                this.backEndResponse.endpoints.game.getGames().subscribe({
+                    next: (data: HttpResponse<BackEndResponse<any>>) => {
+                        this.parentListUpdate.emit(data.body);
+                    },
+                });
+            } else {
+                // Si hay algo en el input de búsqueda, se hace una petición para obtener los juegos que coincidan con la búsqueda
+                this.backEndResponse.endpoints.game.search(query).subscribe({
+                    next: (data: HttpResponse<BackEndResponse<any>>) => {
+                        // Actualizar lista del padre (events-list)
+                        this.parentListUpdate.emit(data.body);
+                    },
+                    error: () => {
+                        Swal.fire('Error', 'Se ha producido un error al buscar eventos. Int&#233;ntelo de nuevo en unos minutos.', 'error');
+                    }
+                });
+
+            }
         }
 
 
@@ -161,7 +209,33 @@ export class SearchBarComponent implements OnInit {
                 }
             });
         } else {
-            // TODO: implementar búsqueda avanzada de juegos
+
+            let query: Game =
+            {
+                name: this.submitSearchAdvance.value.title,
+                description: this.submitSearchAdvance.value.description,
+                difficulty: -1,
+                id: [this.submitSearchAdvance.value.numQuestions]?.toString(), // pasamos el número de preguntas como id
+                questions: [],
+                hidden: false,
+                timesPlayed: this.submitSearchAdvance.value.numPlayers ?? -1,
+                email: this.submitSearchAdvance.value.user
+            };
+
+            if (this.submitSearchAdvance.value.difficulty.length > 0) {
+                query.difficulty = this.submitSearchAdvance.value.difficulty[0].item_id;
+            }
+
+            console.log(query);
+            this.backEndResponse.endpoints.game.searchAdvance(query).subscribe({
+                next: (data: HttpResponse<BackEndResponse<any>>) => {
+                    // Actualizar lista del padre (events-list)
+                    this.parentListUpdate.emit(data.body);
+                },
+                error: () => {
+                    Swal.fire('Error', 'Se ha producido un error al buscar juegos. Int&#233;ntelo de nuevo en unos minutos.', 'error');
+                }
+            });
         }
     }
 }

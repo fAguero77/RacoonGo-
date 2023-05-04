@@ -4,11 +4,15 @@
 
 <div class="container-fluid py-5" >
     <div class="container pt-5 pb-3">
-        <div class="text-center mb-3 pb-3">
-            <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Juegos</h6>
-            <h1>Juegos disponibles</h1>
-        </div>
-        <p *ngIf="gamesList.length==0">No hay juegos disponibles.</p>
+	    <div class="text-center mb-3 pb-3">
+		    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Juegos</h6>
+		    <h1>Juegos disponibles</h1>
+	    </div>
+        
+        
+	    <search-bar [isEventSearch]=false (parentListUpdate)="onGamesListUpdate($event)"></search-bar>
+
+	    <p *ngIf="gamesList.length==0">No hay juegos disponibles.</p>
         <div *ngIf="gamesList.length!=0" class="row">
             <div *ngFor="let g of gamesList" class="col-md-4">
                 <div class="package-item mb-2" (click)="goToGame(g)" style="cursor:pointer">
