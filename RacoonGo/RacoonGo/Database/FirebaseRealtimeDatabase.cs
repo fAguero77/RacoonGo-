@@ -27,10 +27,12 @@ namespace RacoonGo.Database
         private readonly string BASE_PATH_ALL_EVENTS_USER = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Events/{0}.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private readonly string BASE_PATH_EVENT_USER = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Events/{0}/{1}.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private readonly string BASE_PATH_GAME_USER = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Games/{0}/{1}.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
+        private readonly string BASE_PATH_ALL_GAMES_USER = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Games/{0}.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
 
         private readonly string BASE_PATH_DB = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Locations.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private readonly string BASE_PATH_EVENTS = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Events/.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
         private readonly string BASE_PATH_GAMES = "https://racoongo-default-rtdb.europe-west1.firebasedatabase.app/Games/.json?auth=hdYoKtTxDhfxoKF34JXlwXVSsclVI9c8uHu8vebZ";
+
         private HttpClient _httpClient = new HttpClient();
 
         public async Task<bool> SetUser(User user, Boolean comprobation) // Insert or update
@@ -198,7 +200,39 @@ namespace RacoonGo.Database
 
             return gamesInStorage is null ? new List<Game>() { } : new List<Game>(all);
         }
-        
+
+        public async Task<List<Game>> GetMyGames(string email)
+        {
+            string uri = string.Format(BASE_PATH_ALL_GAMES_USER, email.Replace(".", " "));
+
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
+
+            HttpResponseMessage response = await _httpClient.SendAsync(httpRequestMessage);
+
+            if (response.StatusCode == HttpStatusCode.NotFound)
+            {
+                return new List<Game>();
+            }
+            string responseData = await response.Content.ReadAsStringAsync();
+
+            Dictionary<string,Game> gamesInStorage = JsonConvert.DeserializeObject<Dictionary<string, Game>>(responseData);
+
+
+            List<Game> all = new List<Game>();
+
+            
+                foreach (Game e in gamesInStorage.Values)
+                {
+                    all.Add(e);
+                }
+            
+
+            return gamesInStorage is null ? new List<Game>() { } : new List<Game>(all);
+        }
+
+
+
+
         public async Task DeleteEvent(string email, string id)
         {
             string uri = string.Format(BASE_PATH_EVENT_USER, email.Replace(".", " "), id);

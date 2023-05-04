@@ -28,4 +28,12 @@ public class GamesController : ControllerBase
         var games = await FirebaseRealtimeDatabase.Instance.GetAllGames();
         return Ok(games);
     }
+
+    [HttpGet("myGames")]
+    public async Task<IActionResult> GetMyGames(string email)
+    {
+        Console.WriteLine(email);
+        var games = await FirebaseRealtimeDatabase.Instance.GetMyGames(email);
+        return Ok(games);
+    }
 }

@@ -1,3 +1,6 @@
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+</head>
 <div class="porfile">
     <div class="userInfo">
         <div>
@@ -34,7 +37,7 @@
                     </div>
 
                 </div>
-                
+
 
                 <div class="p-4">
                     <div class="d-flex justify-content-between mb-3">
@@ -76,7 +79,38 @@
             </div>
         </div>
     </div>
+    <h3>Mis Juegos</h3>
+
+
     <div class="UserGames">
-        <h3>Mis Juegos</h3>
+
+
+        <div class="container-fluid py-5">
+            <div class="container pt-3 pb-3">
+                <div *ngFor="let g of gamesList" class="col-md-4">
+                    <div class="package-item mb-2" (click)="goToGame(g)" style="cursor:pointer">
+                        <div class="card">
+                            <div class="card-header" style="background-color: #74d664">
+                                <h4 class="card-title">
+                                    {{ g.name }} <span class="badge" [ngClass]="{
+                                    'bg-success': g.difficulty === 0,
+                                    'bg-warning': g.difficulty === 1,
+                                    'bg-danger': g.difficulty === 2
+                                }">{{ getDifficultyName(g.difficulty) }}</span>
+                                    <div *ngIf="user && g.email==user.email">
+                                        <button class="btn btn-secondary btn-sm float-right" (click)="updateGame(g)">
+                                            <fa-icon [icon]="faPenSquare"></fa-icon>
+                                        </button>
+                                    </div>
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ g.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
