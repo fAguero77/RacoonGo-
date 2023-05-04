@@ -38,7 +38,8 @@ export class EventsListComponent implements OnInit {
             next: (data: HttpResponse<BackEndResponse<any>>) => {
                 if (data.body) {
                     this.eventsList = data.body as unknown as Event[];
-                    this.eventsList = this.eventsList.filter((value, index) => index % 3 === 0);
+                    //this.eventsList = this.eventsList.filter((value, index) => index % 3 === 0);
+                   
                 }
             },
             error: () => {

@@ -3,7 +3,7 @@ import { BackendRouterService } from "../../services/backend-router.service";
 import { HelperService } from '../../services/helper.service';
 import { Router } from "@angular/router";
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Game, Question, Option, User } from "../../models/app.model";
+import { Game, Question, Option, User, CompanyUser } from "../../models/app.model";
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,13 +19,13 @@ export class GameMatchComponent implements OnInit {
     selectedOption!: Option
     points: number
     i: number
-    user: User
+    user: CompanyUser
     correctQuestions: number
     constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService, private router: Router) {
         this.i = 0;
         this.user = JSON.parse(sessionStorage.getItem("user")!);
 
-        if (this.user == null) {
+        if (this.user == null || this.user.website != undefined) {
             this.router.navigate(['/login'])
         }
         this.correctQuestions = 0
