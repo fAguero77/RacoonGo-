@@ -52,6 +52,7 @@ export class BackendRouterService {
             game: {
                 addGame: function (game: Game) {   return context.api_create('Games',  game)},
                 getGames: function () { return context.api_list('Games/games', {}) },
+                getMyGames: function (email: string) { return context.api_list('Games/myGames', { email }) },
             }
         }
     }

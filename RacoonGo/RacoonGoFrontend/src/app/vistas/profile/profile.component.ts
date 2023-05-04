@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {BackEndResponse, Event, User} from "../../models/app.model";
+import {BackEndResponse, Event, Game, User} from "../../models/app.model";
 import {HttpResponse} from "@angular/common/http";
 import {BackendRouterService} from "../../services/backend-router.service";
-import {HelperService} from "../../services/helper.service";
+import { HelperService } from "../../services/helper.service";
+import { faPenSquare } from '@fortawesome/free-solid-svg-icons';
+
 import {Router} from "@angular/router";
 
 @Component({
@@ -14,18 +16,21 @@ export class ProfileComponent implements OnInit {
   password!: string;
   username: string = "";
   email: string = "";
-  eventsList: Event[] = [];
+    eventsList: Event[] = [];
+    faPenSquare = faPenSquare;
 
+    gamesList: Game[] = [];
+    user : User
   defaultImg: string = 'https://cdnph.upi.com/ph/st/th/5751650313577/2022/i/16503136903474/v1.2/Raccoon-bandit-evicted-from-trash-can-by-Michigan-police.jpg';
 
     constructor(private backEndResponse: BackendRouterService, private helperService: HelperService, private router: Router) {
-        let user: User = JSON.parse(sessionStorage.getItem("user")!)
-        if (user == null) {
+        this.user = JSON.parse(sessionStorage.getItem("user")!)
+        if (this.user == null) {
             this.router.navigate(['/login']);
         }
         else {
-            this.username = user.username;
-            this.email = user.email;
+            this.username = this.user.username;
+            this.email = this.user.email;
         }
     }
 
@@ -35,10 +40,18 @@ export class ProfileComponent implements OnInit {
         this.eventsList = data.body as unknown as Event[];
       }
     })
+      this.backEndResponse.endpoints.game.getMyGames(this.email).subscribe({
+          next: (data: HttpResponse<BackEndResponse<any>>) => {
+              this.gamesList = data.body as unknown as Game[];
+          }
+      })
   }
 
   getThemeName(index: number): [string, string] {
     return this.helperService.getThemeInfo(index);
+    }
+    getDifficultyName(index: number): string {
+        return this.helperService.getDifficultyInfo(index);
     }
 
     getAgeRecommendation(age: number): string {
@@ -52,5 +65,14 @@ export class ProfileComponent implements OnInit {
 
     updateEvent(e: Event) {
         this.helperService.updateEvent(e);
+    }
+
+    goToGame(g: Game) {
+        this.helperService.playMatch(g);
+    }
+
+
+    updateGame(g: Game) {
+        this.helperService.updateGame(g);
     }
 }
