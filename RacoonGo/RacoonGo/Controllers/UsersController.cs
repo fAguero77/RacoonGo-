@@ -43,15 +43,16 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost("sponsor")]
-    public async Task<IActionResult> SetSponsor(CompanyUser user, int days)
+    public async Task<IActionResult> SetSponsor(SponsorRequest request)
     {
-        //// update sponsor days
-        user.sponsored.AddDays(days);
 
-        // update values in database
-        await FirebaseRealtimeDatabase.Instance.SetCompanyUser(user);
+        CompanyUser user = await FirebaseRealtimeDatabase.Instance.GetCompanyUser(request.email);
 
-        // return updated data
+		//update sponsor days
+		user.sponsored = user.sponsored.AddDays(request.days);
+        await FirebaseRealtimeDatabase.Instance.SetCompanyUser(user, false);
+        await FirebaseRealtimeDatabase.Instance.UpdateAllUsersEvents(user);
+
         return Ok(user);
     }
 
@@ -70,7 +71,7 @@ public class UsersController : ControllerBase
     }
 
 
-        [HttpDelete("delete/{id}")]
+    [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteUser(string id)
     {
         try
