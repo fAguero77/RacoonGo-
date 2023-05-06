@@ -4,23 +4,23 @@
 
 <div class="container-fluid py-5">
     <div class="container pt-5 pb-3">
-	    <div class="text-center mb-3 pb-3">
-		    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Eventos</h6>
-		    <h1>Eventos disponibles</h1>
-	    </div>
-        
-        
-	    <search-bar [isEventSearch]=true (parentListUpdate)="onEventsListUpdate($event)"></search-bar>
-        
+        <div class="text-center mb-3 pb-3">
+            <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Eventos</h6>
+            <h1>Eventos disponibles</h1>
+        </div>
+
+
+        <search-bar [isEventSearch]=true (parentListUpdate)="onEventsListUpdate($event)"></search-bar>
+
         <div class="misEventos">
             <button type="button" class="btn btn-primary" (click)="getMyEvents()">Mis eventos</button>
         </div>
 
-
+	    <p style="text-align: center" *ngIf="eventsList.length==0">No hay eventos disponibles.</p>
         <div class="row">
-	        <div *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4">
-		        <div class="package-item bg-white mb-2"
-		             [ngStyle]="{'border': isSponsored(e.user.sponsored) ? '4px solid green' : 'none'}">
+            <div *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4">
+                <div class="package-item bg-white mb-2"
+                     [ngStyle]="{'border': isSponsored(e.user.sponsored) ? '4px solid green' : 'none'}">
                     <!-- Foto or default -->
                     <div style="position:relative">
                         <img class="img-responsive" src="{{e.photoUrl}}">
