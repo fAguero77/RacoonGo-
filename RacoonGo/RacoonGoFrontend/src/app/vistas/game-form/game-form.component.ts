@@ -86,7 +86,7 @@ export class GameFormComponent implements OnInit {
         this.preguntasError = "";
         for (let question of this.game.questions) {
             if (question.options.length < 2) {
-                this.preguntasError += question.title + ", "
+                this.preguntasError += question.title + ", ";
                 this.invalidQuestions = true;
             }
         }
@@ -97,11 +97,11 @@ export class GameFormComponent implements OnInit {
         return false;
     }
     errorCampos() {
-        if (!this.game.description || !this.game.difficulty || !this.game.name || this.game.questions.length == 0) {
+        if (!this.game.description || !this.game.difficulty || !this.game.name || this.game.questions.length === 0 || this.game.name.trim().length === 0) {
             this.invalidGame = true;
-            return true
+            return true;
         }
-        return false
+        return false;
     }
     submit() {
         let condPreguntas = this.errorPreguntas()

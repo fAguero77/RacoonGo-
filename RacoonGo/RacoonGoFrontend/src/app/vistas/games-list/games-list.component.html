@@ -12,7 +12,7 @@
         
 	    <search-bar [isEventSearch]=false (parentListUpdate)="onGamesListUpdate($event)"></search-bar>
 
-	    <p *ngIf="gamesList.length==0">No hay juegos disponibles.</p>
+	    <p style="text-align: center" *ngIf="gamesList.length==0">No hay juegos disponibles.</p>
         <div *ngIf="gamesList.length!=0" class="row">
             <div *ngFor="let g of gamesList" class="col-md-4">
                 <div class="package-item mb-2" (click)="goToGame(g)" style="cursor:pointer">
