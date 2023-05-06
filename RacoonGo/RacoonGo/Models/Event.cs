@@ -39,7 +39,7 @@ namespace RacoonGo.Models
         public List<int> themes { get; set; }
         public Location location { get; set; }
 
-        public User user { get; set; }
+        public CompanyUser user { get; set; }
 
         public string photoUrl { get; set; }
 
