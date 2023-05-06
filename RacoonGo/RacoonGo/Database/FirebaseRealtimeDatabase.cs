@@ -52,9 +52,9 @@ namespace RacoonGo.Database
             return true;
         }
 
-        public async Task<bool> SetCompanyUser(CompanyUser user) // Insert or update
+        public async Task<bool> SetCompanyUser(CompanyUser user, bool comprobation = true) // Insert or update
         {
-            if (await checkUser(user, string.Format(BASE_PATH_COMPANY_USER, "")))
+	        if (comprobation &&  await checkUser(user, string.Format(BASE_PATH_COMPANY_USER, "")))
             {
                 return false;
             }
@@ -138,7 +138,19 @@ namespace RacoonGo.Database
             return eventsInStorage is null ? new List<Event>() { } : new List<Event>(all);
         }
 
-        public async Task<List<Event>> GetUserEvents(string email)
+        public async Task<List<Event>> UpdateAllUsersEvents(CompanyUser user)
+        {
+	        List<Event> events = await GetUserEvents(user.email);
+            events.ForEach(e => e.user = user);
+            foreach (Event e in events)
+            {
+	            await SetEvent(user.email, e);
+            }
+
+            return events;
+        }
+
+		public async Task<List<Event>> GetUserEvents(string email)
         {
 
             string uri = string.Format(BASE_PATH_ALL_EVENTS_USER, email.Replace(".", " "));
