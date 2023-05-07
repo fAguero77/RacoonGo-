@@ -1,0 +1,6 @@
+.border-primary:hover{
+    background: #74d664 !important;
+}
+.border-primary{
+    box-shadow:  0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35);
+}
