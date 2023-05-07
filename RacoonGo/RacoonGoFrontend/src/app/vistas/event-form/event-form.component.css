@@ -39,7 +39,7 @@ h5 {
 
 .form-control{
     border: solid #74d664 2px !important;
-    box-shadow: 0.2rem 0.2rem 0.3rem 0.05rem rgba(0, 0, 0, 0.38);
+    box-shadow: inset 0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35);
 
 }
 

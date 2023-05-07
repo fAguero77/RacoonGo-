@@ -94,7 +94,8 @@
                        [ngClass]="{ 'is-invalid': addEventForm.get('image')?.invalid && (addEventForm.get('image')?.touched || submitted), 
                         'is-valid': addEventForm.get('image')?.valid && addEventForm.get('image')?.touched}">
 
-                <img style=" width: 50%; height: 50%; margin: 1rem auto; border: solid #74d664 2px; " class="form-control" src="{{image}}" />
+                <img style=" width: 50%; height: 50%; margin: 1rem auto; border: solid #74d664 2px;     box-shadow: 0.2rem 0.2rem 0.3rem 0.05rem rgba(0, 0, 0, 0.38) ;
+!important; " class="form-control" src="{{image}}" />
                 
                 <div class="invalid-feedback">Enlace inválido</div>
             </div>
@@ -105,10 +106,10 @@
 
             <div>
                 <div  *ngIf="!helperService.event">
-                    <button type="submit" class="btn btn-primary" style="" (click)="onSubmit()">Crear Evento</button>
+                    <button type="submit" class="btn btn-primary" style="background: #58b04b !important; border: none" (click)="onSubmit()">Crear Evento</button>
                 </div>
                 <div  *ngIf="helperService.event">
-                    <button type="submit" class="btn btn-primary" style="background: #74d664 !important; border: none" (click)="onSubmit()">Modificar Evento</button>
+                    <button type="submit" class="btn btn-primary" style="background: #58b04b !important; border: none" (click)="onSubmit()">Modificar Evento</button>
                 </div>
             </div>
         </form>
