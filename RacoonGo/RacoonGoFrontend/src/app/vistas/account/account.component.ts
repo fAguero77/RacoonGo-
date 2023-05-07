@@ -49,19 +49,28 @@ export class AccountComponent implements OnInit {
     }
 
     signUp() {
-        const loginUser = new User(this.email, this.username, 0);
-        this.backEndResponse.endpoints.user.addUser(loginUser).subscribe({
-            next: () => {
-                this.invalidSignup = false;
-                this.router.navigate(['/']);
-                createUserWithEmailAndPassword(auth, this.email, this.password);
-            },
-            error: () => {
+        createUserWithEmailAndPassword(auth, this.email, this.password)
+            .then(() => {
+                const loginUser = new User(this.email, this.username, 0);
+                this.backEndResponse.endpoints.user.addUser(loginUser).subscribe({
+                    next: () => {
+                        this.invalidSignup = false;
+                        this.router.navigate(['/']);
+                    },
+                    error: () => {
+                        console.log("Error:");
+                        this.invalidSignup = true;
+                    },
+                    complete: () => {
+                        sessionStorage.setItem("user", JSON.stringify(loginUser));
+                    }
+                });
+            })
+            .catch((error) => {
+                console.error(error);
                 this.invalidSignup = true;
-            },
-            complete: () => {
-                sessionStorage.setItem("user", JSON.stringify(loginUser));
-            }
-        });
+            });
+        
+        
     }
 }
