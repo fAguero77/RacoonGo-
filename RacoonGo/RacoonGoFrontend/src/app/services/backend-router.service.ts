@@ -61,6 +61,7 @@ export class BackendRouterService {
                 getMyGames: function (email: string) { return context.api_list('Games/myGames', { email }) },
                 search: function (query: string) { return context.api_list('Games/search', { query }) },
                 searchAdvance: function (game: Game) { return context.api_create('Games/searchAdvance', game) },
+                deleteGame: function (email: string, id: string) { return context.api_delete('Games/deleteGame', email+"&"+id) },
             }
         }
     }

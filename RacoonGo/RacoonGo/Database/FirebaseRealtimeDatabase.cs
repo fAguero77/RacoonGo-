@@ -252,6 +252,14 @@ namespace RacoonGo.Database
 
             await _httpClient.SendAsync(httpRequestMessage);
         }
+        
+        public async Task DeleteGame(string email, string id)
+        {
+            string uri = string.Format(BASE_PATH_GAME_USER, email.Replace(".", " "), id);
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Delete, uri);
+
+            await _httpClient.SendAsync(httpRequestMessage);
+        }
 
         public async Task DeleteUser(string email)
         {

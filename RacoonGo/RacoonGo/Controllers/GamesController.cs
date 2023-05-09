@@ -41,6 +41,15 @@ public class GamesController : ControllerBase
         var games = await FirebaseRealtimeDatabase.Instance.GetMyGames(email);
         return Ok(games);
     }
+    
+    [HttpDelete("deleteGame/{body}")]
+    public async Task<IActionResult> DeleteGame(string body)
+	{
+		string email = body.Substring(0, body.IndexOf('&'));
+		string id = body.Substring(body.IndexOf('&') + 1);
+		await FirebaseRealtimeDatabase.Instance.DeleteGame(email, id);
+		return Ok();
+	}
 
     [HttpGet("search")]
     public IActionResult Search(string? query)
