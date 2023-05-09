@@ -15,7 +15,7 @@
 	    <p style="text-align: center" *ngIf="gamesList.length==0">No hay juegos disponibles.</p>
         <div *ngIf="gamesList.length!=0" class="row">
             <div *ngFor="let g of gamesList" class="col-md-4">
-                <div class="package-item mb-2" (click)="goToGame(g)" style="cursor:pointer">
+                <div class="package-item mb-2" style="cursor:pointer">
                     <div class="card">
                         <div class="card-header" style="background-color: #74d664">
                             <h4 class="card-title">{{ g.name }} <span class="badge" [ngClass]="{
@@ -23,15 +23,19 @@
                                     'bg-warning': g.difficulty === 1,
                                     'bg-danger': g.difficulty === 2
                                 }">{{ getDifficultyName(g.difficulty) }}</span>
-                                <div *ngIf="user && g.email==user.email">
-                                    <button class="btn btn-secondary btn-sm float-right" (click)="updateGame(g)">
+                                <div *ngIf="user && g.email==user.email" class="float-right">
+                                    <button class="btn btn-secondary btn-sm" (click)="updateGame(g)">
                                         <fa-icon [icon]="faPenSquare"></fa-icon>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" (click)="deleteGame(g)">
+                                        <fa-icon [icon]="faTrash"></fa-icon>
                                     </button>
                                 </div>
                             </h4>
                         </div>
                         <div class="card-body">
                             <p class="card-text">{{ g.description }}</p>
+                            <button class="btn btn-primary" style="background-color: #74d664" (click)="goToGame(g)">Jugar</button>
                         </div>
                     </div>
                 </div>

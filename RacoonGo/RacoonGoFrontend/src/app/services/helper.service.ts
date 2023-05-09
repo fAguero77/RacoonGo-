@@ -56,7 +56,7 @@ export class HelperService {
     deleteEvent(e: Event) {
         Swal.fire({
             title: '¿Estás seguro?',
-            text: "No podrás revertir esto!",
+            text: "¡No podrás revertir los cambios!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -64,9 +64,10 @@ export class HelperService {
             confirmButtonText: 'Sí, bórralo',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
+            if (result.isDismissed) return;
             this.backEndResponse.endpoints.event.deleteEvent(e.user.email, e.id).subscribe({
                 next: (data: HttpResponse<BackEndResponse<any>>) => {
-                    Swal.fire('\u00A1Muy bien!', 'Se ha eliminado correctamente tu evento: ' + e.title, 'success').then((a) => {
+                    Swal.fire('\u00A1¡Muy bien!', 'Se ha eliminado correctamente tu evento: ' + e.title, 'success').then((a) => {
                         window.location.reload();
                     })
                 }
@@ -94,5 +95,28 @@ export class HelperService {
     updateGame(g: Game) {
         this.game=g;
         this.router.navigate(['/addGame']);
+    }
+
+    deleteGame(g: Game) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir los cambios!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, bórralo',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isDismissed) return;
+            this.backEndResponse.endpoints.game.deleteGame(g.email, g.id).subscribe({
+                next: (data: HttpResponse<BackEndResponse<any>>) => {
+                    Swal.fire('\u00A1¡Muy bien!', 'Se ha eliminado correctamente tu juego: ' + g.name, 'success').then((a) => {
+                        window.location.reload();
+                    })
+                }
+            });
+
+        })
     }
 }
