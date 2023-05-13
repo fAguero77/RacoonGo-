@@ -383,3 +383,15 @@ button {
     white-space: nowrap;
     width: 1px;
 }
+
+.logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo-container img {
+    width: 30%;
+    height: 30%;
+    margin-right: 10px;
+}

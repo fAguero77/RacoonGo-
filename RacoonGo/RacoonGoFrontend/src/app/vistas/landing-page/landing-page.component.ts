@@ -9,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class LandingPageComponent implements OnInit {
 
   constructor() { }
-    monicaReversed: boolean = false
-    davidReversed: boolean = false
-    feliReversed: boolean = false
-    feliuReversed: boolean = false
+    monicaReversed: boolean = false;
+    davidReversed: boolean = false;
+    feliReversed: boolean = false;
+    feliuReversed: boolean = false;
 
   ngOnInit(): void {
   }
@@ -20,19 +20,19 @@ export class LandingPageComponent implements OnInit {
     reverse(index: number) {
         switch (index) {
             case 0: {
-                this.monicaReversed = !this.monicaReversed
+                this.monicaReversed = !this.monicaReversed;
                 break;
             }
             case 1: {
-                this.davidReversed = !this.davidReversed
+                this.davidReversed = !this.davidReversed;
                 break;
             }
             case 2: {
-                this.feliReversed = !this.feliReversed
+                this.feliReversed = !this.feliReversed;
                 break;
             }
             case 3: {
-                this.feliuReversed = !this.feliuReversed
+                this.feliuReversed = !this.feliuReversed;
                 break;
             }
         }
