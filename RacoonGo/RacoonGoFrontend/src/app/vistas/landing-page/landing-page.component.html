@@ -1,203 +1,295 @@
 ﻿
 <div class="container">
-	<div class="grid">
-		<div class="column-xs-12">
-			<ul class="slider">
-				<!-- Quienes somos -->
-				<li class="slider-item active">
-					<div class="grid vertical">
+    <div class="grid">
+        <div class="column-xs-12">
+            <ul class="slider">
+                <!-- Quienes somos -->
+                <li class="slider-item active">
+                    <div class="grid vertical">
 
-						<div class="column-xs-12 column-md-10">
-							<div class="grid">
-								<div>
-									<div class="image-holder">
-										<img class="smallImage" src="../../../assets/images/mapache.png">
-									</div>
-								</div>
-								<div>
-									<div class="intro show-mobile">
-										<h1 class="titleDerecha"><span class="underline">¿Quiénes Somos?</span></h1>
+                        <div class="column-xs-12 column-md-10">
+                            <div class="grid">
+                                <div>
+                                    <div class="image-holder">
+                                        <img class="smallImage" src="../../../assets/images/mapache.png">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="intro show-mobile">
+                                        <h1 class="titleDerecha"><span class="underline">¿Quiénes Somos?</span></h1>
 
-									</div>
-									<p class="descriptionDerecha">
-										<b>RacoonGo!</b> nace como un portal web centrado en promover un turismo familiar orientado a la ciencia, así como divulgar conocimientos científicos mediante juegos.
-										<br />
-										<br />
-										En nuestra web puedes encontrar multitud de eventos de carácter científico: visitas guiadas por los mejores museos del mundo, conocer a fondo la ciudad en la que vives o asistir a las últimas ferias científicas de tu país son sólo algunas de las actividades que puedes realizar gracias a <b>RacoonGo!</b>.
-										<br />
-										Además de esto, <b>RacoonGo!</b> te ofrece la posibilidad de jugar a juegos creados por la comunidad con el objetivo de ampliar tus conocimientos o crear tus propios juegos y demostrar que eres el que más sabe de ciencia.
-										<br />
-										<br />
-										Si eres una empresa, tendrás acceso al sistema de creación de eventos, pudiendo publicitar tus eventos científicos en la web.
+                                    </div>
+                                    <p class="descriptionDerecha">
+                                        <b>RacoonGo!</b> nace como un portal web centrado en promover un turismo familiar orientado a la ciencia, así como divulgar conocimientos científicos mediante juegos.
+                                        <br />
+                                        <br />
+                                        En nuestra web puedes encontrar multitud de eventos de carácter científico: visitas guiadas por los mejores museos del mundo, conocer a fondo la ciudad en la que vives o asistir a las últimas ferias científicas de tu país son sólo algunas de las actividades que puedes realizar gracias a <b>RacoonGo!</b>.
+                                        <br />
+                                        Además de esto, <b>RacoonGo!</b> te ofrece la posibilidad de jugar a juegos creados por la comunidad con el objetivo de ampliar tus conocimientos o crear tus propios juegos y demostrar que eres el que más sabe de ciencia.
+                                        <br />
+                                        <br />
+                                        Si eres una empresa, tendrás acceso al sistema de creación de eventos, pudiendo publicitar tus eventos científicos en la web.
 
 
-									</p>
-									<div>
-										<div class="faceContainer">
-											<div class="image-with-caption">
-												<img *ngIf="!monicaReversed" class="reversalImage" src="../../../assets/images/monica.jpg" alt="Mónica Pitarch Ruiz" (click)="reverse(0)">
-												<div *ngIf="!monicaReversed" class="caption">Mónica Pitarch Ruiz</div>
+                                    </p>
+                                    <div>
+                                        <div class="faceContainer">
+                                            <div class="image-with-caption">
+                                                <img *ngIf="!monicaReversed" class="reversalImage" src="../../../assets/images/monica.jpg" alt="Mónica Pitarch Ruiz" (click)="reverse(0)">
+                                                <div *ngIf="!monicaReversed" class="caption">Mónica Pitarch Ruiz</div>
 
-												<div *ngIf="monicaReversed" class=" reversalImage " (click)="reverse(0)">
-													<div class="reversed monica">
+                                                <div *ngIf="monicaReversed" class=" reversalImage " (click)="reverse(0)">
+                                                    <div class="reversed monica">
 
-													</div>
+                                                    </div>
 
-													<p class="textReversed">Hola pepe </p>
-												</div>
-											</div>
-											<span class="barra"></span>
-											<div class="image-with-caption">
-												<img *ngIf="!davidReversed" class="reversalImage" src="../../../assets/images/david.jpg" alt="David del Río López" (click)="reverse(1)">
-												<div *ngIf="!davidReversed" class="caption">David del Río López</div>
-												<div *ngIf="davidReversed" class=" reversalImage " (click)="reverse(1)">
-													<div class="reversed david">
+                                                    <p class="textReversed">Hola pepe </p>
+                                                </div>
+                                            </div>
+                                            <span class="barra"></span>
+                                            <div class="image-with-caption">
+                                                <img *ngIf="!davidReversed" class="reversalImage" src="../../../assets/images/david.jpg" alt="David del Río López" (click)="reverse(1)">
+                                                <div *ngIf="!davidReversed" class="caption">David del Río López</div>
+                                                <div *ngIf="davidReversed" class=" reversalImage " (click)="reverse(1)">
+                                                    <div class="reversed david">
 
-													</div>
+                                                    </div>
 
-													<p class="textReversed">Hola pepe </p>
-												</div>
-											</div>
-											<span class="barra"></span>
-											<div class="image-with-caption">
-												<img *ngIf="!feliReversed" class="reversalImage" src="../../../assets/images/feli.jpg" alt="Felicitas Agüero Pratto" (click)="reverse(2)">
-												<div *ngIf="!feliReversed" class="caption">Felicitas Agüero Pratto</div>
-												<div *ngIf="feliReversed" class=" reversalImage " (click)="reverse(2)">
-													<div class="reversed feli">
+                                                    <p class="textReversed">Hola pepe </p>
+                                                </div>
+                                            </div>
+                                            <span class="barra"></span>
+                                            <div class="image-with-caption">
+                                                <img *ngIf="!feliReversed" class="reversalImage" src="../../../assets/images/feli.jpg" alt="Felicitas Agüero Pratto" (click)="reverse(2)">
+                                                <div *ngIf="!feliReversed" class="caption">Felicitas Agüero Pratto</div>
+                                                <div *ngIf="feliReversed" class=" reversalImage " (click)="reverse(2)">
+                                                    <div class="reversed feli">
 
-													</div>
+                                                    </div>
 
-													<p class="textReversed">Hola pepe </p>
-												</div>
-											</div>
-											<span class="barra"></span>
-											<div class="image-with-caption">
-												<img *ngIf="!feliuReversed" class="reversalImage" src="../../../assets/images/feliu.jpg" alt="Carlos Feliu Usó" (click)="reverse(3)">
-												<div *ngIf="!feliuReversed" class="caption">Carlos Feliu Usó</div>
-												<div *ngIf="feliuReversed" class=" reversalImage " (click)="reverse(3)">
-													<div class="reversed feliu">
+                                                    <p class="textReversed">Hola pepe </p>
+                                                </div>
+                                            </div>
+                                            <span class="barra"></span>
+                                            <div class="image-with-caption">
+                                                <img *ngIf="!feliuReversed" class="reversalImage" src="../../../assets/images/feliu.jpg" alt="Carlos Feliu Usó" (click)="reverse(3)">
+                                                <div *ngIf="!feliuReversed" class="caption">Carlos Feliu Usó</div>
+                                                <div *ngIf="feliuReversed" class=" reversalImage " (click)="reverse(3)">
+                                                    <div class="reversed feliu">
 
-													</div>
+                                                    </div>
 
-													<p class="textReversed">Hola pepe </p>
-												</div>
-											</div>
-										</div>
-									</div>
+                                                    <p class="textReversed">Hola pepe </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-								</div>
-							</div>
-						</div>
+                                </div>
+                            </div>
+                        </div>
 
-					</div>
-				</li>
+                    </div>
+                </li>
 
-				<!-- Financiamiento -->
-				<!--No funciona el slider asi que lo hago directamente abajo de este por ahora -->
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<li> <!-- <li class="slider-item"> -->
+                <!-- Financiamiento -->
+                <!-- !!!!!!!!!!  No funciona el slider asi que lo hago directamente abajo de este por ahora -->
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <li>
+                    <!-- <li class="slider-item"> -->
 
-					<div class="grid vertical">
-						<div class="column-xs-12 column-md-2 hide-mobile">
-							<div class="intro">
-								<a href="#">
-									<h1 class="title"><span class="underline">Financiamiento</span></h1>
-								</a>
-							</div>
-						</div>
-						<div class="column-xs-12 column-md-10" style="text-align: center">
-							<div class="logo-container">
-								<img src="../../../assets/images/neotec-980x272.png">
-								<img src="../../../assets/images/Logo_color_ICO.jpg">
-								<img src="../../../assets/images/go_found_me.png">
-							</div>
-							<div class="grid">
-								<div class="column-xs-12 column-md-9">
-									<p class="description" style="text-align: justify">
-										<i>RacoonGo!</i> considera distintas <b>fuentes de financiación</b> hasta que el proyecto comience a distribuirse, tanto públicas como privadas.
-										Para la financiación pública, las fuentes potenciales incluyen las ayudas del programa NEOTEC del Centro para el Desarrollo Tecnológico y la Innovación (CDTI)
-										y la ayuda en régimen de concurrencia competitiva, para el fomento de la cultura científica, tecnológica y de la innovación otorgada por la Dirección General de Industria
-										y de la Pequeña y Mediana Empresa (DGIPME). Entre las opciones de financiación privada se encuentra la Línea ICO de CaixaBank para la ayuda económica durante la fase inicial 
-										y canales informales como las campañas de financiación colectiva (crowdfunding) y la financiación Family, Friends, and Fools (Familia, amigos e Incautos).
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
+                    <div class="grid vertical">
+                        <div class="column-xs-12 column-md-2 hide-mobile">
+                            <div class="intro">
+                                <a href="#">
+                                    <h1 class="title"><span class="underline">Financiamiento</span></h1>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="column-xs-12 column-md-10" style="text-align: center">
+                            <div class="logo-container">
+                                <img src="../../../assets/images/neotec-980x272.png">
+                                <img src="../../../assets/images/Logo_color_ICO.jpg">
+                                <img src="../../../assets/images/go_found_me.png">
+                            </div>
+                            <div class="grid">
+                                <div class="column-xs-12 column-md-9">
+                                    <p class="description" style="text-align: justify">
+                                        <i>RacoonGo!</i> considera distintas <b>fuentes de financiación</b> hasta que el proyecto comience a distribuirse, tanto públicas como privadas.
+                                        Para la financiación pública, las fuentes potenciales incluyen las ayudas del programa NEOTEC del Centro para el Desarrollo Tecnológico y la Innovación (CDTI)
+                                        y la ayuda en régimen de concurrencia competitiva, para el fomento de la cultura científica, tecnológica y de la innovación otorgada por la Dirección General de Industria
+                                        y de la Pequeña y Mediana Empresa (DGIPME). Entre las opciones de financiación privada se encuentra la Línea ICO de CaixaBank para la ayuda económica durante la fase inicial
+                                        y canales informales como las campañas de financiación colectiva (crowdfunding) y la financiación Family, Friends, and Fools (Familia, amigos e Incautos).
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
 
-				<li class="slider-item">
-					<div class="grid vertical">
-						<div class="column-xs-12 column-md-2 hide-mobile">
-							<div class="intro">
-								<a href="#">
-									<h1 class="title"><span class="underline">Explore Osaka</span></h1>
-								</a>
-							</div>
-						</div>
-						<div class="column-xs-12 column-md-10">
-							<div class="image-holder">
-								<img src="https://source.unsplash.com/peYW3VwICpE">
-							</div>
-							<div class="grid">
-								<div class="column-xs-12 column-md-9">
-									<div class="intro show-mobile">
-										<a href="#">
-											<h1 class="title"><span class="underline">Explore Osaka</span></h1>
-										</a>
-									</div>
-									<p class="description">Osaka is a large port city and commercial center known for its modern architecture, nightlife and hearty street food.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="slider-item">
-					<div class="grid vertical">
-						<div class="column-xs-12 column-md-2 hide-mobile">
-							<div class="intro">
-								<a href="#">
-									<h1 class="title"><span class="underline">Explore Hokkaido</span></h1>
-								</a>
-							</div>
-						</div>
-						<div class="column-xs-12 column-md-10">
-							<div class="image-holder">
-								<img src="https://source.unsplash.com/VmeOZQjTVGE">
-							</div>
-							<div class="grid">
-								<div class="column-xs-12 column-md-9">
-									<div class="intro show-mobile">
-										<a href="#">
-											<h1 class="title"><span class="underline">Explore Hokkaido</span></h1>
-										</a>
-									</div>
-									<p class="description">Hokkaido, the northernmost of Japan’s main islands, is known for its volcanoes, natural hot springs ("onsen") and ski areas.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
-			<div class="grid" style="padding-top:30px">
-				<div class="column-xs-12">
-					<div class="controls">
-						<button class="previous">
-							<span class="visually-hidden">Previous</span>
-							<span class="icon arrow-left" aria-hidden="true"></span>
-						</button>
-						<button class="next">
-							<span class="visually-hidden">Next</span>
-							<span class="icon arrow-right" aria-hidden="true"></span>
-						</button>
+                <!-- Riesgos -->
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <li>
+                    <!-- <li class="slider-item"> -->
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                    <div class="grid vertical">
+                        <div class="column-xs-12 column-md-2 hide-mobile">
+                            <div class="intro">
+                                <a href="#">
+                                    <h1 class="title"><span class="underline">Análisis de Riesgos</span></h1>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="column-xs-12 column-md-10" style="text-align: center">
+                            <div class="grid">
+                                <div class="column-xs-12 column-md-9">
+	                                <div class="logo-container">
+                                        <img style="width: 10%" src="../../../assets/images/discovery-tours.8f0004a4.png">
+                                        <img src="../../../assets/images/observer.png">
+                                        <img src="../../../assets/images/Logo_22.png">
+                                    </div>
+
+                                    <table class="tg">
+                                        <thead>
+                                            <tr>
+                                                <th class="tg-fymr">Caracteristicas</th>
+
+                                                <th class="tg-7btt">
+                                                    <div class="comp">Discovery Tours</div>
+                                                </th>
+                                                <th class="tg-7btt">
+                                                    <div class="comp">Observer</div>
+                                                </th>
+                                                <th class="tg-fymr">
+                                                    <div class="comp">SetJetters</div>
+                                                </th>
+                                                <th class="tg-fymr">
+                                                    <div class="comp">RacoonGo!</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="table_label">Metodología de desarrollo</td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table_label">Riesgos del equipo</td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table_label">Riesgos del entorno</td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table_label">Usuarios finales</td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table_label">Riesgos de los usuarios finales</td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table_label">Funcionalidades principales</td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table_label">Funcionalidades específicas</td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table_label">Riesgos del producto</td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table_label">Observaciones</td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                                <td class="table_data"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="slider-item">
+                    <div class="grid vertical">
+                        <div class="column-xs-12 column-md-2 hide-mobile">
+                            <div class="intro">
+                                <a href="#">
+                                    <h1 class="title"><span class="underline">Explore Hokkaido</span></h1>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="column-xs-12 column-md-10">
+                            <div class="image-holder">
+                                <img src="https://source.unsplash.com/VmeOZQjTVGE">
+                            </div>
+                            <div class="grid">
+                                <div class="column-xs-12 column-md-9">
+                                    <div class="intro show-mobile">
+                                        <a href="#">
+                                            <h1 class="title"><span class="underline">Explore Hokkaido</span></h1>
+                                        </a>
+                                    </div>
+                                    <p class="description">Hokkaido, the northernmost of Japan’s main islands, is known for its volcanoes, natural hot springs ("onsen") and ski areas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="grid" style="padding-top:30px">
+                <div class="column-xs-12">
+                    <div class="controls">
+                        <button class="previous">
+                            <span class="visually-hidden">Previous</span>
+                            <span class="icon arrow-left" aria-hidden="true"></span>
+                        </button>
+                        <button class="next">
+                            <span class="visually-hidden">Next</span>
+                            <span class="icon arrow-right" aria-hidden="true"></span>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -395,3 +395,38 @@ button {
     height: 30%;
     margin-right: 10px;
 }
+
+.tg {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.tg th,
+.tg td {
+    width: 20%; /* Adjust the percentage value as needed */
+}
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+th, td {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+.comp {
+    font-weight: bold;
+    text-align: center;
+}
+
+.table_label {
+    text-align: center;
+    font-weight: bold;
+}
+
+.table_data {
+    text-align: left;
+}
