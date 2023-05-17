@@ -7,12 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
-
-  constructor() { }
+    page: number = 1;
     monicaReversed: boolean = false;
     davidReversed: boolean = false;
     feliReversed: boolean = false;
     feliuReversed: boolean = false;
+
+    constructor() { }
+
 
   ngOnInit(): void {
   }
@@ -36,5 +38,13 @@ export class LandingPageComponent implements OnInit {
                 break;
             }
         }
+    }
+
+    goNextPage() {
+        this.page++;       
+    }
+
+    goPreviousPage() {
+        this.page--;
     }
 }

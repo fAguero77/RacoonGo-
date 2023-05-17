@@ -2,464 +2,497 @@
 <div class="container">
     <div class="grid">
 		<div class="column-xs-12">
-			<ul class="slider">
-				<!-- Quienes somos -->
-				<li class="slider-item active">
-					<div class="grid vertical">
-
-						<div class="column-xs-12 column-md-10">
-							<div class="grid">
-								<div>
-									<div class="image-holder">
-										<img class="smallImage" src="../../../assets/images/mapache.png">
-									</div>
-								</div>
-								<div>
-									<div class="intro show-mobile">
-										<h1 class="titleDerecha"><span class="underline">¿Quiénes Somos?</span></h1>
-
-									</div>
-									<p class="descriptionDerecha">
-										<b>RacoonGo!</b> nace como un portal web centrado en promover un turismo familiar orientado a la ciencia, así como divulgar conocimientos científicos mediante juegos.
-										<br />
-										<br />
-										En nuestra web puedes encontrar multitud de eventos de carácter científico: visitas guiadas por los mejores museos del mundo, conocer a fondo la ciudad en la que vives o asistir a las últimas ferias científicas de tu país son sólo algunas de las actividades que puedes realizar gracias a <b>RacoonGo!</b>.
-										<br />
-										Además de esto, <b>RacoonGo!</b> te ofrece la posibilidad de jugar a juegos creados por la comunidad con el objetivo de ampliar tus conocimientos o crear tus propios juegos y demostrar que eres el que más sabe de ciencia.
-										<br />
-										<br />
-										Si eres una empresa, tendrás acceso al sistema de creación de eventos, pudiendo publicitar tus eventos científicos en la web.
-
-
-									</p>
-									<div>
-										<div class="faceContainer">
-											<div class="image-with-caption">
-												<img *ngIf="!monicaReversed" class="reversalImage" src="../../../assets/images/monica.jpg" alt="Mónica Pitarch Ruiz" (click)="reverse(0)">
-												<div *ngIf="!monicaReversed" class="caption">Mónica Pitarch Ruiz</div>
-
-												<div *ngIf="monicaReversed" class=" reversalImage " (click)="reverse(0)">
-													<div class="reversed monica">
-
-													</div>
-
-													<p class="textReversed">Hola pepe </p>
-												</div>
-											</div>
-											<span class="barra"></span>
-											<div class="image-with-caption">
-												<img *ngIf="!davidReversed" class="reversalImage" src="../../../assets/images/david.jpg" alt="David del Río López" (click)="reverse(1)">
-												<div *ngIf="!davidReversed" class="caption">David del Río López</div>
-												<div *ngIf="davidReversed" class=" reversalImage " (click)="reverse(1)">
-													<div class="reversed david">
-
-													</div>
-
-													<p class="textReversed">Hola pepe </p>
-												</div>
-											</div>
-											<span class="barra"></span>
-											<div class="image-with-caption">
-												<img *ngIf="!feliReversed" class="reversalImage" src="../../../assets/images/feli.jpg" alt="Felicitas Agüero Pratto" (click)="reverse(2)">
-												<div *ngIf="!feliReversed" class="caption">Felicitas Agüero Pratto</div>
-												<div *ngIf="feliReversed" class=" reversalImage " (click)="reverse(2)">
-													<div class="reversed feli">
-
-													</div>
-
-													<p class="textReversed">Hola pepe </p>
-												</div>
-											</div>
-											<span class="barra"></span>
-											<div class="image-with-caption">
-												<img *ngIf="!feliuReversed" class="reversalImage" src="../../../assets/images/feliu.jpg" alt="Carlos Feliu Usó" (click)="reverse(3)">
-												<div *ngIf="!feliuReversed" class="caption">Carlos Feliu Usó</div>
-												<div *ngIf="feliuReversed" class=" reversalImage " (click)="reverse(3)">
-													<div class="reversed feliu">
-
-													</div>
-
-													<p class="textReversed">Hola pepe </p>
-												</div>
-											</div>
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</li>
-
-				<!-- Financiamiento -->
-				<!-- !!!!!!!!!!  No funciona el slider asi que lo hago directamente abajo de este por ahora -->
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<li>
-					<!-- <li class="slider-item"> -->
-
-					<div class="grid vertical">
-						<div class="column-xs-12 column-md-2 hide-mobile">
-							<div class="intro">
-								<a href="#">
-									<h1 class="title"><span class="underline">Financiamiento</span></h1>
-								</a>
-							</div>
-						</div>
-						<div class="column-xs-12 column-md-10" style="text-align: center">
-							<div class="logo-container">
-								<img src="../../../assets/images/neotec-980x272.png">
-								<img src="../../../assets/images/Logo_color_ICO.jpg">
-								<img src="../../../assets/images/go_found_me.png">
-							</div>
-							<div class="grid">
-								<div class="column-xs-12 column-md-9">
-									<p class="description" style="text-align: justify">
-										<i>RacoonGo!</i> considera distintas <b>fuentes de financiación</b> hasta que el proyecto comience a distribuirse, tanto públicas como privadas.
-										Para la financiación pública, las fuentes potenciales incluyen las ayudas del programa NEOTEC del Centro para el Desarrollo Tecnológico y la Innovación (CDTI)
-										y la ayuda en régimen de concurrencia competitiva, para el fomento de la cultura científica, tecnológica y de la innovación otorgada por la Dirección General de Industria
-										y de la Pequeña y Mediana Empresa (DGIPME). Entre las opciones de financiación privada se encuentra la Línea ICO de CaixaBank para la ayuda económica durante la fase inicial
-										y canales informales como las campañas de financiación colectiva (<i>crowdfunding</i>) y la financiación <i>Family, Friends, and Fools</i> (Familia, amigos e Incautos).
-									</p>
-								</div>
-							</div>
+			<!-- Proyecto-->
+			<div class="grid vertical" *ngIf="page==1">
+				<div class="column-xs-12 column-md-10">
+					<div class="grid">
+						<div class="image-holder">
+							<img class="smallImage" src="../../../assets/images/mapache.png">
 						</div>
 					</div>
-				</li>
+				</div>
+				<div class="intro show-mobile">
+					<h1 class="titleDerecha"><span class="underline">¿Qué es RacoonGo!?</span></h1>
 
-				<!-- Riesgos -->
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<li>
-					<!-- <li class="slider-item"> -->
+				</div>
+				<div class="description-border">
+					<p class="description">
+						<i>RacoonGo!</i> es un portal web en el que podrás aprender ciencia de manera divertida. El equipo de desarrollo de <i>RacoonGo!</i> ha trabajado para traer la educación allá donde vayas. Las dos vertientes principales de la experiencia racoona son: los juegos trivial y los eventos científicos.
+						<br />
+						<br />
+						Los eventos que encontrarás en <i>RacoonGo!</i> son de carácter científico, creados por las empresas gestoras de los mismos y comprobados por el equipo de <i>RacoonGo!</i> para asegurar su fiabilidad. En la sección de <b>Eventos</b> de la web podrás ver una lista de todos los eventos disponibles o filtrar estos según una gran cantidad de etiquetas para encontrar el evento de tus sueños. Por otra parte, si eres una empresa deberás registrarte como tal y podrás acceder al potente creador de eventos y publicarlos para que toda la comunidad racoona esté al tanto de las novedades y actividades científicas.
+						<br />
+						<br />
+						Además de los eventos, en <i>RacoonGo!</i> buscamos llevar la ciencia a todo el mundo, sin discriminar por género, edad, raza o poder adquisitivo, es por esto que se ha llevado a cabo un sistema de juegos que permite a la comunidad racoona tanto crear sus propios juegos de trivial con una amplia variedad de temas relacionados con el conocimiento. Siendo un racoono podrás crear tus propios juegos o participar en los de otros usuarios para así demostrar que eres el científico número uno.
+						<br />
+						<br />
+						El equipo de trabajo de <i>RacoonGo!</i> ha elegido seguir una metodología ágil para desarollar este portal web, debido a la gran importancia que tiene en este proyecto el hecho de poder entregar mediante iteraciones este producto a las partes interesadas y mostrar el avance y evolución del mismo. Además, la metodología ágil escogida ha permitido al equipo de trabajo colaborar y repartir el trabajo de manera equitativa y adaptativa, mejorando así la calidad de la web. Como proceso de análisis temprano de este proyecto se llevaron a cabo ciertas actividades de arranque que puedes ver en adentrándote en estas páginas, como por ejemplo: análisis de riesgos, prototipos o análisis financiero entre otras.
+					</p>
+					<div style="text-align:center">
+						<img src="../../../assets/images/prototipo1.png" style="width:35rem; padding-left:15px; padding-right:15px">
+						<img src="../../../assets/images/prototipo2.png" style="width: 35rem; padding-left: 15px; padding-right: 15px ">
 
-					<div class="grid vertical">
-						<div class="column-xs-12 column-md-2 hide-mobile">
-							<div class="intro">
-								<a href="#">
-									<h1 class="title"><span class="underline">Análisis de Riesgos</span></h1>
-								</a>
-							</div>
-						</div>
-						<div class="column-xs-12 column-md-10" style="text-align: center">
-							<div class="grid">
-								<div class="column-xs-12 column-md-9">
-
-									<p class="description" style="text-align: justify">
-										Se identificaron tres <b>competidores</b> de <i>RacoonGo!</i>:
-										<br />
-										<b>- Observer</b>: es el primer sistema de certificación que permite aunar ciencia, divulgación científica y turismo. Se creó con el propósito de fomentar y mejorar la calidad de las experiencias relacionadas con el Turismo Científico, un segmento emergente, sostenible y de calidad.
-										<br />
-										<b>- New scientist</b>: es una revista científica que consta de un sitio web, una aplicación y cuenta con ediciones impresas que cubren la actualidad internacional desde un punto de vista científico y plantean las grandes preguntas sobre la vida, el universo y lo que significa ser humano.
-										<br />
-										<b>- SetJetters</b>: es una aplicación web y móvil que permite a los usuarios conocer las ubicaciones donde se filmaron escenas de películas, series, cortometrajes, etc. La aplicación se centra en las personas que tienen el interés de ir a lugares famosos por las películas.
-									</p>
-
-									<div class="logo-container">
-										<img style="width: 10%" src="../../../assets/images/discovery-tours.8f0004a4.png">
-										<img src="../../../assets/images/observer.png">
-										<img src="../../../assets/images/Logo_22.png">
-									</div>
-
-									<table class="tg">
-										<thead>
-											<tr>
-												<th class="tg-fymr">Características</th>
-
-												<th class="tg-7btt">
-													<div class="comp">Discovery Tours</div>
-												</th>
-												<th class="tg-7btt">
-													<div class="comp">Observer</div>
-												</th>
-												<th class="tg-fymr">
-													<div class="comp">SetJetters</div>
-												</th>
-												<th class="tg-fymr">
-													<div class="comp">RacoonGo!</div>
-												</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td class="table_label">Metodología de desarrollo</td>
-												<td class="table_data"><i>Información no disponible</i></td>
-												<td class="table_data"><i>Información no disponible</i></td>
-												<td class="table_data"><i>Información no disponible</i></td>
-												<td class="table_data">
-													Se sigue una
-													metodología ágil
-													para poder
-													desglosar el
-													proceso de
-													desarrollo en
-													tareas más
-													pequeñas y manejables.
-													<br />
-													Se realizan iteraciones en las que se
-													reciben retroalimentación
-													de los usuarios.
-												</td>
-											</tr>
-											<tr>
-												<td class="table_label">Riesgos del equipo</td>
-												<td class="table_data"> <i>Información no disponible</i></td>
-												<td class="table_data"> Equipo pequeño con limitados recursos.</td>
-												<td class="table_data"> Equipo pequeño con limitados recursos</td>
-												<td class="table_data"> Equipo muy pequeño, falta de experiencia en las tecnologías usadas. </td>
-											</tr>
-											<tr>
-												<td class="table_label"> Riesgos del entorno</td>
-												<td class="table_data"> Nicho muy específico, web solo en inglés. </td>
-												<td class="table_data"> Nicho específico.</td>
-												<td class="table_data"> Nicho muy específico. </td>
-												<td class="table_data"> Nicho específico.</td>
-											</tr>
-											<tr>
-												<td class="table_label">Usuarios finales</td>
-												<td class="table_data">
-													Usuarios con alto poder adquisitivo y
-													curiosidad científica para poder
-													costearse los eventos en cualquier
-													parte del mundo.
-												</td>
-												<td class="table_data">
-													Adultos con formación académica en
-													temas científicos.
-												</td>
-												<td class="table_data">
-													Fanáticos de las
-													películas clásicas
-													interesados en
-													consultar los eventos
-													de dichas películas y
-													publicar o consultar
-													contenido sobre ellas.
-												</td>
-												<td class="table_data">
-													Familias, centros
-													educativos y gestores de
-													eventos.
-												</td>
-											</tr>
-											<tr>
-												<td class="table_label">Riesgos de los usuarios finales</td>
-												<td class="table_data">Nicho con pocos usuarios.</td>
-												<td class="table_data">Nicho con pocos usuarios.</td>
-												<td class="table_data">
-													Nicho con pocos
-													usuarios.
-												</td>
-												<td class="table_data">
-													Nicho con pocos
-													usuarios.
-												</td>
-											</tr>
-											<tr>
-												<td class="table_label">Funcionalidades principales</td>
-												<td class="table_data">
-													Muestra expediciones y tours por todo
-													el mundo.
-												</td>
-												<td class="table_data">
-													Permite buscar eventos, alojamiento y
-													servicios a partir de un presupuesto.
-												</td>
-												<td class="table_data">
-													Permite consultar los
-													eventos de distintas
-													películas en todo el
-													mundo.
-												</td>
-												<td class="table_data">
-													Publicación de eventos y
-													creación de juegos.
-												</td>
-											</tr>
-											<tr>
-												<td class="table_label">Funcionalidades específicas</td>
-												<td class="table_data">
-													Cuenta con expertos y tours únicos
-													para esta empresa.
-												</td>
-												<td class="table_data">
-													Permite recibir notificaciones cuando
-													se publican nuevos eventos según los
-													gustos del usuario
-												</td>
-												<td class="table_data">
-													En el navegador se
-													venden productos
-													propios. También hay
-													una sección en la que
-													se pueden consultar
-													imágenes subidas por
-													los usuarios sobre
-													escenas de películas y
-													como es el lugar donde
-													se rodó en la vida real.
-												</td>
-												<td class="table_data">
-													- Búsqueda de eventos
-													mediante etiquetas.
-													- Patrocinio y reserva de
-													eventos.
-													- Compartir juegos de
-													forma privada mediante
-													un código.
-													- Mapa con los eventos.
-												</td>
-											</tr>
-											<tr>
-												<td class="table_label">Riesgos del producto</td>
-												<td class="table_data">
-													Difícil encontrar eventos de lugares
-													específicos.
-													Solo disponible en inglés.
-													Eventos muy caros y en distintos
-													países del mundo.
-												</td>
-												<td class="table_data">
-													Limitados eventos disponibles y la
-													mayoría en España.
-												</td>
-												<td class="table_data">
-													No está disponible la
-													funcionalidad completa
-													para navegadores, solo
-													para teléfonos móviles.
-												</td>
-												<td class="table_data">
-													Usuarios no comprenden
-													el concepto del
-													programa.
-												</td>
-											</tr>
-											<tr>
-												<td class="table_label">Observaciones</td>
-												<td class="table_data">
-													Es una sección de tours de una revista
-													científica.
-												</td>
-												<td class="table_data">
-													Empresa de Base Tecnológica de la
-													Universidad de Santiago de
-													Compostela.
-												</td>
-												<td class="table_data">Ninguna.</td>
-												<td class="table_data">Ninguna.</td>
-											</tr>
-										</tbody>
-									</table>
-
-								</div>
-							</div>
+						<h3 style="padding-top:20px">¿A qué esperas?</h3>
+						<h2 style="padding-bottom:20px">¡Hazte racoono!</h2>
+					</div>
+				</div>
+			</div>
+			<!-- Tecnologías-->
+			<div class="grid vertical" *ngIf="page==4">
+				<div class="column-xs-12 column-md-10">
+					<div class="grid">
+						<div style="padding-top: 20px;">
+							<img style="height:25rem; object-fit:contain"src="../../../assets/images/tecnologias.jpg">
 						</div>
 					</div>
-				</li>
+				</div>
+				<div class="intro show-mobile">
+					<h1 class="titleDerecha"><span class="underline">¿Cómo se ha hecho RacoonGo!?</span></h1>
 
-				<!-- Metodología -->
-				<li>
-					<!-- <li class="slider-item"> -->
+				</div>
+				<div class="description-border">
+					<p class="description">
+						<i>RacoonGo!</i> se ha desarrollado mediante una arquitectura cliente servidor en la que se utiliza el framework de <b>Angular</b> con el lenguaje <b>Typescript</b> para gestionar la parte del cliente: vistas, lógica de negocio sencilla y creación de objetos. Además, las vistas utilizan tanto <b>HTML</b> como lenguaje de marcado y <b>CSS</b> como lenguaje de estilos para el mismo, estas vistas han utilizado también la biblioteca <b>bootstrap</b>. 
+						<br />
+						<br />
+						En cuanto a la parte servidor <i>RacoonGo!</i> utiliza el framework <b>Microsoft .NET</b> para comunicar entre cliente y servidor ,realizar las conexiones y almacenamiento en la base de datos y conexión con APIs externas como la API <b>OpenWeather</b> utilizada en la validación de localizaciones. La base de datos utilizada en el proyecto es <b>Firebase</b>, una plataforma en la nube que permite tanto almacenar en formatos <b>JSON</b> como hospedar la web cuando sea desplegada para su producción.
+					</p>
+					
+				</div>
+			</div>
+			<!-- Quienes somos -->
+			<div class="grid vertical" *ngIf="page==2">
 
-					<div class="grid vertical">
-						<div class="column-xs-12 column-md-2 hide-mobile">
-							<div class="intro">
-								<a href="#">
-									<h1 class="title"><span class="underline">Metodología</span></h1>
-								</a>
+				<div class="column-xs-12 column-md-10">
+					<div class="grid">
+						<div>
+							<div class="image-holder">
+								<img class="smallImage" src="../../../assets/images/mapache.png">
 							</div>
 						</div>
-						<div class="column-xs-12 column-md-10" style="text-align: center">
+						<div>
+							<div class="intro show-mobile">
+								<h1 class="titleDerecha"><span class="underline">¿Quiénes Somos?</span></h1>
 
-							<div class="grid">
-								<div class="column-xs-12 column-md-9">
-									<div class="description" style="text-align: justify">
-										<h3 class="title"><span class="underline">Nuestra forma de trabajar</span></h3>
-										Nuestro equipo sigue la metodología SCRUM para desarrollar aplicaciones. Se comienzan estableciendo los requisitos de la aplicación junto con el Product Owner y se identifican cuáles son las tareas más importantes.
-										<br />
-										Se divide el trabajo en bloques (sprints) con una duración fija de 2 o 3 semanas. Al inicio de cada bloque se determinan las tareas que se deben realizar y al final de este se llevan a cabo reuniones retrospectivas junto con el cliente.
-										<br />
-										El equipo realiza reuniones diarias para asegurar el progreso del trabajo y discutir novedades.
-
-										<div>
-											<img style="height: 130%" src="../../../assets/images/blog-scrum-process-opt.jpg">
-										</div>
-										<br />
-										<h3 class="title"><span class="underline">Cultura organizativa</span></h3>
-										Hay tres puntos clave que definen nuestra cultura organizativa:
-										<br />
-										-	<b>Metodología Ágil</b>: se adaptan varias técnicas y herramientas ágiles que permiten que la organización pueda adaptarse a cualquier circunstancia.
-										<br />
-										-	<b>Comunicación</b>:  se fomenta la comunicación y se valora la retroalimentación entre la organización, los clientes y los usuarios.
-										<br />
-										-	<b>Calidad</b>: la organización realiza rigurosas pruebas que aseguran la mayor calidad posible en todos nuestros productos.
-
-										<br />
-										<br />
-										<h3 class="title"><span class="underline">Lo que nos diferencia</span></h3>
-										Nuestro equipo está formado por expertos con experiencia y conocimientos en el área de turismo científico lo que nos permite identificar y comprender las necesidades reales de nuestros clientes.
-										<br />
-										Nos centramos en seguir metodologías ágiles que brindan a nuestro equipo de gran flexibilidad y adaptabilidad. Nuestra forma de trabajar nos permite desarrollar aplicaciones en forma de incrementos funcionales, haciendo que podamos recibir retroalimentación de clientes y desarrollar el mejor producto posible.
-									</div>
-								</div>
 							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
-
-			<!-- Otros Proyectos -->
-			<!-- !!!!!!!!!!  No funciona el slider asi que lo hago directamente abajo de este por ahora -->
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<li>
-				<!-- <li class="slider-item"> -->
-
-				<div class="grid vertical">
-					<div class="column-xs-12 column-md-2 hide-mobile">
-						<div class="intro">
-							<a href="#">
-								<h1 class="title"><span class="underline">Otros Proyectos</span></h1>
-							</a>
-						</div>
-					</div>
-					<div class="column-xs-12 column-md-10" style="text-align: center">
-						<div class="logo-container">
-							<img src="../../../assets/images/ss_logo.png">
-						</div>
-						<div class="grid">
-							<div class="column-xs-12 column-md-9">
-								<p class="description" style="text-align: justify">
-									Nuestra organización busca crear aplicaciones que fomenten la cultura y faciliten el aprendizaje.
-									Para ello la primera aplicación que desarrollamos fue <i>Skill Sharing®</i>, una página web creada para fomentar la colaboración entre estudiantes universitarios mientras comparten conocimientos.
-
+							<div class="description-border">
+								<p class="description">
+									<i>RacoonGo!</i> nace como un portal web centrado en promover un turismo familiar orientado a la ciencia, así como divulgar conocimientos científicos mediante juegos.
+									<br />
+									<br />
+									El principal objetivo de <i>RacoonGo!</i> es promover la cultura y la ciencia en todos los públicos. Para conseguir esto, el equipo de <i>RacoonGo!</i> ha desarrollado un portal que pone en común a empresas gestoras de eventos con su público: jóvenes con hambre de conocimiento y adultos interesados en acudir a los distintos eventos de carácter cultural que aquí se promocionan.
+									<br />
+									<br />
+									De momento, <i>RacoonGo!</i> sólo es accesible mediante navegador web pero el equipo de trabajo está analizando la posibilidad de exportar la experiencia racoona a dispositivos móviles. Este proyecto ha surgido como resultado de un amplio trabajo de análisis de mercado y el hecho de haber encontrado una necesidad emergente en este. Además, el equipo de <i>RacoonGo!</i> ha estado apoyado por expertos en innovación, mercadotécnia y emprendiemiento debido a que este proyecto nació como proyecto de clase de la asignatura EI1035 Iniciativa Empresarial en la <i>Universitat Jaume I</i>. El equipo que llevó a cabo este análisis está formado por cuatro estudiantes de dicha universidad en el último año del Grado en Ingenieria Informática los cuales también han desarrollado este portal web.
 								</p>
+								<h3 style="text-align:center">Asi que...</h3>
+								<h2 style="text-align:center">¡A Aprender!</h2>
+								<br />
+							</div>
+							<div>
+								<h1>Conócenos</h1>
+								<div class="faceContainer">
+									<div class="image-with-caption">
+										<img *ngIf="!monicaReversed" class="reversalImage" src="../../../assets/images/monica.jpg" alt="Mónica Pitarch Ruiz" (click)="reverse(0)">
+										<div *ngIf="!monicaReversed" class="caption">Mónica Pitarch Ruiz</div>
+
+										<div *ngIf="monicaReversed" class=" reversalImage " (click)="reverse(0)">
+											<div class="reversed monica">
+
+											</div>
+
+											<p class="textReversed">¡Hallo! Mi nombre es Mónica Pitarch y me gusta hacer deporte, leer y viajar. <br /><br />He trabajado en RacoonGo! desarrollando corrigiendo errores y mejorando la usabilidad ¡Bis Bald! </p>
+										</div>
+									</div>
+									<span class="barra"></span>
+									<div class="image-with-caption">
+										<img *ngIf="!davidReversed" class="reversalImage" src="../../../assets/images/david.jpg" alt="David del Río López" (click)="reverse(1)">
+										<div *ngIf="!davidReversed" class="caption">David del Río López</div>
+										<div *ngIf="davidReversed" class=" reversalImage " (click)="reverse(1)">
+											<div class="reversed david">
+
+											</div>
+
+											<p class="textReversed">¡Aloha! Encantado, David del Río al aparato, me gustan los videojuegos, las series de televisión y el futbol. <br /><br />En RacoonGo! he trabajado desarrollando funcionalidad, te espero en RacoonGo! ¡COWABUNGA! </p>
+										</div>
+									</div>
+									<span class="barra"></span>
+									<div class="image-with-caption">
+										<img *ngIf="!feliReversed" class="reversalImage" src="../../../assets/images/feli.jpg" alt="Felicitas Agüero Pratto" (click)="reverse(2)">
+										<div *ngIf="!feliReversed" class="caption">Felicitas Agüero Pratto</div>
+										<div *ngIf="feliReversed" class=" reversalImage " (click)="reverse(2)">
+											<div class="reversed feli">
+
+											</div>
+
+											<p class="textReversed">¡Bon dia! Soy Felicitas Agüero, entre mis muchas aficiones se encuentra el baile de salsa, debido a mi procedencia latina, y tocar el ukelele. <br /><br />He sido la principal encargada de la conexión entre interfaz de usuario y la base de datos. ¡Fins després!</p>
+										</div>
+									</div>
+									<span class="barra"></span>
+									<div class="image-with-caption">
+										<img *ngIf="!feliuReversed" class="reversalImage" src="../../../assets/images/feliu.jpg" alt="Carlos Feliu Usó" (click)="reverse(3)">
+										<div *ngIf="!feliuReversed" class="caption">Carlos Feliu Usó</div>
+										<div *ngIf="feliuReversed" class=" reversalImage " (click)="reverse(3)">
+											<div class="reversed feliu">
+
+											</div>
+
+											<p class="textReversed">¡Kon'nichiwa! Me llamo Carlos Feliu y entre mis aficiones se encuentra el rugby, los videojuegos y la animación japonesa. <br /><br />En RacoonGo! he sido el principal encargado del aspecto visual de la web ¡SUKIII!</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+
+			<!-- Financiamiento -->
+			<!-- !!!!!!!!!!  No funciona el slider asi que lo hago directamente abajo de este por ahora -->
+
+
+			<div class="grid vertical" *ngIf="page==5">
+				<div class="column-xs-12 column-md-2 hide-mobile">
+					<div class="intro">
+						<a href="#">
+							<h1 class="title"><span class="underline">Financiamiento</span></h1>
+						</a>
+					</div>
+				</div>
+				<div class="column-xs-12 column-md-10" style="text-align: center">
+					<div class="logo-container">
+						<img src="../../../assets/images/neotec-980x272.png">
+						<img src="../../../assets/images/Logo_color_ICO.jpg">
+						<img src="../../../assets/images/go_found_me.png">
+					</div>
+					<div class="grid">
+						<div class="column-xs-12 column-md-9 description-border">
+							<p class="description" style="text-align: justify">
+								<i>RacoonGo!</i> considera distintas <b>fuentes de financiación</b> hasta que el proyecto comience a distribuirse, tanto públicas como privadas.
+								Para la financiación pública, las fuentes potenciales incluyen las ayudas del programa NEOTEC del Centro para el Desarrollo Tecnológico y la Innovación (CDTI)
+								y la ayuda en régimen de concurrencia competitiva, para el fomento de la cultura científica, tecnológica y de la innovación otorgada por la Dirección General de Industria
+								y de la Pequeña y Mediana Empresa (DGIPME). Entre las opciones de financiación privada se encuentra la Línea ICO de CaixaBank para la ayuda económica durante la fase inicial
+								y canales informales como las campañas de financiación colectiva (<i>crowdfunding</i>) y la financiación <i>Family, Friends, and Fools</i> (Familia, amigos e Incautos).
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Riesgos -->
+
+
+			<div class="grid vertical" *ngIf="page==6">
+				<div class="column-xs-12 column-md-2 hide-mobile">
+					<div class="intro">
+						<a href="#">
+							<h1 class="title"><span class="underline">Análisis de Riesgos</span></h1>
+						</a>
+					</div>
+				</div>
+				<div class="column-xs-12 column-md-10" style="text-align: center">
+					<div class="grid">
+						<div class="column-xs-12 column-md-9 description-border">
+
+							<p class="description" style="text-align: justify">
+								Se identificaron tres <b>competidores</b> de <i>RacoonGo!</i>:
+								<br />
+								<b>- Observer</b>: es el primer sistema de certificación que permite aunar ciencia, divulgación científica y turismo. Se creó con el propósito de fomentar y mejorar la calidad de las experiencias relacionadas con el Turismo Científico, un segmento emergente, sostenible y de calidad.
+								<br />
+								<b>- New scientist</b>: es una revista científica que consta de un sitio web, una aplicación y cuenta con ediciones impresas que cubren la actualidad internacional desde un punto de vista científico y plantean las grandes preguntas sobre la vida, el universo y lo que significa ser humano.
+								<br />
+								<b>- SetJetters</b>: es una aplicación web y móvil que permite a los usuarios conocer las ubicaciones donde se filmaron escenas de películas, series, cortometrajes, etc. La aplicación se centra en las personas que tienen el interés de ir a lugares famosos por las películas.
+							</p>
+
+							<div class="logo-container">
+								<img style="width: 10%" src="../../../assets/images/discovery-tours.8f0004a4.png">
+								<img src="../../../assets/images/observer.png">
+								<img src="../../../assets/images/Logo_22.png">
+							</div>
+
+							<table class="tg">
+								<thead>
+									<tr>
+										<th class="tg-fymr">Características</th>
+
+										<th class="tg-7btt">
+											<div class="comp">Discovery Tours</div>
+										</th>
+										<th class="tg-7btt">
+											<div class="comp">Observer</div>
+										</th>
+										<th class="tg-fymr">
+											<div class="comp">SetJetters</div>
+										</th>
+										<th class="tg-fymr">
+											<div class="comp">RacoonGo!</div>
+										</th>
+									</tr>
+								</thead>
+								<tbody class="description-border">
+									<tr>
+										<td class="table_label">Metodología de desarrollo</td>
+										<td class="table_data"><i>Información no disponible</i></td>
+										<td class="table_data"><i>Información no disponible</i></td>
+										<td class="table_data"><i>Información no disponible</i></td>
+										<td class="table_data">
+											Se sigue una
+											metodología ágil
+											para poder
+											desglosar el
+											proceso de
+											desarrollo en
+											tareas más
+											pequeñas y manejables.
+											<br />
+											Se realizan iteraciones en las que se
+											reciben retroalimentación
+											de los usuarios.
+										</td>
+									</tr>
+									<tr>
+										<td class="table_label">Riesgos del equipo</td>
+										<td class="table_data"> <i>Información no disponible</i></td>
+										<td class="table_data"> Equipo pequeño con limitados recursos.</td>
+										<td class="table_data"> Equipo pequeño con limitados recursos</td>
+										<td class="table_data"> Equipo muy pequeño, falta de experiencia en las tecnologías usadas. </td>
+									</tr>
+									<tr>
+										<td class="table_label"> Riesgos del entorno</td>
+										<td class="table_data"> Nicho muy específico, web solo en inglés. </td>
+										<td class="table_data"> Nicho específico.</td>
+										<td class="table_data"> Nicho muy específico. </td>
+										<td class="table_data"> Nicho específico.</td>
+									</tr>
+									<tr>
+										<td class="table_label">Usuarios finales</td>
+										<td class="table_data">
+											Usuarios con alto poder adquisitivo y
+											curiosidad científica para poder
+											costearse los eventos en cualquier
+											parte del mundo.
+										</td>
+										<td class="table_data">
+											Adultos con formación académica en
+											temas científicos.
+										</td>
+										<td class="table_data">
+											Fanáticos de las
+											películas clásicas
+											interesados en
+											consultar los eventos
+											de dichas películas y
+											publicar o consultar
+											contenido sobre ellas.
+										</td>
+										<td class="table_data">
+											Familias, centros
+											educativos y gestores de
+											eventos.
+										</td>
+									</tr>
+									<tr>
+										<td class="table_label">Riesgos de los usuarios finales</td>
+										<td class="table_data">Nicho con pocos usuarios.</td>
+										<td class="table_data">Nicho con pocos usuarios.</td>
+										<td class="table_data">
+											Nicho con pocos
+											usuarios.
+										</td>
+										<td class="table_data">
+											Nicho con pocos
+											usuarios.
+										</td>
+									</tr>
+									<tr>
+										<td class="table_label">Funcionalidades principales</td>
+										<td class="table_data">
+											Muestra expediciones y tours por todo
+											el mundo.
+										</td>
+										<td class="table_data">
+											Permite buscar eventos, alojamiento y
+											servicios a partir de un presupuesto.
+										</td>
+										<td class="table_data">
+											Permite consultar los
+											eventos de distintas
+											películas en todo el
+											mundo.
+										</td>
+										<td class="table_data">
+											Publicación de eventos y
+											creación de juegos.
+										</td>
+									</tr>
+									<tr>
+										<td class="table_label">Funcionalidades específicas</td>
+										<td class="table_data">
+											Cuenta con expertos y tours únicos
+											para esta empresa.
+										</td>
+										<td class="table_data">
+											Permite recibir notificaciones cuando
+											se publican nuevos eventos según los
+											gustos del usuario
+										</td>
+										<td class="table_data">
+											En el navegador se
+											venden productos
+											propios. También hay
+											una sección en la que
+											se pueden consultar
+											imágenes subidas por
+											los usuarios sobre
+											escenas de películas y
+											como es el lugar donde
+											se rodó en la vida real.
+										</td>
+										<td class="table_data">
+											- Búsqueda de eventos
+											mediante etiquetas.
+											- Patrocinio y reserva de
+											eventos.
+											- Compartir juegos de
+											forma privada mediante
+											un código.
+											- Mapa con los eventos.
+										</td>
+									</tr>
+									<tr>
+										<td class="table_label">Riesgos del producto</td>
+										<td class="table_data">
+											Difícil encontrar eventos de lugares
+											específicos.
+											Solo disponible en inglés.
+											Eventos muy caros y en distintos
+											países del mundo.
+										</td>
+										<td class="table_data">
+											Limitados eventos disponibles y la
+											mayoría en España.
+										</td>
+										<td class="table_data">
+											No está disponible la
+											funcionalidad completa
+											para navegadores, solo
+											para teléfonos móviles.
+										</td>
+										<td class="table_data">
+											Usuarios no comprenden
+											el concepto del
+											programa.
+										</td>
+									</tr>
+									<tr>
+										<td class="table_label">Observaciones</td>
+										<td class="table_data">
+											Es una sección de tours de una revista
+											científica.
+										</td>
+										<td class="table_data">
+											Empresa de Base Tecnológica de la
+											Universidad de Santiago de
+											Compostela.
+										</td>
+										<td class="table_data">Ninguna.</td>
+										<td class="table_data">Ninguna.</td>
+									</tr>
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Metodología -->
+			<!-- <li class="slider-item"> -->
+
+			<div class="grid vertical" *ngIf="page==3">
+				<div class="column-xs-12 column-md-2 hide-mobile">
+					<div class="intro">
+						<a href="#">
+							<h1 class="title"><span class="underline">Metodología</span></h1>
+						</a>
+					</div>
+				</div>
+				<div class="column-xs-12 column-md-10" style="text-align: center">
+
+					<div class="grid">
+						<div class="column-xs-12 column-md-9">
+							<div class="description description-border" style="text-align: justify">
+								<h3 class="title"><span class="underline">Nuestra forma de trabajar</span></h3>
+								Nuestro equipo sigue la metodología SCRUM para desarrollar aplicaciones. Se comienzan estableciendo los requisitos de la aplicación junto con el Product Owner y se identifican cuáles son las tareas más importantes.
+								<br />
+								Se divide el trabajo en bloques (sprints) con una duración fija de 2 o 3 semanas. Al inicio de cada bloque se determinan las tareas que se deben realizar y al final de este se llevan a cabo reuniones retrospectivas junto con el cliente.
+								<br />
+								El equipo realiza reuniones diarias para asegurar el progreso del trabajo y discutir novedades.
+
+								<div>
+									<img style="height: 130%" src="../../../assets/images/blog-scrum-process-opt.jpg">
+								</div>
+								<br />
+								<h3 class="title"><span class="underline">Cultura organizativa</span></h3>
+								Hay tres puntos clave que definen nuestra cultura organizativa:
+								<br />
+								-	<b>Metodología Ágil</b>: se adaptan varias técnicas y herramientas ágiles que permiten que la organización pueda adaptarse a cualquier circunstancia.
+								<br />
+								-	<b>Comunicación</b>:  se fomenta la comunicación y se valora la retroalimentación entre la organización, los clientes y los usuarios.
+								<br />
+								-	<b>Calidad</b>: la organización realiza rigurosas pruebas que aseguran la mayor calidad posible en todos nuestros productos.
+
+								<br />
+								<br />
+								<h3 class="title"><span class="underline">Lo que nos diferencia</span></h3>
+								Nuestro equipo está formado por expertos con experiencia y conocimientos en el área de turismo científico lo que nos permite identificar y comprender las necesidades reales de nuestros clientes.
+								<br />
+								Nos centramos en seguir metodologías ágiles que brindan a nuestro equipo de gran flexibilidad y adaptabilidad. Nuestra forma de trabajar nos permite desarrollar aplicaciones en forma de incrementos funcionales, haciendo que podamos recibir retroalimentación de clientes y desarrollar el mejor producto posible.
 							</div>
 						</div>
 					</div>
 				</div>
-			</li>
+			</div>
+
+			<!-- Otros Proyectos -->
+			<!-- !!!!!!!!!!  No funciona el slider asi que lo hago directamente abajo de este por ahora -->
+			<!-- <li class="slider-item"> -->
+
+			<div class="grid vertical" *ngIf="page==7">
+				<div class="column-xs-12 column-md-2 hide-mobile">
+					<div class="intro">
+						<a href="#">
+							<h1 class="title"><span class="underline">Otros Proyectos</span></h1>
+						</a>
+					</div>
+				</div>
+				<div class="column-xs-12 column-md-10 description-border" style="text-align: center">
+					<div class="logo-container">
+						<img src="../../../assets/images/ss_logo.png">
+					</div>
+					<div class="grid">
+						<div class="column-xs-12 column-md-9">
+							<p class="description" style="text-align: justify">
+								Nuestra organización busca crear aplicaciones que fomenten la cultura y faciliten el aprendizaje.
+								Para ello la primera aplicación que desarrollamos fue <i>Skill Sharing®</i>, una página web creada para fomentar la colaboración entre estudiantes universitarios mientras comparten conocimientos.
+
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<div class="grid" style="padding-top:30px">
 				<div class="column-xs-12">
 					<div class="controls">
-						<button class="previous">
-							<span class="visually-hidden">Previous</span>
+						<button class="previous" *ngIf="page != 1" (click)="goPreviousPage()">
 							<span class="icon arrow-left" aria-hidden="true"></span>
 						</button>
-						<button class="next">
-							<span class="visually-hidden">Next</span>
+						<button class="next" *ngIf="page != 7" (click)="goNextPage()">
 							<span class="icon arrow-right" aria-hidden="true"></span>
 						</button>
 
@@ -467,5 +500,5 @@
 				</div>
 			</div>
 		</div>
-    </div>
+		</div>
 </div>
