@@ -7,8 +7,8 @@ import { Game, Question, User } from "../../models/app.model";
 import { MatDialog } from '@angular/material/dialog';
 import { QuestionDialogComponent } from '../question-dialog/question-dialog.component';
 import Swal from 'sweetalert2';
-
-
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {G} from "@angular/cdk/keycodes";
 
 @Component({
   selector: 'app-game-form',
@@ -16,13 +16,16 @@ import Swal from 'sweetalert2';
   styleUrls: ['./game-form.component.css']
 })
 export class GameFormComponent implements OnInit {
-
+    addGameForm!: FormGroup;
     invalidQuestions: boolean;
     invalidGame: boolean
-    game: Game;
+    //game: Game | undefined;
     user!: User;
     preguntasError: string;
-    constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService,  private router: Router, private dialog: MatDialog) {
+    submitted: boolean=false;
+    questions: Question[] = [];
+    hidden: boolean = false;
+    constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService,  private router: Router, private dialog: MatDialog, private fb: FormBuilder) {
         this.preguntasError = "";
         this.invalidGame = false;
         this.invalidQuestions = false;
@@ -31,21 +34,26 @@ export class GameFormComponent implements OnInit {
         if (this.user == null) {
             this.router.navigate(['/login'])
         }
-        
-
-            this.game = new Game();
-            this.game.email = this.user.email;
-            this.game.name = "Juego de " + this.user.username
-        
-
-
     }
 
     ngOnInit(): void {
-        if (this.helperService.game != undefined) {
-            this.game = this.helperService.game;
-        } 
-        
+        this.addGameForm = this.fb.group({
+            title: ['', [Validators.required]],
+            description: ['', [Validators.required]],
+            difficulty: [-1, [Validators.required, Validators.min(0), Validators.max(2)]],
+        });
+        this.addGameForm.patchValue({
+            title: "Juego de " + this.user.username});
+        if (this.helperService.game!=undefined) {
+            let g = this.helperService.game;
+            this.addGameForm.patchValue({
+                title: g.name,
+                description: g.description,
+                difficulty: g.difficulty,
+            });
+            this.questions = g.questions;
+            this.hidden = g.hidden;
+        }
   }
 
     openDialog(question: Question, index:number) {
@@ -56,21 +64,22 @@ export class GameFormComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            this.game.questions[index] = result;
+            this.questions[index] = result;
         });
     }
 
     addQuestion() {
-        if (this.game.questions.length  < 15) {
-            this.game.questions.push(new Question("Pregunta #" + (this.game.questions.length + 1), 10));
+        if (this.questions.length  < 15) {
+            this.questions.push(new Question("Pregunta #" + (this.questions.length + 1), 10));
+            this.openDialog(this.questions[this.questions.length-1], this.questions.length-1);
         } 
     }
     editQuestion(question: Question, index:number) {
         this.openDialog(question, index);
     }
     deleteQuestion(index: number) {
-        let auxDelante = this.game.questions.slice(0, index);
-        let auxAtras = this.game.questions.slice(index + 1, this.game.questions.length);
+        let auxDelante = this.questions.slice(0, index);
+        let auxAtras = this.questions.slice(index + 1, this.questions.length);
         for (let i = 0; i < auxAtras.length; i++) {
             let q: Question = auxAtras[i];
             if (q.title.includes("Pregunta #")) {
@@ -78,13 +87,13 @@ export class GameFormComponent implements OnInit {
 
             }
         }
-        this.game.questions = auxDelante.concat(auxAtras);
+        this.questions = auxDelante.concat(auxAtras);
     }
 
     errorPreguntas(): boolean {
         this.invalidQuestions = false;
         this.preguntasError = "";
-        for (let question of this.game.questions) {
+        for (let question of this.questions) {
             if (question.options.length < 2) {
                 this.preguntasError += question.title + ", ";
                 this.invalidQuestions = true;
@@ -96,47 +105,58 @@ export class GameFormComponent implements OnInit {
         }
         return false;
     }
-    errorCampos() {
-        if (!this.game.description || !this.game.difficulty || !this.game.name || this.game.questions.length === 0 || this.game.name.trim().length === 0) {
+    onSubmit() {
+        this.submitted = true;
+        if (this.questions.length === 0) {
             this.invalidGame = true;
-            return true;
+            return;
         }
-        return false;
+        this.invalidGame = false;
+        if (this.errorPreguntas())
+            return;
+        if (this.addGameForm.valid) {
+            this.addGame();
+        }
     }
-    submit() {
-        let condPreguntas = this.errorPreguntas()
-        let condCampos = this.errorCampos()         
-            if (!condCampos && !condPreguntas) {
-                if (this.helperService.game == undefined)
-                    this.game.id = ""
-            this.game.email = this.user.email
-            this.backendRouterService.endpoints.game.addGame(this.game).subscribe({
+    
+    addGame() {
+        let game: Game;
+        if (this.helperService.game == undefined){
+            game=new Game('', this.addGameForm.value.title, this.addGameForm.value.description, this.addGameForm.value.difficulty, this.questions, this.user.email, this.hidden);
+        }
+        else{
+            game=new Game(this.helperService.game.id, this.addGameForm.value.title, this.addGameForm.value.description, this.addGameForm.value.difficulty, this.questions, this.user.email, this.hidden);
+        }
+            this.backendRouterService.endpoints.game.addGame(game).subscribe({
                 next: (data: HttpResponse<Game>) => {
                     if (this.helperService.game == undefined) {
                         if (data.body?.hidden) {
                             Swal.fire({
                                 title: '¡Muy bien!',
-                                html: 'Se ha creado correctamente tu juego: ' + this.game.name + '<br><br> Para que otros accedan a tu juego pásales el código: <br> <b>' + data.body.id+'</b>',
+                                html: 'Se ha creado correctamente tu juego: ' + game.name+ '<br><br> Para que otros accedan a tu juego pásales el código: <br> <b>' + data.body.id+'</b>',
                                 icon:'success'
                             })
                         } else {
-                            Swal.fire('¡Muy bien!', 'Se ha creado correctamente tu juego: ' + this.game.name, 'success')
+                            Swal.fire('¡Muy bien!', 'Se ha creado correctamente tu juego: ' + game.name, 'success')
                         }
                     } else {
                         if (data.body?.hidden) {
                             Swal.fire({
                                 title: '¡Muy bien!',
-                                html: 'Se ha modificado correctamente tu juego: ' + this.game.name + '<br><br> Para que otros accedan a tu juego pásales el código: <br> <b>' + data.body.id + '</b>',
+                                html: 'Se ha modificado correctamente tu juego: ' + game.name + '<br><br> Para que otros accedan a tu juego pásales el código: <br> <b>' + data.body.id + '</b>',
                                 icon: 'success'
                             })
                         } else {
-                            Swal.fire('¡Muy bien!', 'Se ha modificado correctamente tu juego: ' + this.game.name, 'success')
+                            Swal.fire('¡Muy bien!', 'Se ha modificado correctamente tu juego: ' + game.name, 'success')
                         }
                     }
                 }
             })
-        }
-           
-    
+    }
+
+    checkValidity(controlName: string) {
+        const control = this.addGameForm.get(controlName);
+        if (control)
+            control.markAsTouched();
     }
 }

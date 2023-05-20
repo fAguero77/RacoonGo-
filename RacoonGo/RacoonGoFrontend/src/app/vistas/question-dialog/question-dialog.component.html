@@ -6,9 +6,13 @@
         </button>
     </h2>
     <mat-dialog-content>
+        <form [formGroup]="addQuestionForm" novalidate>
         <!-- Title Zone-->
 
-        <input type="text" value="question.title" [(ngModel)]="question.title" name="question.title" style="width:100%" />
+        <input class="form-control" type="text" placeholder="Pregunta" formControlName="title" style="width:100%" 
+            (blur)="checkValidity('title')"
+            [ngClass]="{'is-invalid': addQuestionForm.get('title')?.invalid && (addQuestionForm.get('title')?.touched || submitted), 'is-valid': addQuestionForm.get('title')?.valid && addQuestionForm.get('title')?.touched}">
+        <div class="invalid-feedback" *ngIf="addQuestionForm.get('title')?.invalid && (addQuestionForm.get('title')?.touched || submitted)">El título de la pregunta es obligatorio</div>
         <!-- Score Zone-->
 
         <br />
@@ -17,17 +21,22 @@
                 <label style="justify-content: left;">Puntuación de la Pregunta:</label>
             </div>
             <div class="col-sm-3 text-right">
-                <input style="width:100%" type="number" value="question.points" [(ngModel)]="question.points" name="question.points" />
+                <input class="form-control" style="width:100%" type="number" formControlName="points" 
+                    (blur)="checkValidity('points')"
+                    [ngClass]="{'is-invalid': addQuestionForm.get('points')?.invalid && (addQuestionForm.get('points')?.touched || submitted)}">
+                <div class="invalid-feedback" *ngIf="addQuestionForm.get('points')?.invalid && (addQuestionForm.get('points')?.touched || submitted)">La puntuación de la pregunta es obligatoria</div>
             </div>
         </div>
+        </form>
 
         <!-- Options Zone-->
-        <div class="row">
+        <div class="row was-validated">
             <ul class="optionContainer">
                 <li class="option d-flex" *ngFor="let option of question.options; let i = index">
                     <div class="col-sm-7 justify-content-center">
 
-                        <input type="text" value="option.body" [(ngModel)]="option.body" name="option.body" />
+                        <input class="form-control" type="text" value="option.body" [(ngModel)]="option.body" required/>
+                        <div class="invalid-feedback" *ngIf="option.body == ''">El cuerpo de la opción es obligatorio</div>
                     </div>
                     <div class="col-sm-5">
 
@@ -43,16 +52,11 @@
 
 
         <input [disabled]="question.options.length == 4" class="form-control" type="button" value="Añadir Opción" (click)="addOption()" />
-
     </mat-dialog-content>
     <!-- Errors Zone-->
 
     <mat-dialog-actions style="display: flex; justify-content: center; ">
         <button mat-button class="submitButton" (click)="confirm()">Aceptar</button>
         <div *ngIf="invalidOptions" class="text-danger">Debe haber al menos 2 opciones y una de ellas correcta.</div>
-        <div *ngIf="invalidTitle" class="text-danger">La pregunta debe contener un título.</div>
-        <div *ngIf="invalidPoints" class="text-danger">La pregunta debe tener una puntuación válida.</div>
-
-
     </mat-dialog-actions>
 </div>

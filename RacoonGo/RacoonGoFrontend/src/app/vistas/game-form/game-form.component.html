@@ -2,34 +2,46 @@
 <div style="padding: 5rem">
     <div class="caja container-fluid d-flex flex-column ">
         <div class="caja-interno container-fluid">
-            <h1>Crear nuevo Juego</h1>
-            <form>
+            <h2 *ngIf="helperService.game">Modificar Juego {{helperService.game.name}}</h2>
+            <h2 *ngIf="!helperService.game">Crear Juego</h2>
+            <form [formGroup]="addGameForm" novalidate>
                 <div class="form-group">
                     <div>
 
                         <!-- Name Zone-->
 
-                        <input class="form-control title" [(ngModel)]="game.name" name="name" type="text"/>
+                        <input class="form-control title" type="text" placeholder="Título" formControlName="title"
+                               (blur)="checkValidity('title')"
+                               [ngClass]="{ 'is-invalid': addGameForm.get('title')?.invalid && (addGameForm.get('title')?.touched || submitted), 'is-valid': addGameForm.get('title')?.valid && addGameForm.get('title')?.touched}">
+                        <div class="invalid-feedback" *ngIf="addGameForm.get('title')?.invalid && (addGameForm.get('title')?.touched || submitted)">El título es obligatorio</div>
 
                         <!-- Difficulty Zone-->
 
                         <h5 style="padding-top: 1rem">Dificultad</h5>
                         <div class="form-inline d-flex justify-content-center">
                             <div class="radio">
-                                <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="0" >Novato</label>
+                                <label><input formControlName="difficulty" type="radio" value="0">Novato</label>
                             </div>
                             <div class="radio">
-                                <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="1">Medio</label>
+                                <label><input formControlName="difficulty" type="radio" value="1">Medio</label>
                             </div>
                             <div class="radio">
-                                <label><input [(ngModel)]="game.difficulty" type="radio" name="difficulty" value="2">Experto</label>
+                                <label><input formControlName="difficulty" type="radio" value="2">Experto</label>
+                            </div>
+                            <div class="text-danger" *ngIf="addGameForm.get('difficulty')?.invalid && submitted">
+                                Debes seleccionar una dificultad
                             </div>
                         </div>
 
                         <!-- Description Zone-->
                         <h5 style="padding-top: 1rem">Descripción</h5>
                         <div style="padding-bottom: 1rem">
-                            <textarea name="description" class="form-control descripcion" cols="40" rows="5" placeholder="Descripción" [(ngModel)]="game.description"></textarea>
+                            <textarea class="form-control descripcion" cols="40" rows="5" placeholder="Descripción" formControlName="description"
+                                (blur)="checkValidity('description')" 
+                                      [ngClass]="{'is-invalid': addGameForm.get('description')?.invalid&&(addGameForm.get('description')?.touched||submitted), 'is-valid': addGameForm.get('description')?.valid && addGameForm.get('description')?.touched}">
+                                
+                            </textarea>
+                            <div class="invalid-feedback" *ngIf="addGameForm.get('description')?.invalid && (addGameForm.get('description')?.touched || submitted)">La descripción es obligatoria</div>
                         </div>
                         
                         <!-- Questions Zone-->
@@ -39,7 +51,7 @@
                         
                         <div style="overflow: hidden visible; max-height:195px; padding-top: 0.5rem">
                             <ul style=" list-style: none; padding: 0; margin: 0">
-                                <li *ngFor="let question of game.questions; let i = index">
+                                <li *ngFor="let question of questions; let i = index">
                                     <div class="btn-group" role="group">
                                         <input type="button" style=" box-shadow:  0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35) !important;" class="form-control questionList" value="Editar {{question.title}}" (click)="editQuestion(question, i)" />
                                         <button type="button" style=" box-shadow:  0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35) !important;" class="form-control deleteList" (click)="deleteQuestion(i)">
@@ -51,6 +63,7 @@
                                 </li>
                             </ul>
                         </div>
+                        <div *ngIf="invalidGame" class="text-danger">El juego debe tener al menos una pregunta.</div>
                         <div *ngIf="invalidQuestions" class="text-danger">Todas las preguntas deben tener opciones.</div>
                         <div *ngIf="invalidQuestions" class="text-danger">Revisa las preguntas: {{preguntasError}}</div>
                     </div>
@@ -61,12 +74,12 @@
         <hr class="separador" style=" line-height: 0.5rem">
         <div>
             <div class="form-check" > 
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"  [(ngModel)]="game.hidden">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"  [(ngModel)]="hidden">
                 <label class="form-check-label" for="flexCheckDefault">
                     Privado
                 </label>
             </div>
-            <button class="btn btn-primary" style="background: #58b04b; border: none; color: white; padding: 0.5rem 3rem; width: fit-content; box-shadow:  0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35) !important;" (click)="submit()">Crear juego</button>
+            <button class="btn btn-primary" style="background: #58b04b; border: none; color: white; padding: 0.5rem 3rem; width: fit-content; box-shadow:  0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35) !important;" (click)="onSubmit()">Crear juego</button>
         </div>
 
 

@@ -16,7 +16,16 @@ export class Game {
     public hidden: boolean = false;
     public timesPlayed: number = 0
     public email!: string;
-
+    
+    constructor(id: string, name: string, description: string, difficulty: number, questions: Question[], email: string, hidden: boolean) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.difficulty = difficulty;
+        this.questions = questions;
+        this.email = email;
+        this.hidden = hidden;
+    }
 }
 
 export class Question {
