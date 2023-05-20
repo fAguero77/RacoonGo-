@@ -6,7 +6,7 @@
             <div class="table">
                 <div>
                     <h5>Título</h5>
-                    <input type="text" class="form-control" id="title" placeholder="Titulo" formControlName="title"
+                    <input type="text" class="form-control" id="title" placeholder="Título" formControlName="title"
                         (blur)="checkValidity('title')" 
                            [ngClass]="{ 'is-invalid': addEventForm.get('title')?.invalid && (addEventForm.get('title')?.touched || submitted), 'is-valid': addEventForm.get('title')?.valid && addEventForm.get('title')?.touched}">
                     <div class="invalid-feedback" *ngIf="addEventForm.get('title')?.invalid && (addEventForm.get('title')?.touched || submitted)">El título es obligatorio</div>
@@ -99,9 +99,9 @@
                 
                 <div class="invalid-feedback">Enlace inválido</div>
             </div>
+            <div *ngIf="submitted && (addEventForm.invalid || invalidEndDate)" class="text-danger">Por favor soluciona los errores anteriores.</div>
             
             
-
             <!-- Button Zone-->
 
             <div>
