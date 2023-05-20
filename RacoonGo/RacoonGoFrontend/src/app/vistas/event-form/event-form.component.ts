@@ -28,7 +28,6 @@ export class EventFormComponent implements OnInit {
     image: string;
     readonly defaultImg: string = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
     user!: CompanyUser;
-    //event: Event | undefined;
     ageList: string[] = [];
     datePipe: DatePipe;
 

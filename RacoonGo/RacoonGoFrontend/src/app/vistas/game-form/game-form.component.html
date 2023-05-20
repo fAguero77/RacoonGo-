@@ -79,7 +79,9 @@
                     Privado
                 </label>
             </div>
-            <button class="btn btn-primary" style="background: #58b04b; border: none; color: white; padding: 0.5rem 3rem; width: fit-content; box-shadow:  0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35) !important;" (click)="onSubmit()">Crear juego</button>
+            <button *ngIf="helperService.game==undefined" class="btn btn-primary" style="background: #58b04b; border: none; color: white; padding: 0.5rem 3rem; width: fit-content; box-shadow:  0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35) !important;" (click)="onSubmit()">Crear juego</button>
+            <button *ngIf="helperService.game!=undefined" class="btn btn-primary" style="background: #58b04b; border: none; color: white; padding: 0.5rem 3rem; width: fit-content; box-shadow:  0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35) !important;" (click)="onSubmit()">Modificar juego</button>
+
         </div>
 
 

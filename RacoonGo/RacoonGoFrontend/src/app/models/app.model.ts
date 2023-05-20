@@ -13,11 +13,11 @@ export class Game {
     public difficulty !: number;
     public id : string = "";
     public questions : Question[] = [];
-    public hidden: boolean = false;
-    public timesPlayed: number = 0
+    public hidden: boolean;
+    public timesPlayed: number;
     public email!: string;
     
-    constructor(id: string, name: string, description: string, difficulty: number, questions: Question[], email: string, hidden: boolean) {
+    constructor(id: string, name: string, description: string, difficulty: number, questions: Question[], email: string, hidden: boolean, timesPlayed: number) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -25,6 +25,7 @@ export class Game {
         this.questions = questions;
         this.email = email;
         this.hidden = hidden;
+        this.timesPlayed = timesPlayed;
     }
 }
 
