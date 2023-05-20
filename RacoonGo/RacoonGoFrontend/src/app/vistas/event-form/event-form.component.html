@@ -99,9 +99,9 @@
                 
                 <div class="invalid-feedback">Enlace inválido</div>
             </div>
+            <div *ngIf="submitted && (addEventForm.invalid || invalidEndDate)" class="text-danger">Por favor soluciona los errores anteriores.</div>
             
             
-
             <!-- Button Zone-->
 
             <div>

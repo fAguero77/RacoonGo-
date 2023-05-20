@@ -67,7 +67,7 @@ export class EventFormComponent implements OnInit {
             endDate: ['', [Validators.required]],
             location: ['', [Validators.required]],
             image: ['', [Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]],
-            ageF: [ [Validators.required, Validators.min(0)]]
+            ageF: [-1, [Validators.required, Validators.min(0)]]
         });
         this.age = 0;
         if(this.helperService.event != undefined) {
@@ -138,7 +138,6 @@ export class EventFormComponent implements OnInit {
                 this.user
             );
         }
-
         this.backendRouterService.endpoints.event.addEvent(event).subscribe({
             next: () => {
                 if (this.helperService.event === undefined) {
