@@ -122,10 +122,10 @@ export class GameFormComponent implements OnInit {
     addGame() {
         let game: Game;
         if (this.helperService.game == undefined){
-            game=new Game('', this.addGameForm.value.title, this.addGameForm.value.description, this.addGameForm.value.difficulty, this.questions, this.user.email, this.hidden);
+            game=new Game('', this.addGameForm.value.title, this.addGameForm.value.description, this.addGameForm.value.difficulty, this.questions, this.user.email, this.hidden, 0);
         }
         else{
-            game=new Game(this.helperService.game.id, this.addGameForm.value.title, this.addGameForm.value.description, this.addGameForm.value.difficulty, this.questions, this.user.email, this.hidden);
+            game=new Game(this.helperService.game.id, this.addGameForm.value.title, this.addGameForm.value.description, this.addGameForm.value.difficulty, this.questions, this.user.email, this.hidden, this.helperService.game.timesPlayed);
         }
             this.backendRouterService.endpoints.game.addGame(game).subscribe({
                 next: (data: HttpResponse<Game>) => {
@@ -149,7 +149,9 @@ export class GameFormComponent implements OnInit {
                         } else {
                             Swal.fire('¡Muy bien!', 'Se ha modificado correctamente tu juego: ' + game.name, 'success')
                         }
+                        this.helperService.game = undefined;
                     }
+                    this.router.navigate(['/games']);
                 }
             })
     }

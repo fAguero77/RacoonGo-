@@ -51,8 +51,8 @@ export class NavbarComponent {
 
     }
     goAddGame() {
-        this.router.navigate(['/addGame']);
-
+        this.helperService.game= undefined;
+        window.location.assign('/addGame');
     }
     deleteAcount() {
         Swal.fire({
@@ -68,17 +68,6 @@ export class NavbarComponent {
             if (result.isConfirmed) {
                 await this.deleteUserInfo();
                 sessionStorage.removeItem("user");
-
-                //try {
-                //    await this.deleteUserInfo();
-
-                //} catch (error) {
-                //    Swal.fire({
-                //        icon: 'error',
-                //        title: 'Error al eliminar la cuenta',
-                //        text: 'Intentelo de nuevo en unos minutos'
-                //    });
-                //}
             }
         })
 
