@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { BackEndResponse, Game, User } from "../../models/app.model";
 import { ActivatedRoute } from "@angular/router";
 import { BackendRouterService } from "../../services/backend-router.service";
@@ -17,6 +17,7 @@ export class GamesListComponent implements OnInit {
 
     gamesList: Game[] = [];
     user: User | undefined = undefined;
+
 
     faPenSquare = faPen;
     faTrash = faTrash;
