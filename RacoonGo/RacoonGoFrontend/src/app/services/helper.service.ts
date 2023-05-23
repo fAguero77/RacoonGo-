@@ -119,4 +119,9 @@ export class HelperService {
 
         })
     }
+
+    statisticsGame(g: Game) {
+        this.game = g;
+        this.router.navigate(['/statistics']);
+    }
 }

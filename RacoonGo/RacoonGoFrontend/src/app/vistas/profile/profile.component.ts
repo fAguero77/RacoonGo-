@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {BackEndResponse, Event, Game, User} from "../../models/app.model";
 import {HttpResponse} from "@angular/common/http";
 import {BackendRouterService} from "../../services/backend-router.service";
 import { HelperService } from "../../services/helper.service";
-import { faPenSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faTrash, faChartBar } from '@fortawesome/free-solid-svg-icons';
 
 import {Router} from "@angular/router";
 
@@ -17,7 +17,9 @@ export class ProfileComponent implements OnInit {
   username: string = "";
   email: string = "";
     eventsList: Event[] = [];
-    faPenSquare = faPenSquare;
+    faPenSquare = faPen;
+    faTrash = faTrash;
+    faChartBar = faChartBar;
 
     gamesList: Game[] = [];
     user : User
@@ -74,5 +76,13 @@ export class ProfileComponent implements OnInit {
 
     updateGame(g: Game) {
         this.helperService.updateGame(g);
+    }
+
+    deleteGame(g: Game) {
+        this.helperService.deleteGame(g);
+    }
+
+    statisticsGame(g: Game) {
+        this.helperService.statisticsGame(g);
     }
 }

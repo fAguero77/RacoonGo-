@@ -101,13 +101,14 @@ namespace RacoonGo.Database
 
         public async Task SetGame(string email, Game game)
         {
+            Console.WriteLine(game.id);
             //Necesito el mail, he hecho que en principio el id almacene el mail, aquí ya se genera un id bueno
             if (string.IsNullOrEmpty(game.id))
             {
                 game.id = GenerateKey();
             }
 
-            string uri = string.Format(BASE_PATH_GAME_USER, email.Replace(".", " "), game.id);
+            string uri = string.Format(BASE_PATH_GAME_USER, game.email.Replace(".", " "), game.id);
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Put, uri);
             string content = JsonConvert.SerializeObject(game);
             httpRequestMessage.Content = new StringContent(content);
