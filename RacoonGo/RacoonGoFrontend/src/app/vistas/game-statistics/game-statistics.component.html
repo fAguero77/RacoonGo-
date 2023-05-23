@@ -14,12 +14,13 @@
                     - Fallos: {{ game.timesPlayed - question.corrects }}
                 </li>
                 <li *ngIf="game.timesPlayed>0" class="list-group-item text-secondary" >
-                    - Porcentaje de acierto: {{ question.corrects / game.timesPlayed * 100 }}%
+                    - Porcentaje de acierto: {{ (question.corrects / game.timesPlayed * 100).toFixed(2) }}%
                 </li>
                 <li *ngIf="game.timesPlayed==0" class="list-group-item text-secondary" >
                     - Porcentaje de acierto: 0%
                 </li>
             </ul>
+            - Puntuación media: {{ (averageScore).toFixed(2) }}
         </div>
     </div>
 </div>
