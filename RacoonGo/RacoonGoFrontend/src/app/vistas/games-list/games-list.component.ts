@@ -5,8 +5,7 @@ import { BackendRouterService } from "../../services/backend-router.service";
 import { HelperService } from "../../services/helper.service";
 import { HttpResponse } from "@angular/common/http";
 import Swal from "sweetalert2";
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { Router } from "@angular/router";
+import { faPen, faTrash, faChartBar } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -21,6 +20,7 @@ export class GamesListComponent implements OnInit {
 
     faPenSquare = faPen;
     faTrash = faTrash;
+    faChartBar = faChartBar;
     constructor(private route: ActivatedRoute, private backEndResponse: BackendRouterService, private helperService: HelperService) {
         if (JSON.parse(sessionStorage.getItem("user")!) != undefined) {
             this.user = JSON.parse(sessionStorage.getItem("user")!);
@@ -64,5 +64,9 @@ export class GamesListComponent implements OnInit {
 
     deleteGame(g: Game) {
         this.helperService.deleteGame(g);
+    }
+
+    statisticsGame(g: Game) {
+        this.helperService.statisticsGame(g);
     }
 }
