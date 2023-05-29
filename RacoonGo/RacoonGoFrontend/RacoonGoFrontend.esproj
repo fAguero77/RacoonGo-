@@ -86,4 +86,7 @@
   <ItemGroup>
     <Folder Include="src\app\prueba\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\vistas\landing-page\landing-page.component.css" />
+  </ItemGroup>
 </Project>
