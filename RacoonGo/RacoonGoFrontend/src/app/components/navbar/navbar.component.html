@@ -7,13 +7,15 @@
                     <img class="logo" src="../../../assets/images/mapache2.png" style="height: 3rem">
                 </div>
             </a>
-            <ul class="dropdown-menu dropdown-menu" aria-labelledby="menu" >
+            <ul class="dropdown-menu dropdown-menu" aria-labelledby="menu">
                 <li *ngIf="user!=null && userCompany.website"><a class="dropdown-item clickable" (click)="goAddEve()">Crear Evento</a></li>
                 <li><a class="dropdown-item clickable" (click)="goEveList()">Ver eventos</a></li>
-                <li *ngIf="user!=null"><a class="dropdown-item clickable" (click)="goAddGame()">Crear Juegos</a></li>
+                <li *ngIf="user!=null && !userCompany.website"><a class="dropdown-item clickable" (click)="goAddGame()">Crear Juegos</a></li>
                 <li *ngIf="!userCompany.website"><a class="dropdown-item clickable" (click)="goGameList()">Ver Juegos</a></li>
                 <li *ngIf="user!=null && userCompany.website"><a class="dropdown-item clickable" (click)="goSponsor()">Ser sponsor</a></li>
-                
+                <li><a class="dropdown-item clickable" (click)="goInfo()">¿Quiénes somos?</a></li>
+
+
             </ul>
         </div>
         
@@ -28,11 +30,11 @@
                 </div>
             </a>
             <ul class="dropdown-menu dropdown-menu" aria-labelledby="menuUser" >
-                <li><a class="dropdown-item clickable" (click)="gologin()">Inicio sesión</a></li>
-                <li><a class="dropdown-item clickable" (click)="goSingIn()">Registro</a></li>
-                <li><a class="dropdown-item clickable" (click)="goProfile()" *ngIf="user!=null">Perfil</a></li>
-                <li><a class="dropdown-item clickable" (click)="deleteAcount()" *ngIf="user!=null">Eliminar cuenta</a></li>
-                <li><a class="dropdown-item clickable" (click)="logout()" *ngIf="user!=null">Cerrar Sesión</a></li>
+                <li><a  class="dropdown-item clickable" (click)="gologin()">Inicio sesión</a></li>
+                <li><a  class="dropdown-item clickable" (click)="goSingIn()">Registro</a></li>
+                <li><a *ngIf="user!=null" class="dropdown-item clickable" (click)="goProfile()" >Perfil</a></li>
+                <li><a *ngIf="user!=null" class="dropdown-item clickable" (click)="deleteAcount()" >Eliminar cuenta</a></li>
+                <li><a *ngIf="user!=null" class="dropdown-item clickable" (click)="logout()" >Cerrar Sesión</a></li>
             </ul>
         </div>
         
