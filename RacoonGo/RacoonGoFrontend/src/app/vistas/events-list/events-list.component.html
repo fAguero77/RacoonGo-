@@ -18,19 +18,15 @@
 
 
         <div class="row" style="width: 80%; margin: 0 auto ">
-            <div (click)="(user!=null)?wievEvent(e):login()" *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4">
-                <div class="package-item bg-white mb-2" style="box-shadow: 0 0 10px rgba(0,0,0,0.4); border-radius: 10px !important;">
+            <div (click)="(user!=null)?wievEvent(e):login()" *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4" >
+                <div class="package-item bg-white mb-2" style="box-shadow: 0 0 10px rgba(0,0,0,0.4); border-radius: 10px !important;" [ngStyle]="{'border': isSponsored(e.user.sponsored) ? '4px solid var(--primary)' : 'none'}">
                      <p style="text-align: center" *ngIf="eventsList.length==0">No hay eventos disponibles.</p>
                             <div>
                                 <img class="img-responsive" src="{{e.photoUrl}}" style="border-radius: 10px 10px 0 0 !important;">
                                 <div style="position:absolute; top:0; right:0;">
-                                    <button mat-icon-button class="icono-gear mat-elevation-z6" [matMenuTriggerFor]="menu" style="border: 4px solid #0e0e0e" *ngIf="user && user.username == e.user.username">
-                                        <mat-icon style="font-size: 2rem;width: fit-content; line-height:1.2; color:white;">settings</mat-icon>
+                                    <button mat-icon-button class="icono-gear mat-elevation-z6 button1"  *ngIf="user && user.username == e.user.username">
+                                        <mat-icon style="font-size: 2rem;width: fit-content; color:white;">settings</mat-icon>
                                     </button>
-                                    <mat-menu #menu="matMenu">
-                                        <button mat-menu-item (click)="deleteEvent(e)">Borrar Evento</button>
-                                        <button mat-menu-item (click)="updateEvent(e)">Editar Evento</button>
-                                    </mat-menu>
                                 </div>
         
                             </div>
@@ -88,8 +84,18 @@
 <div *ngIf="eventoGrande" class="evento">
     <div class="package-item bg-white mb-2" style="border-radius: 10px  !important;">
         <!-- Foto or default -->
-        <div style="position:relative">
-            <img class="img-responsive" src="{{evento.photoUrl}}" style="border-radius: 10px  10px 0 0 !important;">
+        <div>
+            <img class="img-responsive" src="{{evento.photoUrl}}" style="border-radius: 10px 10px 0 0 !important;">
+            <div style="position:absolute; top:0; right:0;">
+                <button mat-icon-button class="icono-gear mat-elevation-z6 button1" [matMenuTriggerFor]="menu"  *ngIf="user && user.username == evento.user.username">
+                    <mat-icon style="font-size: 2rem;width: fit-content; color:white;">settings</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="deleteEvent(evento)">Borrar Evento</button>
+                    <button mat-menu-item (click)="updateEvent(evento)">Editar Evento</button>
+                </mat-menu>
+            </div>
+
         </div>
         <div class="p-4">
 

@@ -61,6 +61,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 .btn-primary{
     border: none !important;
+    background: var(--primary) !important;
 }
 
 body {

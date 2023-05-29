@@ -103,8 +103,7 @@ export class EventsListComponent implements OnInit {
 
     isSponsored(d: Date): boolean {
         const eventDate = new Date(d);
-        console.log(eventDate);
-        return eventDate > new Date();
+        return eventDate >= new Date();
     }
 
     login() {

@@ -8,15 +8,19 @@
             <h5>{{this.username}}</h5>
         </div>
         <div>
-            <h2>Email</h2>
+            <h2>Email</h2> 
             <h5>{{this.email}}</h5>
         </div>
-
+        <div>
+            <h2>Puntuación</h2>
+            <h5>{{this.user.score}}</h5>
+        </div>
     </div>
-    
 
-    <div class="UserEvents" *ngIf="eventsList[0]">
-        <h2>Mis eventos</h2>
+    <h2 style="margin-top: 2rem" *ngIf="userCompany.website">Mis eventos</h2>
+    <button *ngIf="!eventsList[0] && userCompany.website" (click)="addEvent()" class="btn btn-primary"> Crear evento</button>
+    <div class="UserEvents" *ngIf="eventsList[0] && userCompany.website">
+        
         
         <div *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4">
             <div class="package-item bg-white mb-2">
@@ -79,9 +83,9 @@
         </div>
     </div>
     
-    <h2>Mis Juegos</h2>
-
-    <div class="UserGames" *ngIf="gamesList[0]">
+    <h2 style="margin-top: 2rem" *ngIf="!userCompany.website">Mis Juegos</h2>
+    <button *ngIf="!gamesList[0] && !userCompany.website" (click)="addGame()" class="btn btn-primary"> Crear juego</button>
+    <div class="UserGames" *ngIf="gamesList[0] && !userCompany.website">
         <div *ngFor="let g of gamesList" (click)="goToGame(g)" style="cursor:pointer">
             <div class="card"  style="box-shadow: 0 0 10px rgba(0,0,0,0.4); border-radius: 10px !important; height: 100%">
                 <div class="card-header" style="background-color: var(--primary) ">

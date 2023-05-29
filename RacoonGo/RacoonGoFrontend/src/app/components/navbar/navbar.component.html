@@ -11,8 +11,8 @@
                 <li *ngIf="user!=null && userCompany.website"><a class="dropdown-item clickable" (click)="goAddEve()">Crear Evento</a></li>
                 <li><a class="dropdown-item clickable" (click)="goEveList()">Ver eventos</a></li>
                 <li *ngIf="user!=null"><a class="dropdown-item clickable" (click)="goAddGame()">Crear Juegos</a></li>
-                <li><a class="dropdown-item clickable" (click)="goGameList()">Ver Juegos</a></li>
-                <li *ngIf="user!=null"><a class="dropdown-item clickable" (click)="goSponsor()">Ser sponsor</a></li>
+                <li *ngIf="!userCompany.website"><a class="dropdown-item clickable" (click)="goGameList()">Ver Juegos</a></li>
+                <li *ngIf="user!=null && userCompany.website"><a class="dropdown-item clickable" (click)="goSponsor()">Ser sponsor</a></li>
                 
             </ul>
         </div>
