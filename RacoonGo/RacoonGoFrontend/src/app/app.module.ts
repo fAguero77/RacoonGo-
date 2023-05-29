@@ -30,6 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { GamesListComponent } from './vistas/games-list/games-list.component';
 import { GameMatchComponent } from './vistas/game-match/game-match.component';
+import { LandingPageComponent } from './vistas/landing-page/landing-page.component';
 import { GameStatisticsComponent } from './vistas/game-statistics/game-statistics.component';
 
 
@@ -54,6 +55,7 @@ import { GameStatisticsComponent } from './vistas/game-statistics/game-statistic
         QuestionDialogComponent,
         GamesListComponent,
         GameMatchComponent,
+        LandingPageComponent,
         GameStatisticsComponent
     ],
     imports: [
