@@ -96,11 +96,15 @@
                                     'bg-warning': g.difficulty === 1,
                                     'bg-danger': g.difficulty === 2
                                 }">{{ getDifficultyName(g.difficulty) }}</span>
-                                    <div *ngIf="user && g.email==user.email">
-                                        <button class="btn btn-secondary btn-sm float-right" (click)="updateGame(g)">
-                                            <fa-icon [icon]="faPenSquare"></fa-icon>
-                                        </button>
-                                    </div>
+                                    <button class="btn btn-secondary btn-sm" (click)="updateGame(g)">
+                                        <fa-icon [icon]="faPenSquare"></fa-icon>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" (click)="deleteGame(g)">
+                                        <fa-icon [icon]="faTrash"></fa-icon>
+                                    </button>
+                                    <button class="btn btn-sm" style="background-color: #3b0b93" (click)="statisticsGame(g)">
+                                        <fa-icon [icon]="faChartBar"></fa-icon>
+                                    </button>
                                 </h4>
                             </div>
                             <div class="card-body">

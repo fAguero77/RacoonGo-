@@ -31,6 +31,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { GamesListComponent } from './vistas/games-list/games-list.component';
 import { GameMatchComponent } from './vistas/game-match/game-match.component';
 import { LandingPageComponent } from './vistas/landing-page/landing-page.component';
+import { GameStatisticsComponent } from './vistas/game-statistics/game-statistics.component';
+
 
 
 
@@ -53,15 +55,16 @@ import { LandingPageComponent } from './vistas/landing-page/landing-page.compone
         QuestionDialogComponent,
         GamesListComponent,
         GameMatchComponent,
-        LandingPageComponent
+        LandingPageComponent,
+        GameStatisticsComponent
     ],
     imports: [
         CommonModule,
-      BrowserModule, 
-      HttpClientModule, 
-      FormsModule, 
-      ReactiveFormsModule, 
-      AppRoutingModule, 
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
         FontAwesomeModule,
         NoopAnimationsModule,
         MatIconModule,
@@ -69,7 +72,7 @@ import { LandingPageComponent } from './vistas/landing-page/landing-page.compone
         NgMultiSelectDropDownModule.forRoot(),
         MatDialogModule,
         MatButtonModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
 
     ],
     providers: [],

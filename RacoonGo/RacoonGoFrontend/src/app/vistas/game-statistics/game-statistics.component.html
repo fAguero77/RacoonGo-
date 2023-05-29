@@ -1,0 +1,26 @@
+<div class="container">
+    <h1>Estadísticas del juego</h1>
+    <div class="card" style="background-color: #a7ea9b">
+        <div class="card-body">
+            <h3>Número de veces jugado: {{ game.timesPlayed }}</h3>
+
+            <h4>Preguntas:</h4>
+            <ul class="list-group" *ngFor="let question of game.questions">
+                Pregunta "{{ question.title }}"
+                <li class="list-group-item text-success" >
+                     - Aciertos: {{ question.corrects }}
+                </li>
+                <li class="list-group-item text-danger">
+                    - Fallos: {{ game.timesPlayed - question.corrects }}
+                </li>
+                <li *ngIf="game.timesPlayed>0" class="list-group-item text-secondary" >
+                    - Porcentaje de acierto: {{ (question.corrects / game.timesPlayed * 100).toFixed(2) }}%
+                </li>
+                <li *ngIf="game.timesPlayed==0" class="list-group-item text-secondary" >
+                    - Porcentaje de acierto: 0%
+                </li>
+            </ul>
+            - Puntuación media: {{ (averageScore).toFixed(2) }}
+        </div>
+    </div>
+</div>

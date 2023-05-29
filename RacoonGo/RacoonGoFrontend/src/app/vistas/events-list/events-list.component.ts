@@ -26,11 +26,14 @@ export class EventsListComponent implements OnInit {
         }
     }
 
-    ngOnInit(): void { this.getEvents(); }
+    ngOnInit(): void {
+        this.getEvents();
 
+    }
     onEventsListUpdate(data: Event[]) {
         // Para recibir lista actualizada del hijo (search-bar) con las listas filtradas
         this.eventsList = data;
+
     }
 
     getEvents(): void {
@@ -39,7 +42,7 @@ export class EventsListComponent implements OnInit {
                 if (data.body) {
                     this.eventsList = data.body as unknown as Event[];
                     //this.eventsList = this.eventsList.filter((value, index) => index % 3 === 0);
-                   
+
                 }
             },
             error: () => {
