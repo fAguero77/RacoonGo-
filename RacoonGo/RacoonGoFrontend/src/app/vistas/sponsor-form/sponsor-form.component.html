@@ -2,7 +2,7 @@
 <div class="container-fluid py-5">
     <div class="container pt-5 pb-3">
         <div class="text-center mb-3 pb-3">
-            <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Patrocinios</h6>
+            <h6 class="text-primary text-uppercase" style="letter-spacing: 5px; color: var(--primary) !important;">Patrocinios</h6>
             <h1>Patrocinios disponibles</h1>
 
             <div class="d-flex flex-wrap align-items-md-start mb-1 justify-content-center" style="height: 85px; overflow: hidden;">
@@ -13,7 +13,7 @@
             <!--WEEK-->
             <!--MONTH-->
             <div class="col-md-4">
-                <div class="package-item bg-white mb-2 border border-primary">
+                <div class="package-item bg-white mb-2 border border-primary" style="border-color: var(--primary) !important;" (click)="checkOut(7)">
                     <div class="p-4">
                         <div class="">
                             <div class="d-flex justify-content-between" style="height: 65px;">
@@ -23,16 +23,15 @@
 
                         <div class="d-flex flex-wrap align-items-md-start mb-1" style="height: 85px; overflow: hidden;">
                             <p>Todos tus eventos disponibles aparecerán destacados por una <b>semana</b>.</p>
-                            <i class="fab fa-twitter"></i>
                         </div>
-                        <button type="button" class="btn btn-primary" (click)="checkOut(7)">Seleccionar</button>
+                        
                     </div>
                 </div>
             </div>
 
             <!--MONTH-->
             <div class="col-md-4">
-                <div class="package-item bg-white mb-2 border border-primary">
+                <div class="package-item bg-white mb-2 border border-primary" style="border-color: var(--primary) !important;" (click)="checkOut(30)">
                     <div class="p-4">
                         <div class="">
                             <div class="d-flex justify-content-between" style="height: 65px;">
@@ -43,7 +42,7 @@
                         <div class="d-flex flex-wrap align-items-md-start mb-1" style="height: 85px; overflow: hidden;">
                             <p>Todos tus eventos disponibles aparecerán destacados por un <b>mes</b>.</p>
                         </div>
-                        <button type="button" class="btn btn-primary" (click)="checkOut(30)">Seleccionar</button>
+                
                     </div>
                 </div>
             </div>
@@ -51,7 +50,7 @@
             <!--YEAR-->
             <!--MONTH-->
             <div class="col-md-4">
-                <div class="package-item bg-white mb-2 border border-primary">
+                <div class="package-item bg-white mb-2 border border-primary" style="border-color: var(--primary) !important;" (click)="checkOut(365)">
                     <div class="p-4">
                         <div class="">
                             <div class="d-flex justify-content-between" style="height: 65px;">
@@ -62,7 +61,6 @@
                         <div class="d-flex flex-wrap align-items-md-start mb-1" style="height: 85px; overflow: hidden;">
                             <p>Todos tus eventos disponibles aparecerán destacados por un <b>año</b>.</p>
                         </div>
-                        <button type="button" class="btn btn-primary" (click)="checkOut(365)">Seleccionar</button>
                     </div>
                 </div>
             </div>

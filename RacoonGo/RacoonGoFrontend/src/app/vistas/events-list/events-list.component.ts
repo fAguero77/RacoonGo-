@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { BackendRouterService } from "../../services/backend-router.service";
-import { BackEndResponse, Event, User } from "../../models/app.model";
+import {BackEndResponse, CompanyUser, Event, User} from "../../models/app.model";
 import { HttpResponse } from '@angular/common/http';
 import { HelperService } from '../../services/helper.service';
 import { ActivatedRoute, Router } from "@angular/router";
@@ -14,16 +14,16 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class EventsListComponent implements OnInit {
 
     eventsList: Event[] = [];
-    user: User |undefined = undefined;
+    user: User;
 
+    userCompany: CompanyUser;
 
     constructor(private route: ActivatedRoute, 
                 private router: Router, 
                 private backEndResponse: BackendRouterService, 
                 private helperService: HelperService) {
-        if (JSON.parse(sessionStorage.getItem("user")!) != undefined) {
-            this.user = JSON.parse(sessionStorage.getItem("user")!);
-        }
+        this.user = JSON.parse(sessionStorage.getItem("user")!);
+        this.userCompany = JSON.parse(sessionStorage.getItem("user")!);
     }
 
     ngOnInit(): void {
@@ -103,8 +103,10 @@ export class EventsListComponent implements OnInit {
 
     isSponsored(d: Date): boolean {
         const eventDate = new Date(d);
-        console.log(eventDate);
-        return eventDate > new Date();
+        return eventDate >= new Date();
     }
 
+    login() {
+        this.router.navigate(['/login']);
+    }
 }

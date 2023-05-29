@@ -1,0 +1,5 @@
+.package-item:hover {
+    background-color: #bddeb8 !important;
+    cursor: pointer;
+    box-shadow: 0 0 2rem 0.2rem rgba(0, 0, 0, 0.27) !important;
+}

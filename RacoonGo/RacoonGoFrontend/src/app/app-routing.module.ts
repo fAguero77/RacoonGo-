@@ -23,7 +23,7 @@ import {GameStatisticsComponent} from "./vistas/game-statistics/game-statistics.
 
 const routes: Routes = [
     { path: 'addEvent', component: EventFormComponent },
-    { path: 'events', component: EventsListComponent },
+    { path: '', component: EventsListComponent },
     { path: 'register', component: AccountComponent },
     { path: 'login', component: LoginComponent },
     { path: 'changePassword', component: PasswordComponent },

@@ -5,24 +5,25 @@
     align-items: center;
     text-align: center;
     height: fit-content;
-    margin: 0 auto;
-    border: solid #74d664;
+    margin: 1rem auto;
+    border: solid var(--primary);
     position: relative;
-    padding: 1rem;
+    padding: 1.5rem;
     box-shadow: 0.2rem 0.2rem 0.3rem 0.05rem rgba(0, 0, 0, 0.38);
 }
 
+h2, h5{
+    color: var(--primary);
+}
 
 .title {
     text-align: center;
     font-weight: bold;
     width: 100%;
     border-radius: 5px;
-    border: solid #74d664 1px;
 }
 
 .title:hover {
-
     color: #0e0e0e;
 }
 .checkbox {
@@ -41,15 +42,12 @@
     width: 75%;
 }
 .form-check-input:checked {
-    background-color: #A9D6A1
+    background-color: var(--primary)
 }
 
 .separador {
     width: 107%;
-    border: solid #74d664 1px;
     opacity: 1;
-  
-
 }
 
 
@@ -60,19 +58,19 @@ textarea {
     font-size: 15px;
     resize: none;
     color: #7d9abb;
-    border: solid #74d664 1px;
     border-radius: 5px;
 }
 
-    textarea:focus {
-        background: #A9D6A1;
-        color: black;
-    }
+textarea:focus {
 
-    textarea.hover {
-        background: #A9D6A1;
-        color: black;
-    }
+    color: black;
+}
+
+textarea.hover {
+    background: #A9D6A1;
+    color: black;
+}
+
 .caja-interno {
     margin: 0 auto;
     display: flex;
@@ -88,8 +86,9 @@ textarea {
     border-radius: 10px;
     margin-top: 10px;
 }
-.questionList {color: white;
-    background-color: #58b04b;
+.questionList {
+    color: white;
+    background-color: var(--primary);
     border-radius: 10px;
     margin-top: 10px;
 }

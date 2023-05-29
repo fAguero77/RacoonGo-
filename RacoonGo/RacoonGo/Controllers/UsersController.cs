@@ -48,8 +48,8 @@ public class UsersController : ControllerBase
 
         CompanyUser user = await FirebaseRealtimeDatabase.Instance.GetCompanyUser(request.email);
 
-		//update sponsor days
-		user.sponsored = user.sponsored.AddDays(request.days);
+        //update sponsor days
+        user.sponsored = user.sponsored.AddDays(request.days);
         await FirebaseRealtimeDatabase.Instance.SetCompanyUser(user, false);
         await FirebaseRealtimeDatabase.Instance.UpdateAllUsersEvents(user);
 

@@ -9,22 +9,22 @@ import {User} from "./models/app.model";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+        
+    user: User;
+    visible: boolean = false;
     constructor(http: HttpClient,
         private route: ActivatedRoute,
         private router: Router   ) {
-               
+        
+        this.user = JSON.parse(sessionStorage.getItem("user")!);
 
         this.router.events.subscribe(
             event => {
                 if (event instanceof NavigationStart) {
-                    if (event.url == "/login" || event.url == "/register" || event.url == "/loginBusiness" || event.url == "/changePassword") {
+                    
+                    if (event.url == "/login" || event.url == "/register" || event.url == "/loginBusiness" || event.url == "/changePassword" ) {
                         document.body.style.backgroundColor = '#165933';
                     }else{
-                        /*let user: User = JSON.parse(sessionStorage.getItem("user")!)
-                        if (user == null) {
-                            this.router.navigate(['/login']);
-                        }*/
                         document.body.style.backgroundColor = 'white';
                     }
                 }

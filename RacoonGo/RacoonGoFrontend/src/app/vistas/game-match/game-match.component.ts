@@ -73,7 +73,7 @@ export class GameMatchComponent implements OnInit {
                     })
                     sessionStorage.setItem("user", JSON.stringify(this.user));
 
-                    this.router.navigate(['/'])
+                    this.router.navigate(['/games'])
 
                 }
                 
