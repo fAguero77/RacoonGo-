@@ -1,0 +1,25 @@
+﻿<div class="caja-exter">
+    <h1>{{game.name}}</h1>
+    <h5>Puntuación: {{points}} puntos</h5>
+    
+    <div class="caja container-fluid d-flex flex-column ">
+        <div class="caja-interno container-fluid">
+                <h3>{{actualQuestion.title}}</h3>
+                <div class="options">
+                    <div *ngFor="let option of actualQuestion.options; let i = index">
+                        <input *ngIf="!checked" [ngClass]="'i'+i" class="option" type="button" value={{option.body}} 
+                               (click)="select(option);check()" />
+                        <input *ngIf="checked && option.correct" class=" option true"
+                               type="button" value={{option.body}} />
+                        <input *ngIf="checked && !option.correct" class=" option false" 
+                               type="button" value={{option.body}} />
+                    </div>
+                </div>
+        </div>
+        <div class="boton">
+            <button  *ngIf="checked" class=" btn btn-primary conti" (click)="continue()">Continuar</button>
+        </div>
+    </div>
+</div>
+
+

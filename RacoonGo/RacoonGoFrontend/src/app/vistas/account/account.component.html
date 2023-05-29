@@ -1,33 +1,37 @@
-<div class="container mt-3">
-    <h1>Registrarse</h1>
-    <form [formGroup]="signUpForm" method="post" (ngSubmit)="onSubmit()" novalidate>
-        <div class="input-group mb-3 mt-3">
-            <label class="input-group-text" for="email">@</label>
-            <input type="email" class="form-control" id="email" placeholder="Introduzca su correo" name="email" [(ngModel)]="email" formControlName="email"
-                   (blur)="checkValidity('email')" [ngClass]="{ 'is-invalid': signUpForm.get('email')?.invalid && (signUpForm.get('email')?.touched || submitted), 'is-valid': signUpForm.get('email')?.valid && signUpForm.get('email')?.touched }">
-            <div class="invalid-feedback">El correo debe seguir este formato: usuario@ejemplo.com</div>
-        </div>
-        <div class="input-group mb-3 mt-3">
-            <label class="input-group-text" for="username"><fa-icon [icon]="faUser"></fa-icon></label>
-            <input type="text" class="form-control" id="username" placeholder="Introduzca su usuario" name="username" [(ngModel)]="username" formControlName="username" 
-                   (blur)="checkValidity('username')" [ngClass]="{ 'is-invalid': signUpForm.get('username')?.invalid && (signUpForm.get('username')?.touched || submitted), 'is-valid': signUpForm.get('username')?.valid && signUpForm.get('username')?.touched }">
-            <div class="invalid-feedback">El nombre de usuario debe contener 4 caracteres como mínimo.</div>
-        </div>
-        <div class="input-group mb-3">
-            <label for="pwd" class="input-group-text"><fa-icon [icon]="faLock"></fa-icon></label>
-            <input type="password" class="form-control" id="pwd" placeholder="Introduzca su contraseña" name="pswd" [(ngModel)]="password" formControlName="password" 
-                   (blur)="checkValidity('password')" [ngClass]="{ 'is-invalid': signUpForm.get('password')?.invalid && (signUpForm.get('password')?.touched || submitted), 'is-valid': signUpForm.get('password')?.valid && signUpForm.get('password')?.touched }">
-            <div class="invalid-feedback">La contraseña debe contener 6 caracteres como mínimo.</div>
-        </div>
-        <div class="form-check mb-3">
-            <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" name="remember"> Recuérdame
-            </label>
-        </div>
-        <button type="submit" class="btn btn-primary" >Registrarse</button>
+<div class="login-box">
+    <div class="login-box-body">
+        <p class="login-box-msg">Registrarse</p>
+        <form [formGroup]="signUpForm" method="post" (ngSubmit)="onSubmit()" novalidate>
+            <div class="input-group mb-3 mt-3">
+                <label class="input-group-text" for="email">@</label>
+                <input type="email" class="form-control" id="email" placeholder="Introduzca su correo" name="email" [(ngModel)]="email" formControlName="email"
+                       (blur)="checkValidity('email')" [ngClass]="{ 'is-invalid': signUpForm.get('email')?.invalid && (signUpForm.get('email')?.touched || submitted), 'is-valid': signUpForm.get('email')?.valid && signUpForm.get('email')?.touched }">
+                <div class="invalid-feedback">El correo debe seguir este formato: usuario@ejemplo.com</div>
+            </div>
+            <div class="input-group mb-3 mt-3">
+                <label class="input-group-text" for="username"><fa-icon [icon]="faUser"></fa-icon></label>
+                <input type="text" class="form-control" id="username" placeholder="Introduzca su usuario" name="username" [(ngModel)]="username" formControlName="username"
+                       (blur)="checkValidity('username')" [ngClass]="{ 'is-invalid': signUpForm.get('username')?.invalid && (signUpForm.get('username')?.touched || submitted), 'is-valid': signUpForm.get('username')?.valid && signUpForm.get('username')?.touched }">
+                <div class="invalid-feedback">El nombre de usuario debe contener 4 caracteres como mínimo.</div>
+            </div>
+            <div class="input-group mb-3">
+                <label for="pwd" class="input-group-text"><fa-icon [icon]="faLock"></fa-icon></label>
+                <input type="password" class="form-control" id="pwd" placeholder="Introduzca su contraseña" name="pswd" [(ngModel)]="password" formControlName="password"
+                       (blur)="checkValidity('password')" [ngClass]="{ 'is-invalid': signUpForm.get('password')?.invalid && (signUpForm.get('password')?.touched || submitted), 'is-valid': signUpForm.get('password')?.valid && signUpForm.get('password')?.touched }">
+                <div class="invalid-feedback">La contraseña debe contener 6 caracteres como mínimo.</div>
+            </div>
+            <div class="form-check mb-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="remember"> Recuérdame
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary" >Registrarse</button>
+        </form>
         <div *ngIf="submitted && signUpForm.invalid" class="text-danger">Por favor soluciona los errores anteriores.</div>
         <div *ngIf="invalidSignup" class="text-danger">El correo o usuario introducido pertenece a una cuenta.</div>
-        <p>¿Tienes una empresa que realiza eventos? <a routerLink="/loginBusiness">Regístrate como empresa</a></p>
-        <p>¿Ya tienes una cuenta? <a routerLink="/login">Iniciar sesión</a></p>
-    </form>
+        <div class="text-left">
+            <p>¿Tienes una empresa que realiza eventos? <a routerLink="/loginBusiness">Regístrate como empresa</a></p>
+            <p>¿Ya tienes una cuenta? <a routerLink="/login">Iniciar sesión</a></p>
+        </div>
+    </div>
 </div>

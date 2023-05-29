@@ -12,12 +12,18 @@ import { SponsorFormComponent } from './vistas/sponsor-form/sponsor-form.compone
 import {ProfileComponent} from "./vistas/profile/profile.component";
 import { GameFormComponent } from './vistas/game-form/game-form.component';
 import {GamesListComponent} from "./vistas/games-list/games-list.component";
+import { GameMatchComponent } from './vistas/game-match/game-match.component';
+
+import { LandingPageComponent } from './vistas/landing-page/landing-page.component';
+
+import {GameStatisticsComponent} from "./vistas/game-statistics/game-statistics.component";
+
 
 
 
 const routes: Routes = [
     { path: 'addEvent', component: EventFormComponent },
-    { path: 'events', component: EventsListComponent },
+    { path: '', component: EventsListComponent },
     { path: 'register', component: AccountComponent },
     { path: 'login', component: LoginComponent },
     { path: 'changePassword', component: PasswordComponent },
@@ -25,7 +31,11 @@ const routes: Routes = [
     { path: 'sponsor', component: SponsorFormComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'addGame', component: GameFormComponent },
-    { path: 'games', component: GamesListComponent }
+    { path: 'games', component: GamesListComponent },
+    { path: 'match', component: GameMatchComponent },
+    { path: '', component: LandingPageComponent },
+    { path: 'match', component: GameMatchComponent},
+    { path: 'statistics', component: GameStatisticsComponent }
 
 ];
 

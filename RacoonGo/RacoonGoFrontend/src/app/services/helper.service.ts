@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { Theme } from '../models/app.enum';
-import { BackEndResponse, Event, User } from "../models/app.model";
+import { BackEndResponse, Event, Game, User } from "../models/app.model";
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from "@angular/router";
 import { BackendRouterService } from "../services/backend-router.service";
@@ -37,6 +37,7 @@ export class HelperService {
         "Difícil"
     ]
     event: Event | undefined;
+    game: Game | undefined;
 
 
     constructor(private route: ActivatedRoute,
@@ -55,7 +56,7 @@ export class HelperService {
     deleteEvent(e: Event) {
         Swal.fire({
             title: '¿Estás seguro?',
-            text: "No podrás revertir esto!",
+            text: "¡No podrás revertir los cambios!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -63,9 +64,10 @@ export class HelperService {
             confirmButtonText: 'Sí, bórralo',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
+            if (result.isDismissed) return;
             this.backEndResponse.endpoints.event.deleteEvent(e.user.email, e.id).subscribe({
                 next: (data: HttpResponse<BackEndResponse<any>>) => {
-                    Swal.fire('\u00A1Muy bien!', 'Se ha eliminado correctamente tu evento: ' + e.title, 'success').then((a) => {
+                    Swal.fire('\u00A1¡Muy bien!', 'Se ha eliminado correctamente tu evento: ' + e.title, 'success').then((a) => {
                         window.location.reload();
                     })
                 }
@@ -82,5 +84,44 @@ export class HelperService {
 
     getDifficultyInfo(index: number) {
         return this.difficultyText[index];
+    }
+
+    playMatch(g: Game) {
+        this.game = g;
+        this.router.navigate(['/match']);
+
+    }
+
+    updateGame(g: Game) {
+        this.game=g;
+        this.router.navigate(['/addGame']);
+    }
+
+    deleteGame(g: Game) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir los cambios!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, bórralo',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isDismissed) return;
+            this.backEndResponse.endpoints.game.deleteGame(g.email, g.id).subscribe({
+                next: (data: HttpResponse<BackEndResponse<any>>) => {
+                    Swal.fire('\u00A1¡Muy bien!', 'Se ha eliminado correctamente tu juego: ' + g.name, 'success').then((a) => {
+                        window.location.reload();
+                    })
+                }
+            });
+
+        })
+    }
+
+    statisticsGame(g: Game) {
+        this.game = g;
+        this.router.navigate(['/statistics']);
     }
 }

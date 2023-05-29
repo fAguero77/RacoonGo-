@@ -17,7 +17,7 @@ import {DatePipe} from "@angular/common";
 export class EventFormComponent implements OnInit {
     addEventForm!: FormGroup;
     submitted = false;
-    age: number=0;
+    age: number | undefined;
     invalidStartDate = false;
     invalidEndDate = false;
     invalidLength = false;
@@ -28,7 +28,6 @@ export class EventFormComponent implements OnInit {
     image: string;
     readonly defaultImg: string = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
     user!: CompanyUser;
-    event: Event | undefined;
     ageList: string[] = [];
     datePipe: DatePipe;
 
@@ -58,7 +57,7 @@ export class EventFormComponent implements OnInit {
     ngOnInit(): void {
         this.user = JSON.parse(sessionStorage.getItem("user")!);
         if (this.user.website == null) {
-            this.router.navigate(['/login']);
+         //   this.router.navigate(['/login']);
         }
         this.addEventForm = this.fb.group({
             title: ['', [Validators.required]],
@@ -67,8 +66,9 @@ export class EventFormComponent implements OnInit {
             endDate: ['', [Validators.required]],
             location: ['', [Validators.required]],
             image: ['', [Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]],
-            ageF: [0, [Validators.required, Validators.min(0)]]
+            ageF: [-1, [Validators.required, Validators.min(0)]]
         });
+        this.age = 0;
         if(this.helperService.event != undefined) {
             let e = this.helperService.event;
             this.addEventForm.patchValue({
@@ -81,6 +81,7 @@ export class EventFormComponent implements OnInit {
             });
             this.image = e.photoUrl;
             this.themes = e.themes;
+            this.age = e.recommendedAge;
         }
     }
     checkValidity(controlName: string) {
@@ -100,7 +101,7 @@ export class EventFormComponent implements OnInit {
         if (this.addEventForm.invalid) {
             return;
         }
-        else if (!this.invalidEndDate && !this.invalidEndDate && !this.invalidLength) {
+        else if (!this.invalidStartDate && !this.invalidEndDate && !this.invalidLength) {
             this.addEvent();
         }
     }
@@ -114,7 +115,7 @@ export class EventFormComponent implements OnInit {
             event = new Event(this.helperService.event.id,
                 this.addEventForm.value.title,
                 this.addEventForm.value.description,
-                this.addEventForm.value.age,
+                this.addEventForm.value.ageF,
                 this.addEventForm.value.startDate,
                 this.addEventForm.value.endDate,
                 new Location(this.addEventForm.value.location),
@@ -127,7 +128,7 @@ export class EventFormComponent implements OnInit {
             event = new Event('',
                 this.addEventForm.value.title,
                 this.addEventForm.value.description,
-                this.addEventForm.value.age,
+                this.addEventForm.value.ageF,
                 this.addEventForm.value.startDate,
                 this.addEventForm.value.endDate, 
                 new Location(this.addEventForm.value.location),
@@ -136,7 +137,6 @@ export class EventFormComponent implements OnInit {
                 this.user
             );
         }
-
         this.backendRouterService.endpoints.event.addEvent(event).subscribe({
             next: () => {
                 if (this.helperService.event === undefined) {

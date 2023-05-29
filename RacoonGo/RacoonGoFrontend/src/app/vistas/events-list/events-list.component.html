@@ -2,92 +2,100 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 </head>
 
-<div class="container-fluid py-5">
-    <div class="container pt-5 pb-3">
+<div class=" py-5">
+    <div class=" pt-5 ">
 	    <div class="text-center mb-3 pb-3">
-		    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Eventos</h6>
+		    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px; color: var(--primary) !important;">Eventos</h6>
 		    <h1>Eventos disponibles</h1>
 	    </div>
         
         
 	    <search-bar [isEventSearch]=true (parentListUpdate)="onEventsListUpdate($event)"></search-bar>
         
-        <div class="misEventos">
+        <div class="misEventos" *ngIf="user!=null && userCompany.website">
             <button type="button" class="btn btn-primary" (click)="getMyEvents()">Mis eventos</button>
         </div>
 
 
-        <div class="row">
-            <div *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4">
-                <div class="package-item bg-white mb-2">
-                    <!-- Foto or default -->
-                    <div style="position:relative">
-                        <img class="img-responsive" src="{{e.photoUrl}}">
-                        <div style="position:absolute; top:0; right:0;">
-                            <button mat-icon-button class="icono-gear mat-elevation-z6" [matMenuTriggerFor]="menu" style="border: 4px solid #0e0e0e"  *ngIf="user && user.username == e.user.username">
-                                <mat-icon style="font-size: 2rem;width: fit-content; line-height:1.2; color:white;">settings</mat-icon>
-                            </button>
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item  (click)="deleteEvent(e)">Borrar Evento</button>
-                                <button mat-menu-item  (click)="updateEvent(e)">Editar Evento</button>
-                            </mat-menu>
-                        </div>
-
-                    </div>
-
-                    <div class="p-4">
-
-                        <div class="d-flex justify-content-between mb-3">
-
-                            <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>{{e.location.name}}</small>
-
-                            <ng-container *ngIf="e.startDate === e.endDate; else dateRange">
-                                <small class="m-0">
-                                    <i class="fa fa-calendar-alt text-primary mr-2"></i>{{e.startDate | date:'dd/MM/yy'}}
-                                </small>
-                            </ng-container>
-                            <ng-template #dateRange>
-                                <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>{{e.startDate | date:'dd/MM/yy'}} al {{e.endDate | date:'dd/MM/yy'}}</small>
-                            </ng-template>
-
-                            <small class="m-0"><i class="fa fa-user text-primary mr-2"></i> {{getAgeRecommendation(e.recommendedAge)}}</small>
-                        </div>
-
-                        <div class="">
-                            <div class="d-flex justify-content-between" style="height: 65px;">
-                                <h5 class="d-inline-block" style="text-align: justify; max-width: 400px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; text-overflow: ellipsis;"><i class="fa fa-flask text-primary mr-2"></i>{{e.title}}</h5>
+        <div class="row" style="width: 80%; margin: 0 auto ">
+            <div (click)="(user!=null)?wievEvent(e):login()" *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4" >
+                <div class="package-item bg-white mb-2" style="box-shadow: 0 0 10px rgba(0,0,0,0.4); border-radius: 10px !important;" [ngStyle]="{'border': isSponsored(e.user.sponsored) ? '4px solid var(--primary)' : 'none'}">
+                     <p style="text-align: center" *ngIf="eventsList.length==0">No hay eventos disponibles.</p>
+                            <div>
+                                <img class="img-responsive" src="{{e.photoUrl}}" style="border-radius: 10px 10px 0 0 !important;">
+                                <div style="position:absolute; top:0; right:0;">
+                                    <button mat-icon-button class="icono-gear mat-elevation-z6 button1"  *ngIf="user && user.username == e.user.username">
+                                        <mat-icon style="font-size: 2rem;width: fit-content; color:white;">settings</mat-icon>
+                                    </button>
+                                </div>
+        
                             </div>
-                        </div>
-
-                        <div class="d-flex flex-wrap  align-items-md-start mb-1" style=" overflow: hidden;">
-                            <ng-container *ngFor="let t of e.themes.slice(0, 6); let last=last;">
-                                <button class="themeButton">{{getThemeName(t)[0]}}</button>
-                            </ng-container>
-                            <div class="align-items-md-center" *ngIf="e.themes.length > 6">
-                                <span>+{{e.themes.length - 6}} {{e.themes.length - 6 === 1 ? 'tema' : 'temas'}}</span>
+        
+                            <div class="p-4">
+        
+                                <div class="d-flex justify-content-between mb-3" >
+                                    
+        
+                                    <small class="m-0" ><i class="fa fa-map-marker-alt text-primary mr-2"></i>{{e.location.name}}</small>
+        
+                                    <ng-container *ngIf="e.startDate === e.endDate; else dateRange">
+                                        <small class="m-0" style="padding-left: 0.1rem">
+                                            <i class="fa fa-calendar-alt text-primary mr-2"></i>{{e.startDate | date:'dd/MM/yy'}}
+                                        </small>
+                                    </ng-container>
+                                    <ng-template #dateRange>
+                                        <small class="m-0" style="padding-left: 0.1rem"><i class="fa fa-calendar-alt text-primary mr-2"></i>{{e.startDate | date:'dd/MM/yy'}} al {{e.endDate | date:'dd/MM/yy'}}</small>
+                                    </ng-template>
+        
+                                    <small class="m-0" style="padding-left: 0.1rem"><i class="fa fa-user text-primary mr-2"></i> {{getAgeRecommendation(e.recommendedAge)}}</small>
+                                </div>
+        
+                                <div class="">
+                                    <div class="d-flex justify-content-between" style="height: 65px;">
+                                        <h5 class="d-inline-block" style="text-align: justify; max-width: 400px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; text-overflow: ellipsis;"><i class="fa fa-flask text-primary mr-2"></i>{{e.title}}</h5>
+                                    </div>
+                                </div>
+        
+                                <div class="d-flex flex-wrap  align-items-md-start mb-1" style=" overflow: hidden; gap: 0.2rem">
+                                    <ng-container *ngFor="let t of e.themes.slice(0, 6); let last=last;" >
+                                        <button class="btn btn-primary">{{getThemeName(t)[0]}}</button>
+                                    </ng-container>
+                                    <div class="align-items-md-center" *ngIf="e.themes.length > 6">
+                                        <span>+{{e.themes.length - 6}} {{e.themes.length - 6 === 1 ? 'tema' : 'temas'}}</span>
+                                    </div>
+                                </div>
+        
+                                <div class="border-top mt-4 pt-4">
+                                    <div class="d-flex justify-content-between">
+                                        <h6 class="d-inline-block text-truncate" style="max-width: 240px;"><i class="fa fa-flask text-primary mr-2"></i>{{e.user.username}} </h6>
+                                        <!--<h5 class="m-0">$350 <small>(c/u)</small></h5>-->
+        
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="border-top mt-4 pt-4">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="d-inline-block text-truncate" style="max-width: 240px;"><i class="fa fa-flask text-primary mr-2"></i>Organizationnnnnnnnnnnnnnnnnnnnnn </h6>
-                                <!--<h5 class="m-0">$350 <small>(c/u)</small></h5>-->
-
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-primary" (click)="wievEvent(e)">Mas información</button>
+                            <span></span>
+                            <button type="button" class="btn btn-primary" style="margin-left: 1rem; margin-bottom: 1rem" (click)="wievEvent(e)">Mas información</button>
+         
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 <div *ngIf="eventoGrande" class="evento">
-    <div class="package-item bg-white mb-2">
+    <div class="package-item bg-white mb-2" style="border-radius: 10px  !important;">
         <!-- Foto or default -->
-        <div style="position:relative">
-            <img class="img-responsive" src="{{evento.photoUrl}}">
+        <div>
+            <img class="img-responsive" src="{{evento.photoUrl}}" style="border-radius: 10px 10px 0 0 !important;">
+            <div style="position:absolute; top:0; right:0;">
+                <button mat-icon-button class="icono-gear mat-elevation-z6 button1" [matMenuTriggerFor]="menu"  *ngIf="user && user.username == evento.user.username">
+                    <mat-icon style="font-size: 2rem;width: fit-content; color:white;">settings</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="deleteEvent(evento)">Borrar Evento</button>
+                    <button mat-menu-item (click)="updateEvent(evento)">Editar Evento</button>
+                </mat-menu>
+            </div>
+
         </div>
         <div class="p-4">
 
@@ -118,10 +126,10 @@
                 <p>{{evento.description}}</p>
             </div>
             <h6 class="d-inline-block text-truncate" style="max-width: 240px;">Temas</h6>
-            <div class="d-flex flex-wrap  align-items-md-start mb-1" style="overflow: hidden;">
+            <div class="d-flex flex-wrap  align-items-md-start mb-1" style="overflow: hidden; gap: 0.2rem">
                 
                 <ng-container *ngFor="let t of evento.themes.slice(0, 6); let last=last;">
-                    <button class="themeButton">{{getThemeName(t)[0]}}</button>
+                    <button class="btn btn-primary">{{getThemeName(t)[0]}}</button>
                 </ng-container>
                 <div class="align-items-md-center" *ngIf="evento.themes.length > 6">
                     <span>+{{evento.themes.length - 6}} {{evento.themes.length - 6 === 1 ? 'tema' : 'temas'}}</span>
@@ -142,13 +150,11 @@
                 </div>
             </div>
             
-            <div class="border-top mt-4 pt-4">
-                <button type="button" class="btn btn-primary" (click)="notWievEvent()">Menos</button>
+            <div class="border-top mt-4 pt-4" >
+                <button type="button" class="btn btn-primary"  (click)="notWievEvent()">Menos</button>
             </div>
         </div>
         
     </div>
-    <div class="fondo"></div>
+    <div (click)="eventoGrande=false" class="fondo"></div>
 </div>
-
-<!-- Events  -->

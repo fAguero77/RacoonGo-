@@ -25,94 +25,164 @@
 
                     </div>
                 </form>
-	            <!-- FIN BÚSQUEDA BÁSICA -->
-
+                <!-- FIN BÚSQUEDA BÁSICA -->
                 <!-- BÚSQUEDA AVANZADA -->
                 <div class="collapse" id="collapseOptions">
-                    <td class="card card-body">
+                    <!-- BÚSQUEDA AVANZADA EVENTOS -->
+                    <ng-container *ngIf="isEventSearch">
 
-                    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Búsqueda Avanzada</h6>
+                        <td class="card card-body">
 
-                        <form novalidate [formGroup]="submitSearchAdvance">
-                            <div style="border-spacing: 10px; border-collapse: separate;">
+                    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px; color: var(--primary) !important;">Búsqueda Avanzada</h6>
 
-                                <div class="row">
-	                                <div class="col-md-8 box">
-			                                
-                                        <h6>Título</h6>
-			                             <input type="text" formControlName="title" placeholder="Título" aria-describedby="button-addon3" class="form-control">
-		                                <!--<div class="input-icons">
-			                                <i class="fa fa-font icon"></i>
-			                                <input type="text" formControlName="title" placeholder="Título" aria-describedby="button-addon3" class="form-control input-field">
-		                                </div>-->
-	                                </div>
-                                    <div class="col-md-4 box">
-                                        <h6>Localización</h6>
-                                        <input type="text" formControlName="location" placeholder="Localización" aria-describedby="button-addon3" class="form-control">
-                                        <!--<div class="input-icons">
-                                            <i class="fa fa-map-marker icon" aria-hidden="true"></i>
-                                            <input type="text" formControlName="location" placeholder="Localización" aria-describedby="button-addon3" class="form-control input-field">
-                                        </div>-->
-                                    </div>
-                                </div>
-                                <!--/row-->
-                                <div class="row">
-                                    <div class="col-md-8 box">
-                                        <h6>Etiquetas</h6>
-                                        <ng-multiselect-dropdown formControlName="selectedTags" required="false"
-                                                                 [placeholder]="'Etiquetas'"
-                                                                 [settings]="dropdownSettingsTags"
-                                                                 [data]="dropdownListTags"
-                                                                 [(ngModel)]="selectedTags">
-                                        </ng-multiselect-dropdown>
-                                    </div>
-                                    <div class="col-md-4 box">
-                                        <h6>Rango de edad</h6>
-                                        <ng-multiselect-dropdown formControlName="age" required="false"
-                                                                 [placeholder]="'Rango de edad'"
-                                                                 [settings]="dropdownSettingsAge"
-                                                                 [data]="dropdownListAge"
-                                                                 [(ngModel)]="selectedAge">
-                                        </ng-multiselect-dropdown>
-                                    </div>
-                                </div>
-                                <!--/row-->
-                                <div class="row align-items-center">
-	                                <div class="col-md-4 box">
-	                                    <h6>Desde</h6>
-                                        <input type="date" formControlName="iniDate" placeholder="Fecha inicio" aria-describedby="button-addon3" class="form-control">
-                                    </div>
-                                    <div class="col-md-4 box">
-	                                    <h6>Hasta</h6>
-                                        <input type="date" formControlName="endDate" placeholder="Fecha fin" aria-describedby="button-addon3" class="form-control">
-                                    </div>
-                                    <div class="col-md-4 box">
-                                        <h6>Organizador</h6>
-	                                    <input type="text" formControlName="userCompany" placeholder="Organizador" aria-describedby="button-addon3" class="form-control">
-                                        <!--<div class="input-icons">
-                                            <i class="fa fa-suitcase icon"></i>
-                                            <input type="text" formControlName="userCompany" placeholder="Organizador" aria-describedby="button-addon3" class="form-control input-field">
-                                        </div>-->
-                                    </div>
-                                </div>
-                                <!--/row-->
-                                <div class="row align-items-end text-right">
-                                    <div class="col-md-8 box">
-                                        <h6 class="text-left">Descripción</h6>
-                                        <textarea style="height: 100px;" formControlName="description" placeholder="Descripción" aria-describedby="button-addon3" class="form-control"></textarea>
+                            <form novalidate [formGroup]="submitSearchAdvance">
+                                <div style="border-spacing: 10px; border-collapse: separate;">
 
+                                    <div class="row">
+                                        <div class="col-md-8 box">
+
+                                            <h6>Título</h6>
+                                            <input type="text" formControlName="title" placeholder="Título" aria-describedby="button-addon3" class="form-control">
+                                            <!--<div class="input-icons">
+                                                <i class="fa fa-font icon"></i>
+                                                <input type="text" formControlName="title" placeholder="Título" aria-describedby="button-addon3" class="form-control input-field">
+                                            </div>-->
+                                        </div>
+                                        <div class="col-md-4 box">
+                                            <h6>Localización</h6>
+                                            <input type="text" formControlName="location" placeholder="Localización" aria-describedby="button-addon3" class="form-control">
+                                            <!--<div class="input-icons">
+                                                <i class="fa fa-map-marker icon" aria-hidden="true"></i>
+                                                <input type="text" formControlName="location" placeholder="Localización" aria-describedby="button-addon3" class="form-control input-field">
+                                            </div>-->
+                                        </div>
                                     </div>
-                                    <div class="col-md-4 box" style="position: relative">
-                                        <button type="submit" (click)="submitSearchAdvanceFunction()" class="btn btn-success">
-                                            <i class="fa fa-search"></i>
-                                            Búsqueda Avanzada
-                                        </button>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-8 box">
+                                            <h6>Etiquetas</h6>
+                                            <ng-multiselect-dropdown formControlName="selectedTags" required="false"
+                                                                     [placeholder]="'Etiquetas'"
+                                                                     [settings]="dropdownSettingsTags"
+                                                                     [data]="dropdownListTags"
+                                                                     [(ngModel)]="selectedTags">
+                                            </ng-multiselect-dropdown>
+                                        </div>
+                                        <div class="col-md-4 box">
+                                            <h6>Rango de edad</h6>
+                                            <ng-multiselect-dropdown formControlName="age" required="false"
+                                                                     [placeholder]="'Rango de edad'"
+                                                                     [settings]="dropdownSettingsAge"
+                                                                     [data]="dropdownListAge"
+                                                                     [(ngModel)]="selectedAge">
+                                            </ng-multiselect-dropdown>
+                                        </div>
                                     </div>
+                                    <!--/row-->
+                                    <div class="row align-items-center">
+                                        <div class="col-md-4 box">
+                                            <h6>Desde</h6>
+                                            <input type="date" formControlName="iniDate" placeholder="Fecha inicio" aria-describedby="button-addon3" class="form-control">
+                                        </div>
+                                        <div class="col-md-4 box">
+                                            <h6>Hasta</h6>
+                                            <input type="date" formControlName="endDate" placeholder="Fecha fin" aria-describedby="button-addon3" class="form-control">
+                                        </div>
+                                        <div class="col-md-4 box">
+                                            <h6>Organizador</h6>
+                                            <input type="text" formControlName="userCompany" placeholder="Organizador" aria-describedby="button-addon3" class="form-control">
+                                            <!--<div class="input-icons">
+                                                <i class="fa fa-suitcase icon"></i>
+                                                <input type="text" formControlName="userCompany" placeholder="Organizador" aria-describedby="button-addon3" class="form-control input-field">
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row align-items-end text-right">
+                                        <div class="col-md-8 box">
+                                            <h6 class="text-left">Descripción</h6>
+                                            <textarea style="height: 100px;" formControlName="description" placeholder="Descripción" aria-describedby="button-addon3" class="form-control"></textarea>
+
+                                        </div>
+                                        <div class="col-md-4 box" style="position: relative">
+                                            <button type="submit" (click)="submitSearchAdvanceFunction()" class="btn btn-success">
+                                                <i class="fa fa-search"></i>
+                                                Búsqueda Avanzada
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--/row-->
                                 </div>
-                                <!--/row-->
-                            </div>
-                        </form>
-</div>
+                            </form>
+
+
+
+
+
+                    </ng-container>
+
+
+                    <ng-container *ngIf="!isEventSearch">
+
+                        <td class="card card-body">
+
+                            <h6 class="text-primary text-uppercase" style="letter-spacing: 5px; color: var(--primary) !important;">Búsqueda Avanzada</h6>
+
+                            <form novalidate [formGroup]="submitSearchAdvance">
+                                <div style="border-spacing: 10px; border-collapse: separate;">
+
+                                    <div class="row">
+                                        <div class="col-md-8 box">
+
+                                            <h6>Título</h6>
+                                            <input type="text" formControlName="title" placeholder="Título" aria-describedby="button-addon3" class="form-control">
+                                        </div>
+                                        <div class="col-md-4 box">
+	                                        <h6>Dificultad</h6>
+	                                        <ng-multiselect-dropdown formControlName="difficulty" required="false"
+	                                                                 [placeholder]="'Dificultad'"
+	                                                                 [settings]="dropdownSettingsDifficulty"
+	                                                                 [data]="dropdownListDifficulty"
+	                                                                 [(ngModel)]="selectedDifficulty">
+	                                        </ng-multiselect-dropdown>
+                                        </div>
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row align-items-center">
+                                        <div class="col-md-4 box">
+                                            <h6>Cantidad de preguntas</h6>
+                                            <input type="number" formControlName="numQuestions" placeholder="Cantidad de preguntas" aria-describedby="button-addon3" class="form-control">
+                                        </div>
+                                        <div class="col-md-4 box">
+                                            <h6>Cantidad de veces jugado</h6>
+                                            <input type="number" formControlName="numPlayers" placeholder="Cantidad de veces jugado" aria-describedby="button-addon3" class="form-control">
+                                        </div>
+                                        <div class="col-md-4 box">
+                                            <h6>Creador</h6>
+                                            <input type="text" formControlName="user" placeholder="Creador" aria-describedby="button-addon3" class="form-control">
+                                        </div>
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row align-items-end text-right">
+                                        <div class="col-md-8 box">
+                                            <h6 class="text-left">Descripción</h6>
+                                            <textarea style="height: 100px;" formControlName="description" placeholder="Descripción" aria-describedby="button-addon3" class="form-control"></textarea>
+
+                                        </div>
+                                        <div class="col-md-4 box" style="position: relative">
+                                            <button type="submit" (click)="submitSearchAdvanceFunction()" class="btn btn-success">
+                                                <i class="fa fa-search"></i>
+                                                Búsqueda Avanzada
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                            </form>
+
+                    </ng-container>
+
+                </div>
             </div>
             <!-- FIN BÚSQUEDA AVANZADA-->
 

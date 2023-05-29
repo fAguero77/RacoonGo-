@@ -1,19 +1,27 @@
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+</head>
 <div class="porfile">
     <div class="userInfo">
         <div>
-            <h3>Username</h3>
-            <p>{{this.username}}</p>
+            <h2>Username</h2>
+            <h5>{{this.username}}</h5>
         </div>
         <div>
-            <h3>email</h3>
-            <p>{{this.email}}</p>
+            <h2>Email</h2> 
+            <h5>{{this.email}}</h5>
         </div>
-
+        <div>
+            <h2>Puntuación</h2>
+            <h5>{{this.user.score}}</h5>
+        </div>
     </div>
-    <h3>Mis eventos</h3>
 
-    <div class="UserEvents">
-        <br />
+    <h2 style="margin-top: 2rem" *ngIf="userCompany.website">Mis eventos</h2>
+    <button *ngIf="!eventsList[0] && userCompany.website" (click)="addEvent()" class="btn btn-primary"> Crear evento</button>
+    <div class="UserEvents" *ngIf="eventsList[0] && userCompany.website">
+        
+        
         <div *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4">
             <div class="package-item bg-white mb-2">
 
@@ -23,8 +31,6 @@
                     <div style="position:absolute; top:0; right:0">
                         <button mat-icon-button class="icono-gear mat-elevation-z6" [matMenuTriggerFor]="menu">
                             <mat-icon style="font-size: 3rem; padding: 2px; width: fit-content; line-height:1.2">settings</mat-icon>
-
-
                         </button>
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item (click)="deleteEvent(e)">Borrar Evento</button>
@@ -34,7 +40,7 @@
                     </div>
 
                 </div>
-                
+
 
                 <div class="p-4">
                     <div class="d-flex justify-content-between mb-3">
@@ -76,7 +82,44 @@
             </div>
         </div>
     </div>
-    <div class="UserGames">
-        <h3>Mis Juegos</h3>
+    
+    <h2 style="margin-top: 2rem" *ngIf="!userCompany.website">Mis Juegos</h2>
+    <button *ngIf="!gamesList[0] && !userCompany.website" (click)="addGame()" class="btn btn-primary"> Crear juego</button>
+    <div class="UserGames" *ngIf="gamesList[0] && !userCompany.website">
+        <div *ngFor="let g of gamesList" (click)="goToGame(g)" style="cursor:pointer">
+            <div class="card"  style="box-shadow: 0 0 10px rgba(0,0,0,0.4); border-radius: 10px !important; height: 100%">
+                <div class="card-header" style="background-color: var(--primary) ">
+                    <h4 class="">
+                                <span class="badge" [ngClass]="{
+                                    'bg-success': g.difficulty === 0,
+                                    'bg-warning': g.difficulty === 1,
+                                    'bg-danger': g.difficulty === 2
+                                }">{{ getDifficultyName(g.difficulty) }}</span>
+                        <div *ngIf="user && g.email==user.email" class="float-right">
+                            <button class="btn btn-secondary btn-sm" (click)="updateGame(g)">
+                                <fa-icon [icon]="faPenSquare"></fa-icon>
+                            </button>
+                            <button class="btn btn-danger btn-sm" (click)="deleteGame(g)">
+                                <fa-icon [icon]="faTrash"></fa-icon>
+                            </button>
+                            <button class="btn btn-sm" style="background-color: #3b0b93; color: white" (click)="statisticsGame(g)">
+                                <fa-icon [icon]="faChartBar"></fa-icon>
+                            </button>
+                        </div>
+                    </h4>
+                    <h4 class="card-title" style="color: white">{{ g.name }} </h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ g.description }}</p>
+
+                </div>
+                <div style="padding: 0.5rem; display: flex; justify-content: center">
+                    <button class="btn btn-primary" style="background-color: var(--primary); padding: 0.25rem 20%" (click)="goToGame(g)">Jugar</button>
+                </div>
+            </div>
+
+
+        </div>
+        <button class="btn btn-primary" *ngIf="!gamesList[0]" (click)="addGame()">Añadir Juego</button>
     </div>
 </div>

@@ -1,0 +1,97 @@
+
+.caja-exter{
+    padding: 6rem;
+    text-align: center;
+}
+
+h1{
+    color: var(--primary);
+}
+
+.caja {
+    border-radius: 10px;
+    background: #ffffff;
+    align-items: center;
+    text-align: center;
+    margin: 1rem auto;
+    border: solid var(--primary) 2px;
+    position: relative;
+    width: fit-content;
+    box-shadow: 0.5rem 0.5rem 1rem 0.05rem rgba(0, 0, 0, 0.28);
+}
+
+.caja-interno {
+
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.options{
+    justify-content: center;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 90%;
+
+}
+.option{
+    color: white;
+    border: none;
+    padding: 2rem 4rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    width: 100%;
+}
+
+
+.true{
+    background: #1bab10;
+}
+
+
+.false{
+    background: #bd1e1e;
+}
+
+.i0{
+    background: #00d978;
+}
+.i0:hover{
+    background: #199861;
+}
+
+.i1{
+    background: #9328ff;
+}
+
+.i1:hover{
+    background: #621e9a;
+}
+
+.i2{
+    background: #33ddff;
+}
+
+.i2:hover{
+    background: #2092b6;
+}
+
+.i3{
+    background: #ff9733;
+}
+
+.i3:hover{
+    background: #bd7328;
+}
+
+.boton{
+    margin: 1rem;
+}
+.conti{
+    background: var(--primary);
+}

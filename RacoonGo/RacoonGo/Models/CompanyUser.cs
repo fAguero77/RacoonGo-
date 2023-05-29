@@ -4,7 +4,7 @@ using RacoonGo.Models;
 namespace RacoonGo.Models;
 
 public class CompanyUser : User{
-    public String phonenumber { get;set; } 
+    public String phoneNumber { get;set; } 
     public String website { get;set; }
     public DateTime sponsored { get; set; }
 
@@ -14,8 +14,14 @@ public class CompanyUser : User{
         this.username = username;
         this.email = email;
         this.score = score;
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phonenumber;
         this.website = website;
         this.sponsored = sponsored;
     }
+}
+
+public class SponsorRequest
+{
+	public string email { get; set; }
+	public int days { get; set; }
 }

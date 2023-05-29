@@ -2,7 +2,7 @@
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { NavbarService } from './navbar.service';
-import { User } from '../../models/app.model';
+import {CompanyUser, User} from '../../models/app.model';
 import { BackendRouterService } from '../../services/backend-router.service';
 import { getAuth, deleteUser } from 'firebase/auth';
 import {HelperService} from "../../services/helper.service";
@@ -17,11 +17,13 @@ export class NavbarComponent {
     userName?: string;
 
     static navSearch: boolean
+    user: User;
+    userCompany: CompanyUser;
     constructor(public navService: NavbarService,
         private router: Router, private routerService: BackendRouterService, public helperService: HelperService) {
-        let user: User = JSON.parse(sessionStorage.getItem("user")!);
-
-        user ? this.userName =user.username : this.userName = "Invitado";
+        this.user = JSON.parse(sessionStorage.getItem("user")!);
+        this.userCompany = JSON.parse(sessionStorage.getItem("user")!);
+        
     }
 
     goAddEve() {
@@ -30,7 +32,7 @@ export class NavbarComponent {
     }
 
     goEveList() {
-        this.router.navigate(['/events']);
+        this.router.navigate(['/']);
 
     }
     gologin() {
@@ -45,14 +47,17 @@ export class NavbarComponent {
         // TODO: redirect to main page
         this.router.navigate(['/login']);
     }
+    goSingIn() {
+        this.router.navigate(['/register']);
+    }
 
     goSponsor() {
         this.router.navigate(['/sponsor']);
 
     }
     goAddGame() {
-        this.router.navigate(['/addGame']);
-
+        this.helperService.game= undefined;
+        window.location.assign('/addGame');
     }
     deleteAcount() {
         Swal.fire({
@@ -68,17 +73,6 @@ export class NavbarComponent {
             if (result.isConfirmed) {
                 await this.deleteUserInfo();
                 sessionStorage.removeItem("user");
-
-                //try {
-                //    await this.deleteUserInfo();
-
-                //} catch (error) {
-                //    Swal.fire({
-                //        icon: 'error',
-                //        title: 'Error al eliminar la cuenta',
-                //        text: 'Intentelo de nuevo en unos minutos'
-                //    });
-                //}
             }
         })
 

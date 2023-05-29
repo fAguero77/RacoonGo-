@@ -29,6 +29,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { GamesListComponent } from './vistas/games-list/games-list.component';
+import { GameMatchComponent } from './vistas/game-match/game-match.component';
+import { LandingPageComponent } from './vistas/landing-page/landing-page.component';
+import { GameStatisticsComponent } from './vistas/game-statistics/game-statistics.component';
 
 
 
@@ -50,15 +53,18 @@ import { GamesListComponent } from './vistas/games-list/games-list.component';
         SearchBarComponent,
         GameFormComponent,
         QuestionDialogComponent,
-        GamesListComponent
+        GamesListComponent,
+        GameMatchComponent,
+        LandingPageComponent,
+        GameStatisticsComponent
     ],
     imports: [
         CommonModule,
-      BrowserModule, 
-      HttpClientModule, 
-      FormsModule, 
-      ReactiveFormsModule, 
-      AppRoutingModule, 
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
         FontAwesomeModule,
         NoopAnimationsModule,
         MatIconModule,
@@ -66,7 +72,7 @@ import { GamesListComponent } from './vistas/games-list/games-list.component';
         NgMultiSelectDropDownModule.forRoot(),
         MatDialogModule,
         MatButtonModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
 
     ],
     providers: [],

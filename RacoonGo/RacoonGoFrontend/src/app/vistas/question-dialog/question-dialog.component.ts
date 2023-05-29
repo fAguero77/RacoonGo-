@@ -2,33 +2,39 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Game, Option, Question, User } from "../../models/app.model";
 import { MatButton } from '@angular/material/button';
+import {AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-question-dialog',
   templateUrl: './question-dialog.component.html',
   styleUrls: ['./question-dialog.component.css']
 })
+
 export class QuestionDialogComponent implements OnInit {
 
     question: Question
     oldQuestion: Question
-    invalidTitle: boolean = false;
-    invalidPoints: boolean = false;
     invalidOptions: boolean = false
+    addQuestionForm!: FormGroup;
+    submitted: Boolean=false
 
-
-    constructor(public dialogRef: MatDialogRef<QuestionDialogComponent>,@Inject(MAT_DIALOG_DATA) public data: Question) {
+    constructor(public dialogRef: MatDialogRef<QuestionDialogComponent>,@Inject(MAT_DIALOG_DATA) public data: Question, private fb: FormBuilder) {
         this.question = data;
         this.oldQuestion = Object.assign({}, data, {
             options: this.data.options.slice()
         });
-
-}
-
-    ngOnInit(): void {
     }
 
-    //Botón X cerrar
+    ngOnInit(): void {
+        this.addQuestionForm = this.fb.group({
+            title: ['', [Validators.required]],
+            points: [0, [Validators.required, Validators.min(1)]]
+        });
+        this.addQuestionForm.patchValue({
+            title: this.question.title,
+            points: this.question.points
+        });
+    }
     onClose() {
         this.question = Object.assign({}, this.oldQuestion, {
             options: this.oldQuestion.options.slice()
@@ -36,13 +42,11 @@ export class QuestionDialogComponent implements OnInit {
         this.dialogRef.close(this.question);
     }
 
-    //Botón añadir Opción
     addOption(): void {
         if (this.question.options.length == 4) {
             return
         }
         this.question.options.push(new Option("Opción #" + (this.question.options.length + 1)))
-
     }
 
     //Toggle
@@ -68,31 +72,19 @@ export class QuestionDialogComponent implements OnInit {
             this.invalidOptions = true;
 
         }
-
-        if (this.question.points <= 0) {
-            this.invalidPoints = true;
-        } else {
-            this.invalidPoints = false;
-
-        }
-        if (this.question.title.trim().length == 0) {
-            this.invalidTitle = true;
-        } else {
-            this.invalidTitle = false;
-
-        }
     }
 
     //Botón aceptar
     confirm() {
         this.comprobations();
-        if (!this.invalidOptions && !this.invalidTitle && !this.invalidPoints) {
+        if (!this.invalidOptions) {
             this.dialogRef.close(this.question);
-
         }
-              
-            
-        
+    }
 
+    checkValidity(controlName: string) {
+        const control = this.addQuestionForm.get(controlName);
+        if(control)
+            control.markAsTouched();
     }
 }

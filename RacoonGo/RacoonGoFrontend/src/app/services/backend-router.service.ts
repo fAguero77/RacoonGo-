@@ -33,11 +33,23 @@ export class BackendRouterService {
             },
             user: {
                 addUser: function (user: User) { return context.api_create('Users', user) },
-                signIn: function (email: string) { return context.api_list('Users', { email })
-
+                signIn: function (email: string) { return context.api_list('Users', { email })},
+                setSponsor: function (email: string, days: number) {
+                    const request = {
+                        email: email,
+                        days: days
+                    };
+                    return context.api_create('Users/sponsor', request);
                 },
-                setSponsor: function (user: CompanyUser, days: number) { return context.api_create('Users/sponsor', { user , days}) },
-                deleteAccount: function (email: string) { return context.api_delete('Users/delete', email )}
+                deleteAccount: function (email: string) { return context.api_delete('Users/delete', email) },
+                setFinishedGame: function (user: User, game: Game) {
+                    const request = {
+                        user: user,
+                        game: game
+                    };
+                    return context.api_create('Users/completeGame', request)
+                }
+
             },
             company: {
                 addCompany: function (company: CompanyUser) { return context.api_create('Company', company) },
@@ -46,6 +58,11 @@ export class BackendRouterService {
             game: {
                 addGame: function (game: Game) {   return context.api_create('Games',  game)},
                 getGames: function () { return context.api_list('Games/games', {}) },
+                getMyGames: function (email: string) { return context.api_list('Games/myGames', { email }) },
+                search: function (query: string) { return context.api_list('Games/search', { query }) },
+                searchAdvance: function (game: Game) { return context.api_create('Games/searchAdvance', game) },
+                deleteGame: function (email: string, id: string) { return context.api_delete('Games/deleteGame', email+"&"+id) },
+                statistics: function (id: string) { return context.api_single('Games/statistics', id) }
             }
         }
     }

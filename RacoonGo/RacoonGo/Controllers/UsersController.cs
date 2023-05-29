@@ -3,6 +3,11 @@ using RacoonGo.Database;
 using RacoonGo.Models;
 
 namespace RacoonGo.Controllers;
+public class GameUserRequest
+{
+    public Game game { get; set; }
+    public User user { get; set; }
+}
 [ApiController]
 [Route("api/[controller]")]
 public class UsersController : ControllerBase
@@ -17,7 +22,7 @@ public class UsersController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddUser(User user)
     {
-        if (await FirebaseRealtimeDatabase.Instance.SetUser(user))
+        if (await FirebaseRealtimeDatabase.Instance.SetUser(user,true))
         {
             return Ok(user);
         }
@@ -38,16 +43,31 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost("sponsor")]
-    public async Task<IActionResult> SetSponsor(CompanyUser user, int days)
+    public async Task<IActionResult> SetSponsor(SponsorRequest request)
     {
-        //// update sponsor days
-        user.sponsored.AddDays(days);
 
+        CompanyUser user = await FirebaseRealtimeDatabase.Instance.GetCompanyUser(request.email);
+
+        //update sponsor days
+        user.sponsored = user.sponsored.AddDays(request.days);
+        await FirebaseRealtimeDatabase.Instance.SetCompanyUser(user, false);
+        await FirebaseRealtimeDatabase.Instance.UpdateAllUsersEvents(user);
+
+        return Ok(user);
+    }
+
+    [HttpPost("completeGame")]
+    public async Task<IActionResult> SetFinishedGame(GameUserRequest request)
+    {
         // update values in database
-        await FirebaseRealtimeDatabase.Instance.SetCompanyUser(user);
+        await FirebaseRealtimeDatabase.Instance.SetUser(request.user,false);
+        await FirebaseRealtimeDatabase.Instance.SetGame(request.user.email,request.game);
+
 
         // return updated data
-        return Ok(user);
+
+        return Ok(request.game);
+
     }
 
 

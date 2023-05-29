@@ -1,45 +1,53 @@
 .caja {
     border-radius: 20px;
     background: #ffffff;
-    width: 33rem;
+    width: fit-content;
     align-items: center;
     text-align: center;
-    height: 51rem;
-    margin: 0 auto;
-    border: solid #74d664;
+    height: fit-content;
+    margin: 1rem auto;
+    border: solid var(--primary);
     position: relative;
+    padding: 1.5rem;
+    box-shadow: 0.2rem 0.2rem 0.3rem 0.05rem rgba(0, 0, 0, 0.38);
 }
 
+h2, h5{
+    color: var(--primary);
+}
 
 .title {
+    text-align: center;
     font-weight: bold;
     width: 100%;
     border-radius: 5px;
-    background: white;
-    border: solid #74d664 1px;
 }
 
-    .title:hover {
-        background: #A9D6A1;
-        color: black;
-    }
+.title:hover {
+    color: #0e0e0e;
+}
+.checkbox {
+    margin-bottom: 130px;
+    bottom: 0;
+}
 
-.submitButton {
+.errorBox {
     position: absolute;
+    margin-bottom: 20px;
+    bottom: 0;
+}
+.submitButton {
     margin-bottom: 50px;
     bottom: 0;
     width: 75%;
 }
+.form-check-input:checked {
+    background-color: var(--primary)
+}
 
 .separador {
-    width: 100%;
-    border: solid #74d664 1px;
+    width: 107%;
     opacity: 1;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 100px;
 }
 
 
@@ -50,25 +58,26 @@ textarea {
     font-size: 15px;
     resize: none;
     color: #7d9abb;
-    border: solid #74d664 1px;
     border-radius: 5px;
 }
 
-    textarea:focus {
-        background: #A9D6A1;
-        color: black;
-    }
+textarea:focus {
 
-    textarea.hover {
-        background: #A9D6A1;
-        color: black;
-    }
+    color: black;
+}
+
+textarea.hover {
+    background: #A9D6A1;
+    color: black;
+}
+
 .caja-interno {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    height: fit-content;
 }
 .radio {
     margin-right: 20px;
@@ -78,8 +87,17 @@ textarea {
     margin-top: 10px;
 }
 .questionList {
-    background-color: #74d664;
+    color: white;
+    background-color: var(--primary);
     border-radius: 10px;
     margin-top: 10px;
 }
 
+.descripcion{
+    height: fit-content !important;
+}
+
+.form-control{
+    box-shadow: inset 0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35);
+
+}

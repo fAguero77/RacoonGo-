@@ -13,17 +13,31 @@ export class Game {
     public difficulty !: number;
     public id : string = "";
     public questions : Question[] = [];
+    public hidden: boolean;
+    public timesPlayed: number;
+    public email!: string;
+    
+    constructor(id: string, name: string, description: string, difficulty: number, questions: Question[], email: string, hidden: boolean, timesPlayed: number) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.difficulty = difficulty;
+        this.questions = questions;
+        this.email = email;
+        this.hidden = hidden;
+        this.timesPlayed = timesPlayed;
+    }
 }
 
 export class Question {
     public title!: string;
-    public timesPlayed !: number;
+    public corrects !: number;
     public points !: number;
     public options : Option[] = [];
 
     constructor(title: string, points: number) {
         this.title = title;
-        this.timesPlayed = 0;
+        this.corrects = 0;
         this.points = points;
     }
 }
