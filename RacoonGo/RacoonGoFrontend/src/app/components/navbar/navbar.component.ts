@@ -26,6 +26,7 @@ export class NavbarComponent {
         
     }
 
+
     goAddEve() {
         this.helperService.event= undefined;
         window.location.assign('/addEvent');
@@ -33,6 +34,10 @@ export class NavbarComponent {
 
     goEveList() {
         this.router.navigate(['/']);
+
+    }
+    goInfo() {
+        this.router.navigate(['/info']);
 
     }
     gologin() {

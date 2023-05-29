@@ -33,7 +33,7 @@ const routes: Routes = [
     { path: 'addGame', component: GameFormComponent },
     { path: 'games', component: GamesListComponent },
     { path: 'match', component: GameMatchComponent },
-    { path: '', component: LandingPageComponent },
+    { path: 'info', component: LandingPageComponent },
     { path: 'match', component: GameMatchComponent},
     { path: 'statistics', component: GameStatisticsComponent }
 
