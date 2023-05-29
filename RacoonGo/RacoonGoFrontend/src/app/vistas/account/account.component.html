@@ -20,11 +20,6 @@
                        (blur)="checkValidity('password')" [ngClass]="{ 'is-invalid': signUpForm.get('password')?.invalid && (signUpForm.get('password')?.touched || submitted), 'is-valid': signUpForm.get('password')?.valid && signUpForm.get('password')?.touched }">
                 <div class="invalid-feedback">La contraseña debe contener 6 caracteres como mínimo.</div>
             </div>
-            <div class="form-check mb-3">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="remember"> Recuérdame
-                </label>
-            </div>
             <button type="submit" class="btn btn-primary" >Registrarse</button>
         </form>
         <div *ngIf="submitted && signUpForm.invalid" class="text-danger">Por favor soluciona los errores anteriores.</div>

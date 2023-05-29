@@ -32,11 +32,6 @@
                    (blur)="checkValidity('phonenumber')" [ngClass]="{ 'is-invalid': businessSignUpForm.get('phonenumber')?.invalid && (businessSignUpForm.get('phonenumber')?.touched || submitted), 'is-valid': businessSignUpForm.get('phonenumber')?.valid && businessSignUpForm.get('phonenumber')?.touched }">
             <div class="invalid-feedback">El teléfono debe ontener 9 digitos solo.</div>
         </div>
-        <div class="form-check mb-3">
-            <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" name="remember"> Recuérdame
-            </label>
-        </div>
         <button type="submit" class="btn btn-primary" (click)="onSubmit()">Registrarse</button>
         <div *ngIf="submitted && businessSignUpForm.invalid" class="text-danger">Por favor soluciona los errores anteriores.</div>
         <div *ngIf="invalidSignUp" class="text-danger">El correo o usuario introducido pertenece a una cuenta.</div>

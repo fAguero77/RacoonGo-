@@ -101,7 +101,6 @@ namespace RacoonGo.Database
 
         public async Task SetGame(string email, Game game)
         {
-            Console.WriteLine(game.id);
             //Necesito el mail, he hecho que en principio el id almacene el mail, aquí ya se genera un id bueno
             if (string.IsNullOrEmpty(game.id))
             {
@@ -208,6 +207,35 @@ namespace RacoonGo.Database
                 foreach (Game e in dict.Values)
                 {
                     all.Add(e);
+                }
+            }
+
+            return gamesInStorage is null ? new List<Game>() { } : new List<Game>(all);
+        }
+        
+        public async Task<List<Game>> GetPublicGames()
+        {
+            string uri = string.Format(BASE_PATH_GAMES);
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
+            HttpResponseMessage response = await _httpClient.SendAsync(httpRequestMessage);
+            if (response.StatusCode == HttpStatusCode.NotFound)
+            {
+                return new List<Game>();
+            }
+            string responseData = await response.Content.ReadAsStringAsync();
+
+            Dictionary<string, Dictionary<string, Game>> gamesInStorage = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, Game>>>(responseData);
+
+            List<Game> all = new List<Game>();
+
+            foreach (Dictionary<string, Game> dict in gamesInStorage.Values)
+            {
+                foreach (Game e in dict.Values)
+                {
+                    if (e.hidden==false)
+                    {
+                        all.Add(e);
+                    }
                 }
             }
 

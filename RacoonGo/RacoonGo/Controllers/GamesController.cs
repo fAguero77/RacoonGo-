@@ -30,7 +30,7 @@ public class GamesController : ControllerBase
     [HttpGet("games")]
     public async Task<IActionResult> GetGames()
     {
-        var games = await FirebaseRealtimeDatabase.Instance.GetAllGames();
+        var games = await FirebaseRealtimeDatabase.Instance.GetPublicGames();
         return Ok(games);
     }
 

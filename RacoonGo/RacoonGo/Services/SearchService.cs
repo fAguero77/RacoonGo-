@@ -50,7 +50,7 @@ public class SearchService : ISearchService
 		HashSet<Game> result = new();
 		foreach (var g in games)
 		{
-			if (keywords.Any(k => ContainsIfEmpty(g.name, k) || ContainsIfEmpty(g.description, k)))
+			if (keywords.Any(k => ContainsIfEmpty(g.id, k) ||  ((ContainsIfEmpty(g.name, k) || ContainsIfEmpty(g.description, k))) && !g.hidden))
 			{
 				result.Add(g);
 			}

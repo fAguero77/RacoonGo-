@@ -29,6 +29,7 @@ export class GameStatisticsComponent implements OnInit {
       totalScore += question.points * question.corrects;
       maxScore += question.points * this.game.timesPlayed;
     });
+    if (maxScore == 0) maxScore = 1;
     this.averageScore = totalScore / maxScore * 10;
   }
 
