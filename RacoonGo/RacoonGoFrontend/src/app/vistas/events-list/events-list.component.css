@@ -14,11 +14,11 @@
 }
 
 i{
-    color: #1e7e34 !important;
+    color: var(--primary) !important;
 }
 
 button{
-    background-color: #1e7e34 !important;
+    background-color: var(--primary) !important;
     border: none;
 }
 
@@ -119,7 +119,7 @@ h5 {
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: fit-content;
+    width: 70%;
     z-index: 3;
 }
 .fondo{

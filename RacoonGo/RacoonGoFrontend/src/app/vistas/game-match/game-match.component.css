@@ -1,59 +1,97 @@
+
+.caja-exter{
+    padding: 6rem;
+    text-align: center;
+}
+
+h1{
+    color: var(--primary);
+}
+
 .caja {
-    border-radius: 20px;
+    border-radius: 10px;
     background: #ffffff;
-    width: 80%;
     align-items: center;
     text-align: center;
-    height: 55rem;
-    margin: 0 auto;
-    border: solid #74d664;
+    margin: 1rem auto;
+    border: solid var(--primary) 2px;
     position: relative;
+    width: fit-content;
+    box-shadow: 0.5rem 0.5rem 1rem 0.05rem rgba(0, 0, 0, 0.28);
 }
 
 .caja-interno {
-    margin: 0 auto;
+
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
-.optionBox {
-    padding-top: 50px;
-    align-items: center;
-    text-align: center;
-    font-size: 16px;
+
+.options{
+    justify-content: center;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 90%;
+
 }
-.option {
-    height: 200px;
-    width: 400px;
-    background-color: #A9D6A1;
-    font-weight: bold;
+.option{
+    color: white;
+    border: none;
+    padding: 2rem 4rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    width: 100%;
 }
 
-.optionTrue {
-    height: 200px;
-    width: 400px;
-    background-color: #74d664;
-    font-weight: bold;
-    cursor: default
+
+.true{
+    background: #1bab10;
 }
 
-.optionFalse {
-    height: 200px;
-    width: 400px;
-    background-color: #e07f75;
-    font-weight: bold;
-    cursor: default
+
+.false{
+    background: #bd1e1e;
 }
- .option:hover {
-    background-color: green;
+
+.i0{
+    background: #00d978;
 }
-.option:focus {
-        background-color: green;
+.i0:hover{
+    background: #199861;
 }
-.submitButton {
-    position: absolute;
-    margin-bottom: 50px;
-    bottom: 0;
-    width: 25%;
+
+.i1{
+    background: #9328ff;
+}
+
+.i1:hover{
+    background: #621e9a;
+}
+
+.i2{
+    background: #33ddff;
+}
+
+.i2:hover{
+    background: #2092b6;
+}
+
+.i3{
+    background: #ff9733;
+}
+
+.i3:hover{
+    background: #bd7328;
+}
+
+.boton{
+    margin: 1rem;
+}
+.conti{
+    background: var(--primary);
 }

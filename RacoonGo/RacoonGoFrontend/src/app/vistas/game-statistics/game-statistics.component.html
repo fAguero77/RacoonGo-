@@ -1,12 +1,21 @@
-<div class="container">
+<div class="container caja">
     <h1>Estadísticas del juego</h1>
-    <div class="card" style="background-color: #a7ea9b">
+    <div class="card">
+        <div class="card-header" style="background-color: var(--primary) ">
+            <h4 class="">
+                                <span class="badge" [ngClass]="{
+                                    'bg-success': game.difficulty === 0,
+                                    'bg-warning': game.difficulty === 1,
+                                    'bg-danger': game.difficulty === 2
+                                }">{{ getDifficultyName(game.difficulty) }}</span>
+            </h4>
+            <h2 class="card-title" style="color: white">{{ game.name }} </h2>
+        </div>
         <div class="card-body">
-            <h3>Número de veces jugado: {{ game.timesPlayed }}</h3>
-
+            <h4>Veces jugado: {{ game.timesPlayed }}</h4>
             <h4>Preguntas:</h4>
-            <ul class="list-group" *ngFor="let question of game.questions">
-                Pregunta "{{ question.title }}"
+            <ul class="list-group" *ngFor="let question of game.questions; let i = index" >
+                <h6>Pregunta {{i}}: {{ question.title }}</h6>
                 <li class="list-group-item text-success" >
                      - Aciertos: {{ question.corrects }}
                 </li>
@@ -24,3 +33,6 @@
         </div>
     </div>
 </div>
+
+
+

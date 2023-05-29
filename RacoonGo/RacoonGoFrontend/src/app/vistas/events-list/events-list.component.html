@@ -5,21 +5,21 @@
 <div class=" py-5">
     <div class=" pt-5 ">
 	    <div class="text-center mb-3 pb-3">
-		    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px; color: #1e7e34 !important;">Eventos</h6>
+		    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px; color: var(--primary) !important;">Eventos</h6>
 		    <h1>Eventos disponibles</h1>
 	    </div>
         
         
 	    <search-bar [isEventSearch]=true (parentListUpdate)="onEventsListUpdate($event)"></search-bar>
         
-        <div class="misEventos">
+        <div class="misEventos" *ngIf="user!=null && userCompany.website">
             <button type="button" class="btn btn-primary" (click)="getMyEvents()">Mis eventos</button>
         </div>
 
 
         <div class="row" style="width: 80%; margin: 0 auto ">
-            <div *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4">
-                <div class="package-item bg-white mb-2" style="box-shadow: 0 0 10px rgba(0,0,0,0.2); border-radius: 10px !important;">
+            <div (click)="(user!=null)?wievEvent(e):login()" *ngFor="let e of eventsList; let i = index" [attr.data-index]="i" class="col-lg-4 col-md-6 mb-4">
+                <div class="package-item bg-white mb-2" style="box-shadow: 0 0 10px rgba(0,0,0,0.4); border-radius: 10px !important;">
                      <p style="text-align: center" *ngIf="eventsList.length==0">No hay eventos disponibles.</p>
                             <div>
                                 <img class="img-responsive" src="{{e.photoUrl}}" style="border-radius: 10px 10px 0 0 !important;">

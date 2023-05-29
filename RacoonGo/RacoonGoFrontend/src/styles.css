@@ -25,7 +25,7 @@
     --white: #fff;
     --gray: #6c757d;
     --gray-dark: #343a40;
-    --primary: #7AB730;
+    --primary: #1e7e34;
     --secondary: #f4faec;
     --success: #28a745;
     --info: #17a2b8;
@@ -57,6 +57,10 @@ html {
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     display: block;
+}
+
+.btn-primary{
+    border: none !important;
 }
 
 body {

@@ -14,8 +14,9 @@ export class GameStatisticsComponent implements OnInit {
   game: Game;
   user: CompanyUser;
   averageScore: number = 0;
-
-  constructor(private backendRouterService: BackendRouterService, private httpClient: HttpClient, public helperService: HelperService) {
+  constructor(private backendRouterService: BackendRouterService, 
+              private httpClient: HttpClient, 
+              public helperService: HelperService) {
     this.user = JSON.parse(sessionStorage.getItem("user")!);
     this.game = this.helperService.game!;
     this.calculateAverageScore();
@@ -32,5 +33,9 @@ export class GameStatisticsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  getDifficultyName(index: number): string {
+    return this.helperService.getDifficultyInfo(index);
   }
 }

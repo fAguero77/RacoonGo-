@@ -1,41 +1,40 @@
-<nav *ngIf="navService.visible" class="navbar navbar-expand-lg navbar-dark py-1 bg-sofistic" style="margin-top: 0 !important">
+<nav *ngIf="navService.visible" class="navbar navbar-expand-lg  py-1" style="margin-top: 0 !important">
     <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/">
-            <img class="logo" src="../../../assets/images/mapache.png">
-        </a>
-
-        <div class="collapse navbar-collapse">
-            <div [ngClass]="{'transition navbar-nav text-white': ''}" >
-
-                <div class="hdivider"></div>
-
-                <div class="nav-item ms-2">
-                    <button (click)="goAddEve()">Crear Evento</button>
-                    <button (click)="goEveList()">Ver eventos</button>
-                    <button (click)="gologin()">login</button>
-                    <button (click)="goProfile()">perfil</button>
-                    <button (click)="deleteAcount()">Eliminar cuenta</button>
-                    <button (click)="goAddGame()">Crear Juegos</button>
-                    <button (click)="goGameList()">Ver Juegos</button>
-                    <button (click)="goSponsor()">Ser sponsor</button>
-                    <button (click)="logout()">Cerrar Sesión</button>
+        <div class="dropdown">
+            <a type="button" id="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="avatar avatar-xs">
+                    <img class="logo" src="../../../assets/images/menu.png" style="height: 1rem; padding: 0 0.5rem">
+                    <img class="logo" src="../../../assets/images/mapache2.png" style="height: 3rem">
                 </div>
-
-            </div>
-            <ul class="navbar-nav align-items-center ms-auto">     
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <div class="avatar avatar-xs">
-                    <img src="" class="avatar-icon" alt="User">
-                    <span class="avatar-name">{{this.userName}}</span>
-                  </div>
-                </a>
-                <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                  <li><a class="dropdown-item clickable" href="/porfile">Configuración</a></li>
-                  <li><a class="dropdown-item clickable" (click)="logout()">Cerrar sesión</a></li>
-                </ul>
-              </li>
+            </a>
+            <ul class="dropdown-menu dropdown-menu" aria-labelledby="menu" >
+                <li *ngIf="user!=null && userCompany.website"><a class="dropdown-item clickable" (click)="goAddEve()">Crear Evento</a></li>
+                <li><a class="dropdown-item clickable" (click)="goEveList()">Ver eventos</a></li>
+                <li *ngIf="user!=null"><a class="dropdown-item clickable" (click)="goAddGame()">Crear Juegos</a></li>
+                <li><a class="dropdown-item clickable" (click)="goGameList()">Ver Juegos</a></li>
+                <li *ngIf="user!=null"><a class="dropdown-item clickable" (click)="goSponsor()">Ser sponsor</a></li>
+                
             </ul>
         </div>
+        
+        <div class="dropdown" style="color: white; margin-right: 1rem;">
+            <a type="button" id="menuUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="avatar avatar-xs" style="display: flex; gap: 0.5rem; width: 9.5rem; justify-content: right; padding: 0.5rem 0">
+                    <span class="">{{this.user.username}}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>
+                </div>
+            </a>
+            <ul class="dropdown-menu dropdown-menu" aria-labelledby="menuUser" >
+                <li><a class="dropdown-item clickable" (click)="gologin()">Inicio sesión</a></li>
+                <li><a class="dropdown-item clickable" (click)="goSingIn()">Registro</a></li>
+                <li><a class="dropdown-item clickable" (click)="goProfile()" *ngIf="user!=null">Perfil</a></li>
+                <li><a class="dropdown-item clickable" (click)="deleteAcount()" *ngIf="user!=null">Eliminar cuenta</a></li>
+                <li><a class="dropdown-item clickable" (click)="logout()" *ngIf="user!=null">Cerrar Sesión</a></li>
+            </ul>
+        </div>
+        
     </div>
 </nav>

@@ -73,6 +73,9 @@ export class ProfileComponent implements OnInit {
         this.helperService.playMatch(g);
     }
 
+    addGame() {
+        this.router.navigate(['/addGame']);
+    }
 
     updateGame(g: Game) {
         this.helperService.updateGame(g);

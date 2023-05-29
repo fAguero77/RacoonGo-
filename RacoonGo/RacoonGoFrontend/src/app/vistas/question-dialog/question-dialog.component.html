@@ -30,6 +30,9 @@
         </form>
 
         <!-- Options Zone-->
+        <div style="display: flex; justify-content: center; margin-top: 2rem">
+            <button [disabled]="question.options.length == 4" class="btn btn-primary" type="button"  (click)="addOption()"> Añadir Opción</button>
+        </div>
         <div class="row was-validated">
             <ul class="optionContainer">
                 <li class="option d-flex" *ngFor="let option of question.options; let i = index">
@@ -51,7 +54,7 @@
         </div>
 
 
-        <input [disabled]="question.options.length == 4" class="form-control" type="button" value="Añadir Opción" (click)="addOption()" />
+        
     </mat-dialog-content>
     <!-- Errors Zone-->
 

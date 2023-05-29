@@ -1,5 +1,4 @@
-﻿
-<div style="padding: 5rem">
+﻿<div style="padding: 5rem">
     <div class="caja container-fluid d-flex flex-column ">
         <div class="caja-interno container-fluid">
             <h2 *ngIf="helperService.game">Modificar Juego {{helperService.game.name}}</h2>
@@ -46,7 +45,7 @@
                         
                         <!-- Questions Zone-->
                         <div style="display: flex; justify-content: center; width: 100%; padding-bottom: 0.8rem ">
-                            <input class="btn btn-primary" style="background: #58b04b; border: none; color: white; padding: 0.5rem 3rem; width: fit-content; box-shadow:  0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35) !important;" type="button" value="Añadir Pregunta" (click)="addQuestion()" />
+                            <input class="btn btn-primary" style="background: var(--primary); border: none; color: white; padding: 0.5rem 3rem; width: fit-content; box-shadow:  0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35) !important;" type="button" value="Añadir Pregunta" (click)="addQuestion()" />
                         </div>
                         
                         <div style="overflow: hidden visible; max-height:195px; padding-top: 0.5rem">
@@ -69,18 +68,15 @@
                     </div>
                 </div>
             </form>
-
-        </div>
-        <hr class="separador" style=" line-height: 0.5rem">
-        <div>
-            <div class="form-check" > 
+            
+            <div class="form-check" style="margin-bottom: 1rem"> 
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"  [(ngModel)]="hidden">
                 <label class="form-check-label" for="flexCheckDefault">
                     Privado
                 </label>
             </div>
-            <button *ngIf="helperService.game==undefined" class="btn btn-primary" style="background: #58b04b; border: none; color: white; padding: 0.5rem 3rem; width: fit-content; box-shadow:  0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35) !important;" (click)="onSubmit()">Crear juego</button>
-            <button *ngIf="helperService.game!=undefined" class="btn btn-primary" style="background: #58b04b; border: none; color: white; padding: 0.5rem 3rem; width: fit-content; box-shadow:  0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35) !important;" (click)="onSubmit()">Modificar juego</button>
+            <button *ngIf="helperService.game==undefined" class="btn btn-primary" style="background: var(--primary); border: none; color: white; padding: 0.5rem 3rem; width: fit-content; box-shadow:  0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35) !important;" (click)="onSubmit()">Crear juego</button>
+            <button *ngIf="helperService.game!=undefined" class="btn btn-primary" style="background: var(--primary); border: none; color: white; padding: 0.5rem 3rem; width: fit-content; box-shadow:  0.1rem 0.1rem 0.2rem 0.05rem rgba(0, 0, 0, 0.35) !important;" (click)="onSubmit()">Modificar juego</button>
 
         </div>
 
